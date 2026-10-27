@@ -1,34 +1,48 @@
 {
   "product": "adc-software",
-  "version": "8.5.3",
+  "version": "8.5.4",
   "htmlUrl": "https://taha-waleed.github.io/adc-software-updates/ADC_Software_8_5.html",
-  "sha256": "e0ac1cc88fdcade0437c3aaf30a3147b617451cd183f1fc9d32a662dbd26ac85",
-  "releaseName": "ADC Software 8.5 (Final Standard)",
+  "sha256": "f30a3fc6dd61522533a9524d7028515b7cfc386dc59a2f28827dcf2b9942cd92",
+  "releaseName": "ADC Software 8.5 Standard · License and Edition Fix",
   "edition": "standard",
-  "proUpgrade": "8.5 Pro",
   "proReleased": false,
-  "proPricePkr": 14999,
-  "proPaymentType": "one-time",
+  "proPricePkrMonthly": 9999,
+  "proSubscriptionTermsMonths": [
+    1,
+    3
+  ],
   "releaseNotes": [
-    "One-time ADC 8.5 Pro license: PKR 14,999, manual Easypaisa payment approval and 5×5 auto-dash product key entry.",
-    "Offline key validation, animated activation sequence, automatic restart to the software startup screen and licensed Pro status.",
-    "Smoothed right-hand Today at ADC panel opening and closing for light and dark themes.",
-    "Patient receipts show Gross Total, Discount, Net Total, Received and Balance, plus non-scannable decorative ADC branding.",
-    "Retains Developer Options, Kharian doctor directory, searchable doctor suggestions and existing patient data.",
-    "Pro analytics, themes and AI-assisted reporting are reserved for the separate upcoming Pro feature build."
+    "Fix: Existing offline product key no longer changes ADC 8.5 Standard branding to Pro without the actual Pro features.",
+    "Added License & Edition page and Switch to Standard action; only the legacy licence record is removed, without deleting patient records.",
+    "Removed licensed status wording from the titlebar and startup splash; the topbar now says Explore 8.5 Pro.",
+    "Added Pro Features catalogue for 12 planned premium modules, clearly labeled Not yet released.",
+    "Changed proposed Pro price to PKR 9,999 per month; 3 months shown at PKR 29,997, with no falsely enforced expiry.",
+    "Added permanently visible release notes under Settings → Software Updates; all changes are also in update.json.",
+    "Retained prior receipt discount lines, decorative non-scannable QR, smoother right drawer, developer options, and Kharian doctors directory.",
+    "Security: Time-limited subscriptions and payment validation require an actual server-side license service in the future Pro release."
   ],
   "proPlannedFeatures": [
-    "Advanced reports and analytics",
+    "Advanced Reports & Analytics",
     "Theme Store / Appearance Pack",
-    "AI-assisted report typing",
-    "Voice-to-report",
-    "Report quality checker",
-    "Radiology templates",
-    "Prior report comparison",
-    "Live patient workflow",
-    "Turnaround time tracker",
-    "Version history and approval",
-    "Command palette",
-    "Role-specific workspaces"
+    "AI Report Writing Assistant",
+    "Voice-to-Report",
+    "AI Report Quality Checker",
+    "Radiology Report Templates",
+    "Previous Report Comparison",
+    "Live Patient Workflow",
+    "Turnaround Time Tracker",
+    "Report Version History & Approval",
+    "Smart Command Palette",
+    "Personalized Workspaces"
+  ],
+  "notes": [
+    "Fix: Existing offline product key no longer changes ADC 8.5 Standard branding to Pro without the actual Pro features.",
+    "Added License & Edition page and Switch to Standard action; only the legacy licence record is removed, without deleting patient records.",
+    "Removed licensed status wording from the titlebar and startup splash; the topbar now says Explore 8.5 Pro.",
+    "Added Pro Features catalogue for 12 planned premium modules, clearly labeled Not yet released.",
+    "Changed proposed Pro price to PKR 9,999 per month; 3 months shown at PKR 29,997, with no falsely enforced expiry.",
+    "Added permanently visible release notes under Settings → Software Updates; all changes are also in update.json.",
+    "Retained prior receipt discount lines, decorative non-scannable QR, smoother right drawer, developer options, and Kharian doctors directory.",
+    "Security: Time-limited subscriptions and payment validation require an actual server-side license service in the future Pro release."
   ]
 }
