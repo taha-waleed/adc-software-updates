@@ -1,15 +1,16 @@
 {
   "product": "adc-software",
-  "version": "8.5.1",
+  "version": "8.5.2",
   "htmlUrl": "https://taha-waleed.github.io/adc-software-updates/ADC_Software_8_5.html",
-  "sha256": "386c85413030322f92a3f6eca120fc5f725e9da75f9fb21d18962abf124445e6",
+  "sha256": "07b0e5e477e711cdbad4c3dc4c7c888420cf340c69a7464798d75ac597b45657",
   "releaseName": "ADC Software 8.5",
   "proUpgrade": "8.5 Pro",
   "proReleased": false,
   "releaseNotes": [
-    "Version 8.5 subscription flow for the AI Assistant.",
-    "Easypaisa payment instructions and manual verification notice.",
-    "Upgrade to 8.5 Pro in the topbar and Settings > Software Updates.",
-    "Existing patient, billing, reports, and settings logic retained."
+    "Removed the circled Upgrade to Pro button from the application header; top taskbar and Settings links remain.",
+    "Developer Options now requires a password before update URL or Gemini connection settings are shown.",
+    "Saved-only type-to-search referring and performing doctors including seeded publicly listed Kharian names and hospitals.",
+    "Fixed activity side-panel colors and profile text readability for dark and light modes.",
+    "Patient, billing, receipts, and reports data retained."
   ]
 }
