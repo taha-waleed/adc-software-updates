@@ -1,9 +1,9 @@
 {
   "product": "adc-software",
-  "version": "8.5.5",
+  "version": "8.5.6",
   "htmlUrl": "https://taha-waleed.github.io/adc-software-updates/ADC_Software_8_5.html",
-  "sha256": "281585a9a0f07da284bce5a95c39b38964ea89ad6b68cc7581849c7e4172a204",
-  "releaseName": "ADC Software 8.5 Standard · Subscription Pricing & Release Notes",
+  "sha256": "644959efa41f2c973b5d056f7cc454a2708f88adbdd5f426fecc034cd7bcc9a0",
+  "releaseName": "ADC Software 8.5 Standard · Earning Records & PDF Reports",
   "edition": "standard",
   "proReleased": false,
   "proPricePkrMonthly": 9999,
@@ -13,16 +13,20 @@
     3
   ],
   "releaseNotes": [
-    "Pricing update: ADC 8.5 Pro subscription preview offers 1 month for PKR 9,999 and 3 months for PKR 24,999.",
-    "Improved: Selecting a subscription plan immediately updates the displayed price and payment summary.",
-    "Bug fix: Copied payment instructions now use the exact price of the selected subscription plan.",
-    "Improved: Software Updates now shows concise, customer-facing release notes."
+    "New: Patient-wise Earning Records with patient name, MR number, procedure(s), receipt and visit dates, discounts and received amounts.",
+    "New: Select any date range or use Today, This Month and Last Month for month-end accounting.",
+    "New: Download a multi-page PDF report directly, or Print / Save PDF and export CSV.",
+    "Improved: Earnings summaries clearly separate total patient collections from operating expenses.",
+    "Improved: Classic 8.1-style thermal receipt retained, with a visible Discount and Net Total line on both copies.",
+    "Compatibility: Existing 8.1 patient, receipt, doctors and billing data retain their existing local storage structure."
   ],
   "notes": [
-    "Pricing update: ADC 8.5 Pro subscription preview offers 1 month for PKR 9,999 and 3 months for PKR 24,999.",
-    "Improved: Selecting a subscription plan immediately updates the displayed price and payment summary.",
-    "Bug fix: Copied payment instructions now use the exact price of the selected subscription plan.",
-    "Improved: Software Updates now shows concise, customer-facing release notes."
+    "New: Patient-wise Earning Records with patient name, MR number, procedure(s), receipt and visit dates, discounts and received amounts.",
+    "New: Select any date range or use Today, This Month and Last Month for month-end accounting.",
+    "New: Download a multi-page PDF report directly, or Print / Save PDF and export CSV.",
+    "Improved: Earnings summaries clearly separate total patient collections from operating expenses.",
+    "Improved: Classic 8.1-style thermal receipt retained, with a visible Discount and Net Total line on both copies.",
+    "Compatibility: Existing 8.1 patient, receipt, doctors and billing data retain their existing local storage structure."
   ],
   "proPlannedFeatures": [
     "Advanced Reports & Analytics",
