@@ -1,16 +1,34 @@
 {
   "product": "adc-software",
-  "version": "8.5.2",
+  "version": "8.5.3",
   "htmlUrl": "https://taha-waleed.github.io/adc-software-updates/ADC_Software_8_5.html",
-  "sha256": "07b0e5e477e711cdbad4c3dc4c7c888420cf340c69a7464798d75ac597b45657",
-  "releaseName": "ADC Software 8.5",
+  "sha256": "e0ac1cc88fdcade0437c3aaf30a3147b617451cd183f1fc9d32a662dbd26ac85",
+  "releaseName": "ADC Software 8.5 (Final Standard)",
+  "edition": "standard",
   "proUpgrade": "8.5 Pro",
   "proReleased": false,
+  "proPricePkr": 14999,
+  "proPaymentType": "one-time",
   "releaseNotes": [
-    "Removed the circled Upgrade to Pro button from the application header; top taskbar and Settings links remain.",
-    "Developer Options now requires a password before update URL or Gemini connection settings are shown.",
-    "Saved-only type-to-search referring and performing doctors including seeded publicly listed Kharian names and hospitals.",
-    "Fixed activity side-panel colors and profile text readability for dark and light modes.",
-    "Patient, billing, receipts, and reports data retained."
+    "One-time ADC 8.5 Pro license: PKR 14,999, manual Easypaisa payment approval and 5×5 auto-dash product key entry.",
+    "Offline key validation, animated activation sequence, automatic restart to the software startup screen and licensed Pro status.",
+    "Smoothed right-hand Today at ADC panel opening and closing for light and dark themes.",
+    "Patient receipts show Gross Total, Discount, Net Total, Received and Balance, plus non-scannable decorative ADC branding.",
+    "Retains Developer Options, Kharian doctor directory, searchable doctor suggestions and existing patient data.",
+    "Pro analytics, themes and AI-assisted reporting are reserved for the separate upcoming Pro feature build."
+  ],
+  "proPlannedFeatures": [
+    "Advanced reports and analytics",
+    "Theme Store / Appearance Pack",
+    "AI-assisted report typing",
+    "Voice-to-report",
+    "Report quality checker",
+    "Radiology templates",
+    "Prior report comparison",
+    "Live patient workflow",
+    "Turnaround time tracker",
+    "Version history and approval",
+    "Command palette",
+    "Role-specific workspaces"
   ]
 }
