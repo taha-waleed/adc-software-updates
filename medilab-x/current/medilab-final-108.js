@@ -1,4 +1,4 @@
-/* MediLab X 10.0.9 — selected clock, mini profile and clean update view. */
+/* MediLab X 10.0.11 — selected clock, mini profile and clean update view. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const two=x=>String(x).padStart(2,'0');
@@ -69,18 +69,18 @@ function initBrand(){
  const name=document.querySelector('#adc85NowBrief .adc85-brief-kicker');if(name)name.textContent='NOW BRIEF';
 }
 function initUpdatePanel(){
- const h=$('adc85UpdateHeading'),message=$('adc85UpdateMessage');if(h)h.textContent='Installed version: 10.0.9';
+ const h=$('adc85UpdateHeading'),message=$('adc85UpdateMessage');if(h)h.textContent='Installed version: 10.0.11';
  const updates=$('adc85UpdateCentre');if(!updates)return;
  const subtitle=updates.querySelector('p.muted');if(subtitle)subtitle.textContent='MediLab checks for verified updates automatically. Your records remain stored locally.';
  const observer=new MutationObserver(()=>{
-  if(h&&(/10\.0\.[0-7]|GitHub|update\.json/i.test(h.textContent||'')))h.textContent='Installed version: 10.0.9';
+  if(h&&(/10\.0\.[0-7]|GitHub|update\.json/i.test(h.textContent||'')))h.textContent='Installed version: 10.0.11';
   if(message&&/invalid release manifest|GitHub|update\.json/i.test(message.textContent||''))message.textContent='Unable to verify an update right now. Please try again later.';
  });observer.observe(updates,{subtree:true,characterData:true,childList:true});
 }
 function boot(){mount();if($('mlx108ClockPill'))animateSecondHand();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
-/* MediLab X 10.0.9 — centered analog hands, unclipped calendar and accessible popup. */
+/* MediLab X 10.0.11 — centered analog hands, unclipped calendar and accessible popup. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 let ready=false,btn,cal,wrap;
