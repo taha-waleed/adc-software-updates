@@ -39,6 +39,34 @@ function snapshot(){
   salarySlips:arr(op.salaries).length,letters:arr(op.letters).length,
   changedAt:Math.floor(Date.now()/600000)};
 }
+/* Locally saved, user-written Now Brief messages — never sent to Gemini. */
+const CUSTOM_LINES_STORE='mlx_nowbrief_custom_lines_v109';
+function customRead(){try{const v=JSON.parse(localStorage.getItem(CUSTOM_LINES_STORE)||'[]');return Array.isArray(v)?v.filter(x=>typeof x==='string').map(x=>x.trim()).filter(Boolean).slice(0,80):[]}catch(_){return []}}
+function customSave(lines){try{localStorage.setItem(CUSTOM_LINES_STORE,JSON.stringify(lines.slice(0,80)));return true}catch(_){return false}}
+function customMessages(){return customRead().map((msg,i)=>({id:'custom-'+i+'-'+msg.length,msg,prio:4}))}
+function setupCustomEditor(box){
+ if(box.querySelector('#mlx109CustomEditor'))return;
+ const editor=document.createElement('section');editor.id='mlx109CustomEditor';editor.className='mlx109-custom-editor';
+ editor.innerHTML='<h3>Custom Now Brief lines</h3><p class="muted">Write your own messages in English. They are stored only on this PC and are never sent to Gemini.</p><div class="mlx109-editor-input"><input type="text" id="mlx109NewBriefLine" maxlength="190" placeholder="Enter a short Now Brief line" aria-label="New Now Brief line"><button type="button" id="mlx109SaveBriefLine">Add line</button></div><p class="muted" id="mlx109BriefStatus" aria-live="polite"></p><label class="mlx109-custom-toggle"><input type="checkbox" id="mlx109CustomOnly"> Show my lines only (hide automatic insights)</label><div id="mlx109CustomList"></div>';
+ box.appendChild(editor);
+ const input=editor.querySelector('#mlx109NewBriefLine'), list=editor.querySelector('#mlx109CustomList'),status=editor.querySelector('#mlx109BriefStatus'),only=editor.querySelector('#mlx109CustomOnly');
+ let editing=-1;only.checked=!!pref().customOnly;
+ function draw(){list.replaceChildren();const lines=customRead();
+  if(!lines.length){const p=document.createElement('p');p.className='muted';p.textContent='No custom lines yet. Automatic insights will continue.';list.appendChild(p);return}
+  lines.forEach((line,i)=>{const row=document.createElement('div');row.className='mlx109-custom-row';
+   const label=document.createElement('span');label.textContent=line;row.appendChild(label);
+   const edit=document.createElement('button');edit.type='button';edit.textContent='Edit';edit.onclick=()=>{editing=i;input.value=line;input.focus();editor.querySelector('#mlx109SaveBriefLine').textContent='Save edit'};row.appendChild(edit);
+   const del=document.createElement('button');del.type='button';del.textContent='Delete';del.onclick=()=>{const a=customRead();a.splice(i,1);customSave(a);editing=-1;input.value='';editor.querySelector('#mlx109SaveBriefLine').textContent='Add line';status.textContent='Line removed';recently=[];draw();render()};row.appendChild(del);list.appendChild(row)
+  })
+ }
+ editor.querySelector('#mlx109SaveBriefLine').onclick=()=>{const value=input.value.trim().replace(/[\r\n\t]+/g,' ');if(!value){status.textContent='Enter your line first.';return}
+  const lines=customRead();if(editing>=0&&editing<lines.length)lines[editing]=value;else if(lines.length<80)lines.push(value);else{status.textContent='Maximum 80 custom lines.';return}
+  if(!customSave(lines)){status.textContent='Unable to save. Check local storage settings.';return}
+  editing=-1;input.value='';editor.querySelector('#mlx109SaveBriefLine').textContent='Add line';status.textContent='Saved on this device';recently=[];draw();render()
+ };
+ input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();editor.querySelector('#mlx109SaveBriefLine').click()}});
+ only.onchange=()=>{save({customOnly:only.checked});recently=[];render()};draw();
+}
 function messages(s){let m=[];const a=(id,msg,prio=0)=>m.push({id,msg,prio});
  a('intro',`MediLab X is ready. ${s.visits.toLocaleString('en-PK')} patient visit${s.visits===1?'':'s'} saved across your centre.`,0);
  a('today-visits',`Today's reception has recorded ${s.todayVisits} patient visit${s.todayVisits===1?'':'s'} so far.`,1);
@@ -69,7 +97,7 @@ function messages(s){let m=[];const a=(id,msg,prio=0)=>m.push({id,msg,prio});
  if(!s.reagentBatches)a('stock-setup','Add reagent batches with lot numbers and expiry dates to activate stock reminders.',1);
  if(!s.expenseEntries)a('expenses-setup','Record daily expenses to compare operating costs with collections.',1);
  if(!s.reports)a('report-workflow','Radiology reports can be managed inside the Reports workspace.',0);
- return m;
+ const user=customMessages();return pref().customOnly&&user.length?user:m.concat(user);
 }
 let current='',index=0,source=null,lastHash='',inflight=false,lastAIAt=0,generated='',aiSig='';
 let recently=[];try{recently=JSON.parse(sessionStorage.getItem('mlx_brief_recent_v106')||'[]')}catch{}
@@ -80,7 +108,7 @@ function safeAI(candidate,text){let t=String(text||'').replace(/[\r\n]+/g,' ').t
  const nums=s=>[...s.matchAll(/\b(?:\d[\d,]*)(?:\.\d+)?%?\b/g)].map(m=>m[0].replace(/,/g,'')).sort();
  if(JSON.stringify(nums(t))!==JSON.stringify(nums(candidate)))return null;
  if(/\b(?:patient name|MR number|diagnos|prescri|medical advice|personal phone)\b/i.test(t))return null;return t}
-async function maybeGemini(s,selected){if(inflight||!pref().cloud||!active()||!window.adcDesktop?.geminiAsk||!selected||selected.id==='top-test')return;
+async function maybeGemini(s,selected){if(inflight||!pref().cloud||!active()||!window.adcDesktop?.geminiAsk||!selected||(selected.id==='top-test'||selected.id.startsWith('custom-')))return;
  if(Date.now()-lastAIAt<60*60*1000)return;lastAIAt=Date.now();inflight=true;
  const prompt=`You write ONE professional English Now Brief sentence for the MediLab X dashboard.\nRewrite the verified statement below for variety, no extra facts. Preserve every number and monetary amount EXACTLY. Do not mention any individual patient, staff member, doctor, phone, MR number, or clinical findings. Only output one sentence, max 180 characters. Do not invent metrics.\nVERIFIED STATEMENT: ${selected.msg}\nSAFE NON-IDENTIFYING METRIC COUNTS: ${JSON.stringify({visitsToday:s.todayVisits,visits7Days:s.weekVisits,receivedToday:s.todayReceived,expensesToday:s.todayExpense,outstanding:s.totalDue,expiringBatches:s.expiring,pendingLeave:s.leavePending})}`;
  try{const result=await window.adcDesktop.geminiAsk(prompt);if(result?.ok){const safe=safeAI(selected.msg,result.text);if(safe){generated=safe;aiSig=selected.id;output(safe)}}}catch(_){}finally{inflight=false}}
@@ -89,7 +117,7 @@ function render(){if(!active())return;const s=snapshot();const hash=JSON.stringi
  output(aiSig===selected.id&&generated?generated:selected.msg);if(hash!==lastHash){lastHash=hash;generated='';aiSig=''}maybeGemini(s,selected)}
 function controls(){const target=document.querySelector('[data-setting-view="brief"]')||document.querySelector('#settings .adc-settings-group');if(!target||$('mlx-brief-controls'))return;
  const box=document.createElement('div');box.id='mlx-brief-controls';box.className='adc-settings-group';box.innerHTML='<h2>AI Now Brief</h2><p class="muted">Local, read-only analysis of patient visits, receipts, expenses, reports, reagent inventory and HR. No individual medical or patient records leave the PC.</p><label class="mlx-brief-toggle"><input id="mlx-brief-cloud" type="checkbox"> Optional Gemini wording improvements (sends only anonymized aggregate statistics, at most hourly)</label><p class="muted">Requires Gemini API key configured in Windows. Local insights work offline. Cloud mode never changes saved records.</p>';
- target.append(box);const el=$('mlx-brief-cloud');el.checked=!!pref().cloud;el.onchange=()=>save({cloud:el.checked})}
+ target.append(box);setupCustomEditor(box);const el=$('mlx-brief-cloud');el.checked=!!pref().cloud;el.onchange=()=>save({cloud:el.checked})}
 function eliminateChat(){document.querySelectorAll('#ml10AiOpen,#ml10AiPanel,#ml10AiBackdrop,#adcAiOverlay,#adcAssistantOpen,#adc85DeveloperGeminiMount,#mlx-ai-local-preview,#mlx-ai-data-option').forEach(n=>{if(n.id==='ml10AiPanel'||n.id==='ml10AiBackdrop'||n.id==='adcAiOverlay'){n.setAttribute('aria-hidden','true');n.remove()}else n.hidden=true});
  document.querySelectorAll('[data-open-settings="mlxaicustom"],[data-open-settings="gemini"],#adc85GeminiSave,#adc85GeminiRemove').forEach(n=>n.hidden=true)}
 function init(){const old=$('adc85BriefCopy');if(!old){setTimeout(init,250);return};
