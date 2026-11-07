@@ -1,13 +1,11 @@
 {
-  "version": "10.0.8",
-  "downloadUrl": "https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.8/MediLab-X-Setup-10.0.8-x64.exe",
-  "sha256": "d2ecfe9e1a2436697874a5bb9203623300d0f8d3ea83b3527470b4510bc14d83",
+  "version": "10.0.9",
+  "downloadUrl": "https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.9/MediLab-X-Setup-10.0.9-x64.exe",
+  "sha256": "7c4e0b7333d201abab12c1690c260289d0a43a50f97ab0530215b83759cba86d",
   "notes": [
     "Native receipt and radiology report preview/printing",
     "WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)",
     "Neon Frame notifications, Prism Ribbon, selected 270px animated clock and compact navigation",
     "Simplified software updates with verified installer confirmation"
-  ],
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_8.html",
-  "htmlSha256": "dd9f3dd9a3a72e18f2ebe68e4e4f8e7fcdc66887826b604b2c44d06bc17f6a6a"
+  ]
 }
