@@ -2,7 +2,7 @@
 const {app,BrowserWindow,ipcMain,dialog,shell} = require('electron');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const https=require('node:https'),crypto=require('node:crypto');
-const VERSION='10.0.8';
+const VERSION='10.0.9';
 const DEFAULT_UPDATE_SOURCE='https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/update.json';
 const root=path.join(app.getPath('appData'),'MediLab','Standard');
 app.setPath('userData',root); // keep the existing MediLab Standard data location
@@ -28,7 +28,7 @@ function create(){
 const allowManifest=(raw)=>{try{const u=new URL(raw);return u.protocol==='https:'&&['raw.githubusercontent.com','github.com'].includes(u.hostname)&&!u.username&&!u.password}catch{return false}};
 function remote(url,method='GET',body=null,timeout=12000,limit=15*1024*1024){return new Promise((resolve,reject)=>{
  const u=new URL(url);if(u.protocol!=='https:')return reject(new Error('HTTPS required'));
- const opts={method,timeout,headers:{'User-Agent':'MediLab-X/10.0.8','Accept':'application/json'}};
+ const opts={method,timeout,headers:{'User-Agent':'MediLab-X/10.0.9','Accept':'application/json'}};
  if(body){opts.headers['Content-Type']='application/json';opts.headers['Content-Length']=Buffer.byteLength(body)}
  const req=https.request(u,opts,res=>{
   if([301,302,307,308].includes(res.statusCode)){const loc=new URL(res.headers.location,u).href;res.resume();if(!/^https:\/\//.test(loc))return reject(new Error('Insecure redirect'));return remote(loc,method,body,timeout,limit).then(resolve,reject)}
