@@ -1,22 +1,11 @@
 {
-  "version": "10.0.9",
-  "downloadUrl": "https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.9/MediLab-X-Setup-10.0.9-x64.exe",
-  "sha256": "7c4e0b7333d201abab12c1690c260289d0a43a50f97ab0530215b83759cba86d",
+  "version": "10.0.11",
+  "downloadUrl": "https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.11/MediLab-X-Setup-10.0.11-x64.exe",
+  "sha256": "ffd435f942daa2cab1f076241d75eee97e40455a4eafc5a7349a91061c9b451a",
   "notes": [
-    "Fixed Analog + Digital clock hand alignment and smooth seconds animation",
-    "Calendar now opens above the dashboard and supports month navigation",
-    "Added editable Custom Now Brief Lines: add, edit, delete or show custom-only messages",
-    "Preserved Midnight Prism ribbon, Glow Outline sidebar and selected Neon Frame notifications",
-    "Maintained verified Windows receipt printing and WhatsApp Desktop integration"
-  ],
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_10.html",
-  "htmlSha256": "3a230eae286cd4498170320e29f342385519264a34c1ed666c08bc840c87d6c9",
-  "htmlVersion": "10.0.10",
-  "htmlReleaseNotes": [
-    "Neon Frame notification popup now adapts to Light and Dark themes",
-    "Notification history, text, cards and buttons remain readable in Dark mode",
-    "One UI-inspired rounded Software Update screen for HTML channel",
-    "Preserved Prism Ribbon, Original Heartbeat and animated 270px clock",
-    "Standalone HTML update only; Windows installer and native update channel unchanged"
+    "Native receipt and radiology report preview/printing",
+    "WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)",
+    "Modern 3D CT/X-Ray/Ultrasound chart, refined analog/digital clock and smooth downward calendar",
+    "One-time native bridge enables SHA-256 verified future HTML-only UI updates"
   ]
 }
