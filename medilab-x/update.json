@@ -9,6 +9,14 @@
     "Preserved Midnight Prism ribbon, Glow Outline sidebar and selected Neon Frame notifications",
     "Maintained verified Windows receipt printing and WhatsApp Desktop integration"
   ],
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_9.html",
-  "htmlSha256": "55ecbe93b112508daa8bb116caa3e797469008d06e0c772d7200bb5f8143a2af"
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_10.html",
+  "htmlSha256": "3a230eae286cd4498170320e29f342385519264a34c1ed666c08bc840c87d6c9",
+  "htmlVersion": "10.0.10",
+  "htmlReleaseNotes": [
+    "Neon Frame notification popup now adapts to Light and Dark themes",
+    "Notification history, text, cards and buttons remain readable in Dark mode",
+    "One UI-inspired rounded Software Update screen for HTML channel",
+    "Preserved Prism Ribbon, Original Heartbeat and animated 270px clock",
+    "Standalone HTML update only; Windows installer and native update channel unchanged"
+  ]
 }
