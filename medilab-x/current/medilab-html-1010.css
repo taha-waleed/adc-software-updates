@@ -1,0 +1,72 @@
+/* MediLab X 10.0.10 — HTML channel. Neon Frame fixed for light and dark. */
+#mlx-notif-panel{--n-bg:#fff;--n-panel:#f5f7ff;--n-ink:#223451;--n-soft:#64748b;--n-line:#e1e6f4;--n-action:#edf1ff;--n-accent:#504bbd;
+  background:linear-gradient(var(--n-bg),var(--n-bg)) padding-box,
+   linear-gradient(120deg,#8175ff,#18bdcd,#b18aff,#8175ff) border-box!important;
+  color:var(--n-ink)!important;border:1px solid transparent!important;
+  box-shadow:0 18px 42px #243c7136,0 0 22px #737dff38!important;
+}
+#mlx-notif-panel h2,#mlx-notif-panel .mlx-panel-head h2,#mlx-notif-panel .mlx-notif-card strong{color:var(--n-ink)!important}
+#mlx-notif-panel .mlx-panel-head{border-bottom:1px solid var(--n-line)!important}
+#mlx-notif-panel .mlx-count,#mlx-notif-panel .mlx-empty,#mlx-notif-panel .mlx-notif-card p,#mlx-notif-panel .mlx-notif-card small{color:var(--n-soft)!important}
+#mlx-notif-panel .mlx-notif-card{background:var(--n-panel)!important;border:1px solid var(--n-line)!important;color:var(--n-ink)!important}
+#mlx-notif-panel .mlx-notif-card strong{font-weight:750}
+#mlx-notif-panel .mlx-notif-card p{color:var(--n-ink)!important;opacity:.9}
+#mlx-notif-panel .mlx-notif-foot{border-color:var(--n-line)!important}
+#mlx-notif-panel button,#mlx-notif-panel .mlx-notif-foot button{color:var(--n-accent)!important;background:var(--n-action)!important;border:1px solid var(--n-line)!important}
+#mlx-notif-panel button:hover{filter:brightness(.97)}
+#mlx-notif-panel .mlx-empty{min-height:88px;display:grid;place-items:center;text-align:center}
+#mlx-notif-panel .mlx-nicon{background:#e7e7ff!important;color:#5245b9!important}
+body:has(#app.dark) #mlx-notif-panel,
+body:has(#app[data-theme="dark"]) #mlx-notif-panel,
+body.dark #mlx-notif-panel{--n-bg:#182338;--n-panel:#202f49;--n-ink:#f5f8ff;--n-soft:#b9c8dc;--n-line:#374961;--n-action:#2b3955;--n-accent:#d9d3ff;
+ box-shadow:0 23px 64px #0008,0 0 20px #8c7bff52!important}
+body:has(#app.dark) #mlx-notif-panel .mlx-nicon,
+body.dark #mlx-notif-panel .mlx-nicon{background:#443e77!important;color:#e4e2ff!important}
+/* Toasts are appended to the body, outside the dark app tree. */
+body:has(#app.dark) .mlx-toast-host .mlx-toast,
+body:has(#app[data-theme="dark"]) .mlx-toast-host .mlx-toast,
+body.dark .mlx-toast-host .mlx-toast{background:linear-gradient(#202d47,#202d47) padding-box,linear-gradient(120deg,#706aff,#00c5d6,#ae7dff) border-box!important;color:#f6f8ff!important}
+body:has(#app.dark) .mlx-toast-host .mlx-toast strong,
+body.dark .mlx-toast-host .mlx-toast strong{color:#fff!important}
+body:has(#app.dark) .mlx-toast-host .mlx-toast p,
+body.dark .mlx-toast-host .mlx-toast p{color:#dbe7f7!important}
+/* Notification must display below the header, not on top of the analog dial. */
+#mlx-notif-panel{top:var(--mln-top,90px)!important;left:var(--mln-left,auto)!important;right:var(--mln-right,20px)!important;max-width:calc(100vw - 24px)!important}
+#mlx-notif-panel.mlx-notif-opening{animation:mlx108FloatDown .37s cubic-bezier(.16,.94,.34,1.06) both!important}
+/* One UI inspired: separated, calm card groups, readable on both themes. */
+#adc85UpdateCentre.mlx1010-html-updates{--su-bg:#f6f8fc;--su-card:#fff;--su-ink:#1a2e4a;--su-sub:#64748a;--su-border:#e4e9f1;--su-blue:#3466d4;--su-chip:#e8efff;
+ border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important;max-width:900px!important}
+#adc85UpdateCentre.mlx1010-html-updates>.adc85-update-status,
+#adc85UpdateCentre.mlx1010-html-updates>#adc85UpdateOffer,
+#adc85UpdateCentre.mlx1010-html-updates>.adc85-update-actions,
+#adc85UpdateCentre.mlx1010-html-updates>#mlx-update-wait,
+#adc85UpdateCentre.mlx1010-html-updates>.adc854-current-notes,
+#adc85UpdateCentre.mlx1010-html-updates>#adc854DeactivateUpdate{display:none!important}
+#mlx1010UpdateUi{color:var(--su-ink);font-family:inherit;display:flex;flex-direction:column;gap:14px}
+#mlx1010UpdateUi .su-hero{display:flex;align-items:center;gap:14px;padding:20px 21px 6px}
+#mlx1010UpdateUi .su-symbol{display:grid;place-items:center;flex:none;width:47px;height:47px;border-radius:17px;color:#fff;background:linear-gradient(135deg,#5277fa,#11b9cf);box-shadow:0 8px 19px #466cde34;font-size:24px}
+#mlx1010UpdateUi .su-hero h2{font-size:23px;letter-spacing:-.5px;color:var(--su-ink);font-weight:760;margin:0}
+#mlx1010UpdateUi .su-hero p{font-size:12px;color:var(--su-sub);margin:4px 0 0}
+#mlx1010UpdateUi .su-card{padding:18px 20px;background:var(--su-card);border:1px solid var(--su-border);border-radius:22px;box-shadow:0 4px 13px #1c3d7010;color:var(--su-ink)}
+#mlx1010UpdateUi .su-row{display:flex;align-items:center;justify-content:space-between;gap:18px}
+#mlx1010UpdateUi .su-row+ .su-row{border-top:1px solid var(--su-border);margin-top:13px;padding-top:13px}
+#mlx1010UpdateUi h3{font-size:14px;margin:0 0 5px;color:var(--su-ink);font-weight:750}
+#mlx1010UpdateUi p,#mlx1010UpdateUi .su-status{font-size:12px;line-height:1.55;color:var(--su-sub);margin:0}
+#mlx1010UpdateUi .su-tag{border-radius:999px;background:var(--su-chip);color:var(--su-blue);padding:8px 11px;font-weight:750;font-size:11px;white-space:nowrap}
+#mlx1010UpdateUi .su-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+#mlx1010UpdateUi button,#mlx1010UpdateUi a.su-link{font:700 12px/1.2 inherit;font-family:inherit;font-size:12px;font-weight:700;border-radius:13px;padding:11px 15px;cursor:pointer;border:1px solid var(--su-border);background:var(--su-chip);color:var(--su-blue);text-decoration:none;display:inline-flex;align-items:center;gap:7px;justify-content:center}
+#mlx1010UpdateUi button.su-primary{background:linear-gradient(110deg,#4f6cf0,#1aa6c0);color:white;border-color:transparent}
+#mlx1010UpdateUi button:disabled{opacity:.6;cursor:wait}
+#mlx1010UpdateUi .su-reveal[hidden]{display:none!important}
+#mlx1010UpdateUi .su-reveal{margin-top:12px;border-top:1px solid var(--su-border);padding-top:12px;font-size:12px;color:var(--su-sub);line-height:1.7}
+#mlx1010UpdateUi .su-reveal ul{margin:0;padding-left:18px}
+#mlx1010UpdateUi .su-status{margin-top:10px}
+#mlx1010UpdateUi .su-quiet{display:flex;align-items:center;gap:7px;color:var(--su-sub);font-size:11px;margin:0 5px}
+#mlx1010UpdateUi .su-loader{display:none;width:13px;height:13px;border:2px solid #b2bdf9;border-top-color:#435bc9;border-radius:50%;animation:su-spin .75s linear infinite}
+#mlx1010UpdateUi .su-loader.active{display:inline-block}
+@keyframes su-spin{to{transform:rotate(360deg)}}
+body:has(#app.dark) #adc85UpdateCentre.mlx1010-html-updates,
+#app.dark #adc85UpdateCentre.mlx1010-html-updates,
+body.dark #adc85UpdateCentre.mlx1010-html-updates{--su-bg:#121e31;--su-card:#1b2940;--su-ink:#eff6ff;--su-sub:#bdcbe1;--su-border:#34465f;--su-blue:#c1ceff;--su-chip:#293957}
+@media(max-width:700px){#mlx1010UpdateUi .su-row{align-items:flex-start}#mlx1010UpdateUi .su-hero{padding:10px 6px 3px}#mlx1010UpdateUi .su-card{padding:15px}}
+@media(prefers-reduced-motion:reduce){#mlx1010UpdateUi .su-loader,#mlx-notif-panel.mlx-notif-opening{animation:none!important}}
