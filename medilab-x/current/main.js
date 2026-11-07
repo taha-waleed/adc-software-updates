@@ -2,7 +2,7 @@
 const {app,BrowserWindow,ipcMain,dialog,shell} = require('electron');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const https=require('node:https'),crypto=require('node:crypto');
-const VERSION='10.0.9';
+const VERSION='10.0.11';
 const DEFAULT_UPDATE_SOURCE='https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/update.json';
 const root=path.join(app.getPath('appData'),'MediLab','Standard');
 app.setPath('userData',root); // keep the existing MediLab Standard data location
@@ -17,9 +17,19 @@ function uiState(){if(!win||win.isDestroyed())return;win.webContents.send('mlx:w
 function readyForLogin(){if(!win||win.isDestroyed()||shownLogin)return;shownLogin=true;win.setSkipTaskbar(false);if(!win.isMaximized()){win.setMinimumSize(990,670);win.setSize(1080,760);win.center()}uiState()}
 function create(){
  win=new BrowserWindow({width:760,height:520,minWidth:760,minHeight:520,center:true,backgroundColor:'#122042',show:false,frame:false,title:'MediLab X',skipTaskbar:true,autoHideMenuBar:true,icon:path.join(__dirname,'assets','MediLab-X.ico'),webPreferences:{contextIsolation:true,nodeIntegration:false,sandbox:true,preload:path.join(__dirname,'preload.js'),webSecurity:true,spellcheck:false}});
- win.removeMenu();win.loadFile(path.join(__dirname,'index.html'),{query:{medilabDesktop:'1'}});
- win.once('ready-to-show',()=>{win.show()});
- win.webContents.on('did-finish-load',()=>{setTimeout(readyForLogin,3150)});
+ win.removeMenu();win.loadFile(htmlUpdater.activeFile(path.join(__dirname,'index.html')),{query:{medilabDesktop:'1'}});
+ win.once('ready-to-show',()=>{if(!htmlUpdater.needsMigration())win.show()});
+ win.webContents.on('did-finish-load',async()=>{
+ if(htmlUpdater.needsMigration()){
+  const migrated=await htmlUpdater.migrate(win);
+  if(migrated)return;
+  // Safe rollback to packaged HTML if data migration cannot complete.
+  save({activeHtmlVersion:null,activeHtmlSha256:null,uiMigrationRequired:false});
+  win.loadFile(path.join(__dirname,'index.html'),{query:{medilabDesktop:'1'}});return;
+ }
+ if(!win.isDestroyed()&&!win.isVisible())win.show();
+ setTimeout(readyForLogin,3150);
+});
  win.on('maximize',uiState);win.on('unmaximize',uiState);
  win.on('closed',()=>{win=null});
  win.webContents.setWindowOpenHandler(({url})=>{if(/^https:\/\/(?:github\.com|aistudio\.google\.com|ai\.google\.dev)\//i.test(url)){shell.openExternal(url)}return{action:'deny'}});
@@ -28,7 +38,7 @@ function create(){
 const allowManifest=(raw)=>{try{const u=new URL(raw);return u.protocol==='https:'&&['raw.githubusercontent.com','github.com'].includes(u.hostname)&&!u.username&&!u.password}catch{return false}};
 function remote(url,method='GET',body=null,timeout=12000,limit=15*1024*1024){return new Promise((resolve,reject)=>{
  const u=new URL(url);if(u.protocol!=='https:')return reject(new Error('HTTPS required'));
- const opts={method,timeout,headers:{'User-Agent':'MediLab-X/10.0.9','Accept':'application/json'}};
+ const opts={method,timeout,headers:{'User-Agent':'MediLab-X/10.0.11','Accept':'application/json'}};
  if(body){opts.headers['Content-Type']='application/json';opts.headers['Content-Length']=Buffer.byteLength(body)}
  const req=https.request(u,opts,res=>{
   if([301,302,307,308].includes(res.statusCode)){const loc=new URL(res.headers.location,u).href;res.resume();if(!/^https:\/\//.test(loc))return reject(new Error('Insecure redirect'));return remote(loc,method,body,timeout,limit).then(resolve,reject)}
@@ -37,6 +47,7 @@ function remote(url,method='GET',body=null,timeout=12000,limit=15*1024*1024){ret
  });req.on('timeout',()=>req.destroy(new Error('Connection timed out')));req.on('error',reject);if(body)req.write(body);req.end();
 })}
 function newer(v){const a=String(v).match(/^\d+(?:\.\d+){1,2}$/);if(!a)return false;const x=v.split('.').map(Number),y=VERSION.split('.').map(Number);for(let i=0;i<3;i++){const n=x[i]||0,m=y[i]||0;if(n!==m)return n>m}return false}
+const htmlUpdater=require('./medilab-html-updater.js').init({root,app,dialog,remote,save,config,VERSION,getWindow:()=>win});
 async function checkOnline(automatic=false){
  if(checking)return {ok:false,error:'An update check is already in progress.'};
  const savedSource=config().updateSource;const legacySource=typeof savedSource==='string'&&/\/adc-software-updates\/main\/update\.json(?:\?.*)?$/i.test(savedSource);const source=(!savedSource||legacySource)?DEFAULT_UPDATE_SOURCE:savedSource;
@@ -44,8 +55,13 @@ async function checkOnline(automatic=false){
  checking=true;
  try{const b=await remote(source);const d=JSON.parse(b.toString('utf8'));if(!d||typeof d.version!=='string')throw new Error('The update service is not ready yet. Please check again later.');
  const avail=newer(d.version);const url=String(d.downloadUrl||'');const sha=String(d.sha256||'').toLowerCase();const okDownload=/^https:\/\/github\.com\/[^/]+\/[^/]+\/releases\/download\/[^?]+\.exe(?:\?.*)?$/i.test(url)&&/^[a-f0-9]{64}$/.test(sha);
- const r={ok:true,available:avail,version:d.version,notes:Array.isArray(d.notes)?d.notes.slice(0,30).map(String):typeof d.notes==='string'?d.notes:'',downloadUrl:okDownload?url:null,sha256:okDownload?sha:null};
- if(avail){save({lastAvailableVersion:d.version});if(automatic&&win&&!win.isDestroyed())win.webContents.send('mlx:auto-update',r)}return r;
+ const h=htmlUpdater.examine(d);
+ const r={ok:true,available:avail||h.available,kind:avail?'installer':h.available?'html':'none',
+  version:avail?d.version:h.available?h.version:d.version,nativeVersion:d.version,
+  htmlVersion:h.version,htmlAvailable:h.available,htmlUrl:h.url,htmlSha256:h.sha256,
+  notes:Array.isArray(d.htmlReleaseNotes)&&h.available?d.htmlReleaseNotes.slice(0,30).map(String):Array.isArray(d.notes)?d.notes.slice(0,30).map(String):typeof d.notes==='string'?d.notes:'',
+  downloadUrl:okDownload?url:null,sha256:okDownload?sha:null};
+ if(r.available){save({lastAvailableVersion:r.version});if(automatic&&win&&!win.isDestroyed())win.webContents.send('mlx:auto-update',r)}return r;
  }catch(err){return{ok:false,error:/HTTP 404/.test(err.message)?'No verified installer has been released yet. Please check again later.':err.message}}finally{checking=false}
 }
 async function downloadVerified(file,hash){
@@ -55,7 +71,9 @@ async function downloadVerified(file,hash){
  const actual=crypto.createHash('sha256').update(buffer).digest('hex');if(actual!==hash.toLowerCase())throw new Error('SHA-256 mismatch. Installation cancelled.');
  const filename='MediLab-X-verified-'+Date.now()+'.exe';const dest=path.join(os.tmpdir(),filename);fs.writeFileSync(dest,buffer);return dest
 }
-async function installOnline(){const info=await checkOnline();if(!info.ok||!info.available)return{ok:false,error:info.error||'No new update is available'};if(!info.downloadUrl)return{ok:false,error:'Manifest lacks a valid GitHub EXE and SHA-256 checksum'};
+async function installOnline(){const info=await checkOnline();if(!info.ok||!info.available)return{ok:false,error:info.error||'No new update is available'};
+ if(info.kind==='html')return htmlUpdater.install({htmlVersion:info.htmlVersion,htmlUrl:info.htmlUrl,htmlSha256:info.htmlSha256});
+ if(!info.downloadUrl)return{ok:false,error:'Manifest lacks a valid GitHub EXE and SHA-256 checksum'};
  if(!win||win.isDestroyed())return{ok:false,error:'Window not available'};
  const answer=await dialog.showMessageBox(win,{type:'question',buttons:['Cancel','Download and open installer'],defaultId:0,cancelId:0,message:'Install MediLab X '+info.version+'?',detail:'Back up the patient database before updating. Only the verified installer will be opened. Installation needs your confirmation.'});if(answer.response!==1)return{ok:false,cancelled:true};
  try{const exe=await downloadVerified(info.downloadUrl,info.sha256);save({installingVersion:info.version});const error=await shell.openPath(exe);if(error)return{ok:false,error};return{ok:true,message:'Verified installer opened'}}catch(e){return{ok:false,error:e.message}}
