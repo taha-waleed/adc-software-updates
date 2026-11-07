@@ -1,1 +1,1 @@
-Publish MediLab X 10.0.9 standalone HTML and compatible update.json. Clock hand center, calendar popup, custom Now Brief editor. 2026-11-07.
+Publish MediLab X 10.0.10 HTML-only release: One UI updates, dark notifications. Windows EXE unchanged. 2026-11-07.
