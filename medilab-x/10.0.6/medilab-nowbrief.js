@@ -80,21 +80,22 @@ function safeAI(candidate,text){let t=String(text||'').replace(/[\r\n]+/g,' ').t
  const nums=s=>[...s.matchAll(/\b(?:\d[\d,]*)(?:\.\d+)?%?\b/g)].map(m=>m[0].replace(/,/g,'')).sort();
  if(JSON.stringify(nums(t))!==JSON.stringify(nums(candidate)))return null;
  if(/\b(?:patient name|MR number|diagnos|prescri|medical advice|personal phone)\b/i.test(t))return null;return t}
-async function maybeGemini(s,selected){if(inflight||!pref().cloud||!active()||!window.adcDesktop?.geminiAsk||!selected)return;
+async function maybeGemini(s,selected){if(inflight||!pref().cloud||!active()||!window.adcDesktop?.geminiAsk||!selected||selected.id==='top-test')return;
  if(Date.now()-lastAIAt<60*60*1000)return;lastAIAt=Date.now();inflight=true;
  const prompt=`You write ONE professional English Now Brief sentence for the MediLab X dashboard.\nRewrite the verified statement below for variety, no extra facts. Preserve every number and monetary amount EXACTLY. Do not mention any individual patient, staff member, doctor, phone, MR number, or clinical findings. Only output one sentence, max 180 characters. Do not invent metrics.\nVERIFIED STATEMENT: ${selected.msg}\nSAFE NON-IDENTIFYING METRIC COUNTS: ${JSON.stringify({visitsToday:s.todayVisits,visits7Days:s.weekVisits,receivedToday:s.todayReceived,expensesToday:s.todayExpense,outstanding:s.totalDue,expiringBatches:s.expiring,pendingLeave:s.leavePending})}`;
  try{const result=await window.adcDesktop.geminiAsk(prompt);if(result?.ok){const safe=safeAI(selected.msg,result.text);if(safe){generated=safe;aiSig=selected.id;output(safe)}}}catch(_){}finally{inflight=false}}
 function render(){if(!active())return;const s=snapshot();const hash=JSON.stringify({...s,changedAt:undefined});const items=messages(s);const selected=pick(items);if(!selected)return;
  const kick=$('adc85NowBrief')?.querySelector('.adc85-brief-kicker');if(kick)kick.textContent='MEDILAB INTELLIGENCE · LIVE DATA';
- output(aiSig===selected.id&&generated?generated:selected.msg);if(hash!==lastHash){lastHash=hash;lastAIAt=0}maybeGemini(s,selected)}
+ output(aiSig===selected.id&&generated?generated:selected.msg);if(hash!==lastHash){lastHash=hash;generated='';aiSig=''}maybeGemini(s,selected)}
 function controls(){const target=document.querySelector('[data-setting-view="brief"]')||document.querySelector('#settings .adc-settings-group');if(!target||$('mlx-brief-controls'))return;
  const box=document.createElement('div');box.id='mlx-brief-controls';box.className='adc-settings-group';box.innerHTML='<h2>AI Now Brief</h2><p class="muted">Local, read-only analysis of patient visits, receipts, expenses, reports, reagent inventory and HR. No individual medical or patient records leave the PC.</p><label class="mlx-brief-toggle"><input id="mlx-brief-cloud" type="checkbox"> Optional Gemini wording improvements (sends only anonymized aggregate statistics, at most hourly)</label><p class="muted">Requires Gemini API key configured in Windows. Local insights work offline. Cloud mode never changes saved records.</p>';
  target.append(box);const el=$('mlx-brief-cloud');el.checked=!!pref().cloud;el.onchange=()=>save({cloud:el.checked})}
 function eliminateChat(){document.querySelectorAll('#ml10AiOpen,#ml10AiPanel,#ml10AiBackdrop,#adcAiOverlay,#adcAssistantOpen,#adc85DeveloperGeminiMount,#mlx-ai-local-preview,#mlx-ai-data-option').forEach(n=>{if(n.id==='ml10AiPanel'||n.id==='ml10AiBackdrop'||n.id==='adcAiOverlay'){n.setAttribute('aria-hidden','true');n.remove()}else n.hidden=true});
  document.querySelectorAll('[data-open-settings="mlxaicustom"],[data-open-settings="gemini"],#adc85GeminiSave,#adc85GeminiRemove').forEach(n=>n.hidden=true)}
-function init(){const old=$('adc85BriefCopy');if(!old){setTimeout(init,100);return};
+function init(){const old=$('adc85BriefCopy');if(!old){setTimeout(init,250);return};
  // Legacy animation observers capture the original node. Replace it once to avoid old stock phrases overwriting real metrics.
  source=old.cloneNode(false);source.id='adc85BriefCopy';old.replaceWith(source);
+ const app=$('app');if(app)new MutationObserver(()=>{if(active())render()}).observe(app,{attributes:true,attributeFilter:['class']});
  $('adc85NowBrief')?.classList.add('mlx-nowbrief-smart');controls();eliminateChat();render();
  setInterval(()=>{eliminateChat();controls()},7000);
  setInterval(()=>{render()},Math.max(12,Math.min(90,num(pref().frequency))) *1000);
