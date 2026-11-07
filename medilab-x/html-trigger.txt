@@ -1,0 +1,1 @@
+Publish MediLab X 10.0.8 standalone HTML and update.json - 2026-11-07.
