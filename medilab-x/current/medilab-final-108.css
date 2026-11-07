@@ -10,7 +10,7 @@
 #mlx108ClockPill{width:270px!important;min-width:270px!important;height:63px!important;border:1px solid #d7e1f0!important;border-radius:15px!important;background:linear-gradient(120deg,#fff,#f6f8ff)!important;box-shadow:0 6px 18px #3c6eac13!important;color:#213152!important;display:flex!important;align-items:center!important;gap:10px!important;padding:6px 11px!important;transition:box-shadow .24s,border-color .24s,transform .24s!important}
 #mlx108ClockPill:hover{transform:translateY(-1px);border-color:#98c4e7!important;box-shadow:0 10px 24px #356ca522!important}
 #mlx108ClockPill svg.dial{width:50px;height:50px;flex:none;overflow:visible;filter:drop-shadow(0 4px 4px #0001)}
-#mlx108ClockPill .mlx108-hands{transform-origin:50px 50px}
+#mlx108ClockPill .mlx108-hands{transform-origin:50% 50%;transform-box:view-box}
 #mlx108ClockPill .mlx108-digital{display:flex;flex-direction:column;text-align:left;min-width:0;flex:1}
 #mlx108ClockPill .mlx108-digits{font:800 21px/1.1 'Segoe UI Variable','Segoe UI',Arial,sans-serif;letter-spacing:-.4px;color:#26385a;white-space:nowrap;font-variant-numeric:tabular-nums}
 #mlx108ClockPill .mlx108-seconds{color:#e65767;font-size:16px}
@@ -73,3 +73,23 @@
 #mlx-update-wait small{display:none!important}
 #app .top #adcAssistantOpen,#app .top #ml10AiOpen,#app .top #adcSideTrigger{display:none!important}
 @media(prefers-reduced-motion:reduce){#adc85NowBrief::before,#adc85NowBrief::after,#mlx-notif-panel.mlx-notif-opening,.mlx-toast-host .mlx-toast{animation:none!important}#mlx108Calendar{animation:none}}
+/* MediLab X 10.0.9 — compact 270px clock and fixed-layer calendar. */
+#mlx108ClockPill svg.dial{width:50px!important;height:50px!important;min-width:50px!important;transform:none!important;transform-origin:center center!important;overflow:visible!important}
+#mlx108ClockPill .mlx108-hands{transform-box:view-box!important;transform-origin:50% 50%!important;transition:none!important;animation:none!important}
+#mlx108Calendar{position:fixed!important;z-index:2147481000!important;right:auto!important;max-width:calc(100vw - 24px)!important;max-height:min(440px,calc(100vh - 48px))!important;overflow-y:auto!important}
+#mlx108Calendar[hidden]{display:none!important}
+#mlx108Calendar button{cursor:pointer!important}
+/* Readable compact editor inside MediLab Settings */
+#mlx109CustomEditor{margin:18px 0 2px;padding:16px;background:var(--card,#f8faff);border:1px solid #cbdcf2;border-radius:16px;color:var(--text,#283b58)}
+#mlx109CustomEditor h3{margin:0 0 6px;font-size:15px}
+#mlx109CustomEditor .mlx109-editor-input{display:flex;gap:8px;margin:12px 0}
+#mlx109CustomEditor input[type=text]{flex:1;min-width:0;border:1px solid #c2d2eb;border-radius:9px;padding:10px 12px;background:#fff;color:#172d4c;font-size:13px}
+#mlx109CustomEditor button{border:1px solid #bfd5ef;border-radius:8px;background:#e8f3fa;color:#1b5173;padding:8px 12px;cursor:pointer;font-weight:650}
+#mlx109CustomEditor .mlx109-custom-toggle{display:flex;gap:8px;align-items:center;margin:12px 0;font-size:12px}
+#mlx109CustomEditor .mlx109-custom-row{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #e3e9f4;font-size:12px;min-width:0}
+#mlx109CustomEditor .mlx109-custom-row span{flex:1;min-width:0;overflow-wrap:anywhere}
+#mlx109CustomEditor .muted{font-size:12px;color:#677e99}
+#app.dark #mlx109CustomEditor{background:#1a2940;color:#edf4ff;border-color:#385370}
+#app.dark #mlx109CustomEditor .mlx109-editor-input input{background:#101c30;color:#fff;border-color:#516582}
+#app.dark #mlx109CustomEditor .muted{color:#b7c9df}
+@media(max-width:680px){#mlx109CustomEditor .mlx109-editor-input{flex-wrap:wrap}}
