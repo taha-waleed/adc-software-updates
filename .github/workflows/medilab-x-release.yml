@@ -50,13 +50,24 @@ jobs:
             [IO.File]::WriteAllBytes($target,[Convert]::FromBase64String((Get-Content $_.FullName -Raw).Trim()))
           }
           if (-not (Test-Path "$p/assets/MediLab-X.ico")) {throw 'Installer icon missing'}
+      - name: Include final compact desktop and HTML-only bridge
+        shell: pwsh
+        run: |
+          $p = 'medilab-x/current'
+          $file = "$p/index.html"
+          $html = [IO.File]::ReadAllText((Join-Path (Get-Location) $file))
+          $styles = '<link rel="stylesheet" href="medilab-html-1010.css"><link rel="stylesheet" href="medilab-final-111.css">'
+          $scripts = '<script src="medilab-html-1010.js" defer></script><script src="medilab-final-111.js" defer></script>'
+          if (-not $html.Contains('</head>') -or -not $html.Contains('</body>')) { throw 'HTML document structure missing' }
+          $html = $html.Replace('</head>', "$styles`n</head>").Replace('</body>', "$scripts`n</body>")
+          [IO.File]::WriteAllText((Join-Path (Get-Location) $file), $html, [Text.UTF8Encoding]::new($false))
       - name: Validate JavaScript
         shell: pwsh
         working-directory: medilab-x/current
         run: |
           Get-ChildItem -Filter '*.js' | ForEach-Object { node --check $_.FullName; if ($LASTEXITCODE -ne 0) { throw "Invalid JS: $($_.Name)" } }
           $pkg = Get-Content 'package.json' -Raw | ConvertFrom-Json
-          if ($pkg.version -ne '10.0.9') { throw 'Unexpected app version' }
+          if ($pkg.version -ne '10.0.11') { throw 'Unexpected app version' }
       - name: Install dependencies
         shell: pwsh
         working-directory: medilab-x/current
@@ -95,8 +106,8 @@ jobs:
             notes = @(
               'Native receipt and radiology report preview/printing',
               'WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)',
-              'Neon Frame notifications, Prism Ribbon, selected 270px animated clock and compact navigation',
-              'Simplified software updates with verified installer confirmation'
+              'Modern 3D CT/X-Ray/Ultrasound chart, refined analog/digital clock and smooth downward calendar',
+              'One-time native bridge enables SHA-256 verified future HTML-only UI updates'
             )
           }
           $manifest | ConvertTo-Json -Depth 6 | Set-Content -Encoding utf8 'medilab-x/update.json'
