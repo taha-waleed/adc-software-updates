@@ -7,5 +7,15 @@
     "WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)",
     "Modern 3D CT/X-Ray/Ultrasound chart, refined analog/digital clock and smooth downward calendar",
     "One-time native bridge enables SHA-256 verified future HTML-only UI updates"
+  ],
+  "htmlVersion": "10.0.11",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_11.html",
+  "htmlSha256": "636a37b1b824fbfd6a09279445def94d441db7d288eb0c1f5490aedc581e6405",
+  "htmlReleaseNotes": [
+    "Analog + Digital clock styling refined for Light and Dark themes, with no calendar icon",
+    "Animated downward-expanding calendar without a visible scrollbar",
+    "Interactive 3D chart for CT, X-Ray and Ultrasound based on real receipts",
+    "Preserved Prism Ribbon, Original Heartbeat and animated 270px clock",
+    "One-time native 10.0.11 bridge allows future HTML-only updates without new installers"
   ]
 }
