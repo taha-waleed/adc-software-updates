@@ -3,10 +3,11 @@
   "downloadUrl": "https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.9/MediLab-X-Setup-10.0.9-x64.exe",
   "sha256": "7c4e0b7333d201abab12c1690c260289d0a43a50f97ab0530215b83759cba86d",
   "notes": [
-    "Native receipt and radiology report preview/printing",
-    "WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)",
-    "Neon Frame notifications, Prism Ribbon, selected 270px animated clock and compact navigation",
-    "Simplified software updates with verified installer confirmation"
+    "Fixed Analog + Digital clock hand alignment and smooth seconds animation",
+    "Calendar now opens above the dashboard and supports month navigation",
+    "Added editable Custom Now Brief Lines: add, edit, delete or show custom-only messages",
+    "Preserved Midnight Prism ribbon, Glow Outline sidebar and selected Neon Frame notifications",
+    "Maintained verified Windows receipt printing and WhatsApp Desktop integration"
   ],
   "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_9.html",
   "htmlSha256": "55ecbe93b112508daa8bb116caa3e797469008d06e0c772d7200bb5f8143a2af"
