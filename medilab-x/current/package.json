@@ -1,7 +1,7 @@
 {
   "name": "medilab-x-standard",
   "productName": "MediLab X",
-  "version": "10.0.9",
+  "version": "10.0.11",
   "description": "MediLab X - desktop diagnostic center management",
   "main": "main.js",
   "private": true,
@@ -34,7 +34,12 @@
       "medilab-notifications-107.css",
       "medilab-final-108.css",
       "medilab-final-108.js",
-      "print-preview-preload.js"
+      "print-preview-preload.js",
+      "medilab-final-111.css",
+      "medilab-final-111.js",
+      "medilab-html-1010.css",
+      "medilab-html-1010.js",
+      "medilab-html-updater.js"
     ],
     "directories": {
       "output": "dist"
