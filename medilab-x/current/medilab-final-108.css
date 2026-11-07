@@ -1,0 +1,75 @@
+/* MediLab X • final desktop design v10.0.8: compact light + glowing accents */
+:root{--mlx108-teal:#12a9c1;--mlx108-royal:#5e69ee;--mlx108-navy:#172959}
+#app:not(.dark){background:radial-gradient(circle at 20% 0%,#dfe8ff 0,transparent 32%),radial-gradient(circle at 96% 0%,#dff9fc 0,transparent 28%),#f4f7fd}
+#app .main .top{padding:12px 17px!important;min-height:80px!important;overflow:visible!important;gap:12px}
+#app .main .top .actions{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+#app .main .top .actions>#todayBadge,#app .main .top .actions>#adcBriefClock{display:none!important}
+#app .main .top .actions #mlx108ClockWrap{order:1;flex-shrink:0;position:relative;z-index:25}
+#app .main .top .actions #mlx-notif-btn{order:2;flex-shrink:0}
+#app .main .top .actions #quickReception{order:3;flex-shrink:0}
+#mlx108ClockPill{width:270px!important;min-width:270px!important;height:63px!important;border:1px solid #d7e1f0!important;border-radius:15px!important;background:linear-gradient(120deg,#fff,#f6f8ff)!important;box-shadow:0 6px 18px #3c6eac13!important;color:#213152!important;display:flex!important;align-items:center!important;gap:10px!important;padding:6px 11px!important;transition:box-shadow .24s,border-color .24s,transform .24s!important}
+#mlx108ClockPill:hover{transform:translateY(-1px);border-color:#98c4e7!important;box-shadow:0 10px 24px #356ca522!important}
+#mlx108ClockPill svg.dial{width:50px;height:50px;flex:none;overflow:visible;filter:drop-shadow(0 4px 4px #0001)}
+#mlx108ClockPill .mlx108-hands{transform-origin:50px 50px}
+#mlx108ClockPill .mlx108-digital{display:flex;flex-direction:column;text-align:left;min-width:0;flex:1}
+#mlx108ClockPill .mlx108-digits{font:800 21px/1.1 'Segoe UI Variable','Segoe UI',Arial,sans-serif;letter-spacing:-.4px;color:#26385a;white-space:nowrap;font-variant-numeric:tabular-nums}
+#mlx108ClockPill .mlx108-seconds{color:#e65767;font-size:16px}
+#mlx108ClockPill .mlx108-am{font-size:9px;color:#627792;margin-left:5px}
+#mlx108ClockPill .mlx108-date{font-size:9px;font-weight:800;letter-spacing:.75px;margin-top:4px;color:#7589a8;white-space:nowrap}
+#mlx108ClockPill .mlx108-calendar-icon{color:#44789c;opacity:.8;flex:none;font-size:17px}
+#mlx108Calendar{position:absolute;z-index:100;right:0;top:calc(100% + 10px);width:322px;max-height:440px;overflow:auto;padding:17px;background:#fff;color:#243351;border:1px solid #dfe6f3;border-radius:18px;box-shadow:0 24px 65px #21366543;animation:mlx108CalIn .24s cubic-bezier(.16,.85,.28,1) both}
+#mlx108Calendar[hidden]{display:none!important}
+#mlx108Calendar .mlx108-cal-top{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:12px}
+#mlx108Calendar .mlx108-cal-top button{width:31px;height:31px;border:1px solid #dce5f3;border-radius:9px;background:#f4f7fc;color:#334a73}
+#mlx108Calendar .mlx108-week,#mlx108Calendar .mlx108-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+#mlx108Calendar .mlx108-week span{font-size:9px;color:#8b9ab0;padding:8px 0;font-weight:800}
+#mlx108Calendar .mlx108-days button,#mlx108Calendar .mlx108-days span{height:34px;display:grid;place-items:center;border:0;border-radius:9px;background:transparent;color:#37506d;font-size:11px}
+#mlx108Calendar .mlx108-days button:hover{background:#ebf1ff}
+#mlx108Calendar .mlx108-days button.today{background:linear-gradient(115deg,#5568e9,#12afc4);color:#fff;box-shadow:0 4px 9px #5792bd57;font-weight:800}
+#mlx108Calendar .mlx108-cal-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e7edf8;margin-top:13px;padding-top:11px;font-size:10px;color:#8392a8}
+#mlx108Calendar .mlx108-cal-bottom button{border:0;background:#e9f6fb;color:#187e9f;border-radius:8px;padding:6px 12px;font-weight:700}
+@keyframes mlx108CalIn{from{transform:translateY(-10px) scale(.97);opacity:0;filter:blur(3px)}to{transform:none;opacity:1;filter:none}}
+/* The selected compact midnight-prism ribbon: precisely 72px. */
+#adc85NowBrief{height:72px!important;min-height:72px!important;max-height:72px!important;position:relative!important;isolation:isolate!important;display:flex!important;align-items:center!important;overflow:hidden!important;border-radius:14px!important;padding:0 17px!important;margin:12px 0 15px!important;background:linear-gradient(115deg,#121b43,#333075 47%,#126c88)!important;border:1px solid #7e96f7a3!important;box-shadow:0 0 22px #7379ed33,0 9px 27px #1c34782b!important;color:#fff!important}
+#adc85NowBrief::before{content:'';position:absolute;z-index:-1;inset:-250% -10%;background:conic-gradient(from 0deg,transparent 0deg,#67d4ff41 78deg,transparent 142deg,#ad72ff47 235deg,transparent 300deg);animation:mlx108Prism 18s linear infinite;pointer-events:none}
+#adc85NowBrief::after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(115deg,transparent 18%,#ffffff23 48%,transparent 72%);background-size:290% 100%;animation:mlx108Shimmer 8s linear infinite;pointer-events:none}
+#adc85NowBrief .adc85-brief-symbol{width:39px!important;height:39px!important;min-width:39px!important;border-radius:12px!important;background:linear-gradient(125deg,#506de2,#1098c9)!important;box-shadow:0 0 17px #7bdcf390!important}
+#adc85NowBrief .adc85-brief-content{display:flex;flex-direction:column;min-width:0;justify-content:center;gap:3px}
+#adc85NowBrief .adc85-brief-kicker{font-size:9px!important;color:#c9dfff!important;letter-spacing:1.6px!important}
+#adc85NowBrief #adc85BriefCopy{font-size:14px!important;color:#fff!important;font-weight:750!important;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;letter-spacing:0!important;line-height:1.25!important;text-shadow:0 1px 5px #0004}
+@keyframes mlx108Prism{to{transform:rotate(360deg)}}@keyframes mlx108Shimmer{to{background-position:-190% 0}}
+/* Glow Outline navigation — selected Option 7 */
+#app .sidebar #nav button[data-page]{background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;border-radius:11px!important;min-height:39px!important;transition:background .2s,border-color .2s,box-shadow .22s,transform .2s!important}
+#app .sidebar #nav button[data-page]:hover{background:#b9c5ff16!important;transform:translateX(2px)!important}
+#app .sidebar #nav button[data-page].active{color:#fff!important;background:linear-gradient(100deg,#716afa38,#0eb8c62d)!important;border-color:#818eff!important;box-shadow:inset 3px 0 0 #a0acff,0 0 15px #7b83ff50!important}
+#app .sidebar #nav button[data-page].active svg{filter:drop-shadow(0 0 4px #c7e7ff)}
+#app .sidebar .brand .brand-logo{object-fit:contain!important;background:transparent!important;border:0!important}
+#app .sidebar-foot{margin-top:auto!important;position:relative!important;min-height:102px!important}
+/* Mini Popover profile selected Option 3 */
+#app .sidebar #adcEditMyProfile{min-height:48px!important;padding:8px 9px!important;border-radius:12px!important;border:1px solid #ffffff29!important;gap:9px!important;box-shadow:none!important}
+#app .sidebar #adcEditMyProfile .adc-profile-info small{display:none!important}
+#mlx108ProfileMenu{position:fixed;z-index:11000;width:238px;padding:13px;border-radius:16px;border:1px solid #dfe7f4;background:#ffffff;color:#223b5b;box-shadow:0 20px 49px #1b2d5770;animation:mlx108CalIn .22s ease both}
+#mlx108ProfileMenu[hidden]{display:none!important}
+#mlx108ProfileMenu .profile-header{display:flex;align-items:center;gap:9px;padding:4px 5px 10px;border-bottom:1px solid #e4ebf6;margin-bottom:6px}
+#mlx108ProfileMenu .profile-header span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(130deg,#5fd1ed,#6065e8);color:#fff;font-weight:800}
+#mlx108ProfileMenu .profile-header small{font-size:10px;color:#8191aa}
+#mlx108ProfileMenu button{display:block;width:100%;padding:10px 12px;border:1px solid #e0e9f5;background:#f5f8fc;color:#273f65;border-radius:10px;text-align:left;margin-top:7px;font-size:12px;font-weight:650}
+/* Neon Frame notification (Option 12) + Float down; inherit color intent */
+#mlx-notif-panel{top:83px!important;right:20px!important;border-radius:16px!important;border:1px solid transparent!important;background:linear-gradient(#fdfdff,#fdfdff) padding-box,linear-gradient(120deg,#706aff,#00c5d6,#ae7dff,#706aff) border-box!important;box-shadow:0 15px 35px #305c9f26,0 0 18px #7285ff44!important}
+#mlx-notif-panel.mlx-notif-opening{animation:mlx108FloatDown .37s cubic-bezier(.16,.94,.34,1.06) both!important}
+#mlx-notif-panel .mlx-notif-card{border:1px solid #e5e8fc!important;background:#f6f9ff!important}
+#mlx-notif-panel .mlx-notif-foot button{font-weight:750!important}
+.mlx-toast-host .mlx-toast{border:1px solid transparent!important;border-radius:14px!important;background:linear-gradient(#f9faff,#f9faff) padding-box,linear-gradient(120deg,#706bff,#0dbad0,#af81ff) border-box!important;box-shadow:0 13px 35px #334b8046,0 0 16px #6f79f65a!important;color:#213456!important;animation:mlx108FloatDown .42s cubic-bezier(.18,.94,.3,1.1) both!important}
+.mlx-toast-host .mlx-toast strong{color:#28365a!important}
+@keyframes mlx108FloatDown{from{opacity:0;transform:translate3d(0,-26px,0) scale(.96);filter:blur(4px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:none}}
+/* Minimal update card; hide internal infrastructure details and inactive controls. */
+#adc85UpdateCentre{border:1px solid #e2e9f7!important;background:linear-gradient(130deg,#fff,#f6f9ff)!important;border-radius:18px!important;padding:20px!important;box-shadow:0 8px 22px #314f7810}
+#adc85UpdateCentre .adc85-update-status{padding:14px!important;border-radius:13px!important;background:#f2f6fd!important;border:1px solid #e2e6f8!important}
+#adc85UpdateCentre .adc85-update-actions{display:flex!important;gap:10px!important;padding-top:13px!important}
+#adc85ManualUpdate,#adc85RestoreUpdate{display:none!important}
+#adc85UpdateCentre>p.muted{display:none!important}
+#adc85UpdateHeading{font-size:13px!important;color:#21324e!important}
+#adc85UpdateMessage{color:#71839e!important;font-size:11px!important}
+#mlx-update-wait small{display:none!important}
+#app .top #adcAssistantOpen,#app .top #ml10AiOpen,#app .top #adcSideTrigger{display:none!important}
+@media(prefers-reduced-motion:reduce){#adc85NowBrief::before,#adc85NowBrief::after,#mlx-notif-panel.mlx-notif-opening,.mlx-toast-host .mlx-toast{animation:none!important}#mlx108Calendar{animation:none}}

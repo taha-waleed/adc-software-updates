@@ -1,0 +1,92 @@
+/* MediLab X stability and laboratory operations revision — loaded AFTER legacy themes. */
+html.medilab-desktop, html.medilab-desktop body { scrollbar-gutter:auto!important; }
+html.medilab-desktop body { overflow-x:hidden!important; }
+html.medilab-desktop #adc85Titlebar { height:38px!important; display:flex!important; align-items:center!important; z-index:2147482900!important; }
+html.medilab-desktop.ml-splashing #adc85Titlebar { display:none!important; }
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons button {display:grid!important;place-items:center!important;min-width:46px!important;min-height:38px!important;z-index:1!important;position:relative!important;}
+html.medilab-desktop:not(.ml-splashing) #adcWelcome:not(.adc-closed) {position:fixed!important;inset:38px 0 0!important;width:100vw!important;height:calc(100dvh - 38px)!important;min-height:0!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:auto!important;padding:16px!important;box-sizing:border-box!important; transform:none!important;}
+html.medilab-desktop #adcWelcome .adc-welcome-panel,html.medilab-desktop body #adcWelcome #adcLoginPanel {position:relative!important;left:auto!important;right:auto!important;top:auto!important;transform:none!important;width:min(500px,100%)!important;max-width:500px!important;min-width:0!important;max-height:calc(100dvh - 78px)!important;overflow-x:hidden!important;overflow-y:auto!important;margin:0 auto!important;padding:24px 34px!important;box-sizing:border-box!important;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(237,248,255,.97))!important;border:1px solid #ffffff!important;color:#143551!important;box-shadow:0 24px 70px rgba(29,94,153,.17)!important;animation:none!important;}
+html.medilab-desktop #adcWelcome h1,html.medilab-desktop #adcWelcome #adcLoginPanel h1,html.medilab-desktop #adcWelcome #adcLoginPanel h2 {color:#123956!important;text-shadow:none!important;opacity:1!important;}
+html.medilab-desktop #adcWelcome :is(p,.adc-kicker,.adc-signin-heading,.adc-section-label,.adc-welcome-credit,label,small,.muted,.adc-back-button) { color:#486784!important;text-shadow:none!important;opacity:1!important; }
+html.medilab-desktop #adcWelcome .adc-profile-tile,html.medilab-desktop #adcWelcome .adc-user-tile,html.medilab-desktop #adcWelcome .adc-chosen-person {color:#163b5d!important;background:linear-gradient(135deg,#f3f8ff,#e8f7fc)!important;border-color:#c7dff0!important;}
+html.medilab-desktop #adcWelcome #adcPasswordStage input {background:#fff!important;color:#102d49!important;border:1px solid #98b8d5!important;box-shadow:0 0 0 1px #dbe8f5!important;min-height:44px!important;opacity:1!important;}
+html.medilab-desktop #adcWelcome #adcPasswordStage input::placeholder {color:#627b94!important;opacity:1!important;}
+html.medilab-desktop #adcWelcome #adcPasswordStage button {opacity:1!important;color:#15466d!important;}
+html.medilab-desktop #adcWelcome #adcPasswordStage button.primary,html.medilab-desktop #adcWelcome #adcPasswordStage button[type=submit] {color:#fff!important;background:linear-gradient(115deg,#266bd8,#0e98b4)!important;box-shadow:0 7px 20px #146ea64a!important;}
+html.medilab-desktop #adcWelcome .adc-welcome-emblem{min-height:72px!important;min-width:72px!important;width:72px!important;height:72px!important;margin-bottom:8px!important;background-image:url('assets/MediLab-Heartbeat.png')!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;border-radius:22px!important;}
+html.medilab-desktop #adcWelcome .adc-welcome-emblem::before,html.medilab-desktop #adcWelcome .adc-welcome-emblem::after {content:none!important;display:none!important;}
+html.medilab-desktop #adcWelcome .adc-login-bars,html.medilab-desktop #adcWelcome .adc-welcome-orb {display:none!important;}
+html.medilab-desktop #ml10AiPanel {position:fixed!important;top:38px!important;bottom:0!important;right:0!important;left:auto!important;width:min(450px,46vw)!important;height:calc(100dvh - 38px)!important;max-height:calc(100dvh - 38px)!important;z-index:2147482800!important;display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important;border-radius:0!important;}
+html.medilab-desktop #ml10AiBackdrop {position:fixed!important;top:38px!important;bottom:0!important;z-index:2147482750!important;}
+html.medilab-desktop #ml10AiPanel .ml10-ai-head {position:relative!important;flex:0 0 auto!important;padding:14px 18px!important;min-height:64px!important;}
+html.medilab-desktop #ml10AiPanel .ml10-ai-stream {flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow:auto!important;overscroll-behavior:contain!important;}
+html.medilab-desktop #ml10AiPanel .ml10-ai-compose {flex:0 0 auto!important;position:relative!important;bottom:auto!important;padding:12px 15px 16px!important;min-height:126px!important;border-top:1px solid var(--line)!important;z-index:2!important;}
+html.medilab-desktop #ml10AiPanel .ml10-ai-compose textarea {min-height:55px!important;max-height:88px!important;resize:vertical!important;}
+html.medilab-desktop #ml10AiPanel .ml10-ai-head button{flex-shrink:0!important;cursor:pointer!important;}
+html.medilab-desktop #app .sidebar .brand-logo,html.medilab-desktop .mlx-about-logo {object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;filter:drop-shadow(0 4px 9px #04194136);}
+html.medilab-desktop #startupSplash {background:radial-gradient(ellipse at 30% 12%,#3f83bc 0%,#193e78 34%,#0a1a3f 76%,#07112c 100%)!important;contain:paint!important;}
+html.medilab-desktop #startupSplash::before,html.medilab-desktop #startupSplash::after,html.medilab-desktop #startupSplash .splash-logo-shell::after{display:none!important;animation:none!important;}
+html.medilab-desktop #startupSplash .splash-content {animation:mlxSmoothArrival .5s ease-out both!important;filter:none!important;transform:translateZ(0);}
+html.medilab-desktop #startupSplash .splash-logo-shell {animation:none!important;filter:none!important;transform:none!important;width:114px!important;height:114px!important;border-radius:27px!important;padding:12px!important;box-shadow:0 14px 42px rgba(0,0,0,.18),0 0 0 1px #c2e8ff77!important;}
+html.medilab-desktop #startupSplash .splash-logo-shell img {animation:none!important;transform:none!important;filter:none!important;object-fit:contain!important;}
+html.medilab-desktop #startupSplash .splash-title {animation:none!important;text-shadow:none!important;}
+html.medilab-desktop #startupSplash .splash-loading span {animation:mlxStartupProgress 3s linear both!important;}
+@keyframes mlxSmoothArrival{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+html.medilab-desktop #app .nav .mlx-lab-nav {font-size:11px!important;opacity:.88;border:1px solid rgba(147,190,233,.12)!important;margin-top:3px!important;}
+html.medilab-desktop #app .nav .mlx-lab-nav .adc-nav-icon {color:#94dfe8!important;}
+/* Operations surfaces retain glass theme and accessible contrast. */
+:is(#mlxOperations,#mlxHR) {max-width:1600px;margin:0 auto 25px;color:var(--ink);}
+:is(#mlxOperations,#mlxHR) .mlx-op-shell {background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px 22px;box-shadow:0 8px 25px #1f54801c;margin-bottom:16px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-header h2{font-size:21px!important;color:var(--ink)!important;margin:0!important;letter-spacing:-.03em;}
+:is(#mlxOperations,#mlxHR) .mlx-op-header p{margin:4px 0 0;color:var(--muted);font-size:12px;}
+:is(#mlxOperations,#mlxHR) .mlx-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:5px;background:var(--soft);border:1px solid var(--line);border-radius:13px;max-width:max-content;margin:8px 0 20px;}
+:is(#mlxOperations,#mlxHR) .mlx-tabs button{background:transparent!important;color:var(--ink)!important;border:0!important;box-shadow:none!important;border-radius:10px!important;font-size:12px!important;padding:10px 13px!important;}
+:is(#mlxOperations,#mlxHR) .mlx-tabs button[aria-selected=true]{background:linear-gradient(120deg,#147bb9,#108b9b)!important;color:#fff!important;box-shadow:0 5px 14px #1376bb30!important;}
+:is(#mlxOperations,#mlxHR) .mlx-tabs button:hover{transform:none!important;}
+:is(#mlxOperations,#mlxHR) [hidden],:is(#mlxOperations,#mlxHR) .mlx-op-tab[hidden]{display:none!important;}
+:is(#mlxOperations,#mlxHR) .mlx-op-grid{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:12px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-grid label{font-size:11px;font-weight:700;display:grid;gap:6px;color:var(--muted);}
+:is(#mlxOperations,#mlxHR) :is(input,select,textarea){min-width:0;width:100%;background:var(--panel)!important;color:var(--ink)!important;border:1px solid var(--line)!important;border-radius:10px!important;padding:10px 11px!important;box-sizing:border-box;}
+:is(#mlxOperations,#mlxHR) :is(input,select,textarea):focus{outline:2px solid #41b7d4!important;outline-offset:1px;}
+:is(#mlxOperations,#mlxHR) textarea{min-height:74px;resize:vertical;}
+:is(#mlxOperations,#mlxHR) .mlx-span2{grid-column:span 2;}:is(#mlxOperations,#mlxHR) .mlx-span3{grid-column:span 3;}
+:is(#mlxOperations,#mlxHR) .mlx-op-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 2px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-actions button{padding:9px 14px;font-size:12px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-metrics{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:12px;margin-bottom:16px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-metric{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:0 4px 13px #245e8910;}
+:is(#mlxOperations,#mlxHR) .mlx-op-metric small{display:block;font-size:11px;color:var(--muted);font-weight:700}:is(#mlxOperations,#mlxHR) .mlx-op-metric strong{display:block;font-size:24px;letter-spacing:-.035em;margin-top:4px;}
+:is(#mlxOperations,#mlxHR) .mlx-scroll{width:100%;max-height:480px;overflow:auto;border:1px solid var(--line);border-radius:12px;}
+:is(#mlxOperations,#mlxHR) table{width:100%;min-width:950px;border-spacing:0!important;border-collapse:collapse!important;background:var(--panel)!important;color:var(--ink)!important;font-size:12px;}
+:is(#mlxOperations,#mlxHR) th,:is(#mlxOperations,#mlxHR) td{white-space:normal!important;vertical-align:middle!important;text-align:left;padding:12px 10px!important;border-bottom:1px solid var(--line)!important;color:var(--ink)!important;}
+:is(#mlxOperations,#mlxHR) th{position:sticky;top:0;background:var(--soft)!important;z-index:2;font-size:10px!important;letter-spacing:.045em;text-transform:uppercase;}
+:is(#mlxOperations,#mlxHR) td button{font-size:11px!important;margin:2px;padding:6px 8px!important;white-space:nowrap;}
+:is(#mlxOperations,#mlxHR) .mlx-pill{display:inline-block;padding:5px 9px;border-radius:40px;font-weight:750;font-size:10px;border:1px solid var(--line);background:var(--soft);color:var(--ink);}
+:is(#mlxOperations,#mlxHR) .mlx-pill.low{background:#fff4dc;color:#805419;border-color:#ecd9a5;}:is(#mlxOperations,#mlxHR) .mlx-pill.critical{background:#fff0f0;color:#9f252f;border-color:#f0c9cd;}:is(#mlxOperations,#mlxHR) .mlx-pill.ok{background:#e1f7ef;color:#12684f;border-color:#c1ecdd;}
+:is(#mlxOperations,#mlxHR) .mlx-op-help{font-size:11px;color:var(--muted);line-height:1.6;margin:8px 0 0;}
+:is(#mlxOperations,#mlxHR) .mlx-op-two{display:grid;grid-template-columns:minmax(330px,1fr) minmax(420px,1.15fr);gap:14px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-history{padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--soft);min-height:140px;max-height:300px;overflow:auto;}
+:is(#mlxOperations,#mlxHR) .mlx-op-history li{margin:0 0 12px;font-size:12px;line-height:1.4;}
+:is(#mlxOperations,#mlxHR) .mlx-op-preview{border:1px solid var(--line);background:#fff;color:#21334b;padding:30px 36px;min-height:340px;border-radius:12px;box-shadow:0 6px 25px #071c3014;line-height:1.7;}
+:is(#mlxOperations,#mlxHR) .mlx-op-preview h2{color:#163b61!important;text-align:center;font-size:21px!important;}
+:is(#mlxOperations,#mlxHR) .mlx-op-preview .mlx-letter-logo{width:58px;height:58px;object-fit:contain;display:block;margin:0 auto 9px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-preview .mlx-signature{margin-top:55px;border-top:1px solid #8693a4;max-width:240px;padding-top:8px;font-size:12px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-empty{text-align:center;color:var(--muted);padding:25px;font-size:12px;}
+:is(#mlxOperations,#mlxHR) .mlx-op-message{font-size:12px;color:var(--muted);margin:9px 0 0;min-height:18px;}
+#admin .mlx-admin-operations{border-color:#bed5e9!important;background:linear-gradient(115deg,rgba(228,245,255,.95),rgba(245,242,255,.90))!important;}
+#admin .mlx-admin-operations h2{color:#183b5b!important}#admin .mlx-admin-operations p{color:#53718f!important}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-shell,body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-metric {background:#1b2b43!important;color:#edf5ff!important;border-color:#3b5270!important;}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) th,body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-history{background:#273d57!important;color:#dceafc!important;}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) td{color:#edf5ff!important;border-color:#3b5270!important;}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-grid label,body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-help{color:#bfcee1!important;}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-metric small{color:#b9cee3!important;}
+body.adc-dark-mode :is(#mlxOperations,#mlxHR) .mlx-op-preview{background:#fff!important;color:#21334b!important;}
+@media(max-width:1240px){:is(#mlxOperations,#mlxHR) .mlx-op-grid{grid-template-columns:repeat(2,minmax(170px,1fr));}:is(#mlxOperations,#mlxHR) .mlx-op-two{grid-template-columns:1fr;}:is(#mlxOperations,#mlxHR) .mlx-span3{grid-column:span 2;}:is(#mlxOperations,#mlxHR) .mlx-op-metrics{grid-template-columns:repeat(2,1fr);}}
+@media print{body.mlx-print-letter>*:not(#mlxLetterPrint){display:none!important;}body.mlx-print-letter #mlxLetterPrint{display:block!important;}#mlxLetterPrint{position:static!important;overflow:visible!important;}#mlxLetterPrint .mlx-op-preview{box-shadow:none!important;border:0!important;border-radius:0!important;padding:0!important;margin:0!important;}}
+/* Visible authentication field labels and button states — no washed-out text. */
+html.medilab-desktop body #adcWelcome #adcPasswordStage label,
+html.medilab-desktop body #adcWelcome #adcLoginFormMount label,
+html.medilab-desktop body #adcWelcome #loginForm .field label,
+html.medilab-desktop body #adcWelcome .field label { color:#315c7c!important;opacity:1!important;filter:none!important;text-shadow:none!important;font-weight:750!important;font-size:12px!important;letter-spacing:.015em!important; }
+html.medilab-desktop body #adcWelcome #adcPasswordStage button:disabled,
+html.medilab-desktop body #adcWelcome #loginForm button:disabled {background:#d8e6ed!important;color:#375875!important;opacity:1!important;box-shadow:none!important;cursor:not-allowed!important;}

@@ -1,0 +1,61 @@
+{
+  "name": "medilab-x-standard",
+  "productName": "MediLab X",
+  "version": "10.0.8",
+  "description": "MediLab X - desktop diagnostic center management",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "pack:win": "electron-builder --win dir --x64"
+  },
+  "build": {
+    "appId": "pk.medilabx.standard",
+    "productName": "MediLab X",
+    "asar": true,
+    "files": [
+      "index.html",
+      "main.js",
+      "preload.js",
+      "medilab-premium.css",
+      "medilab-premium.js",
+      "medilab-rev2.css",
+      "medilab-operations.js",
+      "assets/**/*",
+      "package.json",
+      "medilab-rev3.css",
+      "medilab-documents.js",
+      "medilab-rev4.css",
+      "medilab-rev4.js",
+      "kharian-referring-directory.json",
+      "medilab-nowbrief.js",
+      "medilab-nowbrief.css",
+      "medilab-notifications-107.css",
+      "medilab-final-108.css",
+      "medilab-final-108.js",
+      "print-preview-preload.js"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/MediLab-X.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "MediLab X",
+      "artifactName": "MediLab-X-Setup-${version}-${arch}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}

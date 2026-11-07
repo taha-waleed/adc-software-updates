@@ -1,0 +1,21 @@
+/* MediLab X 10.0.7 notification center: unread inbox + history, desktop animation */
+#mlx-notif-panel{overflow:hidden;display:flex;flex-direction:column;max-height:min(620px,calc(100vh - 118px));right:22px;top:86px;border-radius:18px;padding:13px;box-shadow:0 20px 54px #101f4152}
+#mlx-notif-panel.mlx-notif-opening{animation:mlxNotifyEnter .30s cubic-bezier(.16,.84,.26,1) both}
+#mlx-notif-panel.mlx-notif-closing{animation:mlxNotifyLeave .18s ease-in both;pointer-events:none}
+#mlx-notif-panel .mlx-panel-head{flex-shrink:0;min-height:52px}#mlx-notif-panel .mlx-panel-head h2{font-size:15px}
+#mlx-notif-panel .mlx-count{font-size:10px;color:var(--muted)}
+#mlx-notif-panel #mlx-notif-items{overflow-y:auto;min-height:90px;flex:1;scrollbar-width:thin;overscroll-behavior:contain}
+#mlx-notif-panel .mlx-notif-foot{padding:11px 3px 1px;flex-shrink:0;border-top:1px solid var(--line);margin-top:9px;text-align:right}
+#mlx-notif-panel .mlx-notif-foot button{font-size:11px!important}
+#mlx-notif-panel .mlx-notif-card{padding:11px;border-radius:11px}#mlx-notif-panel .mlx-notif-card[data-read="true"]{opacity:.68}
+#mlx-notif-panel .mlx-empty{font-size:12px;padding:30px 10px}
+@keyframes mlxNotifyEnter{from{opacity:0;transform:translate3d(18px,-12px,0) scale(.98)}to{opacity:1;transform:none}}
+@keyframes mlxNotifyLeave{to{opacity:0;transform:translate3d(18px,-8px,0) scale(.98)}}
+/* Elegant desktop density without rearranging or overriding user-chosen layout. */
+#app .top{min-height:72px!important;padding:12px 17px!important;margin-bottom:14px!important}
+#app .stats{gap:10px!important;margin-bottom:12px!important}
+#app .stat{min-height:105px!important;padding:13px 15px!important}
+#app .panel{padding:16px 17px!important}
+#app .nav button{min-height:37px!important;padding:7px 10px!important}
+#app .sidebar-foot{padding:9px 10px!important}
+@media(prefers-reduced-motion:reduce){#mlx-notif-panel.mlx-notif-opening,#mlx-notif-panel.mlx-notif-closing{animation:none!important}}

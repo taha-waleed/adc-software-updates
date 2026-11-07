@@ -1,0 +1,111 @@
+name: MediLab X — Windows Verified Release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'medilab-x/build-trigger.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilab-x-release
+  cancel-in-progress: false
+jobs:
+  windows-release:
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore bundled source and icons
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $p = 'medilab-x/current'
+          $manifest = Get-Content "$p/source-manifest.json" -Raw | ConvertFrom-Json
+          $parts = @()
+          for($i=1; $i -le [int]$manifest.indexParts; $i++) {
+            $parts += (Get-Content ($p + "/index.html.gz.part" + $i.ToString("D2") + ".txt") -Raw).Trim()
+          }
+          $compressed = [Convert]::FromBase64String(($parts -join ''))
+          $stream = [IO.MemoryStream]::new($compressed)
+          $gzip = [IO.Compression.GzipStream]::new($stream,[IO.Compression.CompressionMode]::Decompress)
+          $out = [IO.MemoryStream]::new()
+          $gzip.CopyTo($out)
+          $gzip.Dispose(); $stream.Dispose()
+          $bytes = $out.ToArray()
+          $out.Dispose()
+          [IO.File]::WriteAllBytes((Join-Path (Get-Location) "$p/index.html"),$bytes)
+          $hash = [Security.Cryptography.SHA256]::HashData($bytes)
+          $hex = [Convert]::ToHexString($hash).ToLowerInvariant()
+          if ($hex -ne $manifest.indexHtmlSha256) { throw 'Index HTML SHA-256 mismatch' }
+          Get-ChildItem "$p/assets" -Filter '*.base64' | ForEach-Object {
+            $target = $_.FullName.Substring(0, $_.FullName.Length - 7)
+            [IO.File]::WriteAllBytes($target,[Convert]::FromBase64String((Get-Content $_.FullName -Raw).Trim()))
+          }
+          if (-not (Test-Path "$p/assets/MediLab-X.ico")) {throw 'Installer icon missing'}
+      - name: Validate JavaScript
+        shell: pwsh
+        working-directory: medilab-x/current
+        run: |
+          Get-ChildItem -Filter '*.js' | ForEach-Object { node --check $_.FullName; if ($LASTEXITCODE -ne 0) { throw "Invalid JS: $($_.Name)" } }
+          $pkg = Get-Content 'package.json' -Raw | ConvertFrom-Json
+          if ($pkg.version -ne '10.0.8') { throw 'Unexpected app version' }
+      - name: Install dependencies
+        shell: pwsh
+        working-directory: medilab-x/current
+        run: npm install --no-audit --no-fund
+      - name: Build Windows x64 installer
+        shell: pwsh
+        working-directory: medilab-x/current
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npm run dist:win
+      - name: Verify installer and publish release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $pkg = Get-Content 'medilab-x/current/package.json' -Raw | ConvertFrom-Json
+          $version = $pkg.version
+          $installer = Get-ChildItem 'medilab-x/current/dist' -Filter "MediLab-X-Setup-$version-*.exe" -File | Select-Object -First 1
+          if (-not $installer) { throw 'Verified installer not generated: update manifest unchanged' }
+          $sha = (Get-FileHash $installer.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($sha -notmatch '^[a-f0-9]{64}$') { throw 'Invalid installer hash' }
+          $repo = '${{ github.repository }}'
+          $tag = "medilab-x-v$version"
+          gh release view $tag --repo $repo *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag $installer.FullName --repo $repo --title "MediLab X $version" --notes "Native print-preview dialog, Windows WhatsApp Desktop, selected desktop design, secure installer updates. Back up local patient data before upgrading."
+          } else {
+            gh release upload $tag $installer.FullName --clobber --repo $repo
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Release upload failed: manifest unchanged' }
+          $manifest = [ordered]@{
+            version = $version
+            downloadUrl = "https://github.com/$repo/releases/download/$tag/$($installer.Name)"
+            sha256 = $sha
+            notes = @(
+              'Native receipt and radiology report preview/printing',
+              'WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)',
+              'Neon Frame notifications, Prism Ribbon, selected 270px animated clock and compact navigation',
+              'Simplified software updates with verified installer confirmation'
+            )
+          }
+          $manifest | ConvertTo-Json -Depth 6 | Set-Content -Encoding utf8 'medilab-x/update.json'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add medilab-x/update.json
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            git commit -m "MediLab X $version: publish verified release manifest"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          }

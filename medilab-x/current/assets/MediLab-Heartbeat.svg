@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#28bbc4"/><stop offset=".56" stop-color="#087d98"/><stop offset="1" stop-color="#0c577d"/></linearGradient>
+ <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cecff"/><stop offset="1" stop-color="#25a0c1"/></linearGradient>
+</defs>
+<path d="M256 438 C211 397 96 304 73 215 C50 126 94 77 164 75 C208 73 239 101 256 127 C273 101 304 73 348 75 C418 77 462 126 439 215 C416 304 301 397 256 438Z" fill="url(#heart)"/>
+<path d="M73 218 C51 130 95 81 163 79 C208 78 239 108 256 135 C273 108 304 78 349 79 C418 81 460 130 439 218" fill="none" stroke="url(#glow)" stroke-width="8" opacity=".4"/>
+<path d="M86 257 H163 L191 193 L225 321 L259 148 L293 288 L322 223 L342 257 H425" stroke="#ffffff" stroke-width="20" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M116 285 H165 L195 230 L225 346 L259 177" stroke="#b9f9ff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".48"/>
+</svg>

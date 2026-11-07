@@ -1,0 +1,12 @@
+/* MediLab X v10.0.6 — Now Brief only */
+#ml10AiOpen,#ml10AiPanel,#ml10AiBackdrop,#adcAiOverlay,#adcAssistantOpen,#mlx-ai-local-preview,#mlx-ai-data-option,[data-open-settings="mlxaicustom"],[data-open-settings="gemini"]{display:none!important}
+#adc85NowBrief.mlx-nowbrief-smart{min-height:112px!important;padding:22px 28px!important;border-radius:20px!important;contain:paint;}
+#adc85NowBrief.mlx-nowbrief-smart #adc85BriefCopy{font-size:clamp(16px,1.45vw,21px)!important;font-weight:700!important;letter-spacing:-.02em!important;line-height:1.45!important}
+#adc85NowBrief.mlx-nowbrief-smart .adc85-brief-kicker{font-size:10px!important;letter-spacing:.17em!important;color:#eff8ff!important}
+.mlx-brief-reveal{animation:mlxBriefIn .65s ease-out both!important}
+@keyframes mlxBriefIn{from{opacity:.1;transform:translateY(9px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+#adc85NowBrief.mlx-nowbrief-smart .adc85-brief-shimmer{animation:adc85Opt4Shimmer 8s linear infinite!important;opacity:.8}
+.mlx-brief-toggle{display:flex;gap:10px;align-items:flex-start;font-size:13px;font-weight:650;color:var(--ink);padding:14px 0}
+.mlx-brief-toggle input{flex:0 0 auto;margin-top:3px}
+body.adc-dark-mode .mlx-brief-toggle{color:#e7f0ff}
+@media(prefers-reduced-motion:reduce){.mlx-brief-reveal,#adc85NowBrief.mlx-nowbrief-smart .adc85-brief-shimmer{animation:none!important}}

@@ -1,0 +1,172 @@
+/* MediLab X — desktop-only macOS-inspired refinement. Original app logic remains in index.html. */
+:root{--mlx-ink:#14253d;--mlx-muted:#67809d;--mlx-glass:#f7f9ff;--mlx-stroke:rgba(178,200,237,.5);--mlx-accent:#6d67f5;--mlx-cyan:#06b6d4}
+html{scrollbar-gutter:stable}
+html.ml-splashing #adc85Titlebar{display:none!important}
+html.medilab-desktop #adc85Titlebar{display:flex!important;position:fixed!important;inset:0 0 auto!important;height:38px!important;z-index:2147482900!important;background:rgba(18,28,59,.97)!important;color:#edf3ff!important;border-bottom:1px solid rgba(188,207,255,.17)!important;box-shadow:none!important}
+html.medilab-desktop #adc85Titlebar .adc85-drag{font-size:12px;letter-spacing:.01em;min-width:0;-webkit-app-region:drag!important}
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons{flex:none;-webkit-app-region:no-drag!important}
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons button{width:48px!important;height:38px!important;min-height:38px!important;line-height:38px!important;border:0!important;border-radius:0!important;background:transparent!important;color:#eaf1ff!important;box-shadow:none!important;padding:0!important;transform:none!important;font-size:17px!important;cursor:pointer!important}
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons button:hover{background:#ffffff23!important}
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons #adc85Close:hover{background:#cf3651!important}
+html.medilab-desktop:not(.ml-splashing) body{padding-top:38px!important}
+html.medilab-desktop:not(.ml-splashing) #app .sidebar{top:38px!important;height:calc(100vh - 38px)!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+html.medilab-desktop:not(.ml-splashing) #app .main{min-height:calc(100vh - 38px)!important}
+html.medilab-desktop:not(.ml-splashing) #adcWelcome,html.medilab-desktop:not(.ml-splashing) #loginScreen{top:38px!important;height:calc(100vh - 38px)!important;min-height:calc(100vh - 38px)!important}
+html.medilab-desktop #app .sidebar .brand{flex-shrink:0!important;min-height:112px!important;padding:8px 3px 10px!important;gap:4px!important}
+html.medilab-desktop #app .sidebar .brand .brand-logo{height:55px!important;width:55px!important;max-width:55px!important;max-height:55px!important;border-radius:15px!important;object-fit:contain!important;background:transparent!important;padding:0!important;box-shadow:none!important}
+html.medilab-desktop #app .sidebar .nav{flex:1 1 auto!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-width:thin!important;scrollbar-color:#ffffff30 transparent;margin-top:0!important;min-height:0!important;align-content:start!important;overscroll-behavior:contain!important}
+html.medilab-desktop #app .sidebar .nav button{min-height:37px!important;padding:7px 11px!important;flex-shrink:0!important}
+html.medilab-desktop #app .sidebar .ml-nav-group{padding:8px 10px 4px!important;flex-shrink:0!important}
+html.medilab-desktop #app .sidebar-foot{flex-shrink:0!important;margin:5px 1px 0!important;padding:8px 10px!important;line-height:1.3!important;font-size:10px!important;position:relative!important;bottom:auto!important;transform:none!important}
+html.medilab-desktop #app .sidebar-foot #logoutBtn{display:inline-flex!important;margin-top:7px!important;font-size:11px;padding:6px 10px!important;max-width:100%!important}
+/* Stable desktop sidebar (old top-navigation overflow intentionally overridden). */
+html.medilab-desktop body.ml10-topnav #app .sidebar{width:238px!important;position:fixed!important;top:38px!important;height:calc(100vh - 38px)!important}
+html.medilab-desktop body.ml10-topnav #app .sidebar .nav{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;overflow-y:auto!important;white-space:normal!important}
+html.medilab-desktop body.ml10-topnav #app .main{width:calc(100% - 238px)!important;margin-left:238px!important;padding-top:24px!important}
+html.medilab-desktop #app .main{width:calc(100% - 238px)!important;margin-left:238px!important;padding-top:24px!important;padding-left:28px!important;padding-right:28px!important}
+html.medilab-desktop #app .top{overflow:visible!important;flex-wrap:nowrap!important}
+html.medilab-desktop #app .top .actions{flex-wrap:nowrap!important;gap:8px!important;white-space:nowrap!important}
+html.medilab-desktop body{overflow-x:hidden}
+html.medilab-desktop #app .panel,html.medilab-desktop #app .stat,html.medilab-desktop #app .top{border:1px solid var(--mlx-stroke)!important;box-shadow:0 12px 35px rgba(52,67,139,.08),inset 0 1px 0 rgba(255,255,255,.35)!important}
+html.medilab-desktop #app .panel:hover,html.medilab-desktop #app .stat:hover{box-shadow:0 16px 36px rgba(63,75,154,.12),0 0 0 1px rgba(106,155,244,.13)!important}
+html.medilab-desktop #app .nav button.active{box-shadow:inset 3px 0 #ada5ff,0 7px 20px rgba(26,22,97,.18)!important;border-color:rgba(150,205,255,.25)!important}
+html.medilab-desktop #app .nav button:hover{transform:none!important}
+html.medilab-desktop #app .adc-settings-lead,html.medilab-desktop #app .adc-settings-list,html.medilab-desktop #app .adc-settings-group{border-radius:17px!important}
+html.medilab-desktop #app .adc-settings-shell{max-width:1000px!important;margin-left:auto;margin-right:auto}
+html.medilab-desktop #app .adc-settings-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:0!important}
+html.medilab-desktop #app .adc-settings-list[hidden]{display:none!important}
+html.medilab-desktop #app .adc-settings-item{min-width:0!important;padding:12px 14px!important;min-height:69px!important;box-shadow:none!important;border-right:1px solid var(--line)!important}
+html.medilab-desktop #app .adc-settings-item:hover{transform:none!important}
+#ml-settings-section-label{grid-column:1/-1!important;padding:13px 17px 8px!important;font-size:10px;letter-spacing:.16em;font-weight:800;color:var(--mlx-muted);background:transparent;border-top:1px solid var(--line)}
+#adc85UpdateCentre>.adc854-current-notes{display:none!important}/* no duplicate What's New section */
+#adcAboutDialog{overflow-x:hidden!important;scrollbar-width:none!important}#adcAboutDialog:hover{overflow-y:auto!important}#adcAboutDialog::-webkit-scrollbar{width:0!important}
+#about{overflow-x:hidden!important}
+#about .mlx-about{max-width:690px;margin:8px auto 32px;padding:36px 35px!important;text-align:center!important;border-radius:29px!important;overflow:hidden!important}
+#about .mlx-about-logo{width:100px;height:100px;border-radius:24px;display:block;margin:0 auto 17px;object-fit:contain;background:linear-gradient(145deg,#fff,#edfaff);box-shadow:0 16px 36px #182d5b24,0 0 0 1px #ffffffaa;padding:8px}
+#about .mlx-about h2{font-size:34px!important;letter-spacing:-.04em!important;font-weight:800!important;margin:0 0 3px!important;color:var(--ink)!important}
+#about .mlx-about .mlx-about-sub{margin:0 0 20px;color:var(--muted)!important;font-size:13px}
+#about .mlx-about .mlx-version{display:inline-block;font-weight:800;font-size:12px;border:1px solid #b9dff9;padding:6px 15px;border-radius:999px;background:#eaf6ff;color:#154e91}
+#about .mlx-about .mlx-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0;text-align:left}
+#about .mlx-about .mlx-grid>div{background:var(--soft);padding:16px;border-radius:13px;border:1px solid var(--line)}
+#about .mlx-about .mlx-grid strong{display:block;color:var(--ink);font-size:14px;margin:6px 0}
+#about .mlx-about .mlx-grid small{color:var(--muted);font-size:11px}
+#about .mlx-about button{margin-top:5px}
+#startupSplash{z-index:2147483000!important;background:radial-gradient(ellipse at 55% 12%,#5068bd 0%,#273a7e 39%,#111a39 85%)!important;overflow:hidden!important}
+#startupSplash:before,#startupSplash:after{border-radius:50%!important;border:1px solid rgba(144,192,255,.22)!important;background:transparent!important;pointer-events:none!important}
+#startupSplash .splash-content{width:min(90vw,500px);background:linear-gradient(145deg,rgba(236,245,255,.15),rgba(125,175,255,.07))!important;border:1px solid rgba(255,255,255,.27)!important;border-radius:30px!important;padding:34px 44px 36px!important;backdrop-filter:blur(19px)!important;box-shadow:0 27px 85px rgba(3,10,35,.28),inset 0 1px 0 #ffffff22!important}
+#startupSplash .splash-logo-shell{height:125px!important;width:125px!important;border-radius:26px!important;background:linear-gradient(135deg,#f6faff,#e8f7ff)!important;box-shadow:0 17px 47px rgba(4,19,61,.23),0 0 0 8px #ffffff0e!important;padding:9px!important;animation:mlxSplashLogo 2.8s ease-in-out infinite!important;overflow:hidden!important}
+#startupSplash .splash-logo-shell:after{display:none!important}
+#startupSplash .splash-logo-shell img{width:100%!important;height:100%!important;max-height:100%!important;object-fit:contain!important;border-radius:17px!important;animation:none!important}
+#startupSplash .splash-title{font:800 32px/1.2 'Segoe UI',system-ui,sans-serif!important;letter-spacing:-.05em!important;color:white!important;margin-top:25px!important;text-transform:none!important;text-shadow:none!important}
+#startupSplash .splash-title span{font-size:1em!important;background:none!important;border:0!important;margin:0!important;padding:0!important;color:#aee9ff!important}
+#startupSplash .splash-by{display:none!important}
+#startupSplash .splash-line{display:none!important}
+#startupSplash .splash-loading{display:block!important;width:min(220px,76%)!important;height:4px!important;margin-top:27px!important;background:#ffffff24!important;overflow:hidden!important;border-radius:999px!important}
+#startupSplash .splash-loading span{display:block!important;height:100%!important;width:100%!important;transform-origin:left!important;animation:mlxStartupProgress 3s linear both!important;background:linear-gradient(90deg,#87adff,#5fe6dd,#b9a0ff)!important;box-shadow:0 0 12px #84d5ff77!important}
+@keyframes mlxStartupProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes mlxSplashLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+#adcWelcome{background:radial-gradient(circle at 80% 10%,rgba(160,189,255,.16),transparent 40%),radial-gradient(circle at 20% 85%,rgba(93,199,236,.11),transparent 35%),#0f1c39!important;overflow:hidden!important}
+#adcWelcome .adc-welcome-panel{background:linear-gradient(145deg,rgba(247,251,255,.96),rgba(229,241,255,.92))!important;border:1px solid rgba(255,255,255,.75)!important;border-radius:28px!important;box-shadow:0 35px 95px rgba(0,6,27,.32)!important}
+#adcWelcome .adc-login-bars{opacity:.25!important}
+#adcWelcome .adc-profile-tile,#adcWelcome .adc-user-tile{transition:box-shadow .2s ease,background .2s ease!important;transform:none!important}
+#adcWelcome .adc-profile-tile:hover,#adcWelcome .adc-user-tile:hover{box-shadow:0 12px 30px #3b6fcd22!important;transform:none!important}
+/* Button and input contrasts; normal inputs use current theme, report paper stays white. */
+body.adc-dark-mode{--mlx-ink:#eef4ff;--mlx-muted:#bdcee5;--mlx-glass:#192a42;--mlx-stroke:rgba(132,161,216,.28)}
+body.adc-dark-mode #app .top,body.adc-dark-mode #app .panel,body.adc-dark-mode #app .stat,body.adc-dark-mode #app .adc-settings-list,body.adc-dark-mode #app .adc-settings-group,body.adc-dark-mode #app .adc-settings-lead{background:#1b2b43!important;border-color:#354761!important;color:#eef4ff!important}
+body.adc-dark-mode #app .top h1,body.adc-dark-mode #app .stat .value,body.adc-dark-mode #app .panel h2,body.adc-dark-mode #app .adc-setting-view h2,body.adc-dark-mode #app .adc-settings-lead h2{color:#f1f6ff!important}
+body.adc-dark-mode #app .muted,body.adc-dark-mode #app .field label,body.adc-dark-mode #app .stat .label,body.adc-dark-mode #app .adc-settings-item .adc-setting-copy small{color:#bed0e7!important}
+body.adc-dark-mode #app .adc-settings-item{background:#1b2b43!important;border-color:#31415c!important;color:#f4f8ff!important}
+body.adc-dark-mode #app .adc-settings-item:hover{background:#273d58!important}
+body.adc-dark-mode #app table{background:#1c2e44!important;color:#f1f5ff!important}
+body.adc-dark-mode #app thead th{background:#283b55!important;color:#d6e9ff!important}
+body.adc-dark-mode #app tbody td{background:transparent!important;color:#e0ebf7!important}
+body.adc-dark-mode #app tbody tr:hover td{background:#293e55!important}
+body.adc-dark-mode #app input:not([type=color]),body.adc-dark-mode #app select,body.adc-dark-mode #app textarea{background:#132339!important;color:#f3f7ff!important;border-color:#516985!important}
+body.adc-dark-mode #app input::placeholder,body.adc-dark-mode #app textarea::placeholder{color:#a7bdd7!important}
+body.adc-dark-mode #app .secondary{background:#304660!important;color:#f3f8ff!important;border-color:#5e7794!important}
+body.adc-dark-mode #about .mlx-about .mlx-version{background:#263d5d;color:#b7e4ff;border-color:#466080}
+body.adc-dark-mode #app .mlx-about .mlx-grid>div{background:#253b55!important;border-color:#38516f!important}
+/* Charts reanimate on each range / metric render, no synthetic data. */
+#ml85DailyChart .ml85-chart-bar{animation:mlxBarGrow .72s cubic-bezier(.12,.75,.18,1) both!important;animation-delay:var(--bar-delay,0ms)!important;transform-origin:bottom!important;will-change:transform,opacity}
+@keyframes mlxBarGrow{from{transform:scaleY(.025);opacity:.3}to{transform:scaleY(1);opacity:1}}
+/* Notification center + selectable appearances */
+#mlx-notif-btn{position:relative;display:grid;place-items:center;width:42px;height:39px;min-width:42px;border-radius:13px!important;background:var(--panel)!important;color:var(--ink)!important;border:1px solid var(--line)!important;box-shadow:none!important;padding:0!important}
+#mlx-notif-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mlx-dot{position:absolute;right:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#fd4777;box-shadow:0 0 0 3px rgba(255,92,136,.2)}
+#mlx-notif-btn .mlx-dot[hidden],.mlx-dot[hidden]{display:none!important}
+#mlx-notif-panel[hidden]{display:none!important}
+#mlx-notif-panel{position:fixed;right:24px;top:100px;z-index:2147482500;width:370px;max-height:min(640px,calc(100vh - 124px));overflow:auto;scrollbar-width:thin;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:0 27px 70px #0410296e;backdrop-filter:blur(18px)}
+#mlx-notif-panel .mlx-panel-head{display:flex;align-items:center;justify-content:space-between;gap:9px;border-bottom:1px solid var(--line);padding:2px 3px 12px}
+#mlx-notif-panel h2{margin:0;font-size:17px}
+#mlx-notif-panel .mlx-empty{color:var(--muted);padding:28px;text-align:center;font-size:13px}
+.mlx-notif-card{display:flex;gap:10px;align-items:flex-start;margin-top:10px;padding:13px;background:var(--soft);border-radius:14px;border:1px solid var(--line)}
+.mlx-notif-card .mlx-nicon{display:grid;place-items:center;flex:none;width:31px;height:31px;border-radius:10px;background:#e5e6ff;color:#6155d4}
+.mlx-notif-card strong{font-size:12px;color:var(--ink)}.mlx-notif-card p{font-size:12px;line-height:1.5;margin:4px 0;color:var(--ink)}.mlx-notif-card small{font-size:10px;color:var(--muted)}
+.mlx-notif-card[data-kind=warning]{border-color:#e8bc65}.mlx-notif-card[data-kind=success]{border-color:#7bd4bb}
+.mlx-toast-host{position:fixed;z-index:2147482400;top:61px;right:26px;pointer-events:none;display:grid;gap:10px;width:340px}
+.mlx-toast{padding:13px 16px;border-radius:18px;background:rgba(237,246,255,.96);border:1px solid #dce7ff;color:#17294f;box-shadow:0 18px 48px #0a194246;animation:mlxToastIn .28s ease both;backdrop-filter:blur(16px);font-size:12px;line-height:1.5}
+.mlx-toast strong{display:block;font-size:13px;margin-bottom:2px}
+.mlx-toast.mlx-banner{width:450px;max-width:calc(100vw - 40px);justify-self:end;border-radius:11px;background:linear-gradient(90deg,#244a96,#1874a0);color:white}
+.mlx-toast.mlx-compact{width:310px;justify-self:end;border-left:4px solid #63c9ef;border-radius:8px}
+@keyframes mlxToastIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.mlx-select-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:15px}
+.mlx-select-grid label{cursor:pointer;border:1px solid var(--line);padding:9px;border-radius:15px;background:var(--panel);min-width:0}
+.mlx-select-grid label:has(input:checked){border-color:#758af8;box-shadow:0 0 0 2px rgba(104,125,245,.15)}
+.mlx-select-grid input{width:auto;min-width:0;margin:6px 0 0;accent-color:#6b70f3}
+.mlx-select-grid strong{font-size:12px;display:block;margin-top:9px;color:var(--ink)}
+.mlx-select-grid small{font-size:10px;color:var(--muted)}
+.mlx-preview{height:88px;padding:10px;position:relative;border-radius:10px;background:linear-gradient(120deg,#dfe8f7,#f7faff);overflow:hidden}
+.mlx-preview .fake{height:32px;border-radius:9px;background:white;box-shadow:0 7px 17px #1a295c29;margin-top:3px;position:relative;border:1px solid #c6d6f5}
+.mlx-preview .fake:before{content:'✦  MediLab';position:absolute;left:8px;top:9px;font-size:9px;color:#293a78;font-weight:800}
+.mlx-preview[data-appearance=banner] .fake{width:100%;border-radius:5px;background:#304ba3}.mlx-preview[data-appearance=banner] .fake:before{color:white}
+.mlx-preview[data-appearance=compact] .fake{width:70%;height:27px;margin-left:auto;border-radius:6px;border-left:4px solid #60c4da}
+.mlx-settings-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:13px}
+#mlx-notification-settings .adc-settings-group{padding:20px!important}
+#mlx-notif-sample{margin-top:15px}
+#mlx-ai-logo-label{font-size:12px;margin-top:10px;display:block;color:var(--muted)}
+#mlx-ai-logo-select{min-width:190px}
+#ml10AiOpen{display:inline-flex!important;align-items:center;gap:7px;white-space:nowrap!important;min-height:39px!important;border:1px solid var(--line)!important;border-radius:12px!important;padding:7px 14px!important;background:var(--panel)!important;color:var(--ink)!important;box-shadow:none!important}
+#ml10AiOpen svg{width:18px;height:18px}
+#ml10AiPanel{border-radius:20px!important;overflow:hidden!important;background:var(--panel)!important;color:var(--ink)!important;box-shadow:0 25px 80px #07112c61!important}
+#ml10AiPanel .ml10-ai-head{background:var(--panel)!important;color:var(--ink)!important;border-bottom:1px solid var(--line)!important}
+#ml10AiPanel .ml10-ai-orb{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(125deg,#697df5,#19b5d4);font-size:19px;color:#fff}
+#ml10AiPanel .ml10-bubble.bot{background:var(--soft)!important;color:var(--ink)!important}
+#ml10AiPanel .ml10-ai-compose{background:var(--panel)!important;color:var(--ink)!important}
+#ml10AiPanel .ml10-ai-compose textarea{color:var(--ink)!important;background:var(--panel)!important;border-color:var(--line)!important}
+#ml10AiPanel .ml10-ai-hint{color:var(--muted)!important}
+.mlx-settings-subtitle{padding:10px 14px 4px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);grid-column:1/-1}
+#mlx-update-wait[hidden]{display:none!important}
+#mlx-update-wait{margin-top:12px;border-radius:12px;padding:10px;background:var(--soft);color:var(--ink)}
+#mlx-update-wait .track{height:5px;background:#cbdaf1;border-radius:99px;overflow:hidden;margin-top:8px}
+#mlx-update-wait .track>span{display:block;height:100%;width:35%;border-radius:99px;background:linear-gradient(90deg,#566af1,#2bbbd3);animation:mlxCheckSweep 1.45s linear infinite}
+@keyframes mlxCheckSweep{from{transform:translateX(-110%)}to{transform:translateX(350%)}}
+@media(prefers-reduced-motion:reduce){#ml85DailyChart .ml85-chart-bar,#startupSplash .splash-loading span{animation:none!important;transform:none!important}}
+@media(min-width:1100px){#app .stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+
+/* About's central Mac-style product identity, with a clean scroll-free card */
+#about .mlx-about>h2,#about .mlx-about>.mlx-about-sub,#about .mlx-about>.mlx-version{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+#about .mlx-about>.mlx-version{display:table!important}
+html.medilab-desktop #adc85Titlebar{visibility:visible!important;opacity:1!important}
+html.medilab-desktop #adc85Titlebar .adc85-winbuttons button{pointer-events:auto!important}
+
+/* MediLab X 10.0.7 notification center: unread inbox + history, desktop animation */
+#mlx-notif-panel{overflow:hidden;display:flex;flex-direction:column;max-height:min(620px,calc(100vh - 118px));right:22px;top:86px;border-radius:18px;padding:13px;box-shadow:0 20px 54px #101f4152}
+#mlx-notif-panel.mlx-notif-opening{animation:mlxNotifyEnter .30s cubic-bezier(.16,.84,.26,1) both}
+#mlx-notif-panel.mlx-notif-closing{animation:mlxNotifyLeave .18s ease-in both;pointer-events:none}
+#mlx-notif-panel .mlx-panel-head{flex-shrink:0;min-height:52px}#mlx-notif-panel .mlx-panel-head h2{font-size:15px}
+#mlx-notif-panel .mlx-count{font-size:10px;color:var(--muted)}
+#mlx-notif-panel #mlx-notif-items{overflow-y:auto;min-height:90px;flex:1;scrollbar-width:thin;overscroll-behavior:contain}
+#mlx-notif-panel .mlx-notif-foot{padding:11px 3px 1px;flex-shrink:0;border-top:1px solid var(--line);margin-top:9px;text-align:right}
+#mlx-notif-panel .mlx-notif-foot button{font-size:11px!important}
+#mlx-notif-panel .mlx-notif-card{padding:11px;border-radius:11px}#mlx-notif-panel .mlx-notif-card[data-read="true"]{opacity:.68}
+#mlx-notif-panel .mlx-empty{font-size:12px;padding:30px 10px}
+@keyframes mlxNotifyEnter{from{opacity:0;transform:translate3d(18px,-12px,0) scale(.98)}to{opacity:1;transform:none}}
+@keyframes mlxNotifyLeave{to{opacity:0;transform:translate3d(18px,-8px,0) scale(.98)}}
+/* Elegant desktop density without rearranging or overriding user-chosen layout. */
+#app .top{min-height:72px!important;padding:12px 17px!important;margin-bottom:14px!important}
+#app .stats{gap:10px!important;margin-bottom:12px!important}
+#app .stat{min-height:105px!important;padding:13px 15px!important}
+#app .panel{padding:16px 17px!important}
+#app .nav button{min-height:37px!important;padding:7px 10px!important}
+#app .sidebar-foot{padding:9px 10px!important}
+@media(prefers-reduced-motion:reduce){#mlx-notif-panel.mlx-notif-opening,#mlx-notif-panel.mlx-notif-closing{animation:none!important}}

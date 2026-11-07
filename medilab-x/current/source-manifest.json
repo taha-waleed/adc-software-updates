@@ -1,0 +1,8 @@
+{
+  "version": "10.0.8",
+  "indexHtmlSha256": "5f7bee0deffeaf97a87600d1384c1e7a1c772be54915e981990cb28484611125",
+  "indexParts": 7,
+  "compressed": "gzip+base64",
+  "builtBy": "GitHub Actions Windows x64",
+  "includesInstaller": false
+}
