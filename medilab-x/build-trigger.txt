@@ -1,1 +1,1 @@
-MediLab X 10.0.8 Windows verified build requested 2026-11-07.
+MediLab X 10.0.8 Windows verified build, release step fixed; requested 2026-11-07 pass 2.
