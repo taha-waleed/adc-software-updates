@@ -1,1 +1,1 @@
-MediLab X 10.0.9 rebuild: clock hands, floating calendar, custom Now Brief messages. 2026-11-07.
+MediLab X 10.0.9 build retry after CI version assertion fix; 2026-11-07 pass 2.
