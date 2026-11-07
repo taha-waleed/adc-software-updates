@@ -1,1 +1,1 @@
-Publish MediLab X 10.0.10 HTML-only release: One UI updates, dark notifications. Windows EXE unchanged. 2026-11-07.
+Publish MediLab X 10.0.11 HTML and JSON after verified Windows bootstrap; 3D modality chart and smooth animated calendar, 2026-11-07.
