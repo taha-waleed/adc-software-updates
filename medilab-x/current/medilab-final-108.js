@@ -1,4 +1,4 @@
-/* MediLab X 10.0.8 — selected clock, mini profile and clean update view. */
+/* MediLab X 10.0.9 — selected clock, mini profile and clean update view. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const two=x=>String(x).padStart(2,'0');
@@ -25,7 +25,7 @@ function updateClock(){
  if(!$('mlx108Hm'))return;
  $('mlx108Hm').textContent=two(h)+':'+two(m);$('mlx108Ss').textContent=two(s);$('mlx108Am').textContent=now.getHours()<12?'AM':'PM';
  $('mlx108Date').textContent=now.toLocaleDateString('en-PK',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
- const rotate=(id,angle)=>{const el=$(id);if(el)el.setAttribute('transform',`rotate(${angle} 50 50)`)};
+ const rotate=(id,angle)=>{const el=$(id);if(el){el.style.transform=`rotate(${angle}deg)`;el.style.transformOrigin='50% 50%';el.style.transformBox='view-box'}};
  rotate('mlx108Hour',(now.getHours()%12+m/60)*30);
  rotate('mlx108Minute',(m+s/60)*6);
  // Smooth hand motion interpolates via requestAnimationFrame; this fallback ticks at second resolution.
@@ -33,7 +33,7 @@ function updateClock(){
 }
 let motionFrame;
 function animateSecondHand(){
- const el=$('mlx108Second');if(el){const now=new Date(),v=(now.getSeconds()+now.getMilliseconds()/1000)*6;el.setAttribute('transform',`rotate(${v} 50 50)`)}
+ const el=$('mlx108Second');if(el){const now=new Date(),v=(now.getSeconds()+now.getMilliseconds()/1000)*6;el.style.transform=`rotate(${v}deg)`;el.style.transformOrigin='50% 50%';el.style.transformBox='view-box'}
  motionFrame=requestAnimationFrame(animateSecondHand);
 }
 function renderCalendar(){
@@ -69,14 +69,50 @@ function initBrand(){
  const name=document.querySelector('#adc85NowBrief .adc85-brief-kicker');if(name)name.textContent='NOW BRIEF';
 }
 function initUpdatePanel(){
- const h=$('adc85UpdateHeading'),message=$('adc85UpdateMessage');if(h)h.textContent='Installed version: 10.0.8';
+ const h=$('adc85UpdateHeading'),message=$('adc85UpdateMessage');if(h)h.textContent='Installed version: 10.0.9';
  const updates=$('adc85UpdateCentre');if(!updates)return;
  const subtitle=updates.querySelector('p.muted');if(subtitle)subtitle.textContent='MediLab checks for verified updates automatically. Your records remain stored locally.';
  const observer=new MutationObserver(()=>{
-  if(h&&(/10\.0\.[0-7]|GitHub|update\.json/i.test(h.textContent||'')))h.textContent='Installed version: 10.0.8';
+  if(h&&(/10\.0\.[0-7]|GitHub|update\.json/i.test(h.textContent||'')))h.textContent='Installed version: 10.0.9';
   if(message&&/invalid release manifest|GitHub|update\.json/i.test(message.textContent||''))message.textContent='Unable to verify an update right now. Please try again later.';
  });observer.observe(updates,{subtree:true,characterData:true,childList:true});
 }
 function boot(){mount();if($('mlx108ClockPill'))animateSecondHand();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();
+/* MediLab X 10.0.9 — centered analog hands, unclipped calendar and accessible popup. */
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+let ready=false,btn,cal,wrap;
+function putCalendar(){
+ if(!btn||!cal||cal.hidden)return;
+ const r=btn.getBoundingClientRect(),w=Math.min(322,window.innerWidth-24);
+ let x=Math.min(window.innerWidth-w-12,Math.max(12,r.right-w));
+ let y=r.bottom+9;
+ if(y+410>window.innerHeight&&r.top>425)y=Math.max(42,r.top-425);
+ cal.style.left=x+'px';cal.style.top=y+'px';cal.style.right='auto';
+}
+function attach(){
+ if(ready)return;
+ btn=$('mlx108ClockPill');cal=$('mlx108Calendar');wrap=$('mlx108ClockWrap');
+ if(!btn||!cal||!wrap)return;
+ ready=true;
+ // Put calendar above every dashboard scroll container. Preserve existing month/day callbacks.
+ document.body.append(cal);
+ cal.setAttribute('role','dialog');cal.setAttribute('aria-label','Calendar');
+ cal.addEventListener('pointerdown',e=>e.stopPropagation());
+ const observer=new MutationObserver(()=>{
+   const open=!cal.hidden;
+   btn.setAttribute('aria-expanded',String(open));
+   if(open)putCalendar();
+ });observer.observe(cal,{attributes:true,attributeFilter:['hidden']});
+ // Old clock click handler still toggles hidden and renders months.
+ btn.addEventListener('click',()=>requestAnimationFrame(putCalendar));
+ window.addEventListener('resize',putCalendar,{passive:true});
+ window.addEventListener('scroll',putCalendar,{passive:true,capture:true});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!cal.hidden){cal.hidden=true;btn.focus()}});
+ // Needle geometry is repaired in the original clock updater using SVG viewBox coordinates.
+}
+const timer=setInterval(()=>{attach();if(ready)clearInterval(timer)},300);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attach,{once:true});else attach();
 })();
