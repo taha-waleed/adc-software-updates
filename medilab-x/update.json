@@ -7,5 +7,7 @@
     "WhatsApp Windows Desktop opens after receipt print is queued (no WhatsApp Web fallback)",
     "Neon Frame notifications, Prism Ribbon, selected 270px animated clock and compact navigation",
     "Simplified software updates with verified installer confirmation"
-  ]
+  ],
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_8.html",
+  "htmlSha256": "dd9f3dd9a3a72e18f2ebe68e4e4f8e7fcdc66887826b604b2c44d06bc17f6a6a"
 }
