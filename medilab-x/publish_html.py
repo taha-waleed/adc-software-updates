@@ -5,7 +5,7 @@ import gzip, base64, hashlib, json, re
 
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'medilab-x'/'current'
-OUT=ROOT/'medilab-x'/'MediLab_X_10_0_8.html'
+OUT=ROOT/'medilab-x'/'MediLab_X_10_0_9.html'
 MAN=ROOT/'medilab-x'/'update.json'
 parts=json.loads((SRC/'source-manifest.json').read_text('utf-8'))
 compressed=''.join((SRC/f'index.html.gz.part{i:02d}.txt').read_text('utf-8').strip() for i in range(1,int(parts['indexParts'])+1))
@@ -32,15 +32,15 @@ logo=logo_file.read_text('utf-8').strip()
 assert base64.b64decode(logo).startswith(b'\x89PNG'), 'Invalid logo'
 html=html.replace('src="assets/MediLab-Heartbeat.png"', 'src="data:image/png;base64,'+logo+'"')
 # Reference to an optional directory should remain local to the native app; standalone preview is not a data migration.
-html='<!-- MediLab X 10.0.8 standalone HTML — Windows-specific printing, secure updates and WhatsApp require the EXE installer. -->\n'+html
+html='<!-- MediLab X 10.0.9 standalone HTML — Windows-specific printing, secure updates and WhatsApp require the EXE installer. -->\n'+html
 OUT.parent.mkdir(parents=True,exist_ok=True)
 OUT.write_text(html,'utf-8')
 sha=hashlib.sha256(OUT.read_bytes()).hexdigest()
 manifest=json.loads(MAN.read_text('utf-8'))
-assert manifest['version']=='10.0.8', 'Refusing to overwrite a different version manifest'
-assert manifest['downloadUrl'].startswith('https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.8/'), 'Installer URL mismatch'
+assert manifest['version']=='10.0.9', 'Refusing to overwrite a different version manifest'
+assert manifest['downloadUrl'].startswith('https://github.com/taha-waleed/adc-software-updates/releases/download/medilab-x-v10.0.9/'), 'Installer URL mismatch'
 assert re.fullmatch(r'[0-9a-f]{64}',manifest['sha256']), 'Installer hash missing'
-manifest['htmlUrl']='https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_8.html'
+manifest['htmlUrl']='https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_9.html'
 manifest['htmlSha256']=sha
 MAN.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n','utf-8')
 print(f'Published standalone HTML, {OUT.stat().st_size} bytes, SHA256 {sha}')
