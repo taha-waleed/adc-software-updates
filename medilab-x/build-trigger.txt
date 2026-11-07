@@ -1,1 +1,1 @@
-MediLab X 10.0.9 build retry after CI version assertion fix; 2026-11-07 pass 2.
+MediLab X 10.0.11 verified Windows bootstrap: 3D CT X-Ray Ultrasound, reference Analog Digital clock, smooth calendar and future HTML-only update engine; 2026-11-07.
