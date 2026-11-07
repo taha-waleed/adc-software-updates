@@ -56,7 +56,7 @@ jobs:
         run: |
           Get-ChildItem -Filter '*.js' | ForEach-Object { node --check $_.FullName; if ($LASTEXITCODE -ne 0) { throw "Invalid JS: $($_.Name)" } }
           $pkg = Get-Content 'package.json' -Raw | ConvertFrom-Json
-          if ($pkg.version -ne '10.0.8') { throw 'Unexpected app version' }
+          if ($pkg.version -ne '10.0.9') { throw 'Unexpected app version' }
       - name: Install dependencies
         shell: pwsh
         working-directory: medilab-x/current
