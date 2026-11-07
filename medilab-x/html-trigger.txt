@@ -1,1 +1,1 @@
-Publish MediLab X 10.0.8 standalone HTML and update.json - 2026-11-07.
+Publish standalone MediLab X HTML 10.0.8 and update.json - 2026-11-07 final trigger.
