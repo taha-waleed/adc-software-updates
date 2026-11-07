@@ -105,7 +105,7 @@ jobs:
           git add medilab-x/update.json
           git diff --cached --quiet
           if ($LASTEXITCODE -ne 0) {
-            git commit -m "MediLab X $version: publish verified release manifest"
+            git commit -m "MediLab X ${version}: publish verified release manifest"
             git pull --rebase origin main
             git push origin HEAD:main
           }
