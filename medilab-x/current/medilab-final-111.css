@@ -1,0 +1,75 @@
+/* MediLab X v10.0.11 — restrained 3D chart, verified clock styling, accessible animated calendar */
+#mlx108ClockPill{
+  width:270px!important;min-width:270px!important;max-width:270px!important;
+  height:75px!important;padding:8px 11px!important;gap:10px!important;
+  border-radius:18px!important;background:#fff!important;border:1px solid #e0e2ea!important;
+  color:#242531!important;box-shadow:0 7px 20px rgba(20,35,70,.10)!important;
+  font-family:'Space Grotesk','Segoe UI',Arial,sans-serif!important;
+}
+#mlx108ClockPill svg.dial{width:62px!important;height:62px!important;overflow:visible!important;filter:none!important}
+#mlx108ClockPill .mlx108-hands{transform-origin:50% 50%!important;transform-box:view-box!important}
+#mlx108ClockPill .mlx108-digits{font:700 24px/1.14 'Space Grotesk','Segoe UI',Arial,sans-serif!important;letter-spacing:-.8px!important;color:#23232b!important}
+#mlx108ClockPill .mlx108-seconds{font-size:22px!important;color:#e5484d!important}
+#mlx108ClockPill .mlx108-am{font-size:9px!important;color:#697188!important;font-weight:750!important}
+#mlx108ClockPill .mlx108-date{font-size:9px!important;letter-spacing:1px!important;color:#7a8090!important;margin-top:5px!important}
+#mlx108ClockPill .mlx108-calendar-icon{display:none!important}
+#mlx108ClockPill:focus-visible{outline:3px solid #809cff!important;outline-offset:2px}
+#mlx108Calendar{
+  z-index:2147482700!important;width:300px!important;max-width:calc(100vw - 30px)!important;
+  padding:14px!important;max-height:none!important;overflow:hidden!important;scrollbar-width:none!important;
+  border-radius:17px!important;background:#fff!important;color:#27354a!important;
+  border:1px solid #dee4ef!important;box-shadow:0 20px 48px #21305040!important;
+  transform-origin:50% top;animation:mlx111ExpandDown .29s cubic-bezier(.18,.92,.28,1.04) both!important;
+}
+#mlx108Calendar::-webkit-scrollbar{display:none!important}
+#mlx108Calendar .mlx108-days button,#mlx108Calendar .mlx108-days span{height:31px!important}
+#mlx108Calendar .mlx108-cal-bottom{margin-top:9px!important;padding-top:9px!important}
+@keyframes mlx111ExpandDown{0%{opacity:0;transform:translateY(-9px) scaleY(.88);filter:blur(3px)}100%{opacity:1;transform:translateY(0) scaleY(1);filter:none}}
+body:has(#app.dark) #mlx108ClockPill,body.dark #mlx108ClockPill{
+  background:#1c2a40!important;border-color:#3c4a62!important;color:#f5f8ff!important;
+  box-shadow:0 8px 25px #060e2180!important;
+}
+body:has(#app.dark) #mlx108ClockPill .mlx108-digits,body.dark #mlx108ClockPill .mlx108-digits{color:#f4f7fc!important}
+body:has(#app.dark) #mlx108ClockPill .mlx108-date,body.dark #mlx108ClockPill .mlx108-date{color:#bdc9db!important}
+body:has(#app.dark) #mlx108ClockPill .mlx108-am,body.dark #mlx108ClockPill .mlx108-am{color:#cbd7e7!important}
+body:has(#app.dark) #mlx108Calendar,body.dark #mlx108Calendar{background:#1b2940!important;border-color:#43536b!important;color:#f4f8ff!important;box-shadow:0 23px 52px #050b1c99!important}
+body:has(#app.dark) #mlx108Calendar .mlx108-days button,body.dark #mlx108Calendar .mlx108-days button{color:#ecf2ff!important}
+body:has(#app.dark) #mlx108Calendar .mlx108-days button:hover,body.dark #mlx108Calendar .mlx108-days button:hover{background:#334765!important}
+body:has(#app.dark) #mlx108Calendar .mlx108-days button.today,body.dark #mlx108Calendar .mlx108-days button.today{color:#fff!important;background:linear-gradient(130deg,#6475f0,#10aabf)!important}
+body:has(#app.dark) #mlx108Calendar .mlx108-cal-top button,body.dark #mlx108Calendar .mlx108-cal-top button{background:#293951!important;border-color:#445470!important;color:#fff!important}
+/* Modern lightweight 3D chart. Existing receipt-derived values and Today/7 Days/Month toggles are preserved. */
+#ml85DailyTrend{border-radius:18px!important}
+#ml85DailyTrend .ml85-trend-title{letter-spacing:-.4px}
+#ml85DailyTrend .ml85-trend-legend i{border-radius:4px!important;box-shadow:inset 0 1px 2px #ffffff82,2px 2px 3px #02092318}
+#ml85DailyChart{min-height:244px!important;grid-template-columns:repeat(var(--ml111-days,7), minmax(72px,1fr));gap:9px!important;
+ background:repeating-linear-gradient(to top,transparent 0,transparent 46px,var(--line) 47px,transparent 48px)!important;
+ padding:12px 17px 2px!important;overflow:visible!important}
+#ml85DailyChart .ml85-chart-day{height:227px!important;gap:12px!important}
+#ml85DailyChart .ml85-chart-bars{height:183px!important;gap:10px!important;overflow:visible!important;padding-right:9px}
+#ml85DailyChart .ml85-bar-track{width:clamp(13px,22%,26px)!important;overflow:visible!important;perspective:400px}
+#ml85DailyChart .ml85-chart-bar{
+ position:relative!important;display:block!important;border-radius:3px 3px 2px 2px!important;
+ background:linear-gradient(105deg,color-mix(in srgb,var(--bar-color) 80%,white),var(--bar-color) 58%,color-mix(in srgb,var(--bar-color) 70%,black))!important;
+ box-shadow:inset 1px 0 2px #ffffff7d,0 5px 10px #0e234e3a!important;
+ animation:mlx111BarRise .75s cubic-bezier(.14,.86,.23,1) both!important;animation-delay:var(--bar-delay,0ms)!important;
+ transform-origin:center bottom!important;will-change:transform,opacity;cursor:pointer!important;
+}
+#ml85DailyChart .ml85-chart-bar:before{content:'';position:absolute;left:5px;right:-6px;top:-8px;height:8px;
+ background:linear-gradient(145deg,color-mix(in srgb,var(--bar-color) 60%,white),color-mix(in srgb,var(--bar-color) 87%,white));
+ clip-path:polygon(0 100%,35% 0,100% 0,70% 100%);pointer-events:none}
+#ml85DailyChart .ml85-chart-bar:after{content:'';position:absolute;top:-1px;right:-9px;width:9px;height:calc(100% + 1px);
+ background:linear-gradient(105deg,color-mix(in srgb,var(--bar-color) 70%,black),color-mix(in srgb,var(--bar-color) 43%,black));
+ clip-path:polygon(0 0,100% -7px,100% calc(100% - 7px),0 100%);pointer-events:none}
+#ml85DailyChart .ml85-chart-bar:focus-visible{outline:3px solid #eabf5c!important;outline-offset:3px!important}
+#ml85DailyChart .ml85-chart-bar:hover{filter:brightness(1.1) saturate(1.14)!important;box-shadow:0 0 0 2px #ffffff55,0 9px 16px #14294d55!important}
+#ml85DailyChart .ml85-chart-date{font-size:10px!important;letter-spacing:.1px!important;color:var(--muted)!important}
+#ml85DailyTrend .ml85-chart-scroll{padding-top:10px!important;overflow-y:hidden!important;scrollbar-width:thin}
+#ml85DailyTrend .ml85-modality-foot{margin-top:16px!important}
+.ml111-hover-tip{position:fixed;z-index:2147482600;pointer-events:none;max-width:260px;padding:10px 13px;
+ border:1px solid #8599f0;border-radius:11px;background:#182c4b;color:#fff;box-shadow:0 13px 30px #06142c85;
+ font:700 12px/1.45 'Segoe UI',sans-serif;letter-spacing:0;white-space:pre-line;animation:mlx111TipIn .16s ease both}
+.ml111-hover-tip[hidden]{display:none}
+@keyframes mlx111TipIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes mlx111BarRise{from{opacity:.08;transform:scaleY(.025) translateY(3px)}to{opacity:1;transform:scaleY(1) translateY(0)}}
+body:has(#app.dark) #ml85DailyChart .ml85-chart-bar,body.dark #ml85DailyChart .ml85-chart-bar{box-shadow:inset 1px 0 2px #ffffff33,0 6px 12px #01071888!important}
+@media(prefers-reduced-motion:reduce){#ml85DailyChart .ml85-chart-bar,#mlx108Calendar{animation:none!important;transition:none!important}}
