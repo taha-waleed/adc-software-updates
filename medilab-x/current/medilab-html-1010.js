@@ -1,7 +1,7 @@
 /* MediLab X HTML-only update experience v10.0.10 — no EXE installation. */
 (()=>{'use strict';
 const ROOT='https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/',MANIFEST=ROOT+'update.json';
-const LOCAL_VERSION='10.0.10', NATIVE_VERSION='10.0.9';
+const LOCAL_VERSION='10.0.11', NATIVE_VERSION='10.0.11';
 const $=id=>document.getElementById(id);
 const safeUrl=url=>{try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='raw.githubusercontent.com'&&u.pathname.startsWith('/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_')}catch{return false}};
 const newer=(v,cur)=>{const a=String(v||'').split('.').map(Number),b=String(cur).split('.').map(Number);return a.length===3&&a.every(Number.isFinite)&&a.some((x,i)=>x!==b[i])&&a.find((x,i)=>x!==b[i])>b.find((x,i)=>a[i]!==b[i])};
@@ -20,7 +20,7 @@ function renderUpdates(){const host=$('adc85UpdateCentre');if(!host||$('mlx1010U
  host.prepend(wrap);
  const check=$('mlx1010Check'),spin=$('mlx1010Spin'),status=$('mlx1010Status');
  $('mlx1010Notes').onclick=()=>{$('mlx1010Release').hidden=!$('mlx1010Release').hidden};
- $('mlx1010Copy').onclick=async()=>{const url=ROOT+'MediLab_X_10_0_10.html';try{await navigator.clipboard.writeText(url);status.textContent='HTML link copied.'}catch{status.textContent='HTML link: '+url}};
+ $('mlx1010Copy').onclick=async()=>{const url=ROOT+'MediLab_X_10_0_11.html';try{await navigator.clipboard.writeText(url);status.textContent='HTML link copied.'}catch{status.textContent='HTML link: '+url}};
  check.onclick=async()=>{check.disabled=true;spin.classList.add('active');status.textContent='Checking verified HTML version…';try{
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
  let res;try{res=await fetch(MANIFEST,{cache:'no-store',signal:controller.signal})}finally{clearTimeout(timer)}
