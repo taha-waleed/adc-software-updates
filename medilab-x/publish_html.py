@@ -43,14 +43,17 @@ css = (SRC / 'medilab-html-1010.css').read_text('utf-8')
 js = (SRC / 'medilab-html-1010.js').read_text('utf-8')
 assert '</script' not in js.lower()
 assert html.lower().count('</head>') >= 1 and html.lower().count('</body>') >= 1
-html = re.sub(r'</head>', lambda _: '<style data-source="medilab-html-1010.css">\n' + css + '\n</style>\n</head>', html, count=1, flags=re.I)
-html = re.sub(r'</body>', lambda _: '<script data-source="medilab-html-1010.js">\n' + js + '\n</script>\n</body>', html, count=1, flags=re.I)
+html = html[:html.lower().find('</head>')] + '<style data-source="medilab-html-1010.css">\n' + css + '\n</style>\n' + html[html.lower().find('</head>'):]
+body_end=html.lower().rfind('</body>'); assert body_end>0
+html=html[:body_end]+'<script data-source="medilab-html-1010.js">\n'+js+'\n</script>\n'+html[body_end:]
 # Include the refined Light/Dark clock, 3D chart and verified HTML updater control.
 css111=(SRC/'medilab-final-111.css').read_text('utf-8')
 js111=(SRC/'medilab-final-111.js').read_text('utf-8')
 assert '</script' not in js111.lower()
-html=re.sub(r'</head>',lambda _: '<style data-source="medilab-final-111.css">\n'+css111+'\n</style>\n</head>',html,count=1,flags=re.I)
-html=re.sub(r'</body>',lambda _: '<script data-source="medilab-final-111.js">\n'+js111+'\n</script>\n</body>',html,count=1,flags=re.I)
+head_end=html.lower().find('</head>'); assert head_end>0
+html=html[:head_end]+'<style data-source="medilab-final-111.css">\n'+css111+'\n</style>\n'+html[head_end:]
+body_end=html.lower().rfind('</body>'); assert body_end>0
+html=html[:body_end]+'<script data-source="medilab-final-111.js">\n'+js111+'\n</script>\n'+html[body_end:]
 html = '<!-- MediLab X 10.0.11 standalone HTML edition; native shell stays 10.0.11. No installer. -->\n' + html
 PUBLISH.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html, 'utf-8')
