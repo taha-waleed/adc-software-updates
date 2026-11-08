@@ -1,0 +1,21 @@
+<Application x:Class="MediLabX.Native.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml">
+ <Application.Resources>
+  <ResourceDictionary>
+   <SolidColorBrush x:Key="AppBackground" Color="#F0F4FB"/>
+   <SolidColorBrush x:Key="Surface" Color="#FFFFFF"/>
+   <SolidColorBrush x:Key="SurfaceSoft" Color="#F5F8FE"/>
+   <SolidColorBrush x:Key="TextPrimary" Color="#1B2B45"/>
+   <SolidColorBrush x:Key="TextSecondary" Color="#63748D"/>
+   <SolidColorBrush x:Key="BorderBrushTheme" Color="#DBE5F2"/>
+   <SolidColorBrush x:Key="NavBackground" Color="#172758"/>
+   <SolidColorBrush x:Key="Accent" Color="#367BFA"/>
+   <SolidColorBrush x:Key="AccentSoft" Color="#E3EEFF"/>
+   <SolidColorBrush x:Key="NavText" Color="#D9E6FF"/>
+   <Style TargetType="TextBlock"><Setter Property="FontFamily" Value="Segoe UI Variable,Segoe UI"/><Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/></Style>
+   <Style TargetType="Button"><Setter Property="FontFamily" Value="Segoe UI Variable,Segoe UI"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="FontSize" Value="12"/><Setter Property="Padding" Value="13,9"/><Setter Property="Cursor" Value="Hand"/><Setter Property="BorderThickness" Value="1"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrushTheme}"/><Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/><Setter Property="Background" Value="{DynamicResource SurfaceSoft}"/><Setter Property="Margin" Value="2"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="ButtonFace" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonFace" Property="Opacity" Value="0.83"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonFace" Property="Opacity" Value="0.7"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonFace" Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+   <Style TargetType="TextBox"><Setter Property="FontFamily" Value="Segoe UI Variable,Segoe UI"/><Setter Property="FontSize" Value="13"/><Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/><Setter Property="Background" Value="{DynamicResource Surface}"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrushTheme}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="Padding" Value="10,9"/><Setter Property="Margin" Value="0,4,0,10"/></Style>
+   <Style TargetType="ComboBox"><Setter Property="FontSize" Value="13"/><Setter Property="Background" Value="{DynamicResource Surface}"/><Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/><Setter Property="Margin" Value="0,4,0,10"/><Setter Property="MinHeight" Value="33"/></Style>
+   <Style TargetType="DataGrid"><Setter Property="Background" Value="{DynamicResource Surface}"/><Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/><Setter Property="RowBackground" Value="{DynamicResource Surface}"/><Setter Property="AlternatingRowBackground" Value="{DynamicResource SurfaceSoft}"/><Setter Property="GridLinesVisibility" Value="None"/><Setter Property="HeadersVisibility" Value="Column"/><Setter Property="ColumnWidth" Value="*"/><Setter Property="RowHeight" Value="36"/><Setter Property="FontSize" Value="12"/><Setter Property="Margin" Value="0,8,0,10"/><Setter Property="AutoGenerateColumns" Value="True"/><Setter Property="IsReadOnly" Value="True"/><Setter Property="SelectionMode" Value="Single"/></Style>
+  </ResourceDictionary>
+ </Application.Resources>
+</Application>

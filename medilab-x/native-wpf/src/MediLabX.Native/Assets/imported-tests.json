@@ -1,0 +1,821 @@
+[
+  {
+    "id": 3,
+    "department": "Radiology",
+    "name": "Abdominal Doppler",
+    "abbr": "ABDOMEN DOPPLER",
+    "price": 3000
+  },
+  {
+    "id": 10,
+    "department": "Radiology",
+    "name": "AP View Only",
+    "abbr": "XRay AP View Only",
+    "price": 1300
+  },
+  {
+    "id": 12,
+    "department": "Radiology",
+    "name": "Ba Anema",
+    "abbr": "BA An",
+    "price": 12000
+  },
+  {
+    "id": 13,
+    "department": "Radiology",
+    "name": "Ba Meal",
+    "abbr": "Ba-M",
+    "price": 5000
+  },
+  {
+    "id": 14,
+    "department": "Radiology",
+    "name": "Ba Meal Folow Thrrough",
+    "abbr": "BAMF",
+    "price": 10000
+  },
+  {
+    "id": 15,
+    "department": "Radiology",
+    "name": "Ba Swallow",
+    "abbr": "Ba-Sw",
+    "price": 5000
+  },
+  {
+    "id": 30,
+    "department": "Radiology",
+    "name": "Cardio Doppler",
+    "abbr": "CARDIO DOP",
+    "price": 4000
+  },
+  {
+    "id": 31,
+    "department": "Radiology",
+    "name": "CCECT CHEST ABDOMEN PELVIS",
+    "abbr": "CCECT CHEST ABDOMEN PELVIS",
+    "price": 23000
+  },
+  {
+    "id": 32,
+    "department": "Radiology",
+    "name": "CE CT Abdomen",
+    "abbr": "CE CT Abdomen",
+    "price": 15000
+  },
+  {
+    "id": 33,
+    "department": "Radiology",
+    "name": "CE CT Abdomen Pancreatic Protocol",
+    "abbr": "CE CT Abdomen Pancreatic Protocol",
+    "price": 18000
+  },
+  {
+    "id": 34,
+    "department": "Radiology",
+    "name": "CE CT Abdomen Pelvis",
+    "abbr": "CE CT Abdomen Pelvis",
+    "price": 16000
+  },
+  {
+    "id": 35,
+    "department": "Radiology",
+    "name": "CE CT Abdomen Triphase",
+    "abbr": "CE CT Abdomen Triphase",
+    "price": 18000
+  },
+  {
+    "id": 36,
+    "department": "Radiology",
+    "name": "CE CT Any One joint only",
+    "abbr": "CE CT Any One joint only",
+    "price": 12000
+  },
+  {
+    "id": 37,
+    "department": "Radiology",
+    "name": "CE CT Chest",
+    "abbr": "CE CT Chest",
+    "price": 10000
+  },
+  {
+    "id": 38,
+    "department": "Radiology",
+    "name": "CE CT Pelvis",
+    "abbr": "CE CT Pelvis",
+    "price": 15000
+  },
+  {
+    "id": 39,
+    "department": "Radiology",
+    "name": "CECT Brain",
+    "abbr": "CECT Brain",
+    "price": 8500
+  },
+  {
+    "id": 40,
+    "department": "Radiology",
+    "name": "CECT Neck",
+    "abbr": "CECT Neck",
+    "price": 14000
+  },
+  {
+    "id": 41,
+    "department": "Radiology",
+    "name": "CECT NECK+CHEST+ABDOMEN PELVIS",
+    "abbr": "CECT NECK +CHEST +ABDOMEN PELVIS",
+    "price": 35000
+  },
+  {
+    "id": 44,
+    "department": "Radiology",
+    "name": "CT Abdomin Pelvis Plain",
+    "abbr": "CT Abdomin Pelvis Plain",
+    "price": 11000
+  },
+  {
+    "id": 45,
+    "department": "Radiology",
+    "name": "CT Angio any one joint only",
+    "abbr": "CT Angio any one joint only",
+    "price": 12000
+  },
+  {
+    "id": 46,
+    "department": "Radiology",
+    "name": "CT Angio Brain",
+    "abbr": "CT Angio Brain",
+    "price": 12000
+  },
+  {
+    "id": 47,
+    "department": "Radiology",
+    "name": "CT Any other joint plain one only",
+    "abbr": "CT Any other joint plain one only",
+    "price": 8000
+  },
+  {
+    "id": 48,
+    "department": "Radiology",
+    "name": "CT any spine plain one",
+    "abbr": "CT any spine plain one",
+    "price": 8000
+  },
+  {
+    "id": 49,
+    "department": "Radiology",
+    "name": "CT Brain Plain",
+    "abbr": "CT Brain Plain",
+    "price": 6000
+  },
+  {
+    "id": 50,
+    "department": "Radiology",
+    "name": "CT Chest Plain",
+    "abbr": "CT Chest Plain",
+    "price": 9000
+  },
+  {
+    "id": 51,
+    "department": "Radiology",
+    "name": "CT Face Plain",
+    "abbr": "CT Face Plain",
+    "price": 8000
+  },
+  {
+    "id": 52,
+    "department": "Radiology",
+    "name": "CT KUB Plain",
+    "abbr": "CT KUB Plain`",
+    "price": 8000
+  },
+  {
+    "id": 53,
+    "department": "Radiology",
+    "name": "CT Neck Plain",
+    "abbr": "CT Neck Plain",
+    "price": 8500
+  },
+  {
+    "id": 54,
+    "department": "Radiology",
+    "name": "CT Pelvis Plain",
+    "abbr": "CT Pelvis Plain",
+    "price": 9000
+  },
+  {
+    "id": 55,
+    "department": "Radiology",
+    "name": "CT PNS Plain",
+    "abbr": "CT PNS Plain",
+    "price": 8000
+  },
+  {
+    "id": 56,
+    "department": "Radiology",
+    "name": "CXR",
+    "abbr": "CXR",
+    "price": 1300
+  },
+  {
+    "id": 61,
+    "department": "Radiology",
+    "name": "ECG",
+    "abbr": "ecg",
+    "price": 700
+  },
+  {
+    "id": 74,
+    "department": "Radiology",
+    "name": "HRCT Chest",
+    "abbr": "HRCT Chest",
+    "price": 8000
+  },
+  {
+    "id": 153,
+    "department": "Radiology",
+    "name": "UPPER LIMB VACULAR DOP",
+    "abbr": "UP LIMB DOP",
+    "price": 4000
+  },
+  {
+    "id": 161,
+    "department": "Radiology",
+    "name": "USG Abdomen",
+    "abbr": "Abdomen",
+    "price": 1800
+  },
+  {
+    "id": 162,
+    "department": "Radiology",
+    "name": "USG Abdomen KUB",
+    "abbr": "Abdomen KUB",
+    "price": 1800
+  },
+  {
+    "id": 163,
+    "department": "Radiology",
+    "name": "USG Abdomen Pelvis",
+    "abbr": "Abdomen Pelvis",
+    "price": 2000
+  },
+  {
+    "id": 164,
+    "department": "Radiology",
+    "name": "USG ADULT ECHOCARDIOGRAPHY",
+    "abbr": "ECOCARD",
+    "price": 3000
+  },
+  {
+    "id": 165,
+    "department": "Radiology",
+    "name": "USG ANKLE FOOTJOINT",
+    "abbr": "ANKLE FOOT",
+    "price": 3000
+  },
+  {
+    "id": 166,
+    "department": "Radiology",
+    "name": "USG Anomaly Scan",
+    "abbr": "Anomaly Scan",
+    "price": 2800
+  },
+  {
+    "id": 167,
+    "department": "Radiology",
+    "name": "USG Brain Child",
+    "abbr": "Brain Child",
+    "price": 1500
+  },
+  {
+    "id": 168,
+    "department": "Radiology",
+    "name": "Usg Breast (Both Sides)",
+    "abbr": "Breast",
+    "price": 4000
+  },
+  {
+    "id": 169,
+    "department": "Radiology",
+    "name": "Usg Breast (One Side)",
+    "abbr": "BREAST",
+    "price": 2000
+  },
+  {
+    "id": 170,
+    "department": "Radiology",
+    "name": "USG Carotid Doppler",
+    "abbr": "Carotid Doppler",
+    "price": 4000
+  },
+  {
+    "id": 171,
+    "department": "Radiology",
+    "name": "USG Chest",
+    "abbr": "Chest",
+    "price": 1500
+  },
+  {
+    "id": 172,
+    "department": "Radiology",
+    "name": "USG CHEST",
+    "abbr": "CHEST",
+    "price": 1500
+  },
+  {
+    "id": 173,
+    "department": "Radiology",
+    "name": "USG Doppler Lower Limb Arterial (Both sides)",
+    "abbr": "doppler",
+    "price": 8000
+  },
+  {
+    "id": 174,
+    "department": "Radiology",
+    "name": "USG Doppler Lower Limb Arterial (One side)",
+    "abbr": "Doppler USG Lower Limb Arterial One side",
+    "price": 4000
+  },
+  {
+    "id": 175,
+    "department": "Radiology",
+    "name": "USG Doppler Lower Limb Venous (Both Sides)",
+    "abbr": "doppler",
+    "price": 8000
+  },
+  {
+    "id": 176,
+    "department": "Radiology",
+    "name": "USG Doppler Lower Limb Venous (One side)",
+    "abbr": "Doppler USG Lower Limb Venous one side",
+    "price": 4000
+  },
+  {
+    "id": 177,
+    "department": "Radiology",
+    "name": "USG Doppler Upper Limb Arterial (Both Sides)",
+    "abbr": "doppler",
+    "price": 8000
+  },
+  {
+    "id": 178,
+    "department": "Radiology",
+    "name": "USG Doppler Upper Limb Arterial (One side)",
+    "abbr": "Doppler USG Upper Limb Arterial one side",
+    "price": 4000
+  },
+  {
+    "id": 179,
+    "department": "Radiology",
+    "name": "USG Doppler Upper Limb Venous (Both Sides)",
+    "abbr": "Doppler",
+    "price": 8000
+  },
+  {
+    "id": 180,
+    "department": "Radiology",
+    "name": "USG Doppler Upper Limb Venous (One side)",
+    "abbr": "Doppler USG Upper Limb Venous one side",
+    "price": 4000
+  },
+  {
+    "id": 181,
+    "department": "Radiology",
+    "name": "USG Doppler USG Renal Artery",
+    "abbr": "Doppler USG Renal Artery",
+    "price": 4000
+  },
+  {
+    "id": 182,
+    "department": "Radiology",
+    "name": "USG ELBOW",
+    "abbr": "ELBOW",
+    "price": 1500
+  },
+  {
+    "id": 183,
+    "department": "Radiology",
+    "name": "USG EYE",
+    "abbr": "USG EYE",
+    "price": 1500
+  },
+  {
+    "id": 184,
+    "department": "Radiology",
+    "name": "USG Eye one side",
+    "abbr": "Eye one side",
+    "price": 1500
+  },
+  {
+    "id": 185,
+    "department": "Radiology",
+    "name": "USG FAST SCAN (EMERGENCY)",
+    "abbr": "EMERGENCY",
+    "price": 2000
+  },
+  {
+    "id": 186,
+    "department": "Radiology",
+    "name": "USG FETAL ECHOCARDIOGRAPHY",
+    "abbr": "FETAL",
+    "price": 3000
+  },
+  {
+    "id": 187,
+    "department": "Radiology",
+    "name": "USG FWB",
+    "abbr": "FWb",
+    "price": 1800
+  },
+  {
+    "id": 188,
+    "department": "Radiology",
+    "name": "USG FWB+AFI+UAD",
+    "abbr": "FWB+AFI+UAD",
+    "price": 2500
+  },
+  {
+    "id": 189,
+    "department": "Radiology",
+    "name": "USG GENERAL",
+    "abbr": "USG-GENERAL",
+    "price": 1500
+  },
+  {
+    "id": 190,
+    "department": "Radiology",
+    "name": "USG Groin",
+    "abbr": "Groin",
+    "price": 2000
+  },
+  {
+    "id": 191,
+    "department": "Radiology",
+    "name": "USG INTESTINAL",
+    "abbr": "USG INTESINAL",
+    "price": 3000
+  },
+  {
+    "id": 192,
+    "department": "Radiology",
+    "name": "USG Knee",
+    "abbr": "KNEE",
+    "price": 1500
+  },
+  {
+    "id": 193,
+    "department": "Radiology",
+    "name": "USG KNEE JOINT",
+    "abbr": "KNEE JOINT",
+    "price": 1500
+  },
+  {
+    "id": 194,
+    "department": "Radiology",
+    "name": "USG KUB",
+    "abbr": "KUB",
+    "price": 1500
+  },
+  {
+    "id": 195,
+    "department": "Radiology",
+    "name": "USG KUB Prostate",
+    "abbr": "KUB Prostate",
+    "price": 1500
+  },
+  {
+    "id": 196,
+    "department": "Radiology",
+    "name": "USG KUB Prostate+PVRU",
+    "abbr": "KUB Prostate +PVRU",
+    "price": 1800
+  },
+  {
+    "id": 197,
+    "department": "Radiology",
+    "name": "USG Neck",
+    "abbr": "Neck",
+    "price": 2800
+  },
+  {
+    "id": 198,
+    "department": "Radiology",
+    "name": "USG PEDIATRIC ECHOCARDIOGRAPHY",
+    "abbr": "ECHOCARDIO",
+    "price": 3000
+  },
+  {
+    "id": 199,
+    "department": "Radiology",
+    "name": "USG PELVIS",
+    "abbr": "PELVIS",
+    "price": 1800
+  },
+  {
+    "id": 200,
+    "department": "Radiology",
+    "name": "USG Pelvis",
+    "abbr": "Pelvis",
+    "price": 1500
+  },
+  {
+    "id": 201,
+    "department": "Radiology",
+    "name": "USG PENILE",
+    "abbr": "PENILE",
+    "price": 1500
+  },
+  {
+    "id": 202,
+    "department": "Radiology",
+    "name": "USG Pocket",
+    "abbr": "Pocket",
+    "price": 1500
+  },
+  {
+    "id": 203,
+    "department": "Radiology",
+    "name": "USG SCROTAL /TESTICULAR",
+    "abbr": "TESTICULAR",
+    "price": 3000
+  },
+  {
+    "id": 204,
+    "department": "Radiology",
+    "name": "USG Scrotum Doppler",
+    "abbr": "Scrotum+Doppler",
+    "price": 2500
+  },
+  {
+    "id": 205,
+    "department": "Radiology",
+    "name": "USG SHOULDER",
+    "abbr": "SHOULDER",
+    "price": 1500
+  },
+  {
+    "id": 206,
+    "department": "Radiology",
+    "name": "USG SOFT TISSUE",
+    "abbr": "SOFT TISSUE",
+    "price": 2000
+  },
+  {
+    "id": 207,
+    "department": "Radiology",
+    "name": "USG THYROID",
+    "abbr": "THYROID",
+    "price": 2500
+  },
+  {
+    "id": 208,
+    "department": "Radiology",
+    "name": "USG TRANSCECTAL",
+    "abbr": "USG TRANS",
+    "price": 3000
+  },
+  {
+    "id": 209,
+    "department": "Radiology",
+    "name": "USG TRANSCRANAL (NEONATAL /ADULT)",
+    "abbr": "NEO ADULT",
+    "price": 3000
+  },
+  {
+    "id": 210,
+    "department": "Radiology",
+    "name": "USG TVS",
+    "abbr": "TVS",
+    "price": 3000
+  },
+  {
+    "id": 211,
+    "department": "Radiology",
+    "name": "USG VASCULLAR",
+    "abbr": "USG-VAS",
+    "price": 3000
+  },
+  {
+    "id": 212,
+    "department": "Radiology",
+    "name": "USG-HIP JOINT",
+    "abbr": "HIP JOINT",
+    "price": 1500
+  },
+  {
+    "id": 213,
+    "department": "Radiology",
+    "name": "USG-WRIST/HAND",
+    "abbr": "WRIST/HAND",
+    "price": 1500
+  },
+  {
+    "id": 215,
+    "department": "Radiology",
+    "name": "X-Ray Abdomen Erect",
+    "abbr": "XRay Abdomen Erect",
+    "price": 1400
+  },
+  {
+    "id": 216,
+    "department": "Radiology",
+    "name": "X-Ray Abdomen Erect + Supine",
+    "abbr": "XRay Abdomen Erect + Supine",
+    "price": 1800
+  },
+  {
+    "id": 217,
+    "department": "Radiology",
+    "name": "X-Ray Ankle Joint Ap/Lat",
+    "abbr": "XRay Ankle Joint Ap/Lat",
+    "price": 1600
+  },
+  {
+    "id": 218,
+    "department": "Radiology",
+    "name": "X-Ray C-spine AP Lat View",
+    "abbr": "XRay C-spine AP Lat View",
+    "price": 1600
+  },
+  {
+    "id": 219,
+    "department": "Radiology",
+    "name": "X-Ray Chest PA",
+    "abbr": "XRay Chest PA",
+    "price": 1300
+  },
+  {
+    "id": 220,
+    "department": "Radiology",
+    "name": "X-Ray Chest PA+Lat view",
+    "abbr": "XRay Chest PA +Lat view",
+    "price": 1600
+  },
+  {
+    "id": 221,
+    "department": "Radiology",
+    "name": "X-Ray Elbow Joint AP lat",
+    "abbr": "XRay Elbow Joint AP lat",
+    "price": 1600
+  },
+  {
+    "id": 222,
+    "department": "Radiology",
+    "name": "X-Ray Face AP View",
+    "abbr": "XRay Face Ap View",
+    "price": 1400
+  },
+  {
+    "id": 223,
+    "department": "Radiology",
+    "name": "X-Ray Femur AP/Lat",
+    "abbr": "XRay Femur AP/Lat",
+    "price": 1800
+  },
+  {
+    "id": 224,
+    "department": "Radiology",
+    "name": "X-Ray Foot Ap/Lat",
+    "abbr": "XRay Foot Ap/Lat",
+    "price": 1600
+  },
+  {
+    "id": 225,
+    "department": "Radiology",
+    "name": "X-Ray Fore Arm AP/Lat",
+    "abbr": "XRay Fore Arm AP/Lat",
+    "price": 1600
+  },
+  {
+    "id": 226,
+    "department": "Radiology",
+    "name": "X-Ray Hand AP/Lat",
+    "abbr": "XRay Hand AP/Lat",
+    "price": 1600
+  },
+  {
+    "id": 227,
+    "department": "Radiology",
+    "name": "X-Ray Haumrus AP Lat",
+    "abbr": "XRay Haumrus AP/Lat",
+    "price": 1600
+  },
+  {
+    "id": 228,
+    "department": "Radiology",
+    "name": "X-Ray Hip Joint one only",
+    "abbr": "XRay Hip Joint one only",
+    "price": 1400
+  },
+  {
+    "id": 229,
+    "department": "Radiology",
+    "name": "X-Ray knee Joint AP/Lat",
+    "abbr": "XRay knee Joint AP/Lat",
+    "price": 1600
+  },
+  {
+    "id": 230,
+    "department": "Radiology",
+    "name": "X-Ray KUB",
+    "abbr": "XRayKUB",
+    "price": 1400
+  },
+  {
+    "id": 231,
+    "department": "Radiology",
+    "name": "X-Ray L/S Spine AP Lat View",
+    "abbr": "XRay LS Spine AP Lat View",
+    "price": 1600
+  },
+  {
+    "id": 232,
+    "department": "Radiology",
+    "name": "X-Ray Leg Ap/Lat",
+    "abbr": "XRay Leg Ap/Lat",
+    "price": 1600
+  },
+  {
+    "id": 233,
+    "department": "Radiology",
+    "name": "X-Ray Mandible AP Lat",
+    "abbr": "XRay Mandible AP Lat",
+    "price": 1800
+  },
+  {
+    "id": 234,
+    "department": "Radiology",
+    "name": "X-Ray Mastoids 4xview",
+    "abbr": "XRay Mastoids",
+    "price": 2400
+  },
+  {
+    "id": 235,
+    "department": "Radiology",
+    "name": "X-Ray Nasel Bone Lat View",
+    "abbr": "XRay Nasel Bone Lat View",
+    "price": 1500
+  },
+  {
+    "id": 236,
+    "department": "Radiology",
+    "name": "X-Ray Neck AP Lat View",
+    "abbr": "XRay Neck AP Lat View",
+    "price": 1600
+  },
+  {
+    "id": 237,
+    "department": "Radiology",
+    "name": "X-Ray Neck Lat View Only",
+    "abbr": "XRay Neck Lat View Only",
+    "price": 1300
+  },
+  {
+    "id": 238,
+    "department": "Radiology",
+    "name": "X-Ray Orbits",
+    "abbr": "XRay Orbits",
+    "price": 1400
+  },
+  {
+    "id": 239,
+    "department": "Radiology",
+    "name": "X-Ray PNS Water View",
+    "abbr": "Xray PNS Water View",
+    "price": 1400
+  },
+  {
+    "id": 240,
+    "department": "Radiology",
+    "name": "X-Ray Shoulder AP View Only",
+    "abbr": "XRay Shoulder AP View Only",
+    "price": 1300
+  },
+  {
+    "id": 241,
+    "department": "Radiology",
+    "name": "X-Ray Skull AP & Lat",
+    "abbr": "XraySkull AP & Lat",
+    "price": 2000
+  },
+  {
+    "id": 242,
+    "department": "Radiology",
+    "name": "X-Ray Thoracic Spine Ap Lat",
+    "abbr": "XRay Thoracic Spine Ap Lat",
+    "price": 1600
+  },
+  {
+    "id": 243,
+    "department": "Radiology",
+    "name": "X-Ray Wrist 4xview",
+    "abbr": "XRay Wrist 4xview",
+    "price": 2000
+  },
+  {
+    "id": 244,
+    "department": "Radiology",
+    "name": "X-Ray Wrist Ap/Lat",
+    "abbr": "XRay Wrist Ap/Lat",
+    "price": 1600
+  }
+]
