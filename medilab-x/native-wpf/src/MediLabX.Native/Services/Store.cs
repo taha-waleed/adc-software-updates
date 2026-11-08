@@ -5,9 +5,10 @@ using MediLabX.Native.Models;
 namespace MediLabX.Native.Services;
 public sealed class Store {
  public static string Root=>Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"MediLab","Standard","NativeWpf");
- public string FileName=>Path.Combine(Root,"medilab-native.sqlite");
+ public string BaseDirectory { get; }
+ public string FileName=>Path.Combine(BaseDirectory,"medilab-native.sqlite");
  private static readonly JsonSerializerOptions J=new(){PropertyNameCaseInsensitive=true,WriteIndented=false};
- public Store(){Directory.CreateDirectory(Root);using var c=Connect();using var cmd=c.CreateCommand();cmd.CommandText="CREATE TABLE IF NOT EXISTS records (bucket TEXT NOT NULL,id TEXT NOT NULL,json TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(bucket,id)); CREATE INDEX IF NOT EXISTS idx_records_bucket ON records(bucket);";cmd.ExecuteNonQuery();SeedTests();}
+ public Store(string? directory=null){BaseDirectory=directory??Root;Directory.CreateDirectory(BaseDirectory);using var c=Connect();using var cmd=c.CreateCommand();cmd.CommandText="CREATE TABLE IF NOT EXISTS records (bucket TEXT NOT NULL,id TEXT NOT NULL,json TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(bucket,id)); CREATE INDEX IF NOT EXISTS idx_records_bucket ON records(bucket);";cmd.ExecuteNonQuery();SeedTests();}
  private SqliteConnection Connect(){var c=new SqliteConnection(new SqliteConnectionStringBuilder{DataSource=FileName,Mode=SqliteOpenMode.ReadWriteCreate,Cache=SqliteCacheMode.Shared}.ToString());c.Open();using var p=c.CreateCommand();p.CommandText="PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;";p.ExecuteNonQuery();return c;}
  public List<T> All<T>(string bucket){using var c=Connect();using var cmd=c.CreateCommand();cmd.CommandText="SELECT json FROM records WHERE bucket=$b ORDER BY updated DESC";cmd.Parameters.AddWithValue("$b",bucket);using var r=cmd.ExecuteReader();var a=new List<T>();while(r.Read()){try{var v=JsonSerializer.Deserialize<T>(r.GetString(0),J);if(v is not null)a.Add(v);}catch(JsonException){}}return a;}
  public T? One<T>(string bucket,string id){using var c=Connect();using var cmd=c.CreateCommand();cmd.CommandText="SELECT json FROM records WHERE bucket=$b AND id=$i";cmd.Parameters.AddWithValue("$b",bucket);cmd.Parameters.AddWithValue("$i",id);var raw=cmd.ExecuteScalar() as string;return raw is null?default:JsonSerializer.Deserialize<T>(raw,J);}

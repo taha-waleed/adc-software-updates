@@ -1,4 +1,4 @@
-# MediLab X — Native Windows Rebuild (0.1.0 Alpha)
+# MediLab X — Native Windows Rebuild (0.2.0 Preview)
 
 **C# / .NET 8 / WPF**, styled with WinUI/Fluent design principles and macOS-inspired glass/soft cards. WPF and WinUI 3 are different Windows UI frameworks: this implementation uses WPF as its single, consistent native renderer. It is **not** an HTML/Electron wrapper.
 
@@ -73,3 +73,9 @@ dotnet publish src\MediLabX.Native\MediLabX.Native.csproj -c Release -r win-x64 
 ## Attribution
 
 MediLab X. A project by Taha Waleed. This is an independent native rebuild workspace separate from the existing GitHub updater channel.
+
+## 0.2.0 preview delivery
+
+A separate GitHub prerelease workflow produces a **self-contained Windows x64 portable ZIP**, so no Visual Studio or .NET runtime installation is required to launch the preview. Extract all files before opening `MediLabX.Native.exe`. This is for testing with synthetic data only, not for clinical or billing production. The old Electron app's updater and the live database are not modified.
+
+Windows CI runs smoke checks for isolated SQLite storage, receipt numbering, financial totals, backup, legacy JSON import, duplicate detection, password verification, notifications and the editable Now Brief. These automated checks **do not prove** that physical printing, runtime layout, every legacy field or all business modules work correctly.

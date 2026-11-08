@@ -1,4 +1,4 @@
-name: MediLab X Native WPF Compile Check
+name: MediLab X Native WPF Windows Preview
 on:
   push:
     branches:
@@ -8,24 +8,77 @@ on:
       - '.github/workflows/native-wpf-build.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: native-wpf-preview
+  cancel-in-progress: false
 jobs:
-  build:
+  build-and-smoke-test:
     runs-on: windows-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Restore
+      - name: Restore native project
         run: dotnet restore medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj
-      - name: Compile native Windows desktop app
+      - name: Compile native WPF with warnings treated as errors
         run: dotnet build medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release --no-restore -warnaserror
-      - name: Publish Windows alpha (not production installer)
-        run: dotnet publish medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release -r win-x64 --self-contained false -o medilab-x/native-wpf/publish
-      - uses: actions/upload-artifact@v4
+      - name: Restore domain smoke test
+        run: dotnet restore medilab-x/native-wpf/tests/MediLabX.Smoke/MediLabX.Smoke.csproj
+      - name: Test database, billing, backup and import
+        run: dotnet run --project medilab-x/native-wpf/tests/MediLabX.Smoke/MediLabX.Smoke.csproj -c Release --no-restore
+      - name: Publish self-contained win-x64 preview
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          dotnet publish medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -o medilab-x/native-wpf/publish
+          if ($LASTEXITCODE -ne 0) {throw 'Publish failed'}
+          if (-not (Test-Path 'medilab-x/native-wpf/publish/MediLabX.Native.exe')) {throw 'Windows EXE missing'}
+      - name: Create ZIP and checksum
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          New-Item -ItemType Directory -Force 'medilab-x/native-wpf/dist' | Out-Null
+          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.0-Preview-x64.zip'
+          Compress-Archive -Path 'medilab-x/native-wpf/publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
+          $sha=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          Set-Content -Path 'medilab-x/native-wpf/dist/SHA256SUMS.txt' -Encoding utf8 -Value "$sha  MediLabX-Native-Windows-0.2.0-Preview-x64.zip"
+          if ((Get-Item $zip).Length -lt 10000000) {throw 'Output looks incomplete'}
+      - name: Upload preview artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: MediLabX-NativeWpf-alpha-win64
-          path: medilab-x/native-wpf/publish/
-          retention-days: 7
+          name: MediLabX-Native-Windows-0.2.0-Preview
+          path: medilab-x/native-wpf/dist/*
+          retention-days: 14
+      - name: Publish GitHub preview release (never production channel)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $tag='medilab-x-native-preview-v0.2.0'
+          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.0-Preview-x64.zip'
+          $sha='medilab-x/native-wpf/dist/SHA256SUMS.txt'
+          $notes=@'
+          **MediLab X Native WPF 0.2.0 Preview — not approved for live diagnostic centre use.**
+
+          Standalone portable Windows x64 application. Extract ZIP and run MediLabX.Native.exe. Does not uninstall or overwrite the current HTML/Electron MediLab X, does not modify its original database or its update.json.
+
+          C#/.NET 8 WPF UI, centre registration, radiology tests and reports, receipts, expense/earning records, laboratory inventory, users, HR and native data storage. Includes local database migration from MediLab JSON exports, but **patient counts, printed documents, staff role controls and printer compatibility must be independently validated before any clinical use.**
+
+          Build: .NET compiler plus domain smoke tests. Windows desktop GUI, actual thermal printers, real patient workflows and migration of every legacy field have NOT been verified.
+
+          Legacy/current customers should keep using their existing production MediLab and never import real patient data into this preview.
+          '@
+          $notes | Set-Content -Encoding utf8 'medilab-x/native-wpf/dist/RELEASE_NOTES.txt'
+          gh release view $tag --repo $env:GITHUB_REPOSITORY *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag $zip $sha --repo $env:GITHUB_REPOSITORY --clobber
+          } else {
+            gh release create $tag $zip $sha --repo $env:GITHUB_REPOSITORY --target 'feature/medilab-x-native-wpf' --prerelease --title 'MediLab X Native WPF 0.2.0 Preview' --notes-file 'medilab-x/native-wpf/dist/RELEASE_NOTES.txt'
+          }
+          if ($LASTEXITCODE -ne 0) {throw 'GitHub preview release publication failed'}
