@@ -106,27 +106,16 @@ public partial class MainWindow : Window
  }
  private async Task<string> InjectLoginDesignAsync()
  {
-  // WebView2 ExecuteScriptAsync serializes an async Promise to {} on some runtimes;
-  // create the trusted assets synchronously, then poll for the onload completion flag.
-  const string inject="""
-  (()=>{
-    const css=document.createElement('link');
-    css.rel='stylesheet';css.href='/medilab-login-v031.css';
-    document.head.appendChild(css);
-    const js=document.createElement('script');
-    js.src='/medilab-login-v031.js';
-    document.head.appendChild(js);
-    return 'queued';
-  })()
-  """;
-  var queued=await Browser.ExecuteScriptAsync(inject);
-  Diagnostics.Write("Login UI resource requests: "+queued);
-  for(var i=0;i<20;i++)
+  // Visual assets are inserted in the verified HTML at Windows build time.
+  // Wait for their synchronous document-ready initializer, without injecting duplicate handlers.
+  for(var i=0;i<30;i++)
   {
    var ready=await Browser.ExecuteScriptAsync("window.__ml031Ready === true ? 'ml031-ready' : 'not-ready'");
    if(ready.Contains("ml031-ready",StringComparison.Ordinal))return ready;
-   await Task.Delay(150);
+   await Task.Delay(120);
   }
+  var assets=await Browser.ExecuteScriptAsync("JSON.stringify({css:!!document.querySelector('#ml031-stylesheet'),js:!!document.querySelector('#ml031-script')})");
+  Diagnostics.Write("Login assets missing or blocked: "+assets);
   return "login-css-or-js-missing";
  }
  private async Task TestLoginFlowAsync()
