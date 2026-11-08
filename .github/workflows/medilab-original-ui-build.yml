@@ -39,7 +39,7 @@ jobs:
           Get-ChildItem -Path 'medilab-x/current' -File | Where-Object { $_.Extension -in @('.css', '.js') } | ForEach-Object { Copy-Item $_.FullName (Join-Path $target $_.Name) -Force }
           # Make verified UI self-contained: load visual polish before auth scripts run.
           $html=[IO.File]::ReadAllText((Join-Path (Get-Location) "$target/index.html"))
-          $head=$html.LastIndexOf('</head>',[StringComparison]::OrdinalIgnoreCase)
+          $head=$html.IndexOf('</head>',[StringComparison]::OrdinalIgnoreCase)
           if($head -lt 0){throw 'Original HTML closing head not found'}
           $skin='<link rel="stylesheet" href="/medilab-login-v031.css" id="ml031-stylesheet"><script defer src="/medilab-login-v031.js" id="ml031-script"></script>'
           [IO.File]::WriteAllText((Join-Path (Get-Location) "$target/index.html"),$html.Insert($head,$skin),[Text.UTF8Encoding]::new($false))
