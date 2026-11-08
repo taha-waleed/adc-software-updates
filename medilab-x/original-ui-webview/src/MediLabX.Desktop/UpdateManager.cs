@@ -40,6 +40,20 @@ internal sealed class UpdateManager(string targetFolder)
    if(ext is not (".css" or ".js" or ".json" or ".png" or ".svg"))continue;
    File.Copy(source,Path.Combine(_folder,file),true);
   }
+  // Upgrade an existing desktop profile without resetting its WebView2 localStorage or patients.
+  // Bundled builds already contain these tags; this only repairs an earlier cached HTML copy.
+  var savedUi=File.ReadAllText(_index);
+  if(!savedUi.Contains("ml031-stylesheet",StringComparison.Ordinal))
+  {
+   var head=savedUi.LastIndexOf("</head>",StringComparison.OrdinalIgnoreCase);
+   if(head>=0)
+   {
+    var tags="<link rel=\"stylesheet\" href=\"/medilab-login-v031.css\" id=\"ml031-stylesheet\"><script defer src=\"/medilab-login-v031.js\" id=\"ml031-script\"></script>";
+    File.Copy(_index,_index+".before-031",true);
+    File.WriteAllText(_index,savedUi.Insert(head,tags),new System.Text.UTF8Encoding(false));
+    Diagnostics.Write("Existing desktop UI upgraded with login layout; localStorage retained");
+   }
+  }
   var nested=Path.Combine(_folder,"assets");Directory.CreateDirectory(nested);
   var heartbeat=Path.Combine(packageAssets,"MediLab-Heartbeat.png");
   if(File.Exists(heartbeat))File.Copy(heartbeat,Path.Combine(nested,"MediLab-Heartbeat.png"),true);
