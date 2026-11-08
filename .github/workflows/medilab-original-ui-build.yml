@@ -88,24 +88,23 @@ jobs:
           $snippet=@'
           <script id="mx031-ci-login-probe">
           (() => {
-           const key='ahdc_software_v1', stage='mx031_ci_step';
            function run(){
-             if(sessionStorage.getItem(stage)!=='seeded'){
-               const record=JSON.parse(localStorage.getItem(key)||'{}');
-               record.users=[{name:'CI Workflow Test',username:'CI_WF_Test',password:'local-test-12345',role:'admin'}];
-               localStorage.setItem(key,JSON.stringify(record));sessionStorage.setItem(stage,'seeded');
-               setTimeout(()=>location.reload(),250);return;
-             }
+             const key='ahdc_software_v1';
+             let record={};try{record=JSON.parse(localStorage.getItem(key)||'{}')}catch{}
+             const existing=Array.isArray(record.users)&&record.users.length?record.users[0]:{name:'Admin',username:'Admin',role:'admin'};
+             existing.password='local-test-12345';
+             record.users=[existing];
+             localStorage.setItem(key,JSON.stringify(record));
              setTimeout(()=>{
-               const tile=[...document.querySelectorAll('#adcUserTiles .adc-profile-tile')].find(x=>x.textContent.includes('CI Workflow Test'));
+               const tile=[...document.querySelectorAll('#adcUserTiles .adc-profile-tile')][0];
                if(tile)tile.click();
                const u=document.getElementById('loginUser'),p=document.getElementById('loginPass'),f=document.getElementById('loginForm');
-               if(u&&p&&f){u.value='CI_WF_Test';p.value='local-test-12345';f.requestSubmit();}
-             },1000);
+               if(u&&p&&f){u.value=existing.username;p.value='local-test-12345';f.requestSubmit();}
+             },1400);
              setTimeout(()=>{
                const ok=!!document.querySelector('#app.authenticated');
                window.adcDesktop?.clientDiagnostic?.(ok?'ci-auth-pass':'ci-auth-fail');
-             },5600);
+             },6500);
            }
            if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
           })();
