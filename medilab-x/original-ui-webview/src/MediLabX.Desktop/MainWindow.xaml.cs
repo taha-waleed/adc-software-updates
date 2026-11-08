@@ -57,7 +57,7 @@ public partial class MainWindow : Window
        uri.Scheme!="https"||uri.Host!=Host)
     {
      ev.Cancel=true;
-     OpenExternal(ev.Uri);
+     OpenExternal(ev.Uri??"");
     }
    };
    core.NewWindowRequested+=(_,ev)=>{ev.Handled=true;OpenExternal(ev.Uri);};
