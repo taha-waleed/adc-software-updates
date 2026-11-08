@@ -1,0 +1,2 @@
+# Preserve published HTML byte-for-byte for SHA-256-verifiable Windows packaging
+medilab-x/MediLab_X_10_0_11.html -text
