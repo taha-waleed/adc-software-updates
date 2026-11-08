@@ -33,6 +33,7 @@ jobs:
           $want='636a37b1b824fbfd6a09279445def94d441db7d288eb0c1f5490aedc581e6405'
           if($sha -ne $want) { throw "HTML SHA-256 mismatch: $sha" }
           Copy-Item 'medilab-x/current/kharian-referring-directory.json' "$target/kharian-referring-directory.json" -Force
+          Get-ChildItem -Path 'medilab-x/current' -File | Where-Object { $_.Extension -in @('.css', '.js') } | ForEach-Object { Copy-Item $_.FullName (Join-Path $target $_.Name) -Force }
           Write-Host 'PASS: Approved UI asset integrity verified'
       - name: Restore and build Windows WPF with WebView2
         shell: pwsh
