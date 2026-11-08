@@ -73,7 +73,7 @@ jobs:
           $env:MEDILAB_UI_LOGIN_SMOKE='1'
           $process=Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
           try {
-            Start-Sleep -Seconds 20
+            Start-Sleep -Seconds 50
             $process.Refresh()
             $data=if(Test-Path $log){Get-Content $log -Raw}else{'<no startup log>'}
             Write-Host 'STARTUP LOG:'
