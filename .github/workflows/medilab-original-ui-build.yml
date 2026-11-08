@@ -44,6 +44,8 @@ jobs:
           $skin='<link rel="stylesheet" href="/medilab-login-v031.css" id="ml031-stylesheet"><script defer src="/medilab-login-v031.js" id="ml031-script"></script>'
           [IO.File]::WriteAllText((Join-Path (Get-Location) "$target/index.html"),$html.Insert($head,$skin),[Text.UTF8Encoding]::new($false))
           Write-Host 'PASS: Original MediLab UI + bundled login skin'
+          python medilab-x/original-ui-webview/tools/validate_inline_scripts.py "$target/index.html"
+          if($LASTEXITCODE -ne 0){throw 'HTML JavaScript verification failed; native release blocked'}
           Write-Host 'PASS: Approved UI asset integrity verified'
       - name: Restore and build Windows WPF with WebView2
         shell: pwsh
