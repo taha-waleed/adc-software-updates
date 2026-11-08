@@ -26,12 +26,15 @@ jobs:
           $ErrorActionPreference='Stop'
           $target='medilab-x/original-ui-webview/src/MediLabX.Desktop/assets'
           New-Item -ItemType Directory -Force -Path $target | Out-Null
+          # Rebuild from versioned verified base and source assets, avoiding malformed published HTML.
+          python medilab-x/publish_html.py
+          if($LASTEXITCODE -ne 0){throw 'Safe HTML generation failed'}
           $src='medilab-x/MediLab_X_10_0_11.html'
-          if (-not (Test-Path $src)) { throw 'The approved MediLab 10.0.11 standalone HTML is missing' }
           Copy-Item $src "$target/index.html" -Force
           $sha=(Get-FileHash "$target/index.html" -Algorithm SHA256).Hash.ToLowerInvariant()
-          $want='636a37b1b824fbfd6a09279445def94d441db7d288eb0c1f5490aedc581e6405'
-          if($sha -ne $want) { throw "HTML SHA-256 mismatch: $sha" }
+          $want=(Get-Content 'medilab-x/update.json' -Raw|ConvertFrom-Json).htmlSha256
+          if($sha -ne $want){throw "Generated HTML SHA-256 mismatch: $sha" }
+          Write-Host 'PASS: standalone HTML regenerated safely and SHA-256 verified'
           Copy-Item 'medilab-x/current/kharian-referring-directory.json' "$target/kharian-referring-directory.json" -Force
           Get-ChildItem -Path 'medilab-x/current' -File | Where-Object { $_.Extension -in @('.css', '.js') } | ForEach-Object { Copy-Item $_.FullName (Join-Path $target $_.Name) -Force }
           # Make verified UI self-contained: load visual polish before auth scripts run.
