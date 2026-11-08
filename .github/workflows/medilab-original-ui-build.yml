@@ -74,20 +74,76 @@ jobs:
             Write-Host "PASS: Original interface rendered in Windows WPF WebView2. Handle $($process.MainWindowHandle)"
           }
           finally {if(-not $process.HasExited){Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue}}
+      - name: Verify login to dashboard (test-only synthetic account)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $file='medilab-x/original-ui-webview/publish/assets/index.html'
+          $backup='medilab-x/original-ui-webview/publish/assets/index.ci-original'
+          Copy-Item $file $backup -Force
+          $snippet=@'
+          <script id="mx031-ci-login-probe">
+          (() => {
+           const key='ahdc_software_v1', stage='mx031_ci_step';
+           function run(){
+             if(sessionStorage.getItem(stage)!=='seeded'){
+               const record=JSON.parse(localStorage.getItem(key)||'{}');
+               record.users=[{name:'CI Workflow Test',username:'CI_WF_Test',password:'local-test-12345',role:'admin'}];
+               localStorage.setItem(key,JSON.stringify(record));sessionStorage.setItem(stage,'seeded');
+               setTimeout(()=>location.reload(),250);return;
+             }
+             setTimeout(()=>{
+               const tile=[...document.querySelectorAll('#adcUserTiles .adc-profile-tile')].find(x=>x.textContent.includes('CI Workflow Test'));
+               if(tile)tile.click();
+               const u=document.getElementById('loginUser'),p=document.getElementById('loginPass'),f=document.getElementById('loginForm');
+               if(u&&p&&f){u.value='CI_WF_Test';p.value='local-test-12345';f.requestSubmit();}
+             },1000);
+             setTimeout(()=>{
+               const ok=!!document.querySelector('#app.authenticated');
+               window.adcDesktop?.clientDiagnostic?.(ok?'ci-auth-pass':'ci-auth-fail');
+             },5600);
+           }
+           if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+          })();
+          </script>
+          '@
+          $html=[IO.File]::ReadAllText((Join-Path (Get-Location) $file))
+          if(-not $html.Contains('</body>')){throw 'Original HTML has no closing body tag'}
+          [IO.File]::WriteAllText((Join-Path (Get-Location) $file),$html.Replace('</body>',$snippet+"</body>"),[Text.UTF8Encoding]::new($false))
+          $profile=Join-Path $env:APPDATA 'MediLab/Standard/OriginalUIHost'
+          $index=Join-Path $profile 'ui/index.html'
+          if(Test-Path $index){Remove-Item $index -Force}
+          $log=Join-Path $profile 'logs/startup.log'
+          if(Test-Path $log){Remove-Item $log -Force}
+          $exe=(Resolve-Path 'medilab-x/original-ui-webview/publish/MediLabX.Desktop.exe').Path
+          $process=Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
+          try{
+            Start-Sleep -Seconds 18
+            $body=if(Test-Path $log){Get-Content $log -Raw}else{'<log not created>'}
+            Write-Host 'LOGIN SMOKE TEST:'
+            Write-Host $body
+            if($body -notmatch 'UI: ci-auth-pass'){throw 'Login did not reach authenticated dashboard; do not publish'}
+            if($body -match 'UI: ci-auth-fail'){throw 'Login flow returned to entry screen'}
+            Write-Host 'PASS: Original login form opens authenticated dashboard without restarting splash'
+          } finally {
+            if(-not $process.HasExited){Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue}
+            Copy-Item $backup $file -Force
+            Remove-Item $backup -Force
+          }
       - name: Package preview ZIP and checksum
         shell: pwsh
         run: |
           $dist='medilab-x/original-ui-webview/dist'
           New-Item -ItemType Directory -Path $dist -Force | Out-Null
-          $zip="$dist/MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip"
+          $zip="$dist/MediLabX-OriginalUI-Windows-0.3.1-Preview-x64.zip"
           Compress-Archive -Path 'medilab-x/original-ui-webview/publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
           $sha=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
-          Set-Content "$dist/SHA256SUMS.txt" "$sha  MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip"
+          Set-Content "$dist/SHA256SUMS.txt" "$sha  MediLabX-OriginalUI-Windows-0.3.1-Preview-x64.zip"
           Write-Host "SHA256 $sha"
       - name: Upload preview build files
         uses: actions/upload-artifact@v4
         with:
-          name: MediLabX-OriginalUI-Windows-0.3.0
+          name: MediLabX-OriginalUI-Windows-0.3.1
           path: medilab-x/original-ui-webview/dist/*
           retention-days: 10
       - name: Publish independent prerelease (never modify production update.json)
@@ -96,13 +152,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $ErrorActionPreference='Stop'
-          $tag='medilab-x-original-ui-preview-v0.3.0'
+          $tag='medilab-x-original-ui-preview-v0.3.1'
           $repo='${{ github.repository }}'
-          $zip='medilab-x/original-ui-webview/dist/MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip'
+          $zip='medilab-x/original-ui-webview/dist/MediLabX-OriginalUI-Windows-0.3.1-Preview-x64.zip'
           $hash='medilab-x/original-ui-webview/dist/SHA256SUMS.txt'
           gh release view $tag --repo $repo *> $null
           if($LASTEXITCODE -ne 0){
-            gh release create $tag $zip $hash --prerelease --repo $repo --title 'MediLab X 0.3.0 — Original UI Desktop Preview' --notes 'WPF WebView2 host for the exact approved 10.0.11 standalone HTML (SHA-256 pinned). Includes Windows window controls, print preview, WhatsApp Desktop and checksum-verified future HTML updates. Separate profile and local data. Does not replace the live Electron software. Windows-launch-tested preview, NOT a production clinical release.'
+            gh release create $tag $zip $hash --prerelease --repo $repo --title 'MediLab X 0.3.1 — Original UI Desktop Preview' --notes 'WPF WebView2 host for the exact approved 10.0.11 standalone HTML (SHA-256 pinned). Includes Windows window controls, print preview, WhatsApp Desktop and checksum-verified future HTML updates. Separate profile and local data. Does not replace the live Electron software. Windows-launch-tested preview, NOT a production clinical release.'
           }else{
             gh release upload $tag $zip $hash --clobber --repo $repo
           }
