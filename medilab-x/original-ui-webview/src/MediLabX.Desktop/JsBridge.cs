@@ -14,6 +14,7 @@ internal static class JsBridge
      catch(e){pending.delete(id);resolve({ok:false,error:String(e)});}
      setTimeout(()=>{if(pending.has(id)){pending.delete(id);resolve({ok:false,error:'Windows bridge timed out'});}},30000);
    });}
+   document.addEventListener('submit',e=>{if(e.target?.id==='loginForm')e.preventDefault();},true);
    window.chrome.webview.addEventListener('message',e=>{
      const m=e.data||{};
      if(m.id!=null){const cb=pending.get(m.id);if(cb){pending.delete(m.id);cb(m.result);}return;}
