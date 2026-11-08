@@ -60,7 +60,7 @@ public partial class MainWindow : Window
      OpenExternal(ev.Uri??"");
     }
    };
-   core.NewWindowRequested+=(_,ev)=>{ev.Handled=true;OpenExternal(ev.Uri??"");};
+   core.NewWindowRequested+=(_,ev)=>{ev.Handled=true;OpenExternal(ev.Uri);};
    core.ProcessFailed+=(_,ev)=>{
      Diagnostics.Write("Browser process failed: "+ev.ProcessFailedKind);
      Dispatcher.BeginInvoke(()=>LoadingText.Text="Desktop renderer stopped. Restart MediLab X.");
@@ -106,21 +106,28 @@ public partial class MainWindow : Window
  }
  private async Task<string> InjectLoginDesignAsync()
  {
-  // Inject after the original inline styles: preserve its authentication and module handlers.
-  const string script="""
-  (async()=>{
-    const load=(tag,url)=>new Promise(resolve=>{
-      const node=document.createElement(tag==='style'?'link':'script');
-      if(tag==='style'){node.rel='stylesheet';node.href=url;}else node.src=url;
-      node.onload=()=>resolve(true);node.onerror=()=>resolve(false);
-      document.head.appendChild(node);
-    });
-    if(!await load('style','/medilab-login-v031.css'))return 'css-load-failed';
-    if(!await load('script','/medilab-login-v031.js'))return 'script-load-failed';
-    return window.__ml031Ready?'ml031-ready':'js-not-ready';
+  // WebView2 ExecuteScriptAsync serializes an async Promise to {} on some runtimes;
+  // create the trusted assets synchronously, then poll for the onload completion flag.
+  const string inject="""
+  (()=>{
+    const css=document.createElement('link');
+    css.rel='stylesheet';css.href='/medilab-login-v031.css';
+    document.head.appendChild(css);
+    const js=document.createElement('script');
+    js.src='/medilab-login-v031.js';
+    document.head.appendChild(js);
+    return 'queued';
   })()
   """;
-  return await Browser.ExecuteScriptAsync(script);
+  var queued=await Browser.ExecuteScriptAsync(inject);
+  Diagnostics.Write("Login UI resource requests: "+queued);
+  for(var i=0;i<20;i++)
+  {
+   var ready=await Browser.ExecuteScriptAsync("window.__ml031Ready === true ? 'ml031-ready' : 'not-ready'");
+   if(ready.Contains("ml031-ready",StringComparison.Ordinal))return ready;
+   await Task.Delay(150);
+  }
+  return "login-css-or-js-missing";
  }
  private async Task TestLoginFlowAsync()
  {
