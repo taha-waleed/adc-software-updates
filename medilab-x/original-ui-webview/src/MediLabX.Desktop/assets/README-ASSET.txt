@@ -1,0 +1,1 @@
+The standalone HTML 10.0.11 and doctor JSON are copied automatically from the existing GitHub repository during verified Windows build; do not replace these with a template.

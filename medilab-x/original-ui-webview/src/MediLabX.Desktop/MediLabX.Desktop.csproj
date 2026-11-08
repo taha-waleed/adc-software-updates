@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>MediLabX.Desktop</AssemblyName>
+    <RootNamespace>MediLabX.Desktop</RootNamespace>
+    <Version>0.3.0</Version>
+    <ApplicationIcon>assets\MediLabX.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\index.html" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\kharian-referring-directory.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\MediLab-Heartbeat.png" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,520 @@
+{
+  "directoryVersion": "2026-11-05",
+  "disclaimer": "Publicly listed names only. Includes CKMC faculty; referral eligibility and current clinical availability are NOT verified. Not an exhaustive city-wide registry. Admin may edit names.",
+  "doctors": [
+    {
+      "name": "Dr. Ashfaq Junaid",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Maila Altaf",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Nazish Salheria",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Waqas Javed",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Imran Zameer",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Muhammad Atif Raza",
+      "category": "Kharian Doctors Hospital",
+      "specialty": "Hospital OPD",
+      "source": "https://www.findglocal.com/PK/Kharian/248813832174619/Kharian-Doctor%27s-Hospital-%26-Children-Complex"
+    },
+    {
+      "name": "Dr. Uswa Maryam Mahmood",
+      "category": "Hasan Medical Centre",
+      "specialty": "General & Family Medicine",
+      "source": "https://oladoc.com/pakistan/gujrat/h/hasan-medical-centre-kharian/22590"
+    },
+    {
+      "name": "Dr. Hasan Khalid",
+      "category": "Hasan Medical Centre",
+      "specialty": "General & Family Medicine",
+      "source": "https://oladoc.com/pakistan/gujrat/h/hasan-medical-centre-kharian/22590"
+    },
+    {
+      "name": "Dr. Muhammad Waseem Anwar",
+      "category": "CMH Kharian",
+      "specialty": "Hospital panel",
+      "source": "https://oladoc.com/pakistan/gujrat/h/cmh-hharian/18760"
+    },
+    {
+      "name": "Assist. Prof. Dr. Usman Afzal Malik",
+      "category": "CMH Kharian",
+      "specialty": "Hospital panel",
+      "source": "https://oladoc.com/pakistan/gujrat/h/cmh-hharian/18760"
+    },
+    {
+      "name": "Dr. Rimsha Moubeen",
+      "category": "CMH Kharian",
+      "specialty": "Hospital panel",
+      "source": "https://oladoc.com/pakistan/gujrat/h/cmh-hharian/18760"
+    },
+    {
+      "name": "Dr. Abdul Rehman Farooqi",
+      "category": "Kharian clinics",
+      "specialty": "ENT",
+      "source": "https://www.google.com/maps/search/?api=1&query=ENT+Care+Clinic+Dr+Abdul+Rehman+Farooqi+Kharian"
+    },
+    {
+      "name": "Brig Zahid Farooq Baig",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Brig Dr. Muhammad Khalid (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Brig Raja Ghayas Khan (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Maj Muhammad Usman Sajid (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Col Hasaan Shabir",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Brig Jamal Waris",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Dr. Saba Izhar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Col Farah Mahboob",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Lt Col Aamir Habib",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Dr. Sobia Komal",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Maj Muhammad Umer Farooq",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Maj Ali Javed",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Dr. Aqsa Humayun",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Medicine & Allied",
+      "source": "https://ckmc.edu.pk/OurFaculty/11"
+    },
+    {
+      "name": "Brig Muhammad Ahmed (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Dr. Tahir Iqbal Mirza",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Col Mujahid Ali",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Brig Yasser Saeed Khan",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Brig Afzal Saeed Awan",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Col Javed Iqbal",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Dr. Syed Mohsin Ali",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Dr. Mujahid ur Rehman",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Lt Col Muhammad Waseem Anwar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Col Muhammad Sohail Jabbar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Maj Muhammad Zubair",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Maj Ali Abbas Janjua",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Surgery",
+      "source": "https://ckmc.edu.pk/public/OurFaculty/20"
+    },
+    {
+      "name": "Dr. Muhammad Asif Ammar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Urology & Plastic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/54"
+    },
+    {
+      "name": "Col Ahsan Masood",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Urology & Plastic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/54"
+    },
+    {
+      "name": "Col Shahid Hussain Naqvi",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Urology & Plastic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/54"
+    },
+    {
+      "name": "Dr. Sajid Ali Ahmed",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Urology & Plastic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/54"
+    },
+    {
+      "name": "Dr. Zahid Qadeer",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Urology & Plastic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/54"
+    },
+    {
+      "name": "Dr. Jawairiah Liaqat",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Brig Shazia Nayyar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Col Uzma Saleem (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Lt Col Nusrat Noor",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Maj Murrawat Shaheen",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Dr. Mugheera Hussain",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Dr. Maryam Noor Malik",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Col Uzma Noreen",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Dr. Sara Malik",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Dr. Yasmin",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gynaecology & Obstetrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/21"
+    },
+    {
+      "name": "Dr. Mian Amer Majeed",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "ENT",
+      "source": "https://ckmc.edu.pk/OurFaculty/23"
+    },
+    {
+      "name": "Dr. Maryam Asghar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "ENT",
+      "source": "https://ckmc.edu.pk/OurFaculty/23"
+    },
+    {
+      "name": "Lt Col Tarique Ahmed Maka",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "ENT",
+      "source": "https://ckmc.edu.pk/OurFaculty/23"
+    },
+    {
+      "name": "Lt Col Usman Afzal",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "ENT",
+      "source": "https://ckmc.edu.pk/OurFaculty/23"
+    },
+    {
+      "name": "Lt Col M Riaz Khokhar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "ENT",
+      "source": "https://ckmc.edu.pk/OurFaculty/23"
+    },
+    {
+      "name": "Dr. Waqas Ali",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Orthopaedic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/51"
+    },
+    {
+      "name": "Col Nisar Ahmed (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Orthopaedic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/51"
+    },
+    {
+      "name": "Dr. Tauqeer Ahmad",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Orthopaedic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/51"
+    },
+    {
+      "name": "Dr. Muhammad Ali Sohail",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Orthopaedic Surgery",
+      "source": "https://ckmc.edu.pk/OurFaculty/51"
+    },
+    {
+      "name": "Dr. Amjad Akram",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Brig Ch Muhammad Tariq Munawar (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Col Hannan Masud",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Dr. Tanvir Ahmed Choudhary",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Lt Col Shahid Hamid Mahmud",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Lt Col Muhammad Tahir",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Dr. Umer Farooq Dar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Ophthalmology",
+      "source": "https://ckmc.edu.pk/OurFaculty/22"
+    },
+    {
+      "name": "Dr. Muhammad Tariq Nadeem",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Lt Col Waseem Pasha (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Col Farooq Ikram",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Lt Col Muhammad Zia ul Haq",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Dr. Rida Bashir",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Dr. Naila Waris",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Dr. Muhammad Tayyab",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Dr. Raja Muhammad Jibran Nasir",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Paediatrics",
+      "source": "https://ckmc.edu.pk/OurFaculty/16"
+    },
+    {
+      "name": "Dr. Saeed Anwar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gastroenterology",
+      "source": "https://ckmc.edu.pk/OurFaculty/12"
+    },
+    {
+      "name": "Dr. Furqan Tahir",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gastroenterology",
+      "source": "https://ckmc.edu.pk/OurFaculty/12"
+    },
+    {
+      "name": "Dr. Maria Walayat",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Gastroenterology",
+      "source": "https://ckmc.edu.pk/OurFaculty/12"
+    },
+    {
+      "name": "Col Farrukh Akhtar (Retd)",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Psychiatry",
+      "source": "https://www.ckmc.edu.pk/public/OurFaculty/17"
+    },
+    {
+      "name": "Lt Col Muhammad Tariq",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Psychiatry",
+      "source": "https://www.ckmc.edu.pk/public/OurFaculty/17"
+    },
+    {
+      "name": "Col Mubashar Shah",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Psychiatry",
+      "source": "https://www.ckmc.edu.pk/public/OurFaculty/17"
+    },
+    {
+      "name": "Dr. Aniqa Fatima",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Psychiatry",
+      "source": "https://www.ckmc.edu.pk/public/OurFaculty/17"
+    },
+    {
+      "name": "Dr. Iqra Nisar",
+      "category": "CKMC / CMH Kharian",
+      "specialty": "Psychiatry",
+      "source": "https://www.ckmc.edu.pk/public/OurFaculty/17"
+    }
+  ],
+  "recommendedHospitals": [
+    "Kharian Doctors Hospital",
+    "CMH Kharian",
+    "Hasan Medical Centre Kharian",
+    "Jinnah Medical and Cardiac Complex Kharian",
+    "THQ Hospital Kharian",
+    "Sajid Minhas Hospital",
+    "National Kidney Hospital Kharian",
+    "Hafeez Hospital Kharian"
+  ]
+}

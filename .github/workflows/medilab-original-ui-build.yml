@@ -1,0 +1,108 @@
+name: MediLab X Original UI Windows Preview (WPF WebView2)
+on:
+  push:
+    branches:
+      - feature/medilab-x-original-ui-webview
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilab-original-ui-windows
+  cancel-in-progress: false
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Embed the exact approved MediLab X HTML 10.0.11
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $target='medilab-x/original-ui-webview/src/MediLabX.Desktop/assets'
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          $src='medilab-x/MediLab_X_10_0_11.html'
+          if (-not (Test-Path $src)) { throw 'The approved MediLab 10.0.11 standalone HTML is missing' }
+          Copy-Item $src "$target/index.html" -Force
+          $sha=(Get-FileHash "$target/index.html" -Algorithm SHA256).Hash.ToLowerInvariant()
+          $want='636a37b1b824fbfd6a09279445def94d441db7d288eb0c1f5490aedc581e6405'
+          if($sha -ne $want) { throw "HTML SHA-256 mismatch: $sha" }
+          Copy-Item 'medilab-x/current/kharian-referring-directory.json' "$target/kharian-referring-directory.json" -Force
+          Write-Host 'PASS: Approved UI asset integrity verified'
+      - name: Restore and build Windows WPF with WebView2
+        shell: pwsh
+        run: |
+          $p='medilab-x/original-ui-webview/src/MediLabX.Desktop/MediLabX.Desktop.csproj'
+          dotnet restore $p -r win-x64
+          if($LASTEXITCODE -ne 0){throw 'Restore failed'}
+          dotnet build $p -c Release -r win-x64 --no-restore -warnaserror
+          if($LASTEXITCODE -ne 0){throw 'Compilation failed'}
+      - name: Publish self-contained win-x64 app
+        shell: pwsh
+        run: |
+          $p='medilab-x/original-ui-webview/src/MediLabX.Desktop/MediLabX.Desktop.csproj'
+          dotnet publish $p -c Release -r win-x64 --self-contained true --no-restore -p:PublishTrimmed=false -o medilab-x/original-ui-webview/publish
+          if($LASTEXITCODE -ne 0){throw 'Publish failed'}
+          if(-not (Test-Path 'medilab-x/original-ui-webview/publish/MediLabX.Desktop.exe')){throw 'EXE missing'}
+          if(-not (Test-Path 'medilab-x/original-ui-webview/publish/assets/index.html')){throw 'HTML asset missing'}
+      - name: Launch real EXE and verify browser DOM
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $exe=(Resolve-Path 'medilab-x/original-ui-webview/publish/MediLabX.Desktop.exe').Path
+          $log=Join-Path $env:APPDATA 'MediLab/Standard/OriginalUIHost/logs/startup.log'
+          if(Test-Path $log){Remove-Item $log -Force}
+          $process=Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
+          try {
+            Start-Sleep -Seconds 20
+            $process.Refresh()
+            $data=if(Test-Path $log){Get-Content $log -Raw}else{'<no startup log>'}
+            Write-Host 'STARTUP LOG:'
+            Write-Host $data
+            if($process.HasExited){throw "EXE exited unexpectedly with code $($process.ExitCode)"}
+            if($data -notmatch 'Original MediLab UI rendered; native bridge injected'){
+              throw 'Original MediLab HTML did not render inside WPF host'
+            }
+            $process.Refresh()
+            if($process.MainWindowHandle -eq 0){throw 'Visible Windows application handle missing'}
+            Write-Host "PASS: Original interface rendered in Windows WPF WebView2. Handle $($process.MainWindowHandle)"
+          }
+          finally {if(-not $process.HasExited){Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue}}
+      - name: Package preview ZIP and checksum
+        shell: pwsh
+        run: |
+          $dist='medilab-x/original-ui-webview/dist'
+          New-Item -ItemType Directory -Path $dist -Force | Out-Null
+          $zip="$dist/MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip"
+          Compress-Archive -Path 'medilab-x/original-ui-webview/publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
+          $sha=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          Set-Content "$dist/SHA256SUMS.txt" "$sha  MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip"
+          Write-Host "SHA256 $sha"
+      - name: Upload preview build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLabX-OriginalUI-Windows-0.3.0
+          path: medilab-x/original-ui-webview/dist/*
+          retention-days: 10
+      - name: Publish independent prerelease (never modify production update.json)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $tag='medilab-x-original-ui-preview-v0.3.0'
+          $repo='${{ github.repository }}'
+          $zip='medilab-x/original-ui-webview/dist/MediLabX-OriginalUI-Windows-0.3.0-Preview-x64.zip'
+          $hash='medilab-x/original-ui-webview/dist/SHA256SUMS.txt'
+          gh release view $tag --repo $repo *> $null
+          if($LASTEXITCODE -ne 0){
+            gh release create $tag $zip $hash --prerelease --repo $repo --title 'MediLab X 0.3.0 — Original UI Desktop Preview' --notes 'WPF WebView2 host for the exact approved 10.0.11 standalone HTML (SHA-256 pinned). Includes Windows window controls, print preview, WhatsApp Desktop and checksum-verified future HTML updates. Separate profile and local data. Does not replace the live Electron software. Windows-launch-tested preview, NOT a production clinical release.'
+          }else{
+            gh release upload $tag $zip $hash --clobber --repo $repo
+          }
+          if($LASTEXITCODE -ne 0){throw 'GitHub preview release upload failed'}
