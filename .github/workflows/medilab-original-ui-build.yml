@@ -113,7 +113,9 @@ jobs:
           '@
           $html=[IO.File]::ReadAllText((Join-Path (Get-Location) $file))
           if(-not $html.Contains('</body>')){throw 'Original HTML has no closing body tag'}
-          [IO.File]::WriteAllText((Join-Path (Get-Location) $file),$html.Replace('</body>',$snippet+"</body>"),[Text.UTF8Encoding]::new($false))
+          $finalBody=$html.LastIndexOf('</body>',[StringComparison]::OrdinalIgnoreCase)
+          if($finalBody -lt 0){throw 'Could not locate final HTML closing body'}
+          [IO.File]::WriteAllText((Join-Path (Get-Location) $file),$html.Insert($finalBody,$snippet),[Text.UTF8Encoding]::new($false))
           $profile=Join-Path $env:APPDATA 'MediLab/Standard/OriginalUIHost'
           $index=Join-Path $profile 'ui/index.html'
           if(Test-Path $index){Remove-Item $index -Force}
