@@ -24,14 +24,20 @@ for file in ['medilab-rev2.css', 'medilab-rev3.css', 'medilab-rev4.css',
     css = (SRC / file).read_text('utf-8').replace('</style', '<\\/style')
     pattern = r'<link\s+rel=["\']stylesheet["\']\s+href=["\']' + re.escape(file) + r'["\']\s*/?>'
     html, n = re.subn(pattern, lambda _: '<style data-source="' + file + '">\n' + css + '\n</style>', html, flags=re.I)
-    assert n == 1, (file, n)
+    if n == 0:
+        head=html.lower().find('</head>'); assert head>0
+        html=html[:head] + f'<style data-source="{file}">\n{css}\n</style>\n' + html[head:]
+    else: assert n == 1, (file, n)
 for file in ['medilab-operations.js', 'medilab-documents.js', 'medilab-rev4.js',
              'medilab-nowbrief.js', 'medilab-final-108.js']:
     js = (SRC / file).read_text('utf-8')
     assert '</script' not in js.lower(), file
     pattern = r'<script\s+src=["\']' + re.escape(file) + r'["\']\s+defer\s*></script>'
     html, n = re.subn(pattern, lambda _: '<script data-source="' + file + '">\n' + js + '\n</script>', html, flags=re.I)
-    assert n == 1, (file, n)
+    if n == 0:
+        body=html.lower().rfind('</body>'); assert body>0
+        html=html[:body] + f'<script data-source="{file}">\n{js}\n</script>\n' + html[body:]
+    else: assert n == 1, (file, n)
 
 # Inline the original heartbeat logo; keep the previous design selections.
 logo = (SRC / 'assets' / 'MediLab-Heartbeat.png.base64').read_text('utf-8').strip()
