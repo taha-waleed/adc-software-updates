@@ -45,6 +45,7 @@ jobs:
           $exe = Join-Path (Get-Location) 'medilab-x/native-wpf/publish/MediLabX.Native.exe'
           $log = Join-Path $env:APPDATA 'MediLab/Standard/NativeWpf/logs/startup.log'
           if (Test-Path $log) { Remove-Item $log -Force }
+          $env:MEDILABX_STARTUP_THEME_TEST = "1"
           $process = Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
           try {
             Start-Sleep -Seconds 12
@@ -54,6 +55,7 @@ jobs:
             Write-Host $body
             if ($process.HasExited) { throw "Native EXE exited during launch; exit code $($process.ExitCode)" }
             if ($body -notmatch 'Main window loaded' -or $body -notmatch 'Main window Show\(\) returned') { throw 'Main window did not load; abort preview publication' }
+            if ($body -notmatch 'Light/dark theme transition probe passed') { throw 'Theme transition probe failed; abort publication' }
             $process.Refresh()
             Write-Host "Process id: $($process.Id), main window handle: $($process.MainWindowHandle)"
             Write-Host 'PASS: GUI process alive and main WPF window opened on Windows runner.'

@@ -61,7 +61,10 @@ public partial class MainWindow : Window {
  private static Border Card(UIElement child,string? heading=null){var p=new StackPanel{Margin=new Thickness(18,14,18,16)};if(heading is not null)p.Children.Add(Text(heading,17,true));p.Children.Add(child);return new Border{Background=(Brush)Application.Current.Resources["Surface"],BorderBrush=(Brush)Application.Current.Resources["BorderBrushTheme"],BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(17),Margin=new Thickness(0,0,0,14),Child=p};}
  private static DataGrid GridView(object rows,int height=340){return new DataGrid{ItemsSource=rows as System.Collections.IEnumerable,Height=height,CanUserAddRows=false,CanUserDeleteRows=false,AutoGenerateColumns=true,SelectionUnit=DataGridSelectionUnit.FullRow,HorizontalAlignment=HorizontalAlignment.Stretch};}
  private void SaveAndRefresh<T>(string bucket,string id,T value,string message){try{store.Put(bucket,id,value);Info(message);OpenPage(page);}catch(Exception e){Error(e);}}
+ // WPF freezes resource brushes created from XAML. Replacing resources, rather than
+ // modifying Color on a frozen brush, avoids a fatal exception before first Show().
+ internal void ValidateThemeTransitions(){var dark=store.Settings.DarkMode;ApplyTheme(true);ApplyTheme(false);ApplyTheme(dark);}
  private void ApplyTheme(bool dark){var colors=dark?new Dictionary<string,string>{{"AppBackground","#101927"},{"Surface","#1D2B41"},{"SurfaceSoft","#263852"},{"TextPrimary","#F2F6FF"},{"TextSecondary","#B1C0D7"},{"BorderBrushTheme","#334B68"},{"NavBackground","#121D3E"},{"AccentSoft","#233F66"}}:new Dictionary<string,string>{{"AppBackground","#F0F4FB"},{"Surface","#FFFFFF"},{"SurfaceSoft","#F5F8FE"},{"TextPrimary","#1B2B45"},{"TextSecondary","#63748D"},{"BorderBrushTheme","#DBE5F2"},{"NavBackground","#172758"},{"AccentSoft","#E3EEFF"}};
-  foreach(var pair in colors){var brush=(SolidColorBrush)Application.Current.Resources[pair.Key];brush.Color=(Color)ColorConverter.ConvertFromString(pair.Value)!;}if(current is not null)OpenPage(page);
+  foreach(var pair in colors){Application.Current.Resources[pair.Key]=new SolidColorBrush((Color)ColorConverter.ConvertFromString(pair.Value)!);}if(current is not null)OpenPage(page);
  }
 }

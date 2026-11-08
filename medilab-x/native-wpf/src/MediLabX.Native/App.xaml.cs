@@ -67,6 +67,11 @@ public partial class App : Application
             {
                 StartupDiagnostics.Write("Constructing main window");
                 var main = new MainWindow();
+                if (Environment.GetEnvironmentVariable("MEDILABX_STARTUP_THEME_TEST") == "1")
+                {
+                    main.ValidateThemeTransitions();
+                    StartupDiagnostics.Write("Light/dark theme transition probe passed");
+                }
                 main.Loaded += (_, _) => StartupDiagnostics.Write("Main window loaded");
                 main.ContentRendered += (_, _) => StartupDiagnostics.Write("Main window rendered");
                 main.Show();
