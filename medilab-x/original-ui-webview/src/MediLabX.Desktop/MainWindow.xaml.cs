@@ -106,16 +106,27 @@ public partial class MainWindow : Window
  }
  private async Task<string> InjectLoginDesignAsync()
  {
-  // Visual assets are inserted in the verified HTML at Windows build time.
-  // Wait for their synchronous document-ready initializer, without injecting duplicate handlers.
-  for(var i=0;i<30;i++)
+  // WebView2 ExecuteScriptAsync serializes an async Promise to {} on some runtimes;
+  // create the trusted assets synchronously, then poll for the onload completion flag.
+  const string inject="""
+  (()=>{
+    const css=document.createElement('link');
+    css.rel='stylesheet';css.href='/medilab-login-v031.css';
+    document.head.appendChild(css);
+    const js=document.createElement('script');
+    js.src='/medilab-login-v031.js';
+    document.head.appendChild(js);
+    return 'queued';
+  })()
+  """;
+  var queued=await Browser.ExecuteScriptAsync(inject);
+  Diagnostics.Write("Login UI resource requests: "+queued);
+  for(var i=0;i<20;i++)
   {
    var ready=await Browser.ExecuteScriptAsync("window.__ml031Ready === true ? 'ml031-ready' : 'not-ready'");
    if(ready.Contains("ml031-ready",StringComparison.Ordinal))return ready;
-   await Task.Delay(120);
+   await Task.Delay(150);
   }
-  var assets=await Browser.ExecuteScriptAsync("JSON.stringify({css:!!document.querySelector('#ml031-stylesheet'),js:!!document.querySelector('#ml031-script')})");
-  Diagnostics.Write("Login assets missing or blocked: "+assets);
   return "login-css-or-js-missing";
  }
  private async Task TestLoginFlowAsync()
@@ -141,6 +152,13 @@ public partial class MainWindow : Window
     }catch(e){return 'error:'+String(e.message||e)}
   })()
   """;
+  const string probe="""
+  (()=>JSON.stringify({functions:{loadDB:typeof loadDB,init:typeof init,go:typeof go},
+    state:{loginScreen:!!document.querySelector('#loginScreen'),profileStage:!!document.querySelector('#adcProfileStage'),
+    tiles:document.querySelectorAll('#adcUserTiles button').length,form:!!document.getElementById('loginForm')},
+    origin:location.origin,sessionKeys:Object.keys(localStorage).filter(x=>x.startsWith('ahdc_')).slice(0,5) }))()
+  """;
+  Diagnostics.Write("CI auth preflight: "+await Browser.ExecuteScriptAsync(probe));
   var submitted=await Browser.ExecuteScriptAsync(submit);
   Diagnostics.Write("CI login test action: "+submitted);
   if(!submitted.Contains("submitted",StringComparison.Ordinal))throw new InvalidOperationException("Test login form could not be submitted");
@@ -234,6 +252,9 @@ public partial class MainWindow : Window
    case "geminiStatus":return new{ok=false,configured=false,error="Gemini integration is not enabled in this preview."};
    case "geminiConfigure":return new{ok=false,error="Gemini configuration is disabled for clinical data safety in this preview."};
    case "geminiAsk":case "geminiChat":return new{ok=false,error="Gemini integration is not enabled in this preview."};
+   case "clientDiagnostic":
+    if(Environment.GetEnvironmentVariable("MEDILAB_UI_LOGIN_SMOKE")=="1")Diagnostics.Write("Browser JS error: "+Arg(0)[..Math.Min(600,Arg(0).Length)]);
+    return new{ok=true};
    default:return new{ok=false,error="Unsupported desktop operation: "+method};
   }
  }
