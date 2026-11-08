@@ -14,7 +14,18 @@ internal static class JsBridge
      catch(e){pending.delete(id);resolve({ok:false,error:String(e)});}
      setTimeout(()=>{if(pending.has(id)){pending.delete(id);resolve({ok:false,error:'Windows bridge timed out'});}},30000);
    });}
-   document.addEventListener('submit',e=>{if(e.target?.id==='loginForm')e.preventDefault();},true);
+   // Prevent native form navigation if a legacy login handler is missing or throws.
+   // This does not stop propagation: the existing MediLab authentication handler still runs.
+   document.addEventListener('submit',e=>{
+     if(e.target && e.target.id==='loginForm')e.preventDefault();
+   },true);
+   let errorCount=0;
+   window.addEventListener('error',e=>{
+      if(errorCount++<12)try{window.chrome.webview.postMessage({id:0,method:'clientDiagnostic',args:[String(e.message||'JavaScript error')+' at '+String(e.filename||'page')+':'+e.lineno]})}catch{}
+   },true);
+   window.addEventListener('unhandledrejection',e=>{
+      if(errorCount++<12)try{window.chrome.webview.postMessage({id:0,method:'clientDiagnostic',args:[String(e.reason?.message||e.reason||'Promise rejection')]})}catch{}
+   },true);
    window.chrome.webview.addEventListener('message',e=>{
      const m=e.data||{};
      if(m.id!=null){const cb=pending.get(m.id);if(cb){pending.delete(m.id);cb(m.result);}return;}
@@ -23,7 +34,6 @@ internal static class JsBridge
    });
    const api={
      __medilabNative:true,
-     clientDiagnostic:label=>invoke('clientDiagnostic',String(label||'').slice(0,70)),
      openPrintPreview:(html,options)=>invoke('openPrintPreview',html,options),
      openWhatsAppDesktop:(phone,message)=>invoke('openWhatsAppDesktop',phone,message),
      windowMinimize:()=>invoke('windowMinimize'),windowToggleMaximize:()=>invoke('windowToggleMaximize'),
