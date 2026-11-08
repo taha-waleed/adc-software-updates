@@ -30,12 +30,16 @@ internal sealed class UpdateManager(string targetFolder)
    File.Copy(source,_index);
    File.WriteAllText(_versionFile,InitialVersion);
   }
-  foreach(var file in new[]{"kharian-referring-directory.json","MediLab-Heartbeat.png"})
+  foreach(var file in new[]{"kharian-referring-directory.json","MediLab-Heartbeat.png","medilab-ui-031.css","medilab-ui-031.js"})
   {
    var source=Path.Combine(packageAssets,file);
    var dest=Path.Combine(_folder,file);
-   if(File.Exists(source)&&!File.Exists(dest))File.Copy(source,dest);
+   if(File.Exists(source))File.Copy(source,dest,true);
   }
+  // Legacy versions use both /assets/logo.png and /logo.png. Keep both available.
+  Directory.CreateDirectory(Path.Combine(_folder,"assets"));
+  var logo=Path.Combine(packageAssets,"MediLab-Heartbeat.png");
+  if(File.Exists(logo))File.Copy(logo,Path.Combine(_folder,"assets","MediLab-Heartbeat.png"),true);
  }
  private static int Compare(string a,string b)
  {

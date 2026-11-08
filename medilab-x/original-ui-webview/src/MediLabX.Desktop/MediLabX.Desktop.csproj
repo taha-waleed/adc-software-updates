@@ -8,7 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>MediLabX.Desktop</AssemblyName>
     <RootNamespace>MediLabX.Desktop</RootNamespace>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <ApplicationIcon>assets\MediLabX.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
@@ -18,7 +18,7 @@
     <Content Include="assets\index.html" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="assets\kharian-referring-directory.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="assets\MediLab-Heartbeat.png" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="assets\*.css" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="assets\*.js" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\medilab-ui-031.css" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\medilab-ui-031.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

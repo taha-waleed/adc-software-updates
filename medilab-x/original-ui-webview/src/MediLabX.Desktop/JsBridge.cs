@@ -22,6 +22,7 @@ internal static class JsBridge
    });
    const api={
      __medilabNative:true,
+     clientDiagnostic:label=>invoke('clientDiagnostic',String(label||'').slice(0,70)),
      openPrintPreview:(html,options)=>invoke('openPrintPreview',html,options),
      openWhatsAppDesktop:(phone,message)=>invoke('openWhatsAppDesktop',phone,message),
      windowMinimize:()=>invoke('windowMinimize'),windowToggleMaximize:()=>invoke('windowToggleMaximize'),

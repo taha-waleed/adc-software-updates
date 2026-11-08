@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MediLabX.Desktop;
@@ -25,6 +26,7 @@ public partial class MainWindow : Window
  public MainWindow()
  {
   InitializeComponent();
+  try { SplashLogo.Source=new BitmapImage(new Uri(Path.Combine(AppContext.BaseDirectory,"assets","MediLab-Heartbeat.png"),UriKind.Absolute)); } catch(Exception ex){ Diagnostics.Write("Splash logo loading failed: "+ex.GetType().Name); }
   Diagnostics.Write("Original UI desktop shell 0.3.0 starting");
   _updates=new UpdateManager(_ui);
   Loaded+=OnLoaded;
@@ -52,6 +54,7 @@ public partial class MainWindow : Window
    core.Settings.IsGeneralAutofillEnabled=false;
    core.WebMessageReceived+=OnMessage;
    core.NavigationStarting+=(_,ev)=>{
+    Diagnostics.Write("WebView navigating: "+(ev.Uri.Contains("medilabx.app")?"local workspace":"external destination"));
     if(!Uri.TryCreate(ev.Uri,UriKind.Absolute,out var uri)||
        uri.Scheme!="https"||uri.Host!=Host)
     {
@@ -90,6 +93,9 @@ public partial class MainWindow : Window
    Diagnostics.Write("WebView navigation complete; DOM state: "+state[..Math.Min(state.Length,350)]);
    var check=await Browser.ExecuteScriptAsync("(document.body && document.body.children.length>0)");
    if(check!="true")throw new InvalidOperationException("MediLab workspace was empty");
+   // Non-destructive visual polish: all legacy functional elements, ids and handlers stay intact.
+   await Browser.ExecuteScriptAsync("(()=>{if(document.getElementById('mlx031css'))return;const link=document.createElement('link');link.id='mlx031css';link.rel='stylesheet';link.href='/medilab-ui-031.css';document.head.appendChild(link);const script=document.createElement('script');script.src='/medilab-ui-031.js';document.body.appendChild(script)})()");
+   Diagnostics.Write("Modern login skin and watchdog injected");
    _ready=true;
    Browser.Visibility=Visibility.Visible;
    var fade=new DoubleAnimation(1,0,TimeSpan.FromMilliseconds(420));
@@ -142,6 +148,7 @@ public partial class MainWindow : Window
   }
   switch(method)
   {
+   case "clientDiagnostic": Diagnostics.Write("UI: "+(Arg(0) switch {"authenticated"=>"authenticated","signed-out"=>"signed-out","login-form-submitted"=>"login-form-submitted","legacy-dashboard-init-failure"=>"legacy-dashboard-init-failure","browser-script-error"=>"browser-script-error","browser-unhandled-rejection"=>"browser-unhandled-rejection","ui-polish-ready"=>"ui-polish-ready",_=>"unrecognized-ui-event"}));return new{ok=true};
    case "windowMinimize":WindowState=WindowState.Minimized;return new{ok=true};
    case "windowToggleMaximize":WindowState=WindowState==WindowState.Maximized?WindowState.Normal:WindowState.Maximized;SendState();return new{ok=true};
    case "windowClose":Close();return new{ok=true};

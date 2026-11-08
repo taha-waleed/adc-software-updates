@@ -6,14 +6,14 @@
         Background="#EAF0FA" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResizeWithGrip">
  <Grid>
   <wv2:WebView2 x:Name="Browser" Visibility="Collapsed" />
-  <Grid x:Name="LoadingView">
+  <Grid x:Name="LoadingView" >
    <Grid.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#E0EFFB" Offset="0"/><GradientStop Color="#F8FAFF" Offset="0.54"/><GradientStop Color="#D7DDFB" Offset="1"/></LinearGradientBrush></Grid.Background>
    <Border Width="470" Height="340" Background="#FCFFFFFF" BorderBrush="#D5DDF6" BorderThickness="1" CornerRadius="26" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Border.Effect><DropShadowEffect BlurRadius="34" ShadowDepth="9" Opacity="0.17" Color="#324A7A"/></Border.Effect>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-     <Border Background="White" CornerRadius="18" Width="85" Height="85" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,18"><Image Source="pack://siteoforigin:,,,/assets/MediLab-Heartbeat.png" Stretch="Uniform"/></Border>
+     <Border Background="White" CornerRadius="18" Width="85" Height="85" Padding="8" HorizontalAlignment="Center" Margin="0,0,0,18"><Image x:Name="SplashLogo" Stretch="Uniform"/></Border>
      <TextBlock Text="MediLab X" FontFamily="Segoe UI Variable Display, Segoe UI" FontWeight="SemiBold" FontSize="29" Foreground="#203C62" HorizontalAlignment="Center" />
-     <TextBlock Text="Your familiar workspace, rebuilt for Windows" FontSize="12" Foreground="#657A96" HorizontalAlignment="Center" Margin="0,8,0,28"/>
+     <TextBlock Text="Your familiar workspace, thoughtfully refined" FontSize="12" Foreground="#657A96" HorizontalAlignment="Center" Margin="0,8,0,28"/>
      <ProgressBar x:Name="LoadingBar" Width="260" Height="5" IsIndeterminate="True" BorderThickness="0" Foreground="#3186E9" Background="#D5E5F9"/>
      <TextBlock x:Name="LoadingText" Text="Starting your workspace…" FontSize="11" Foreground="#6A83A1" Margin="0,14,0,0" HorizontalAlignment="Center"/>
     </StackPanel>

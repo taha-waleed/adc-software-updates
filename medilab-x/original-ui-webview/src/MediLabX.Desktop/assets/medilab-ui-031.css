@@ -1,0 +1,56 @@
+/* MediLab X Desktop 0.3.1 — consistent glass UI without changing original business handlers. */
+:root{--mx-polish-ink:#19345b;--mx-polish-soft:#617895;--mx-polish-line:#d5e3f4;--mx-polish-accent:#3979f0;--mx-polish-teal:#11b7c6;--mx-polish-ring:rgba(71,125,240,.20)}
+html, body{scrollbar-gutter:stable;}
+#adcWelcome:not(.adc-closed){
+  background:radial-gradient(ellipse at 15% 19%,rgba(89,206,235,.26),transparent 36%),radial-gradient(ellipse at 82% 72%,rgba(142,127,251,.25),transparent 43%),linear-gradient(137deg,#e7f4fe 2%,#edf0ff 52%,#e8f4fb 100%)!important;
+  backdrop-filter:none!important;display:grid!important;place-items:center!important;padding:26px!important;min-height:100vh!important;overflow-y:auto!important;
+}
+#adcWelcome .adc-login-bars{opacity:.13!important;filter:blur(1px)!important;pointer-events:none!important}
+#adcWelcome .adc-welcome-orb{opacity:.35!important;filter:blur(32px)!important;pointer-events:none!important}
+#adcWelcome .adc-welcome-panel{
+  width:min(490px,100%)!important;max-width:490px!important;min-height:0!important;max-height:none!important;
+  background:rgba(255,255,255,.91)!important;backdrop-filter:blur(24px) saturate(135%)!important;
+  color:#1c3156!important;border:1px solid rgba(255,255,255,.93)!important;
+  box-shadow:0 30px 95px rgba(58,74,126,.18),0 2px 12px rgba(66,108,171,.08)!important;
+  padding:34px 39px 28px!important;border-radius:29px!important;position:relative!important;isolation:isolate!important;
+  animation:mx031-enter .65s cubic-bezier(.2,.85,.25,1) both!important;
+}
+#adcWelcome .adc-welcome-panel:before{content:"";position:absolute;inset:0;border-radius:29px;padding:1px;background:linear-gradient(120deg,rgba(90,184,237,.65),rgba(255,255,255,.4) 35%,rgba(134,114,253,.33));mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none;z-index:-1}
+#adcWelcome .adc-welcome-emblem{width:82px!important;height:82px!important;display:grid!important;place-items:center!important;margin:0 auto 15px!important;border-radius:22px!important;background:linear-gradient(135deg,#fff,#f0f6ff)!important;box-shadow:0 11px 32px rgba(49,112,176,.14)!important;overflow:hidden!important}
+#adcWelcome .adc-welcome-emblem img{width:72px!important;height:72px!important;max-width:72px!important;max-height:72px!important;object-fit:contain!important;border-radius:17px!important}
+#adcWelcome .adc-kicker{color:#537898!important;font-weight:750!important;letter-spacing:.17em!important;font-size:10px!important}
+#adcWelcome h1{color:#1d3357!important;font-size:34px!important;letter-spacing:-.05em!important;font-weight:800!important;margin-top:5px!important}
+#adcWelcome .adc-signin-heading,#adcWelcome .adc-section-label{color:#647c98!important}
+#adcWelcome .adc-login-stage{width:100%!important}
+#adcWelcome .adc-user-tiles{gap:10px!important;max-height:285px!important;overflow-y:auto!important;scrollbar-width:thin;scrollbar-color:#d1e1f5 transparent}
+#adcWelcome .adc-profile-tile{background:linear-gradient(120deg,#f9fcff,#eff5ff)!important;border:1px solid #d9e6f5!important;color:#18365c!important;border-radius:17px!important;transition:transform .18s ease,box-shadow .2s ease,border-color .2s ease!important;min-height:62px!important}
+#adcWelcome .adc-profile-tile:hover,#adcWelcome .adc-profile-tile:focus-visible{transform:translateY(-2px)!important;box-shadow:0 10px 28px rgba(46,107,185,.14)!important;border-color:#75bbf6!important}
+#adcWelcome .adc-profile-name{color:#19395f!important;font-weight:750!important}
+#adcWelcome .adc-profile-role{color:#fff!important;background:#5479ed!important}
+#adcWelcome .adc-back-button{color:#4173b0!important;background:rgba(230,241,255,.9)!important;border-radius:10px!important;padding:8px 12px!important}
+#adcWelcome .adc-chosen-person{background:#f3f8ff!important;color:#19375d!important;border:1px solid #deecfa!important;border-radius:15px!important;padding:10px!important}
+#adcWelcome #loginForm label,#adcWelcome #loginPasswordLabel{color:#3f5e81!important;font-weight:750!important}
+#adcWelcome #loginPass{height:49px!important;border-radius:13px!important;background:#f8fbff!important;border:1px solid #cedeee!important;color:#183356!important;box-shadow:0 2px 3px rgba(24,59,103,.02)!important;padding:12px 14px!important;letter-spacing:.1em!important}
+#adcWelcome #loginPass:focus{background:#fff!important;border-color:#5ca5ee!important;box-shadow:0 0 0 4px rgba(57,121,240,.12)!important;outline:0!important}
+#adcWelcome #loginForm button[type="submit"]{background:linear-gradient(110deg,#4166f0,#129abd)!important;color:#fff!important;border-radius:13px!important;box-shadow:0 12px 27px rgba(55,99,225,.20)!important;font-weight:750!important;height:48px!important}
+#adcWelcome #loginForm button[type="submit"]:hover{filter:brightness(1.05)!important;transform:translateY(-1px)!important}
+#adcWelcome #loginError{color:#ba3d57!important;font-weight:650!important;line-height:1.45!important}
+#adcWelcome .adc-welcome-credit{color:#7690ac!important;margin-top:21px!important;font-size:11px!important}
+#adcWelcome .adc-welcome-credit strong{color:#3e649a!important}
+/* Use the same glass rhythm across existing modules; do not touch element visibility or event handlers. */
+#app.authenticated .main .top{border:1px solid rgba(183,208,245,.45)!important;border-radius:19px!important;box-shadow:0 8px 28px rgba(48,88,153,.07)!important;backdrop-filter:blur(14px)!important}
+#app.authenticated .sidebar .nav button{border-radius:12px!important;transition:background .2s ease,box-shadow .2s ease,transform .16s ease!important;min-height:39px!important}
+#app.authenticated .sidebar .nav button:hover{transform:translateX(2px);box-shadow:inset 3px 0 rgba(91,174,244,.5),0 4px 18px rgba(66,129,237,.13)!important}
+#app.authenticated .sidebar .nav button.active{box-shadow:inset 3px 0 #98cfff,0 8px 22px rgba(38,109,228,.17)!important}
+#app.authenticated .panel,#app.authenticated .stat{border-radius:17px!important;box-shadow:0 5px 22px rgba(52,77,138,.055)!important}
+#app.authenticated input:focus-visible,#app.authenticated button:focus-visible{outline:2px solid #5fa4ed;outline-offset:2px}
+/* The original theme engine controls the workspace palette. The login dialog stays readable in both modes. */
+body.dark #adcWelcome .adc-welcome-panel,body[data-theme="dark"] #adcWelcome .adc-welcome-panel,body.dark-mode #adcWelcome .adc-welcome-panel{background:rgba(21,33,59,.93)!important;border-color:#405277!important}
+body.dark #adcWelcome h1,body[data-theme="dark"] #adcWelcome h1,body.dark-mode #adcWelcome h1{color:#f2f7ff!important}
+body.dark #adcWelcome .adc-signin-heading,body[data-theme="dark"] #adcWelcome .adc-signin-heading,body.dark-mode #adcWelcome .adc-signin-heading{color:#bad0e6!important}
+body.dark #adcWelcome .adc-profile-tile,body[data-theme="dark"] #adcWelcome .adc-profile-tile,body.dark-mode #adcWelcome .adc-profile-tile{background:#243957!important;color:#f2f7ff!important;border-color:#3c5276!important}
+body.dark #adcWelcome .adc-profile-name,body[data-theme="dark"] #adcWelcome .adc-profile-name,body.dark-mode #adcWelcome .adc-profile-name{color:#f2f7ff!important}
+html.mx031-after-launch #startupSplash,html.mx031-after-launch #startupSplash:not(.leaving){visibility:hidden!important;display:none!important;opacity:0!important;pointer-events:none!important}
+@keyframes mx031-enter{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:670px){#adcWelcome .adc-welcome-panel{padding:23px!important;margin:auto!important;border-radius:21px!important}#adcWelcome h1{font-size:28px!important}}
+@media(prefers-reduced-motion:reduce){#adcWelcome .adc-welcome-panel,#adcWelcome .adc-profile-tile{animation:none!important;transition:none!important}}
