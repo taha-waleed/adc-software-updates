@@ -38,20 +38,50 @@ jobs:
           dotnet publish medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -o medilab-x/native-wpf/publish
           if ($LASTEXITCODE -ne 0) {throw 'Publish failed'}
           if (-not (Test-Path 'medilab-x/native-wpf/publish/MediLabX.Native.exe')) {throw 'Windows EXE missing'}
+      - name: Launch native EXE and verify visible WPF startup
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = Join-Path (Get-Location) 'medilab-x/native-wpf/publish/MediLabX.Native.exe'
+          $log = Join-Path $env:APPDATA 'MediLab/Standard/NativeWpf/logs/startup.log'
+          if (Test-Path $log) { Remove-Item $log -Force }
+          $process = Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
+          try {
+            Start-Sleep -Seconds 12
+            $process.Refresh()
+            $body = if (Test-Path $log) { Get-Content $log -Raw } else { '<log file missing>' }
+            Write-Host "STARTUP DIAGNOSTICS:"
+            Write-Host $body
+            if ($process.HasExited) { throw "Native EXE exited during launch; exit code $($process.ExitCode)" }
+            if ($body -notmatch 'Main window loaded' -or $body -notmatch 'Main window Show\(\) returned') { throw 'Main window did not load; abort preview publication' }
+            $process.Refresh()
+            Write-Host "Process id: $($process.Id), main window handle: $($process.MainWindowHandle)"
+            Write-Host 'PASS: GUI process alive and main WPF window opened on Windows runner.'
+          } finally {
+            if (-not $process.HasExited) { Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue }
+          }
+      - name: Upload startup diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLabX-WPF-startup-diagnostics
+          path: ~\AppData\Roaming\MediLab\Standard\NativeWpf\logs\startup.log
+          if-no-files-found: ignore
+          retention-days: 3
       - name: Create ZIP and checksum
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           New-Item -ItemType Directory -Force 'medilab-x/native-wpf/dist' | Out-Null
-          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.0-Preview-x64.zip'
+          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.1-StartupFix-x64.zip'
           Compress-Archive -Path 'medilab-x/native-wpf/publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
           $sha=(Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant()
-          Set-Content -Path 'medilab-x/native-wpf/dist/SHA256SUMS.txt' -Encoding utf8 -Value "$sha  MediLabX-Native-Windows-0.2.0-Preview-x64.zip"
+          Set-Content -Path 'medilab-x/native-wpf/dist/SHA256SUMS.txt' -Encoding utf8 -Value "$sha  MediLabX-Native-Windows-0.2.1-StartupFix-x64.zip"
           if ((Get-Item $zip).Length -lt 10000000) {throw 'Output looks incomplete'}
       - name: Upload preview artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: MediLabX-Native-Windows-0.2.0-Preview
+          name: MediLabX-Native-Windows-0.2.1-StartupFix
           path: medilab-x/native-wpf/dist/*
           retention-days: 14
       - name: Publish GitHub preview release (never production channel)
@@ -60,11 +90,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $ErrorActionPreference='Stop'
-          $tag='medilab-x-native-preview-v0.2.0'
-          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.0-Preview-x64.zip'
+          $tag='medilab-x-native-preview-v0.2.1'
+          $zip='medilab-x/native-wpf/dist/MediLabX-Native-Windows-0.2.1-StartupFix-x64.zip'
           $sha='medilab-x/native-wpf/dist/SHA256SUMS.txt'
           $notes=@'
-          **MediLab X Native WPF 0.2.0 Preview — not approved for live diagnostic centre use.**
+          **MediLab X Native WPF 0.2.1 Startup Fix — not approved for live diagnostic centre use.**
 
           Standalone portable Windows x64 application. Extract ZIP and run MediLabX.Native.exe. Does not uninstall or overwrite the current HTML/Electron MediLab X, does not modify its original database or its update.json.
 
@@ -79,6 +109,6 @@ jobs:
           if ($LASTEXITCODE -eq 0) {
             gh release upload $tag $zip $sha --repo $env:GITHUB_REPOSITORY --clobber
           } else {
-            gh release create $tag $zip $sha --repo $env:GITHUB_REPOSITORY --target 'feature/medilab-x-native-wpf' --prerelease --title 'MediLab X Native WPF 0.2.0 Preview' --notes-file 'medilab-x/native-wpf/dist/RELEASE_NOTES.txt'
+            gh release create $tag $zip $sha --repo $env:GITHUB_REPOSITORY --target 'feature/medilab-x-native-wpf' --prerelease --title 'MediLab X Native WPF 0.2.1 Startup Fix' --notes-file 'medilab-x/native-wpf/dist/RELEASE_NOTES.txt'
           }
           if ($LASTEXITCODE -ne 0) {throw 'GitHub preview release publication failed'}

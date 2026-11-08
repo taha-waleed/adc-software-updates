@@ -7,7 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>MediLabX.Native</AssemblyName>
     <RootNamespace>MediLabX.Native</RootNamespace>
-    <Version>0.2.0-beta.1</Version>
+    <Version>0.2.1-beta.1</Version>
+    <StartupObject>MediLabX.Native.Program</StartupObject>
     <ApplicationIcon Condition="Exists('Assets\MediLabX.ico')">Assets\MediLabX.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
