@@ -6,7 +6,7 @@
         Background="#EAF0FA" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResizeWithGrip">
  <Grid>
   <wv2:WebView2 x:Name="Browser" Visibility="Collapsed" />
-  <Grid x:Name="LoadingView" Background="#EEF4FD">
+  <Grid x:Name="LoadingView">
    <Grid.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#E0EFFB" Offset="0"/><GradientStop Color="#F8FAFF" Offset="0.54"/><GradientStop Color="#D7DDFB" Offset="1"/></LinearGradientBrush></Grid.Background>
    <Border Width="470" Height="340" Background="#FCFFFFFF" BorderBrush="#D5DDF6" BorderThickness="1" CornerRadius="26" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Border.Effect><DropShadowEffect BlurRadius="34" ShadowDepth="9" Opacity="0.17" Color="#324A7A"/></Border.Effect>
