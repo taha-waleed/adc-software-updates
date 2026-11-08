@@ -148,7 +148,7 @@ public partial class MainWindow : Window
   }
   switch(method)
   {
-   case "clientDiagnostic": Diagnostics.Write("UI: "+(Arg(0) switch {"authenticated"=>"authenticated","signed-out"=>"signed-out","login-form-submitted"=>"login-form-submitted","legacy-dashboard-init-failure"=>"legacy-dashboard-init-failure","browser-script-error"=>"browser-script-error","browser-unhandled-rejection"=>"browser-unhandled-rejection","ui-polish-ready"=>"ui-polish-ready",_=>"unrecognized-ui-event"}));return new{ok=true};
+   case "clientDiagnostic": Diagnostics.Write("UI: "+(Arg(0) switch {"authenticated"=>"authenticated","signed-out"=>"signed-out","login-form-submitted"=>"login-form-submitted","legacy-dashboard-init-failure"=>"legacy-dashboard-init-failure","browser-script-error"=>"browser-script-error","browser-unhandled-rejection"=>"browser-unhandled-rejection","ui-polish-ready"=>"ui-polish-ready","ci-auth-pass"=>"ci-auth-pass","ci-auth-fail"=>"ci-auth-fail",_=>"unrecognized-ui-event"}));return new{ok=true};
    case "windowMinimize":WindowState=WindowState.Minimized;return new{ok=true};
    case "windowToggleMaximize":WindowState=WindowState==WindowState.Maximized?WindowState.Normal:WindowState.Maximized;SendState();return new{ok=true};
    case "windowClose":Close();return new{ok=true};
