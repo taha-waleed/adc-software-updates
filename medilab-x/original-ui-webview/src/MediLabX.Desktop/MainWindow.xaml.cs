@@ -60,7 +60,7 @@ public partial class MainWindow : Window
      OpenExternal(ev.Uri??"");
     }
    };
-   core.NewWindowRequested+=(_,ev)=>{ev.Handled=true;OpenExternal(ev.Uri);};
+   core.NewWindowRequested+=(_,ev)=>{ev.Handled=true;OpenExternal(ev.Uri??"");};
    core.ProcessFailed+=(_,ev)=>{
      Diagnostics.Write("Browser process failed: "+ev.ProcessFailedKind);
      Dispatcher.BeginInvoke(()=>LoadingText.Text="Desktop renderer stopped. Restart MediLab X.");
