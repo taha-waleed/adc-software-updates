@@ -23,7 +23,7 @@ jobs:
       - name: Compile native Windows desktop app
         run: dotnet build medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release --no-restore -warnaserror
       - name: Publish Windows alpha (not production installer)
-        run: dotnet publish medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release -r win-x64 --self-contained false --no-restore -o medilab-x/native-wpf/publish
+        run: dotnet publish medilab-x/native-wpf/src/MediLabX.Native/MediLabX.Native.csproj -c Release -r win-x64 --self-contained false -o medilab-x/native-wpf/publish
       - uses: actions/upload-artifact@v4
         with:
           name: MediLabX-NativeWpf-alpha-win64
