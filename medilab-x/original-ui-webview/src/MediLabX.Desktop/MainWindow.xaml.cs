@@ -9,7 +9,6 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MediLabX.Desktop;
@@ -26,8 +25,7 @@ public partial class MainWindow : Window
  public MainWindow()
  {
   InitializeComponent();
-  try { SplashLogo.Source=new BitmapImage(new Uri(Path.Combine(AppContext.BaseDirectory,"assets","MediLab-Heartbeat.png"),UriKind.Absolute)); } catch(Exception ex){ Diagnostics.Write("Splash logo loading failed: "+ex.GetType().Name); }
-  Diagnostics.Write("Original UI desktop shell 0.3.0 starting");
+  Diagnostics.Write("Original UI desktop shell 0.3.1 starting");
   _updates=new UpdateManager(_ui);
   Loaded+=OnLoaded;
   StateChanged+=(_,_)=>SendState();
@@ -54,7 +52,7 @@ public partial class MainWindow : Window
    core.Settings.IsGeneralAutofillEnabled=false;
    core.WebMessageReceived+=OnMessage;
    core.NavigationStarting+=(_,ev)=>{
-    Diagnostics.Write("WebView navigating: "+(ev.Uri.Contains("medilabx.app")?"local workspace":"external destination"));
+    Diagnostics.Write("WebView navigation started: "+(ev.Uri?.Length>120?ev.Uri[..120]:ev.Uri));
     if(!Uri.TryCreate(ev.Uri,UriKind.Absolute,out var uri)||
        uri.Scheme!="https"||uri.Host!=Host)
     {
@@ -93,17 +91,83 @@ public partial class MainWindow : Window
    Diagnostics.Write("WebView navigation complete; DOM state: "+state[..Math.Min(state.Length,350)]);
    var check=await Browser.ExecuteScriptAsync("(document.body && document.body.children.length>0)");
    if(check!="true")throw new InvalidOperationException("MediLab workspace was empty");
-   // Non-destructive visual polish: all legacy functional elements, ids and handlers stay intact.
-   await Browser.ExecuteScriptAsync("(()=>{if(document.getElementById('mlx031css'))return;const link=document.createElement('link');link.id='mlx031css';link.rel='stylesheet';link.href='/medilab-ui-031.css';document.head.appendChild(link);const script=document.createElement('script');script.src='/medilab-ui-031.js';document.body.appendChild(script)})()");
-   Diagnostics.Write("Modern login skin and watchdog injected");
+   var polish=await InjectLoginDesignAsync();
+   Diagnostics.Write("Desktop login design injection: "+polish);
+   if(!polish.Contains("ml031-ready",StringComparison.Ordinal))throw new InvalidOperationException("Desktop login styling did not load");
    _ready=true;
    Browser.Visibility=Visibility.Visible;
    var fade=new DoubleAnimation(1,0,TimeSpan.FromMilliseconds(420));
    fade.Completed+=(_,_)=>LoadingView.Visibility=Visibility.Collapsed;
    LoadingView.BeginAnimation(OpacityProperty,fade);
    Diagnostics.Write("Original MediLab UI rendered; native bridge injected");
+   if(Environment.GetEnvironmentVariable("MEDILAB_UI_LOGIN_SMOKE")=="1")await TestLoginFlowAsync();
   }
   catch(Exception ex){Diagnostics.Write("UI verification failed: "+ex);LoadingText.Text="Unable to verify workspace: "+ex.Message;}
+ }
+ private async Task<string> InjectLoginDesignAsync()
+ {
+  // Inject after the original inline styles: preserve its authentication and module handlers.
+  const string script="""
+  (async()=>{
+    const load=(tag,url)=>new Promise(resolve=>{
+      const node=document.createElement(tag==='style'?'link':'script');
+      if(tag==='style'){node.rel='stylesheet';node.href=url;}else node.src=url;
+      node.onload=()=>resolve(true);node.onerror=()=>resolve(false);
+      document.head.appendChild(node);
+    });
+    if(!await load('style','/medilab-login-v031.css'))return 'css-load-failed';
+    if(!await load('script','/medilab-login-v031.js'))return 'script-load-failed';
+    return window.__ml031Ready?'ml031-ready':'js-not-ready';
+  })()
+  """;
+  return await Browser.ExecuteScriptAsync(script);
+ }
+ private async Task TestLoginFlowAsync()
+ {
+  // Only on CI's throwaway test profile, never on a customer profile.
+  const string submit="""
+  (()=>{
+    try{
+      const key='ahdc_software_v1';
+      const saved=JSON.parse(localStorage.getItem(key)||'{}');
+      if(!Array.isArray(saved.tests))saved.tests=[];
+      saved.users=[{name:'CI Smoke Tester',username:'ci-smoke-user',password:'ci-only-temporary-password',role:'admin'}];
+      localStorage.setItem(key,JSON.stringify(saved));
+      window.ADCLoginTiles?.refresh?.();
+      const tiles=Array.from(document.querySelectorAll('#adcUserTiles button'));
+      const tile=tiles.find(x=>x.textContent.includes('CI Smoke Tester'))||tiles[0];
+      tile?.click();
+      const user=document.getElementById('loginUser'),pass=document.getElementById('loginPass'),form=document.getElementById('loginForm');
+      if(!user||!pass||!form)return 'error:login-form-missing';
+      user.value='ci-smoke-user';pass.value='ci-only-temporary-password';
+      form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+      return 'submitted';
+    }catch(e){return 'error:'+String(e.message||e)}
+  })()
+  """;
+  var submitted=await Browser.ExecuteScriptAsync(submit);
+  Diagnostics.Write("CI login test action: "+submitted);
+  if(!submitted.Contains("submitted",StringComparison.Ordinal))throw new InvalidOperationException("Test login form could not be submitted");
+  await Task.Delay(2500);
+  const string verify="""
+  (()=>{
+    const app=document.getElementById('app');
+    const login=document.getElementById('adcWelcome');
+    const splash=document.getElementById('startupSplash');
+    const image=document.querySelector('#adcWelcomeEmblem img');
+    const isAuthed=!!app?.classList.contains('authenticated');
+    const loginHidden=!login||getComputedStyle(login).display==='none';
+    return JSON.stringify({authenticated:isAuthed,overlayHidden:loginHidden,splashGone:!splash,logoLoaded:!!image?.naturalWidth,loginError:document.getElementById('loginError')?.textContent||''});
+  })()
+  """;
+  var result=await Browser.ExecuteScriptAsync(verify);
+  Diagnostics.Write("CI login transition checked: "+result);
+  var jsonText=JsonSerializer.Deserialize<string>(result)??"{}";
+  using var doc=JsonDocument.Parse(jsonText);
+  var root=doc.RootElement;
+  if(!root.GetProperty("authenticated").GetBoolean()||!root.GetProperty("overlayHidden").GetBoolean()||!root.GetProperty("splashGone").GetBoolean()||!root.GetProperty("logoLoaded").GetBoolean())
+   throw new InvalidOperationException("Login to dashboard transition failed: "+jsonText);
+  Diagnostics.Write("PASS: login to dashboard; no splash reset; heartbeat logo loaded");
  }
  private async Task AutoUpdateCheckAsync()
  {
@@ -148,7 +212,6 @@ public partial class MainWindow : Window
   }
   switch(method)
   {
-   case "clientDiagnostic": Diagnostics.Write("UI: "+(Arg(0) switch {"authenticated"=>"authenticated","signed-out"=>"signed-out","login-form-submitted"=>"login-form-submitted","legacy-dashboard-init-failure"=>"legacy-dashboard-init-failure","browser-script-error"=>"browser-script-error","browser-unhandled-rejection"=>"browser-unhandled-rejection","ui-polish-ready"=>"ui-polish-ready","ci-auth-pass"=>"ci-auth-pass","ci-auth-fail"=>"ci-auth-fail",_=>"unrecognized-ui-event"}));return new{ok=true};
    case "windowMinimize":WindowState=WindowState.Minimized;return new{ok=true};
    case "windowToggleMaximize":WindowState=WindowState==WindowState.Maximized?WindowState.Normal:WindowState.Maximized;SendState();return new{ok=true};
    case "windowClose":Close();return new{ok=true};

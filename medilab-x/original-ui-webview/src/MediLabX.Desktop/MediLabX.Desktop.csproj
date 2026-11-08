@@ -18,7 +18,7 @@
     <Content Include="assets\index.html" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="assets\kharian-referring-directory.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="assets\MediLab-Heartbeat.png" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="assets\medilab-ui-031.css" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="assets\medilab-ui-031.js" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\*.css" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="assets\*.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

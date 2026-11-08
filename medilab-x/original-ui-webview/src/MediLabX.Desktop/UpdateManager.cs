@@ -30,16 +30,19 @@ internal sealed class UpdateManager(string targetFolder)
    File.Copy(source,_index);
    File.WriteAllText(_versionFile,InitialVersion);
   }
-  foreach(var file in new[]{"kharian-referring-directory.json","MediLab-Heartbeat.png","medilab-ui-031.css","medilab-ui-031.js"})
+  // Keep packaged auxiliary JS/CSS and branding next to the HTML in the virtual WebView host.
+  // Earlier builds copied only the HTML and two assets, breaking login styles and image paths.
+  foreach(var source in Directory.EnumerateFiles(packageAssets))
   {
-   var source=Path.Combine(packageAssets,file);
-   var dest=Path.Combine(_folder,file);
-   if(File.Exists(source))File.Copy(source,dest,true);
+   var file=Path.GetFileName(source);
+   if(file.Equals("index.html",StringComparison.OrdinalIgnoreCase))continue;
+   var ext=Path.GetExtension(file).ToLowerInvariant();
+   if(ext is not (".css" or ".js" or ".json" or ".png" or ".svg"))continue;
+   File.Copy(source,Path.Combine(_folder,file),true);
   }
-  // Legacy versions use both /assets/logo.png and /logo.png. Keep both available.
-  Directory.CreateDirectory(Path.Combine(_folder,"assets"));
-  var logo=Path.Combine(packageAssets,"MediLab-Heartbeat.png");
-  if(File.Exists(logo))File.Copy(logo,Path.Combine(_folder,"assets","MediLab-Heartbeat.png"),true);
+  var nested=Path.Combine(_folder,"assets");Directory.CreateDirectory(nested);
+  var heartbeat=Path.Combine(packageAssets,"MediLab-Heartbeat.png");
+  if(File.Exists(heartbeat))File.Copy(heartbeat,Path.Combine(nested,"MediLab-Heartbeat.png"),true);
  }
  private static int Compare(string a,string b)
  {

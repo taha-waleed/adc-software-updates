@@ -58,6 +58,7 @@ jobs:
           $exe=(Resolve-Path 'medilab-x/original-ui-webview/publish/MediLabX.Desktop.exe').Path
           $log=Join-Path $env:APPDATA 'MediLab/Standard/OriginalUIHost/logs/startup.log'
           if(Test-Path $log){Remove-Item $log -Force}
+          $env:MEDILAB_UI_LOGIN_SMOKE='1'
           $process=Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe -Parent) -PassThru
           try {
             Start-Sleep -Seconds 20
@@ -69,9 +70,12 @@ jobs:
             if($data -notmatch 'Original MediLab UI rendered; native bridge injected'){
               throw 'Original MediLab HTML did not render inside WPF host'
             }
+            if($data -notmatch 'PASS: login to dashboard; no splash reset; heartbeat logo loaded'){
+              throw 'Actual login→dashboard smoke test failed; do not publish broken ZIP'
+            }
             $process.Refresh()
             if($process.MainWindowHandle -eq 0){throw 'Visible Windows application handle missing'}
-            Write-Host "PASS: Original interface rendered in Windows WPF WebView2. Handle $($process.MainWindowHandle)"
+            Write-Host "PASS: Login→dashboard verified in Windows WPF WebView2. Handle $($process.MainWindowHandle)"
           }
           finally {if(-not $process.HasExited){Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue}}
       - name: Verify login to dashboard (test-only synthetic account)
