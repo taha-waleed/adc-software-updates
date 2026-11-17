@@ -1,13 +1,14 @@
 {
   "schema": 1,
-  "version": "10.0.4",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.4/MediLabX.html",
-  "sha256": "5d7bf36273e3470efd8e9e2aaebc92985629f10dbd6f460c1447e2ca8039f111",
+  "version": "10.0.5",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.5/MediLabX.html",
+  "sha256": "ebee7d0a377eb6d62a687b324cd25bdcf6244810aa44ed98b8e81bc74ede2eea",
   "notes": [
-    "Settings redesigned as Mac Preferences with original category controls.",
-    "Admin Centre redesigned as Admin Workspace using existing user, doctor and security navigation.",
-    "Software Updates redesigned as Release Spotlight with improved visibility and contrast.",
-    "All underlying clinical, patient, report, receipt and native update handlers unchanged.",
-    "Original 10.0.2 Midnight Prism Standby release preserved."
+    "Selected Mac Preferences: fixed-size Settings workspace with separate inner scrolling only.",
+    "Removed the duplicate theme selection card; compact live accent and light/dark controls now live inside Appearance.",
+    "Modern slim Settings icons, preference rows and Admin Workspace without changing original forms.",
+    "Release Spotlight retains live GitHub updater and existing verified-install workflow.",
+    "Developer Corner shortcut Ctrl+D opens the original password-protected Developer Options.",
+    "Original clinical data, receipts, lab functions and Electron updater transport unchanged."
   ]
 }
