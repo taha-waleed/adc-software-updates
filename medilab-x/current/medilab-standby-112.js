@@ -40,7 +40,7 @@
    $('mlx12Emblem').replaceChildren(image);
   }
   button.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();lock()});
-  overlay.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation()});
+  overlay.addEventListener('pointerdown',e=>{e.stopPropagation()});
   overlay.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();unlock()});
   overlay.addEventListener('contextmenu',e=>e.preventDefault());
   timeText();return true;
