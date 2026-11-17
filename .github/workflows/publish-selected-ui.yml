@@ -1,0 +1,34 @@
+name: Publish MediLab X Selected UI (10.0.4)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-selected-ui.yml
+      - m/selected-ui.bundle.b64
+      - m/publish_selected_ui.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-medilab-ui-10-0-4
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify source, assets and generate self-contained HTML
+        run: python3 m/publish_selected_ui.py
+      - name: Commit update HTML and matching SHA-256 manifest atomically
+        run: |
+          git config user.name "medilab-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medilabx-ui-10.0.4/MediLabX.html m/update.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Release MediLab X 10.0.4 selected UI layouts"
+            git push
+          fi
