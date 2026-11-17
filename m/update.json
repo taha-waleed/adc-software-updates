@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "version": "10.0.2",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-final-standby/MediLabX.html",
-  "sha256": "fbd0cff426b1c3f6376db0c4afb61f14af878f8a44f1b02d759090d65fe6d379",
+  "version": "10.0.4",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.4/MediLabX.html",
+  "sha256": "5d7bf36273e3470efd8e9e2aaebc92985629f10dbd6f460c1447e2ca8039f111",
   "notes": [
-    "Midnight Prism privacy standby added to the original MediLab X 10.0.1 final release.",
-    "Manual Lock button placed beside Minimize in existing Windows titlebar.",
-    "Automatically hides workspace after 5 minutes of inactivity.",
-    "Animated slide-in and slide-out; tap/click/key to unlock without PIN.",
-    "No other features, records, settings, receipts, reports, themes or login changed."
+    "Settings redesigned as Mac Preferences with original category controls.",
+    "Admin Centre redesigned as Admin Workspace using existing user, doctor and security navigation.",
+    "Software Updates redesigned as Release Spotlight with improved visibility and contrast.",
+    "All underlying clinical, patient, report, receipt and native update handlers unchanged.",
+    "Original 10.0.2 Midnight Prism Standby release preserved."
   ]
 }
