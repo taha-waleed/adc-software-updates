@@ -1,0 +1,81 @@
+/* MediLab X HTML 10.0.12 — Midnight Prism idle privacy screen.
+   Pure compositor animations; the titlebar remains accessible. */
+#mlx12LockBtn{
+  width:48px!important;min-width:48px!important;height:38px!important;
+  border:0!important;border-radius:0!important;padding:0!important;
+  display:grid!important;place-items:center!important;
+  background:transparent!important;color:#e9eeff!important;
+  box-shadow:none!important;cursor:pointer!important;
+  -webkit-app-region:no-drag!important;transition:background .16s ease,color .16s ease!important;
+}
+#mlx12LockBtn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.75;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#mlx12LockBtn:hover:not(:disabled){background:rgba(132,158,255,.22)!important;color:#fff!important}
+#mlx12LockBtn:disabled{opacity:.42!important;cursor:default!important}
+#mlx12LockBtn:focus-visible{outline:2px solid #b6c6ff!important;outline-offset:-3px!important}
+#mlx12Privacy[hidden]{display:none!important}
+#mlx12Privacy{
+  position:fixed!important;top:38px;left:0;right:0;bottom:0;
+  display:grid;place-items:center;overflow:hidden;
+  z-index:2147483000!important;isolation:isolate;
+  color:#fff!important;text-align:center;
+  font-family:'Segoe UI',Inter,Arial,sans-serif;
+  background:radial-gradient(ellipse at 25% 25%,#344ca5 0%,transparent 47%),
+    radial-gradient(ellipse at 85% 80%,#29215c 0%,transparent 48%),
+    linear-gradient(132deg,#152752 0%,#0d1838 54%,#111b42 100%);
+  transform:translate3d(105%,0,0);opacity:0;
+  transition:transform .49s cubic-bezier(.2,.9,.24,1),opacity .45s ease;
+  user-select:none;-webkit-user-select:none;cursor:pointer;
+}
+#mlx12Privacy.mlx12-enter{transform:translate3d(0,0,0);opacity:1}
+#mlx12Privacy.mlx12-leave{transform:translate3d(-105%,0,0);opacity:0}
+#mlx12Privacy::after{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background-image:radial-gradient(rgba(186,207,255,.22) .75px,transparent .75px);
+  background-size:30px 30px;mask-image:linear-gradient(140deg,transparent 7%,#000 55%,transparent 95%);
+  pointer-events:none;
+}
+#mlx12Privacy .mlx12-orb{
+  position:absolute;z-index:-2;pointer-events:none;border-radius:50%;
+  filter:blur(4px);will-change:transform;
+}
+#mlx12Privacy .mlx12-orb.a{width:420px;height:420px;left:-130px;top:-150px;
+  background:radial-gradient(circle,rgba(100,145,255,.42),rgba(75,103,238,.08) 65%,transparent 71%);
+  animation:mlx12FloatA 21s ease-in-out infinite alternate}
+#mlx12Privacy .mlx12-orb.b{width:560px;height:560px;right:-150px;bottom:-210px;
+  background:radial-gradient(circle,rgba(153,110,255,.27),rgba(75,68,170,.04) 66%,transparent 72%);
+  animation:mlx12FloatB 28s ease-in-out infinite alternate}
+#mlx12Privacy .mlx12-shell{
+  position:relative;width:min(90vw,620px);padding:38px 25px 31px;
+  border:1px solid rgba(205,219,255,.20);border-radius:30px;
+  background:linear-gradient(150deg,rgba(58,80,150,.32),rgba(22,33,79,.45));
+  box-shadow:0 28px 110px rgba(3,8,29,.24),inset 0 1px rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+#mlx12Privacy .mlx12-top{display:flex;justify-content:center;align-items:center;gap:9px;color:#b9c8f7;font-size:11px;letter-spacing:.21em;font-weight:750}
+#mlx12Privacy .mlx12-dot{width:7px;height:7px;border-radius:50%;background:#67e3d1;box-shadow:0 0 0 4px rgba(103,227,209,.10)}
+#mlx12Privacy .mlx12-emblem{width:108px;height:108px;margin:27px auto 15px;display:grid;place-items:center;
+  border-radius:28px;background:linear-gradient(145deg,rgba(131,158,255,.24),rgba(67,84,165,.11));
+  border:1px solid rgba(188,204,255,.22);box-shadow:0 20px 50px rgba(11,21,61,.25)}
+#mlx12Privacy .mlx12-emblem img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 6px 13px rgba(7,12,38,.35))}
+#mlx12Privacy .mlx12-emblem svg{width:70px;height:70px;stroke:#d4ddff;fill:none;stroke-width:2.7;stroke-linejoin:round}
+#mlx12Privacy .mlx12-brand{font-size:27px;font-weight:790;letter-spacing:-.06em}
+#mlx12Privacy .mlx12-sub{margin:8px 0 23px;font-size:13px;color:#bdc9eb}
+#mlx12Privacy .mlx12-clock{font-size:clamp(55px,9vw,91px);font-weight:320;line-height:1;letter-spacing:-.065em;font-variant-numeric:tabular-nums}
+#mlx12Privacy .mlx12-date{margin-top:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#b7c8f2}
+#mlx12Privacy .mlx12-openhint{margin:29px auto 0;display:flex;justify-content:center;align-items:center;gap:10px;
+  width:max-content;max-width:100%;padding:12px 20px;border-radius:99px;background:rgba(138,170,255,.18);
+  border:1px solid rgba(180,199,255,.25);font-weight:680;font-size:13px}
+#mlx12Privacy .mlx12-openhint svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+#mlx12Privacy .mlx12-foot{margin-top:24px;letter-spacing:.06em;color:#9dadd6;font-size:10px}
+@keyframes mlx12FloatA{from{transform:translate3d(0,0,0)}to{transform:translate3d(110px,85px,0)}}
+@keyframes mlx12FloatB{from{transform:translate3d(0,0,0)}to{transform:translate3d(-95px,-65px,0)}}
+@media(max-width:550px){
+ #mlx12Privacy .mlx12-shell{padding:23px 18px;border-radius:22px}
+ #mlx12Privacy .mlx12-emblem{width:82px;height:82px;margin:20px auto 12px}
+ #mlx12Privacy .mlx12-brand{font-size:23px}
+ #mlx12Privacy .mlx12-openhint{margin-top:22px}
+}
+@media(prefers-reduced-motion:reduce){
+ #mlx12Privacy{transition:none!important}
+ #mlx12Privacy .mlx12-orb{animation:none!important}
+}
