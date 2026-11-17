@@ -18,6 +18,14 @@ original = gzip.decompress(base64.b64decode(compressed))
 assert hashlib.sha256(original).hexdigest() == SRC_PARTS['indexHtmlSha256'], 'Source HTML SHA mismatch'
 html = original.decode('utf-8')
 
+def inject_at_document_end(markup, block):
+    """Insert before the LAST </body>, avoiding receipt-printing HTML templates in JS strings."""
+    closing = '</body>'
+    idx = markup.lower().rfind(closing)
+    assert idx >= 0 and markup.lower().rfind('</html>') > idx, 'Missing final document body'
+    return markup[:idx] + block + markup[idx:]
+
+
 # The verified base UI is unchanged. All new fixes are additive and HTML-only.
 for file in ['medilab-rev2.css', 'medilab-rev3.css', 'medilab-rev4.css',
              'medilab-nowbrief.css', 'medilab-notifications-107.css', 'medilab-final-108.css']:
@@ -44,19 +52,19 @@ js = (SRC / 'medilab-html-1010.js').read_text('utf-8')
 assert '</script' not in js.lower()
 assert html.lower().count('</head>') >= 1 and html.lower().count('</body>') >= 1
 html = re.sub(r'</head>', lambda _: '<style data-source="medilab-html-1010.css">\n' + css + '\n</style>\n</head>', html, count=1, flags=re.I)
-html = re.sub(r'</body>', lambda _: '<script data-source="medilab-html-1010.js">\n' + js + '\n</script>\n</body>', html, count=1, flags=re.I)
+html = inject_at_document_end(html, '<script data-source="medilab-html-1010.js">\n' + js + '\n</script>\n')
 # Include the refined Light/Dark clock, 3D chart and verified HTML updater control.
 css111=(SRC/'medilab-final-111.css').read_text('utf-8')
 js111=(SRC/'medilab-final-111.js').read_text('utf-8')
 assert '</script' not in js111.lower()
 html=re.sub(r'</head>',lambda _: '<style data-source="medilab-final-111.css">\n'+css111+'\n</style>\n</head>',html,count=1,flags=re.I)
-html=re.sub(r'</body>',lambda _: '<script data-source="medilab-final-111.js">\n'+js111+'\n</script>\n</body>',html,count=1,flags=re.I)
+html = inject_at_document_end(html, '<script data-source="medilab-final-111.js">\n' + js111 + '\n</script>\n')
 # Version 10.0.12: GPU-light Midnight Prism standby. Additive HTML-only injection.
 standby_css = (SRC / 'medilab-standby-112.css').read_text('utf-8')
 standby_js = (SRC / 'medilab-standby-112.js').read_text('utf-8')
 assert '</script' not in standby_js.lower()
 html = re.sub(r'</head>', lambda _: '<style data-source="medilab-standby-112.css">\n' + standby_css + '\n</style>\n</head>', html, count=1, flags=re.I)
-html = re.sub(r'</body>', lambda _: '<script data-source="medilab-standby-112.js">\n' + standby_js + '\n</script>\n</body>', html, count=1, flags=re.I)
+html = inject_at_document_end(html, '<script data-source="medilab-standby-112.js">\n' + standby_js + '\n</script>\n')
 html = '<!-- MediLab X 10.0.12 HTML-only standby; native shell remains 10.0.11. No installer. -->\n' + html
 PUBLISH.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html, 'utf-8')
