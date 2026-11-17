@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Publish HTML-only MediLab X 10.0.11; do not build or announce an EXE."""
+"""Publish HTML-only MediLab X 10.0.12; keep native 10.0.11 unchanged."""
 from pathlib import Path
 import gzip, base64, hashlib, json, re
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'medilab-x' / 'current'
 PUBLISH = ROOT / 'medilab-x'
-OUT = PUBLISH / 'MediLab_X_10_0_11.html'
+OUT = PUBLISH / 'MediLab_X_10_0_12.html'
 MAN = PUBLISH / 'update.json'
-VERS = '10.0.11'
+VERS = '10.0.12'
 CURRENT_NATIVE = '10.0.11'
 SRC_PARTS = json.loads((SRC / 'source-manifest.json').read_text('utf-8'))
 assert SRC_PARTS['version'] == CURRENT_NATIVE
@@ -51,7 +51,13 @@ js111=(SRC/'medilab-final-111.js').read_text('utf-8')
 assert '</script' not in js111.lower()
 html=re.sub(r'</head>',lambda _: '<style data-source="medilab-final-111.css">\n'+css111+'\n</style>\n</head>',html,count=1,flags=re.I)
 html=re.sub(r'</body>',lambda _: '<script data-source="medilab-final-111.js">\n'+js111+'\n</script>\n</body>',html,count=1,flags=re.I)
-html = '<!-- MediLab X 10.0.11 standalone HTML edition; native shell stays 10.0.11. No installer. -->\n' + html
+# Version 10.0.12: GPU-light Midnight Prism standby. Additive HTML-only injection.
+standby_css = (SRC / 'medilab-standby-112.css').read_text('utf-8')
+standby_js = (SRC / 'medilab-standby-112.js').read_text('utf-8')
+assert '</script' not in standby_js.lower()
+html = re.sub(r'</head>', lambda _: '<style data-source="medilab-standby-112.css">\n' + standby_css + '\n</style>\n</head>', html, count=1, flags=re.I)
+html = re.sub(r'</body>', lambda _: '<script data-source="medilab-standby-112.js">\n' + standby_js + '\n</script>\n</body>', html, count=1, flags=re.I)
+html = '<!-- MediLab X 10.0.12 HTML-only standby; native shell remains 10.0.11. No installer. -->\n' + html
 PUBLISH.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html, 'utf-8')
 sha = hashlib.sha256(OUT.read_bytes()).hexdigest()
@@ -63,14 +69,14 @@ assert manifest['version'] == CURRENT_NATIVE
 assert re.fullmatch(r'[0-9a-f]{64}', manifest['sha256'])
 assert '/medilab-x-v10.0.11/MediLab-X-Setup-10.0.11-x64.exe' in manifest['downloadUrl']
 manifest['htmlVersion'] = VERS
-manifest['htmlUrl'] = 'https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_11.html'
+manifest['htmlUrl'] = 'https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilab-x/MediLab_X_10_0_12.html'
 manifest['htmlSha256'] = sha
 manifest['htmlReleaseNotes'] = [
-    'Analog + Digital clock styling refined for Light and Dark themes, with no calendar icon',
-    'Animated downward-expanding calendar without a visible scrollbar',
-    'Interactive 3D chart for CT, X-Ray and Ultrasound based on real receipts',
-    'Preserved Prism Ribbon, Original Heartbeat and animated 270px clock',
-    'One-time native 10.0.11 bridge allows future HTML-only updates without new installers'
+    'Midnight Prism animated privacy standby screen',
+    'Automatic privacy lock after 5 minutes without mouse or keyboard activity',
+    'Lock button next to Minimize on the Windows titlebar',
+    'Slide-in and slide-out animations with tap or key to unlock (no PIN)',
+    'Existing patient records, receipts, report workflows and native 10.0.11 shell unchanged'
 ]
 MAN.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', 'utf-8')
 print('HTML-only published:', OUT, OUT.stat().st_size, sha)
