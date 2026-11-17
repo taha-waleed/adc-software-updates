@@ -1,1 +1,1 @@
-Publish MediLab X 10.0.11 HTML and JSON after verified Windows bootstrap; 3D modality chart and smooth animated calendar, 2026-11-07.
+Publish MediLab X HTML 10.0.12 + update.json: Midnight Prism animated privacy standby, manual titlebar lock, 5-minute idle lock, tap-to-unlock. Native version remains 10.0.11. 2026-11-17.
