@@ -1,1 +1,1 @@
-Publish MediLab X HTML 10.0.12 + update.json: Midnight Prism animated privacy standby, manual titlebar lock, 5-minute idle lock, tap-to-unlock. Native version remains 10.0.11. 2026-11-17.
+Republish MediLab X HTML 10.0.12 with receipt-template-safe end-of-document JS injection. Native EXE remains 10.0.11. 2026-11-17 safety rebuild.
