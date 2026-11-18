@@ -1,14 +1,13 @@
 {
   "schema": 1,
-  "version": "10.0.5",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.5/MediLabX.html",
-  "sha256": "ebee7d0a377eb6d62a687b324cd25bdcf6244810aa44ed98b8e81bc74ede2eea",
+  "version": "10.0.6",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.6/MediLabX.html",
+  "sha256": "0c5058903733d84cf09f06035b9f8d56f8323bf93842e0492f5262173a993fca",
   "notes": [
-    "Selected Mac Preferences: fixed-size Settings workspace with separate inner scrolling only.",
-    "Removed the duplicate theme selection card; compact live accent and light/dark controls now live inside Appearance.",
-    "Modern slim Settings icons, preference rows and Admin Workspace without changing original forms.",
-    "Release Spotlight retains live GitHub updater and existing verified-install workflow.",
-    "Developer Corner shortcut Ctrl+D opens the original password-protected Developer Options.",
-    "Original clinical data, receipts, lab functions and Electron updater transport unchanged."
+    "Patient registration: Age and Gender are required before saving or generating a new receipt.",
+    "Referring Doctor defaults to Self for new registrations and after form reset.",
+    "Settings Doctor Directory opens in a fixed modal with existing editable doctor controls.",
+    "Application close request displays a Yes/No confirmation; no cancels closing.",
+    "Existing patient data, receipt histories, design choices, and Electron update transport remain unchanged."
   ]
 }
