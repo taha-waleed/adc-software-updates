@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "version": "10.0.6",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.6/MediLabX.html",
-  "sha256": "0c5058903733d84cf09f06035b9f8d56f8323bf93842e0492f5262173a993fca",
+  "version": "10.0.7",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.7/MediLabX.html",
+  "sha256": "af77dd1043698d66304b945d6b1ed87090d0db0de01a19793485d718ceb82b14",
   "notes": [
-    "Patient registration: Age and Gender are required before saving or generating a new receipt.",
-    "Referring Doctor defaults to Self for new registrations and after form reset.",
-    "Settings Doctor Directory opens in a fixed modal with existing editable doctor controls.",
-    "Application close request displays a Yes/No confirmation; no cancels closing.",
-    "Existing patient data, receipt histories, design choices, and Electron update transport remain unchanged."
+    "Miniature Midnight Fish Tank in the existing taskbar; taskbar height is not increased.",
+    "10 photorealistic AI-drawn tropical fish, with swim speed 84 and ambient water bubbles enabled by default.",
+    "Settings > Appearance now contains Fish Tank controls: theme, species, fish count, speed, bubbles, visibility, pause, feeding, and reset.",
+    "All fish artwork is embedded for offline use; animation pauses when hidden and respects reduced-motion preferences.",
+    "No clinical data, receipts, doctor directory, login, Developer Corner, or Electron updater transport modified."
   ]
 }
