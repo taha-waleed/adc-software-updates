@@ -1,14 +1,13 @@
 {
   "schema": 1,
-  "version": "10.1.0",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.0/MediLabX.html",
-  "sha256": "9f9ba1b0adfc2b3962d253d948e08d65ae02051c118d3870f9c3a81ca05c3674",
+  "version": "10.1.1",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.1/MediLabX.html",
+  "sha256": "f40c786d27a7fe51cbf6ed44046f844669cf3d4389e32de6d4709e847a3c9541",
   "notes": [
-    "MediLab X 10.1: unified Navy Duo-Tone design with consistent light and dark modes across existing workspaces.",
-    "Restored flat classic left sidebar: no floating glow, refined line icons and subtle hover/focus interactions.",
-    "Settings, Admin, patient tables, radiology, reports and update card share high-contrast accessible typography and surfaces.",
-    "Removed alternate theme palettes from the visible interface; existing user preference data is retained.",
-    "Maintained fixed Settings frame, inner scrolling, Fish Tank, Tests & Rates, notifications and all pre-existing workflows.",
-    "HTML-only verified GitHub update, local data records, receipt/report handlers and native Electron updater unchanged."
+    "Corrected left sidebar geometry to fully rectangular: no rounded outer corners, detached gap, shadow or glow.",
+    "Restored the original Radiology Rate List item directly below Radiology Reports in the left sidebar, with a clean modern icon.",
+    "Added visible Tests & Rates quick-access beside Patient Registration; both controls open the existing Rate List popup and honor permissions.",
+    "Existing Navy Duo-Tone Light/Dark design, clinical workflows, Fish Tank, records, reports and receipts preserved.",
+    "Original Electron update transport and GitHub m/update.json channel unchanged."
   ]
 }
