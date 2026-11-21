@@ -1,0 +1,116 @@
+<!-- MediLab X 10.1.1 — Sidebar geometry and Rates accessibility; no clinical code modified -->
+<style id="mlx1011-rect-sidebar-and-rates-css">
+@media screen {
+/* Beat older, more specific 10.0.10 floating-rail rules without changing navigation behavior. */
+html body.mlx101-ui.mlx110-ui #app .sidebar,
+html body.mlx101-ui.mlx110-ui:not(.ml10-topnav) #app .sidebar,
+html.medilab-desktop body.mlx101-ui.mlx110-ui:not(.ml10-topnav) #app .sidebar,
+html.medilab-desktop body.mlx101-ui.mlx110-ui.ml10-topnav #app .sidebar {
+  position:fixed!important;inset:0 auto 0 0!important;left:0!important;right:auto!important;
+  top:0!important;bottom:0!important;margin:0!important;
+  width:222px!important;max-width:222px!important;height:100vh!important;max-height:100vh!important;
+  background:#182c4d!important;background-image:none!important;
+  border-radius:0!important;border:0!important;border-right:1px solid #314769!important;
+  box-shadow:none!important;filter:none!important;backdrop-filter:none!important;
+  padding:18px 11px 12px!important;overflow:hidden!important;transform:none!important;
+}
+/* Native titlebar remains interactive; sidebar begins immediately below the 38px titlebar. */
+html.medilab-desktop body.mlx101-ui.mlx110-ui #app .sidebar,
+html.medilab-desktop body.mlx101-ui.mlx110-ui:not(.ml10-topnav) #app .sidebar {
+  top:38px!important;bottom:0!important;height:calc(100vh - 38px)!important;
+  max-height:calc(100vh - 38px)!important;
+}
+html body.mlx101-ui.mlx110-ui #app .main,
+html.medilab-desktop body.mlx101-ui.mlx110-ui #app .main{
+  margin-left:222px!important;width:calc(100% - 222px)!important;max-width:none!important;
+}
+html body.mlx101-ui.mlx110-ui #app .sidebar::before,
+html body.mlx101-ui.mlx110-ui #app .sidebar::after{
+  border-radius:0!important;box-shadow:none!important;filter:none!important;
+}
+/* Restore existing Rate List navigation, using the same quiet square-ish menu treatment. */
+html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"],
+html.medilab-desktop body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"]{
+  display:flex!important;position:relative!important;flex:0 0 auto!important;align-items:center!important;
+  justify-content:flex-start!important;gap:11px!important;width:100%!important;max-width:100%!important;
+  min-height:40px!important;max-height:45px!important;margin:1px 0!important;padding:9px 11px!important;
+  background:transparent!important;background-image:none!important;color:#e4edfc!important;
+  border:1px solid transparent!important;border-radius:7px!important;box-shadow:none!important;
+  opacity:1!important;font-size:13.2px!important;font-weight:560!important;
+  text-align:left!important;text-decoration:none!important;transform:none!important;
+  transition:background-color .18s ease,color .18s ease,translate .18s ease!important;
+}
+html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"]:hover{
+  background:#ffffff1a!important;color:#fff!important;translate:2px 0!important;
+}
+html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"]:focus-visible{
+  outline:2px solid #bad0fa!important;outline-offset:1px!important;
+}
+html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"] .adc-nav-icon{
+  display:grid!important;place-items:center!important;width:20px!important;min-width:20px!important;
+  height:20px!important;color:inherit!important;
+}
+html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"] .adc-nav-icon svg{
+  width:18px!important;height:18px!important;stroke:currentColor!important;stroke-width:1.75!important;
+  fill:none!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+/* Reception quick access uses the same functioning Rate List popup as the navigation item. */
+html body.mlx101-ui #reception .mlx1011-rates-quick{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;
+  padding:8px 12px!important;min-height:34px!important;border-radius:8px!important;
+  font-size:12.5px!important;font-weight:650!important;line-height:1.2!important;
+  background:var(--mlx101-card,#fff)!important;color:var(--mlx101-ink,#1a2f4e)!important;
+  border:1px solid var(--mlx101-line,#cbd5e4)!important;
+  box-shadow:none!important;transition:background-color .17s ease,border-color .17s ease!important;
+}
+html body.mlx101-ui #reception .mlx1011-rates-quick:hover{
+  background:var(--mlx101-soft,#e7edf7)!important;border-color:var(--mlx101-outline,#85a4d7)!important;
+}
+html body.mlx101-ui #reception .mlx1011-rates-quick svg{
+  width:15px;height:15px;stroke:currentColor;stroke-width:1.8;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+html body.mlx101-ui #reception .panel-head{gap:10px!important;flex-wrap:wrap!important;align-items:center!important}
+@media (max-width:900px) {
+ html body.mlx101-ui.mlx110-ui #app .sidebar,
+ html.medilab-desktop body.mlx101-ui.mlx110-ui #app .sidebar{width:76px!important;max-width:76px!important;padding:13px 7px!important}
+ html body.mlx101-ui.mlx110-ui #app .main,
+ html.medilab-desktop body.mlx101-ui.mlx110-ui #app .main{margin-left:76px!important;width:calc(100% - 76px)!important}
+ html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"]{justify-content:center!important;padding:9px!important}
+ html body.mlx101-ui.mlx110-ui #app #nav button[data-page="ratelist"] .adc-nav-label{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){html body.mlx101-ui #reception .mlx1011-rates-quick,html body.mlx101-ui #nav button[data-page="ratelist"]{transition:none!important;translate:0 0!important}}
+}
+</style>
+<script id="mlx1011-rect-sidebar-and-rates-js">
+(()=>{'use strict';
+const ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14M5 10h14M5 16h9"/><path d="M17 15v6M14 18h6"/></svg>';
+function showRates(){
+  if(typeof window.mlx108OpenRates==='function'){window.mlx108OpenRates();return;}
+  const nav=document.querySelector('#nav button[data-page="ratelist"]');
+  if(nav)nav.click();
+}
+function sync(){
+  const nav=document.getElementById('nav');
+  const reports=nav?.querySelector('button[data-page="reports"]');
+  const rates=nav?.querySelector('button[data-page="ratelist"]');
+  if(nav&&rates){
+    if(reports&&reports.nextElementSibling!==rates)reports.after(rates);
+    const label=rates.querySelector('.adc-nav-label');if(label)label.textContent='Rate List';
+    const icon=rates.querySelector('.adc-nav-icon');if(icon&&icon.dataset.mlx1011!=='1'){
+      icon.innerHTML=ICON;icon.dataset.mlx1011='1';
+    }
+    rates.title='Radiology Tests & Rates';rates.setAttribute('aria-label','Open Radiology Rate List');
+  }
+  const head=document.querySelector('#reception .panel .panel-head');
+  if(head&&!head.querySelector('#mlx1011ReceptionRates')){
+    const b=document.createElement('button');b.id='mlx1011ReceptionRates';b.className='mlx1011-rates-quick';b.type='button';
+    b.innerHTML=ICON+'<span>Tests &amp; Rates</span>';
+    b.setAttribute('aria-label','Open Radiology Tests and Rates');b.title='Manage Radiology Rate List';
+    b.addEventListener('click',showRates);head.appendChild(b);
+  }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{sync();setTimeout(sync,550);setTimeout(sync,1600)},{once:true});
+else{sync();setTimeout(sync,550);setTimeout(sync,1600)}
+})();
+</script>
