@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.1.2",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.2/MediLabX.html",
-  "sha256": "5e08660e1f756eb411293c94141b5f1f8769778e0f2569e5c5d6753cf3654126",
+  "version": "10.1.3",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.3/MediLabX.html",
+  "sha256": "c3acf15e078feefd9c332f667c93d32ddb30452438b0d2649a516b8ee89d65e2",
   "notes": [
-    "Professional Light/Dark Duo-Tone contrast corrections across Settings, forms, tables, cards, popups and panels.",
-    "Fixed mismatched pale Settings navigation in Dark Mode; restored consistent app-matching inner sidebar.",
-    "Fixed Light/Dark segmented button labels with explicit high-contrast selected and unselected states.",
-    "Software Updates release title and version now explicitly white on a solid Navy banner.",
-    "Readable Segoe UI typography, calm hover transitions and reduced-motion accessibility support.",
-    "Existing square left taskbar, Rate List, Fish Tank, patient records, reports, receipts and GitHub updater code unchanged."
+    "MediLab X 10.1 final polish: compact Rate List button at the very bottom of the classic left navigation, above Sign Out.",
+    "Removed duplicate Rate List sidebar entry while preserving the existing Radiology Rate List popup and test management actions.",
+    "Final dark-mode Light/Dark selected-state contrast correction.",
+    "Retained 10.1.2 unified professional Navy/White-Slate theme, consistent Settings panel, typography, cards and high-contrast update banner.",
+    "Smooth restrained hover interactions and reduced-motion preference retained.",
+    "No patient records, receipts, reports, stock, login, clinical workflows or Electron GitHub updater changed."
   ]
 }
