@@ -1,13 +1,14 @@
 {
   "schema": 1,
-  "version": "10.1.1",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.1/MediLabX.html",
-  "sha256": "f40c786d27a7fe51cbf6ed44046f844669cf3d4389e32de6d4709e847a3c9541",
+  "version": "10.1.2",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.1.2/MediLabX.html",
+  "sha256": "5e08660e1f756eb411293c94141b5f1f8769778e0f2569e5c5d6753cf3654126",
   "notes": [
-    "Corrected left sidebar geometry to fully rectangular: no rounded outer corners, detached gap, shadow or glow.",
-    "Restored the original Radiology Rate List item directly below Radiology Reports in the left sidebar, with a clean modern icon.",
-    "Added visible Tests & Rates quick-access beside Patient Registration; both controls open the existing Rate List popup and honor permissions.",
-    "Existing Navy Duo-Tone Light/Dark design, clinical workflows, Fish Tank, records, reports and receipts preserved.",
-    "Original Electron update transport and GitHub m/update.json channel unchanged."
+    "Professional Light/Dark Duo-Tone contrast corrections across Settings, forms, tables, cards, popups and panels.",
+    "Fixed mismatched pale Settings navigation in Dark Mode; restored consistent app-matching inner sidebar.",
+    "Fixed Light/Dark segmented button labels with explicit high-contrast selected and unselected states.",
+    "Software Updates release title and version now explicitly white on a solid Navy banner.",
+    "Readable Segoe UI typography, calm hover transitions and reduced-motion accessibility support.",
+    "Existing square left taskbar, Rate List, Fish Tank, patient records, reports, receipts and GitHub updater code unchanged."
   ]
 }
