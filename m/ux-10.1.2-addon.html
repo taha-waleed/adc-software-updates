@@ -228,7 +228,12 @@ html body.mlx101-ui #app button:disabled{cursor:not-allowed!important;opacity:.5
   html body.mlx101-ui #settings .mlx-pref-segment > button{min-width:56px!important}
 }
 @media(prefers-reduced-motion:reduce){
-  html body.mlx101-ui #app *,html body.mlx101-ui #app *::before,html body.mlx101-ui #app *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  html body.mlx101-ui #app *,html body.mlx101-ui #app *::before,html body.mlx101-ui #app *::after{animation-duration:.01ms!important;scroll-behavior:auto!important}
+  html body.mlx101-ui #app button:not(:disabled),html body.mlx101-ui #app button:disabled,
+  html body.mlx101-ui #app .mlx-pref-segment button[aria-pressed],
+  html body.mlx101-ui #app :is(.panel,.card,.stat,.adc-settings-item,input,select,textarea){
+    animation:none!important;transition:none!important;
+  }
 }
 }
 
