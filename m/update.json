@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "version": "10.0.8",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.8/MediLabX.html",
-  "sha256": "ea68d2a9be53e307db3a58d1904af7bb4550fad6aff3302fd4e8ad90cf7f88f7",
+  "version": "10.0.9",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.9/MediLabX.html",
+  "sha256": "b768b3351da066bd704c7a977d4be4573860d3431c4b6d9debcaf799cfdf57ce",
   "notes": [
-    "Compact Rate List sidebar button opens an editable modal; admins can add, edit, delete and restore catalog tests.",
-    "Unified CT, X-Ray, Ultrasound and ECG/Other classification across reception, patient lists and earnings. Unknown legacy tests remain visible for review.",
-    "Test Analytics in Total Earning: booked quantities, saved gross charges, allocated collections, date/category filters, CSV and print.",
-    "Archived catalogue entries retain historical receipts and report templates; existing fish tank, settings and native updater preserved."
+    "Cash Summary chart: removed Departments toggle; CT / X-Ray / USG is now the only chart category view.",
+    "Received Rs / Examinations and Today / 7 Days / Month controls remain available.",
+    "All source code except the single Cash Summary mode-control markup is byte-for-byte preserved.",
+    "Existing patient records, historical earnings, rate list, test analytics, Fish Tank and native updater remain unchanged."
   ]
 }
