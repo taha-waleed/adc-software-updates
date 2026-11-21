@@ -1,0 +1,235 @@
+<!-- MediLab X 10.1.2: Unified Theme / Contrast / Motion only; code & clinical workflows unchanged. -->
+<style id="mlx1012-professional-contrast-css">
+/* MediLab X 10.1.2 — unified professional theme. Presentation-only layer. */
+@media screen {
+html body.mlx101-ui {
+  --mx12-navy:#182b4a;--mx12-navy2:#264368;
+  --mx12-bg:#f3f6fb;--mx12-panel:#ffffff;--mx12-subtle:#eaf0f7;
+  --mx12-input:#ffffff;--mx12-ink:#17283e;--mx12-muted:#53667d;
+  --mx12-line:#d8e1ec;--mx12-accent:#285b91;--mx12-active:#26466f;
+  --mx12-hover:#eaf1fa;--mx12-focus:#3979c0;--mx12-shadow:0 2px 10px rgba(18,37,64,.04);
+  --mx12-header:#eaf0f7;--mx12-banner:#1b2c47;
+  font-family:'Segoe UI Variable Text','Segoe UI Variable','Segoe UI',Inter,Arial,sans-serif!important;
+  font-size:14px!important;letter-spacing:normal!important;
+  background:var(--mx12-bg)!important;color:var(--mx12-ink)!important;
+  color-scheme:light;
+}
+html body.mlx101-ui[data-mlx101-mode="dark"] {
+  --mx12-navy:#142440;--mx12-navy2:#284465;
+  --mx12-bg:#111b2a;--mx12-panel:#1b2b40;--mx12-subtle:#22364e;
+  --mx12-input:#243750;--mx12-ink:#eef4fc;--mx12-muted:#c0cddd;
+  --mx12-line:#40536c;--mx12-accent:#a6ccff;--mx12-active:#345c89;
+  --mx12-hover:#2a415e;--mx12-focus:#a3cbfd;--mx12-shadow:0 2px 10px rgba(0,0,0,.08);
+  --mx12-header:#263b55;--mx12-banner:#172940;
+  background:var(--mx12-bg)!important;color:var(--mx12-ink)!important;
+  color-scheme:dark;
+}
+/* Canonical tokens drive original pages as well as later UI patches. */
+html body.mlx101-ui,
+html body.mlx101-ui #app,
+html body.mlx101-ui #settings {
+  --bg:var(--mx12-bg)!important;--panel:var(--mx12-panel)!important;
+  --ink:var(--mx12-ink)!important;--muted:var(--mx12-muted)!important;
+  --line:var(--mx12-line)!important;--brand:var(--mx12-accent)!important;
+  --brand2:var(--mx12-navy2)!important;--soft:var(--mx12-subtle)!important;
+  --mlx101-navy:var(--mx12-navy)!important;--mlx101-navy-alt:var(--mx12-navy2)!important;
+  --mlx101-hover:var(--mx12-hover)!important;--mlx101-accent:var(--mx12-accent)!important;
+  --mlx101-main:var(--mx12-bg)!important;--mlx101-card:var(--mx12-panel)!important;
+  --mlx101-ink:var(--mx12-ink)!important;--mlx101-muted:var(--mx12-muted)!important;
+  --mlx101-line:var(--mx12-line)!important;--mlx101-field:var(--mx12-input)!important;
+  --mlx101-soft:var(--mx12-subtle)!important;--mlx101-thead:var(--mx12-header)!important;
+  --mlx101-outline:var(--mx12-focus)!important;
+  --mlx-bg:var(--mx12-bg)!important;--mlx-card:var(--mx12-panel)!important;
+  --mlx-ink:var(--mx12-ink)!important;--mlx-muted:var(--mx12-muted)!important;
+  --mlx-border:var(--mx12-line)!important;--mlx-field:var(--mx12-input)!important;
+  --mlx-brand:var(--mx12-accent)!important;--mlx-brand-soft:var(--mx12-subtle)!important;
+  --mlx-thead:var(--mx12-header)!important;--mlx-glow:transparent!important;
+}
+html body.mlx101-ui #app,
+html body.mlx101-ui #app .main,
+html body.mlx101-ui #app .page {
+  background-color:var(--mx12-bg)!important;color:var(--mx12-ink)!important;
+}
+/* Explicit surfaces and ink to defeat old embedded light-only gradients. */
+html body.mlx101-ui #app :is(.panel,.card,.stat,.stat-card,.summary-card,.summary-tile,.table-wrap,.adc-settings-shell,.adc-settings-group,.adc-setting-view,.adc-settings-lead,.mlx-mac-layout,.mlx-pref-design,.mlx-pref-row),
+html body.mlx101-ui #app :is(.adc-modal,.ml85-modal,.adc85-modal) {
+  background-color:var(--mx12-panel)!important;background-image:none!important;
+  border-color:var(--mx12-line)!important;color:var(--mx12-ink)!important;
+  box-shadow:var(--mx12-shadow)!important;backdrop-filter:none!important;
+}
+html body.mlx101-ui #app :is(h1,h2,h3,h4,.page-title,.panel-head h2),
+html body.mlx101-ui #app :is(.adc-settings-lead h2,.adc-setting-view h2) {
+  color:var(--mx12-ink)!important;-webkit-text-fill-color:var(--mx12-ink)!important;
+  font-weight:650!important;letter-spacing:-.018em!important;
+}
+html body.mlx101-ui #app :is(.muted,.hint,.field label,.adc-setting-copy small,.mlx-pref-caption,.mlx-pref-help) {
+  color:var(--mx12-muted)!important;-webkit-text-fill-color:var(--mx12-muted)!important;
+  line-height:1.48!important;
+}
+html body.mlx101-ui #app :is(input,textarea,select) {
+  background:var(--mx12-input)!important;background-image:none!important;
+  color:var(--mx12-ink)!important;-webkit-text-fill-color:var(--mx12-ink)!important;
+  border:1px solid var(--mx12-line)!important;border-radius:8px!important;
+  font:inherit!important;font-size:14px!important;min-height:37px!important;
+}
+html body.mlx101-ui #app :is(input,textarea)::placeholder{color:var(--mx12-muted)!important;opacity:.88!important}
+html body.mlx101-ui #app :is(table,.table,thead,tbody,tr,td,th){border-color:var(--mx12-line)!important;color:var(--mx12-ink)!important}
+html body.mlx101-ui #app :is(thead,thead th,.thead,.table-head){background:var(--mx12-header)!important;color:var(--mx12-ink)!important}
+html body.mlx101-ui #app :is(.secondary,.adc-settings-back){background:var(--mx12-subtle)!important;color:var(--mx12-ink)!important;border-color:var(--mx12-line)!important}
+html body.mlx101-ui #app :is(.primary,button.primary){background:var(--mx12-navy2)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:var(--mx12-navy2)!important}
+html body.mlx101-ui #app :is(button,input,textarea,select,a):focus-visible{outline:2px solid var(--mx12-focus)!important;outline-offset:2px!important}
+/* Fixed-height Settings workstation; independently scrollable rail and content. */
+html body.mlx101-ui #settings .adc-settings-shell,
+html body.mlx101-ui #settings .mlx-mac-layout {
+  background:var(--mx12-panel)!important;background-image:none!important;
+  border:1px solid var(--mx12-line)!important;
+  border-radius:12px!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+html body.mlx101-ui #settings .adc-settings-lead{
+  background:var(--mx12-panel)!important;border:1px solid var(--mx12-line)!important;
+}
+html body.mlx101-ui #settings .mlx-mac-layout #adcSettingsList,
+html body.mlx101-ui #settings #adcSettingsList,
+html body.mlx101-ui #settings .adc-settings-list{
+  background:var(--mx12-subtle)!important;background-image:none!important;background-color:var(--mx12-subtle)!important;
+  color:var(--mx12-ink)!important;border-right:1px solid var(--mx12-line)!important;
+  box-shadow:none!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;
+  scrollbar-color:var(--mx12-line) transparent;
+}
+/* Override old theme gradients on the exact Settings navigation element. */
+html body.mlx101-ui[data-mlx101-mode] #app #settings .mlx-mac-layout #adcSettingsList,
+html body.mlx101-ui[data-mlx101-mode] #app #settings #adcSettingsList {
+  background:var(--mx12-subtle)!important;
+  background-color:var(--mx12-subtle)!important;
+  background-image:none!important;
+  color:var(--mx12-ink)!important;
+  -webkit-text-fill-color:var(--mx12-ink)!important;
+}
+html body.mlx101-ui[data-mlx101-mode] #app #settings #adcSettingsList .adc-settings-item,
+html body.mlx101-ui[data-mlx101-mode] #app #settings #adcSettingsList .adc-settings-item :is(strong,small,.adc-setting-symbol,.adc-setting-chevron) {
+  color:var(--mx12-ink)!important;
+  -webkit-text-fill-color:var(--mx12-ink)!important;
+}
+html body.mlx101-ui[data-mlx101-mode] #app #settings #adcSettingsList .adc-settings-item small {
+  color:var(--mx12-muted)!important;
+  -webkit-text-fill-color:var(--mx12-muted)!important;
+}
+html body.mlx101-ui #settings #adcSettingsViews,
+html body.mlx101-ui #settings .adc-settings-views {
+  background:var(--mx12-panel)!important;background-image:none!important;
+  min-width:0!important;min-height:0!important;overflow-y:auto!important;
+  overscroll-behavior:contain!important;
+}
+html body.mlx101-ui #settings #adcSettingsViews .adc-setting-view,
+html body.mlx101-ui #settings .adc-settings-views .adc-setting-view {
+  background:var(--mx12-panel)!important;background-image:none!important;color:var(--mx12-ink)!important;
+  border:0!important;box-shadow:none!important;min-width:0!important;
+}
+html body.mlx101-ui #settings #adcSettingsList .adc-settings-item,
+html body.mlx101-ui #settings .adc-settings-item {
+  background:transparent!important;background-image:none!important;
+  color:var(--mx12-ink)!important;-webkit-text-fill-color:var(--mx12-ink)!important;
+  border:1px solid transparent!important;box-shadow:none!important;
+  min-height:40px!important;border-radius:8px!important;font-size:13.5px!important;
+  font-weight:550!important;transition:background-color .18s ease,border-color .18s ease,transform .18s ease!important;
+}
+html body.mlx101-ui #settings #adcSettingsList .adc-settings-item:is(:hover,:focus-visible),
+html body.mlx101-ui #settings .adc-settings-item:is(:hover,:focus-visible) {
+  background:var(--mx12-hover)!important;transform:translateX(2px)!important;
+}
+html body.mlx101-ui #settings #adcSettingsList .adc-settings-item:is(.active,.is-active,[aria-current="true"],[aria-selected="true"]),
+html body.mlx101-ui #settings .adc-settings-item:is(.active,.is-active,[aria-current="true"],[aria-selected="true"]) {
+  background:var(--mx12-panel)!important;color:var(--mx12-ink)!important;
+  border-color:var(--mx12-line)!important;transform:none!important;
+}
+html body.mlx101-ui #settings .adc-setting-copy strong,
+html body.mlx101-ui #settings .adc-settings-item .adc-nav-label,
+html body.mlx101-ui #settings .adc-settings-item .adc-setting-symbol,
+html body.mlx101-ui #settings .adc-settings-item .adc-setting-chevron {
+  color:var(--mx12-ink)!important;-webkit-text-fill-color:var(--mx12-ink)!important;
+}
+html body.mlx101-ui #settings .adc-setting-copy small {color:var(--mx12-muted)!important;-webkit-text-fill-color:var(--mx12-muted)!important;font-size:11.5px!important}
+html body.mlx101-ui #settings :is(.mlx-mac-heading,.mlx-mac-group-title,.mlx-mac-section-label) {color:var(--mx12-muted)!important;background:transparent!important;border-color:var(--mx12-line)!important;font-weight:700!important}
+html body.mlx101-ui #settings .mlx-pref-row {background:var(--mx12-panel)!important;border-bottom:1px solid var(--mx12-line)!important;box-shadow:none!important;min-height:60px!important}
+html body.mlx101-ui #settings .mlx-pref-row strong{color:var(--mx12-ink)!important;font-size:14px!important;font-weight:650!important}
+html body.mlx101-ui #settings .mlx-pref-row small{color:var(--mx12-muted)!important;font-size:12.5px!important;line-height:1.5!important}
+/* Light / Dark segmented control: no inherited dark-on-dark text, including WebKit text fill. */
+html body.mlx101-ui #settings .mlx-pref-segment {
+  display:inline-flex!important;align-items:center!important;gap:3px!important;
+  background:var(--mx12-subtle)!important;border:1px solid var(--mx12-line)!important;
+  padding:3px!important;border-radius:10px!important;box-shadow:none!important;
+}
+html body.mlx101-ui #settings .mlx-pref-segment > button,
+html body.mlx101-ui #settings .mlx-pref-segment button[aria-pressed="false"] {
+  min-width:66px!important;min-height:34px!important;padding:6px 12px!important;
+  background:transparent!important;background-image:none!important;
+  color:var(--mx12-muted)!important;-webkit-text-fill-color:var(--mx12-muted)!important;
+  opacity:1!important;text-shadow:none!important;filter:none!important;
+  border:0!important;border-radius:7px!important;font-size:13px!important;font-weight:650!important;
+}
+html body.mlx101-ui #settings .mlx-pref-segment > button[aria-pressed="true"],
+html body.mlx101-ui #settings .mlx-pref-segment button.active,
+html body.mlx101-ui #settings .mlx-pref-segment button[aria-pressed="true"] {
+  background:var(--mx12-active)!important;background-image:none!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border:1px solid transparent!important;opacity:1!important;
+  box-shadow:none!important;text-shadow:none!important;filter:none!important;
+}
+html body.mlx101-ui #settings .mlx-pref-segment > button:hover{transform:none!important;filter:none!important}
+html body.mlx101-ui #settings .mlx-pref-switch {box-shadow:none!important;border:1px solid var(--mx12-line)!important}
+html body.mlx101-ui #settings .mlx-pref-switch[aria-checked="true"]{background:var(--mx12-active)!important}
+/* No alternative colour palettes. Keep saved settings and existing theme handlers for compatibility. */
+html body.mlx101-ui #settings :is(#mlxThemeSettings,#adcThemeCards,.mlx-pref-colors,.mlx-theme-studio,.mlx-theme-dots,.mlx-theme-select-wrap),
+html body.mlx101-ui #app .sidebar :is(.mlx-theme-studio,.mlx-theme-dots,.mlx-theme-select-wrap),
+html body.mlx101-ui #settings .mlx-pref-design .mlx-pref-row:has(.mlx-pref-colors) {display:none!important}
+/* Update card: scope to live release banner only, never affect hide/show state. */
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer .adc85-release-top {
+  background:var(--mx12-banner)!important;background-image:none!important;
+  border:1px solid #3a516f!important;border-radius:12px!important;
+  color:#f7faff!important;-webkit-text-fill-color:#f7faff!important;
+  box-shadow:none!important;opacity:1!important;
+}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer .adc85-release-top *,
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer #adc85NewVersion,
+html body.mlx101-ui #settings #adc85UpdateOffer .adc85-release-top small {
+  color:#f7faff!important;-webkit-text-fill-color:#f7faff!important;
+  text-shadow:none!important;filter:none!important;opacity:1!important;
+}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer .adc85-release-top small{
+  font-size:11px!important;letter-spacing:.11em!important;font-weight:700!important;
+}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer #adc85NewVersion{
+  font-size:clamp(18px,1.75vw,24px)!important;line-height:1.25!important;
+  font-weight:700!important;letter-spacing:-.02em!important;
+}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer .adc85-release-sparkle{color:#b8d7ff!important;-webkit-text-fill-color:#b8d7ff!important}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer :is(.adc85-update-actions,.adc85-release-notes){background:var(--mx12-panel)!important;color:var(--mx12-ink)!important}
+html body.mlx101-ui #settings #adc85UpdateCentre #adc85UpdateOffer button {font-size:13px!important;font-weight:650!important}
+/* Uniform, legible popovers and clinical dialogs; no changes to their event handlers. */
+html body.mlx101-ui :is(.adc85-modal,.ml85-modal,.mlx108-rate-modal,.mlx108-modal,.adc85-modal-dialog),
+html body.mlx101-ui #app :is(.adc85-modal,.ml85-modal,.mlx108-rate-modal,.mlx108-modal) {
+  background:var(--mx12-panel)!important;color:var(--mx12-ink)!important;border-color:var(--mx12-line)!important;
+}
+html body.mlx101-ui :is(.adc85-modal,.ml85-modal,.mlx108-rate-modal,.mlx108-modal) :is(h1,h2,h3,h4,label,strong) {color:var(--mx12-ink)!important}
+html body.mlx101-ui #app :is(.adc-settings-group,.adc-settings-lead,.adc-setting-view,.panel) p,
+html body.mlx101-ui #app :is(.adc-settings-group,.adc-settings-lead,.adc-setting-view,.panel) small {line-height:1.5!important}
+/* Smooth but restrained transitions, no expensive all-property animations. */
+html body.mlx101-ui #app :is(.panel,.card,.stat,.adc-settings-item,.primary,.secondary,button,[role="switch"],input,select,textarea){
+  transition:color .18s ease,background-color .20s ease,border-color .20s ease,box-shadow .2s ease,transform .18s cubic-bezier(.22,.8,.28,1)!important;
+}
+html body.mlx101-ui #app :is(.panel,.card,.stat){animation:mx12-fade-in .22s ease-out both}
+@keyframes mx12-fade-in{from{opacity:.96;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+html body.mlx101-ui #app button:not(:disabled):active{transform:scale(.985)}
+html body.mlx101-ui #app button:disabled{cursor:not-allowed!important;opacity:.57!important}
+@media (max-width:850px){
+  html body.mlx101-ui #settings #adcSettingsList{min-width:0!important}
+  html body.mlx101-ui #settings .mlx-pref-segment > button{min-width:56px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html body.mlx101-ui #app *,html body.mlx101-ui #app *::before,html body.mlx101-ui #app *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+}
+
+</style>
