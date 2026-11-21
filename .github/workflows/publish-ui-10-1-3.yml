@@ -1,0 +1,36 @@
+name: Publish MediLab X 10.1.3 - Final Sidebar Rate List
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-ui-10-1-3.yml
+      - m/publish_ui_10_1_3.py
+      - m/ux-10.1.3-bottom-rates.html
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilabx-ui-10-1-3
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 10.1.2 and apply source-preserving 10.1.3 addon
+        run: python3 m/publish_ui_10_1_3.py
+      - name: Publish verified HTML and SHA-256 update manifest
+        run: |
+          git config user.name "medilab-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medilabx-ui-10.1.3/MediLabX.html m/update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "MediLab X 10.1.3 final polish: bottom Rate List and dark toggle contrast"
+            git push
+          fi
