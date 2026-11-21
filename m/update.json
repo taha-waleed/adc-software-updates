@@ -1,13 +1,12 @@
 {
   "schema": 1,
-  "version": "10.0.7",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.7/MediLabX.html",
-  "sha256": "af77dd1043698d66304b945d6b1ed87090d0db0de01a19793485d718ceb82b14",
+  "version": "10.0.8",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.8/MediLabX.html",
+  "sha256": "ea68d2a9be53e307db3a58d1904af7bb4550fad6aff3302fd4e8ad90cf7f88f7",
   "notes": [
-    "Miniature Midnight Fish Tank in the existing taskbar; taskbar height is not increased.",
-    "10 photorealistic AI-drawn tropical fish, with swim speed 84 and ambient water bubbles enabled by default.",
-    "Settings > Appearance now contains Fish Tank controls: theme, species, fish count, speed, bubbles, visibility, pause, feeding, and reset.",
-    "All fish artwork is embedded for offline use; animation pauses when hidden and respects reduced-motion preferences.",
-    "No clinical data, receipts, doctor directory, login, Developer Corner, or Electron updater transport modified."
+    "Compact Rate List sidebar button opens an editable modal; admins can add, edit, delete and restore catalog tests.",
+    "Unified CT, X-Ray, Ultrasound and ECG/Other classification across reception, patient lists and earnings. Unknown legacy tests remain visible for review.",
+    "Test Analytics in Total Earning: booked quantities, saved gross charges, allocated collections, date/category filters, CSV and print.",
+    "Archived catalogue entries retain historical receipts and report templates; existing fish tank, settings and native updater preserved."
   ]
 }
