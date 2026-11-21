@@ -1,12 +1,14 @@
 {
   "schema": 1,
-  "version": "10.0.9",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.9/MediLabX.html",
-  "sha256": "b768b3351da066bd704c7a977d4be4573860d3431c4b6d9debcaf799cfdf57ce",
+  "version": "10.0.10",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.0.10/MediLabX.html",
+  "sha256": "3cb7cf460aebed3cd02b2271796fd0c40bfd253849f831fcc89664e18268f464",
   "notes": [
-    "Cash Summary chart: removed Departments toggle; CT / X-Ray / USG is now the only chart category view.",
-    "Received Rs / Examinations and Today / 7 Days / Month controls remain available.",
-    "All source code except the single Cash Summary mode-control markup is byte-for-byte preserved.",
-    "Existing patient records, historical earnings, rate list, test analytics, Fish Tank and native updater remain unchanged."
+    "New Floating Mini Sidebar: slim rounded navigation, modern line icons, original feature locations and permissions retained.",
+    "Moved Rate List affordance to Radiology Reports header as Tests & Rates; existing working popup and add/edit/delete functions reused.",
+    "Fixed notification visibility: floating top-right toasts stay below the taskbar, correctly stacked without blocking clicks.",
+    "Settings uses the selected Aurora Floating Glass style with fixed outer workspace and scrolling inner content.",
+    "Software Updates release card uses the selected Carbon Pro high-contrast theme; GitHub update mechanism unchanged.",
+    "Existing fish tank, clinical records, admin/security, receipts, reports and native Electron updater unchanged."
   ]
 }
