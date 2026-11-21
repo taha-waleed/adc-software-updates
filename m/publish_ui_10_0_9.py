@@ -46,7 +46,7 @@ def publish():
     for required in (b'data-mlx-chart-mode="modalities"', b'data-mlx-chart-metric="received"', b'data-mlx-chart-metric="visits"', b'data-mlx-chart-period="today"', b'data-mlx-chart-period="week"', b'data-mlx-chart-period="month"', b'id="mlxCashBars"'):
         if required not in result:
             raise RuntimeError('Existing Cash Summary control missing: ' + required.decode())
-    if result.count(b'data-mlx-chart-mode="modalities"') != 1:
+    if result.count(b'<button class="is-on" data-mlx-chart-mode="modalities" type="button">') != 1:
         raise RuntimeError('Modality button was duplicated.')
     TARGET.parent.mkdir(parents=True, exist_ok=True)
     if TARGET.exists() and TARGET.read_bytes() != result:
