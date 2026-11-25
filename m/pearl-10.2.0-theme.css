@@ -1,0 +1,410 @@
+/* MEDILAB X 10.2 — PEARL CLINICAL FINAL DESIGN
+   Presentation-only CSS; no clinical or update logic modified.
+   Existing page sections, control locations and event handlers stay in place.
+   Reference palette: warm silvery pearl, soft titanium, cobalt blue (not pure white).
+*/
+@media screen {
+html body.mlx101-ui.mlx202-release.mlx202-release {
+  --px-base:#e9eaec;--px-silver:#d4d6d9;--px-surface:#f2f3f4;--px-card:#f8f8f9;
+  --px-card-2:#e8e9eb;--px-elevated:#fcfcfc;--px-text:#24282f;--px-muted:#707680;
+  --px-action:#0866ff;--px-stroke:#d7dbe0;--px-stroke-glow:rgba(255,255,255,.90);--px-accent:#0866ff;
+  --px-hover:#dfe9fa;--px-active:#e4edff;--px-strong:#1a263c;
+  --px-shadow:0 12px 36px rgba(34,41,53,.06),0 2px 8px rgba(34,41,53,.035);
+  --px-deep:0 18px 42px rgba(36,46,58,.11),0 2px 5px rgba(36,46,58,.035);
+  --px-field:#f5f6f7;--px-table:#eef0f2;--px-overlay:rgba(47,54,65,.24);
+  --bg:var(--px-base)!important;--panel:var(--px-card)!important;--ink:var(--px-text)!important;
+  --muted:var(--px-muted)!important;--line:var(--px-stroke)!important;--brand:var(--px-accent)!important;
+  --brand2:#044ed6!important;--soft:var(--px-card-2)!important;--mlx-bg:var(--px-base)!important;
+  --mlx-card:var(--px-card)!important;--mlx-ink:var(--px-text)!important;--mlx-muted:var(--px-muted)!important;
+  --mlx-border:var(--px-stroke)!important;--mlx-brand:var(--px-accent)!important;
+  --mlx101-main:var(--px-base)!important;--mlx101-card:var(--px-card)!important;
+  --mlx101-ink:var(--px-text)!important;--mlx101-muted:var(--px-muted)!important;
+  --mlx101-line:var(--px-stroke)!important;--mlx101-soft:var(--px-card-2)!important;
+  --mlx101-navy:var(--px-strong)!important;--mlx101-accent:var(--px-accent)!important;
+  font-family:'Inter','Segoe UI Variable Text','Segoe UI Variable','Avenir Next','Segoe UI',Arial,sans-serif!important;
+  color:var(--px-text)!important;background:var(--px-base)!important;
+  -webkit-font-smoothing:antialiased;font-synthesis:none;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode="dark"] {
+  --px-base:#161a20;--px-silver:#1c222b;--px-surface:#20262e;--px-card:#262d37;
+  --px-card-2:#303844;--px-elevated:#303945;--px-text:#f0f3f8;--px-muted:#b0bdca;
+  --px-action:#1d5ed6;--px-stroke:#3c4654;--px-stroke-glow:rgba(133,158,192,.09);--px-accent:#5b97ff;
+  --px-hover:#303f59;--px-active:#293e62;--px-strong:#e6efff;
+  --px-shadow:0 14px 34px rgba(0,0,0,.16),0 2px 8px rgba(0,0,0,.1);
+  --px-deep:0 24px 60px rgba(0,0,0,.32);--px-field:#2a323c;--px-table:#2b333e;
+  --px-overlay:rgba(0,0,0,.55);--brand2:#4389fa!important;
+  color-scheme:dark;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app,html body.mlx101-ui.mlx202-release.mlx202-release #app .main,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .page,html body.mlx101-ui.mlx202-release.mlx202-release .app{
+  background:transparent!important;color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .main{padding-bottom:24px!important}
+/* The reference has a silver, softly inset exterior; never flat #fff. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar{
+  background:linear-gradient(155deg,var(--px-elevated),var(--px-card-2))!important;
+  border:2px solid var(--px-stroke-glow)!important;border-radius:25px!important;
+  box-shadow:var(--px-shadow),inset 0 0 0 1px var(--px-stroke)!important;
+  color:var(--px-text)!important;backdrop-filter:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .brand,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .sidebar-foot{
+  background:transparent!important;color:var(--px-text)!important;border-color:var(--px-stroke)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .brand strong,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .brand *,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .sidebar-foot,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .sidebar-foot *{color:var(--px-text)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .ml-nav-group,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .muted{color:var(--px-muted)!important;letter-spacing:.12em!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar button[data-page]{
+  background:transparent!important;color:var(--px-muted)!important;border:1px solid transparent!important;
+  border-radius:14px!important;box-shadow:none!important;
+  font-weight:600!important;letter-spacing:-.01em!important;
+  transition:transform .24s cubic-bezier(.2,.75,.2,1),background-color .25s ease,color .25s ease,box-shadow .25s ease!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button:hover{
+  color:var(--px-text)!important;background:var(--px-hover)!important;transform:translateX(3px)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button.active,
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button[aria-current="page"]{
+  background:var(--px-accent)!important;border-color:transparent!important;
+  color:#fff!important;box-shadow:0 8px 17px rgba(4,95,239,.17)!important;
+  transform:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button.active .adc-nav-icon,
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button.active .adc-nav-label{color:#fff!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav .adc-nav-icon,
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav svg{color:inherit!important;stroke:currentColor!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar-foot button,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar-foot .secondary{
+  background:var(--px-elevated)!important;color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;border-radius:12px!important;
+}
+/* Header is an inset rounded pearl surface; existing clock & actions unchanged. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app .top{
+  background:var(--px-surface)!important;border:2px solid var(--px-stroke-glow)!important;
+  border-radius:25px!important;padding:17px 23px!important;color:var(--px-text)!important;
+  box-shadow:var(--px-shadow),inset 0 0 0 1px var(--px-stroke)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .top h1,
+html body.mlx101-ui.mlx202-release.mlx202-release #app h1,html body.mlx101-ui.mlx202-release.mlx202-release #app h2,
+html body.mlx101-ui.mlx202-release.mlx202-release #app h3,html body.mlx101-ui.mlx202-release.mlx202-release .ml85-modal h2,
+html body.mlx101-ui.mlx202-release.mlx202-release .adc85-modal h2{
+  color:var(--px-text)!important;font-family:inherit!important;font-weight:700!important;
+  letter-spacing:-.04em!important;line-height:1.2!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .top h1{font-size:26px!important;letter-spacing:-.045em!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .muted,
+html body.mlx101-ui.mlx202-release.mlx202-release #app small,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .label{color:var(--px-muted)!important}
+/* Every clinical module shares exactly one surface and radius system. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.panel,.stat,.card,.adc-settings-shell,.adc-settings-group,.adc-settings-lead,.adc-admin-onecol>.panel,.mlx-kpi-grid>.stat){
+  background:var(--px-card)!important;color:var(--px-text)!important;
+  border:2px solid var(--px-stroke-glow)!important;border-radius:24px!important;
+  box-shadow:var(--px-shadow),inset 0 0 0 1px var(--px-stroke)!important;
+  backdrop-filter:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .panel,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .stat{transition:box-shadow .27s ease,transform .27s cubic-bezier(.22,.8,.22,1),border-color .27s ease!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .stat:hover{transform:translateY(-3px)!important;box-shadow:var(--px-deep)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .stat .value,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .stat strong,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .stat .number{color:var(--px-text)!important;font-weight:750!important;letter-spacing:-.04em!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .panel-head,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .page .toolbar,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .table-toolbar{border-color:var(--px-stroke)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .pill,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .badge,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .chip,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .adc-settings-version{
+  background:var(--px-card-2)!important;color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;border-radius:999px!important;
+  font-weight:650!important;box-shadow:none!important;
+}
+/* Elegant white/grey surface in reference — individual controls remain where they are. */
+html body.mlx101-ui.mlx202-release.mlx202-release :is(button,.btn,[role="button"]){font-family:inherit!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button,.btn):not(.active):not([aria-current="page"]):not(.adc-settings-menu-item){
+  transition:transform .21s cubic-bezier(.25,.8,.25,1),box-shadow .24s ease,background-color .24s ease,border-color .24s ease,color .24s ease!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button,.btn):not(:disabled):not([disabled]):not(.active):hover{
+  filter:none!important;box-shadow:0 5px 13px rgba(25,46,78,.08)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.primary,[type="submit"],.btn-primary,#quickReception){
+  background:var(--px-accent)!important;border:1px solid var(--px-accent)!important;
+  color:#fff!important;border-radius:13px!important;font-weight:700!important;
+  box-shadow:0 5px 15px rgba(5,94,234,.13)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.primary,[type="submit"],.btn-primary,#quickReception):hover{
+  background:var(--px-accent)!important;filter:brightness(1.07)!important;transform:translateY(-2px)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.secondary,.secondary,button:not(.primary):not(.active):not([data-page])){
+  border-radius:13px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.secondary,.secondary),
+html body.mlx101-ui.mlx202-release.mlx202-release #app .adc-settings-group button:not(.primary){
+  background:var(--px-card-2)!important;border:1px solid var(--px-stroke)!important;
+  color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.secondary,.secondary):hover{
+  background:var(--px-hover)!important;border-color:var(--px-accent)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){
+  background:var(--px-field)!important;color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;border-radius:13px!important;
+  box-shadow:inset 0 1px 2px rgba(10,24,44,.035)!important;
+  outline:none!important;accent-color:var(--px-accent)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(input,select,textarea):focus{
+  border-color:var(--px-accent)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--px-accent) 14%,transparent)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app input::placeholder,
+html body.mlx101-ui.mlx202-release.mlx202-release #app textarea::placeholder{color:var(--px-muted)!important;opacity:.83}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(input[type=checkbox],input[type=radio]){accent-color:var(--px-accent)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(table,thead,tbody,tr,td,th){border-color:var(--px-stroke)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app table{background:var(--px-card)!important;border-collapse:separate!important;border-spacing:0!important;border-radius:16px!important;overflow:hidden}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(thead,thead tr,th){background:var(--px-table)!important;color:var(--px-text)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(td,tbody tr){background:var(--px-card)!important;color:var(--px-text)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app tbody tr:hover td{background:var(--px-hover)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.chart,.chart-wrap,.chart-area,canvas){border-radius:17px!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.segmented,.seg,.segmented-control,.adc-filter-toggle,.medilab-filter-wrap){
+  background:var(--px-card-2)!important;border:1px solid var(--px-stroke)!important;
+  border-radius:14px!important;box-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.segmented,.seg,.segmented-control,.adc-filter-toggle,.medilab-filter-wrap) :is(button,[role="tab"]){border-radius:10px!important;color:var(--px-text)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.segmented,.seg,.segmented-control,.adc-filter-toggle,.medilab-filter-wrap) :is(button.active,button.is-on,[aria-pressed="true"]){
+  background:var(--px-accent)!important;color:#fff!important;
+}
+/* Existing Settings sidebar position untouched, same soft panel as other modules. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .adc-settings-shell{
+  background:var(--px-surface)!important;border-radius:26px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .adc-settings-lead{
+  background:var(--px-card)!important;padding:17px 19px!important;
+  border-radius:19px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#adcSettingsList,.adc-settings-list,.mlx105-settings-rail,.mlx-pref-rail){
+  background:var(--px-card-2)!important;color:var(--px-text)!important;
+  border-color:var(--px-stroke)!important;border-radius:18px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#adcSettingsViews,.adc-settings-views,.adc-settings-workspace){
+  background:var(--px-card)!important;color:var(--px-text)!important;
+  border-color:var(--px-stroke)!important;border-radius:19px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(.adc-settings-item,.adc-settings-menu-item,[data-setting-view],.mlx105-menu-item){
+  color:var(--px-text)!important;border-radius:12px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(.adc-settings-item,.adc-settings-menu-item,.mlx105-menu-item):hover{
+  background:var(--px-hover)!important;color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(.adc-settings-item.active,.adc-settings-menu-item.active,.mlx105-menu-item.active){
+  background:var(--px-active)!important;color:var(--px-accent)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(.adc-settings-section,.adc-settings-panel,.adc-settings-group){
+  background:var(--px-card)!important;color:var(--px-text)!important;border-radius:18px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(.mlx-pref-content,.mlx-pref-sidebar,.mlx105-settings-layout){
+  background:var(--px-card)!important;color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#mlxPrefLight,#mlxPrefDark){
+  background:var(--px-card-2)!important;color:var(--px-text)!important;border:1px solid var(--px-stroke)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode="light"] #app #mlxPrefLight,
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode="dark"] #app #mlxPrefDark{
+  background:var(--px-accent)!important;color:#fff!important;border-color:var(--px-accent)!important;
+}
+/* Update module avoids low-contrast gradient glitch in either mode. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer{
+  background:var(--px-elevated)!important;color:var(--px-text)!important;
+  border:2px solid var(--px-stroke-glow)!important;border-radius:23px!important;
+  box-shadow:var(--px-shadow)!important;overflow:hidden!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-top{
+  background:var(--px-strong)!important;color:var(--px-card)!important;
+  padding:24px!important;border-radius:20px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-top :is(h3,small,span){
+  color:var(--px-card)!important;-webkit-text-fill-color:var(--px-card)!important;
+  opacity:1!important;text-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode="dark"] #app #adc85UpdateOffer .adc85-release-top{
+  background:#394e70!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode="dark"] #app #adc85UpdateOffer .adc85-release-top :is(h3,small,span){
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-sparkle{color:var(--px-accent)!important}
+/* Full-surface popup system including patient edit, doctors, rate-list, approvals and update. */
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal,.adc85-modal,.modal,.dialog,.popup,.ml85-dialog,
+   #mlx108Rates .mlx108-rate-dialog,#mlx108Rates .mlx108-modal,
+   .mlx106-clinical-dialog,.mlx1014-modal){
+  background:var(--px-elevated)!important;color:var(--px-text)!important;
+  border:2px solid var(--px-stroke-glow)!important;border-radius:26px!important;
+  box-shadow:var(--px-deep)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal-layer,.adc85-modal-overlay,.modal-overlay,.mlx108-overlay){
+  background:var(--px-overlay)!important;backdrop-filter:blur(7px)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal,.adc85-modal,.modal,.dialog) :is(h2,h3,strong,label){color:var(--px-text)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal,.adc85-modal,.modal,.dialog) :is(p,small){color:var(--px-muted)!important}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal,.adc85-modal,.modal,.dialog) :is(input,select,textarea){
+  background:var(--px-field)!important;color:var(--px-text)!important;border:1px solid var(--px-stroke)!important;border-radius:13px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.ml85-modal,.adc85-modal,.modal,.dialog) button.primary{background:var(--px-accent)!important;color:#fff!important}
+/* Notification design selected in 10.1.4 is kept, now tuned to the same pearl system. */
+html body.mlx101-ui.mlx202-release.mlx202-release #mlx-notif-panel{
+  --mlxglass:color-mix(in srgb,var(--px-elevated) 90%,transparent)!important;
+  --mlxglass-border:var(--px-stroke)!important;--mlxtext:var(--px-text)!important;
+  --mlxsub:var(--px-muted)!important;--mlxchip:var(--px-card-2)!important;
+  background:var(--mlxglass)!important;color:var(--px-text)!important;
+  border:1px solid var(--px-stroke-glow)!important;border-radius:24px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release .mlx-toast-host .mlx-toast{
+  background:var(--px-elevated)!important;color:var(--px-text)!important;
+  border:1px solid var(--px-stroke-glow)!important;border-radius:999px!important;
+  box-shadow:var(--px-deep)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #toast{background:var(--px-elevated)!important;color:var(--px-text)!important;border-radius:17px!important}
+/* Titlebar: no change of position/height, only colour and surface. */
+html body.mlx101-ui.mlx202-release.mlx202-release #adc85Titlebar{
+  background:var(--px-surface)!important;color:var(--px-text)!important;
+  border-bottom:1px solid var(--px-stroke)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #adc85Titlebar :is(button,span){color:var(--px-text)!important}
+/* Layout safety: keep all original positions, support smaller Windows sizes. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.panel,.stat,.card,.adc-settings-group,.field,.row){min-width:0}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .page{scrollbar-color:var(--px-stroke) transparent;scrollbar-width:thin}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid var(--px-accent)!important;outline-offset:2px!important}
+@keyframes px-soft-enter{from{opacity:.82;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .page.active{animation:px-soft-enter .34s cubic-bezier(.2,.85,.25,1) both!important}
+html body.mlx101-ui.mlx202-release.mlx202-release :is(.adc85-modal-overlay,.ml85-modal-layer) :is(.adc85-modal,.ml85-modal){animation:px-soft-enter .25s cubic-bezier(.2,.85,.25,1) both}
+@media(prefers-reduced-motion:reduce){
+  html body.mlx101-ui.mlx202-release.mlx202-release #app *,html body.mlx101-ui.mlx202-release.mlx202-release .mlx-toast *,html body.mlx101-ui.mlx202-release.mlx202-release .ml85-modal *{
+    animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+\n/* MediLab X 10.2: legibility and consistency, without changing element locations. */
+html body.mlx101-ui.mlx202-release.mlx202-release{font-size:14px!important;line-height:1.45!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.top,.sidebar,.panel,.stat,.card,.adc-settings-shell,.adc-settings-group,.adc-settings-lead,
+  .mlx-mac-layout,.mlx1014-glass-card,table,input,select,textarea,button){font-family:inherit!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button[data-page]{font-size:13px!important;line-height:1.3!important;}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .ml-nav-group{font-size:10px!important}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.panel,.card,.adc-settings-group) :is(label,small,.muted,p,td,th){font-size:clamp(12px,.86vw,14px);line-height:1.5}
+html body.mlx101-ui.mlx202-release.mlx202-release #app button:not(.adc85-window-btn){font-size:clamp(12px,.84vw,14px)}
+/* UI colours use a shared contrast token in both themes, never dark text on a dark field. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.panel,.stat,.card,.adc-settings-group,.adc-settings-shell) :is(h2,h3,h4,strong,label){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.panel,.card,.adc-settings-shell) :is(p,small,.muted){
+  color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important
+}
+/* Explicitly retain filled/active control white labels regardless of generic text inheritance. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.btn-primary,#quickReception,[type=submit],#nav button.active),
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.btn-primary,#quickReception,[type=submit],#nav button.active) :is(span,strong,small,svg){
+  color:#fff!important;-webkit-text-fill-color:#fff!important
+}
+/* Sidebar: active state bright cobalt, inactive symbols/text have stable contrast. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button:not(.active),
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button:not(.active) :is(.adc-nav-icon,.adc-nav-label){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #nav button.active :is(.adc-nav-icon,.adc-nav-label,svg){
+  background:transparent!important;color:#fff!important;-webkit-text-fill-color:#fff!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .brand :is(.ml-new-brand-label,.ml-new-brand-label strong,.ml-new-brand-label small),
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .sidebar-foot :is(span,small,strong,div){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;opacity:1!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar .sidebar-foot :is(button,.secondary){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important
+}
+/* Settings rail matches the app's card language in Light and Dark. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .mlx-mac-layout,
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .mlx-mac-layout #adcSettingsList,
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .mlx-mac-layout #adcSettingsViews{
+  border:1px solid var(--px-stroke)!important;background:var(--px-card)!important;
+  color:var(--px-text)!important;border-radius:18px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings .mlx-mac-layout #adcSettingsList{
+  background:var(--px-card-2)!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings #adcSettingsList :is(button,.adc-settings-item,.mlx105-menu-item){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;background:transparent!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings #adcSettingsList :is(button.active,.adc-settings-item.active,.mlx105-menu-item.active){
+  background:var(--px-active)!important;color:var(--px-accent)!important;-webkit-text-fill-color:var(--px-accent)!important
+}
+/* Light / Dark segmented switch: inactive and active controls independently readable. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#mlxPrefLight,#mlxPrefDark){
+  background:var(--px-card-2)!important;color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;border-radius:10px!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#mlxPrefLight,#mlxPrefDark)[aria-pressed=true]{
+  background:var(--px-accent)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border-color:var(--px-accent)!important
+}
+/* Update card title: strong dark-navy surface with unconditionally white labels in either theme. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-top{
+  background:#1b3760!important;background-image:none!important;color:#fff!important;
+  border:1px solid #355683!important;border-radius:20px!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-top :is(h3,#adc85NewVersion,small,.adc85-release-sparkle,span),
+html body.mlx101-ui.mlx202-release.mlx202-release #app #adc85UpdateOffer .adc85-release-top :is(h3,#adc85NewVersion,small,.adc85-release-sparkle,span) *{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1!important;text-shadow:none!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release[data-mlx101-mode=dark] #app #adc85UpdateOffer .adc85-release-top{background:#294c79!important}
+/* Notification panels and interactive toasts retain accessibility and z-index stacking. */
+html body.mlx101-ui.mlx202-release.mlx202-release #mlx-notif-panel :is(.mlx-notif-card,.mlx-notif-card strong,.mlx-notif-card p,.mlx-notif-card small){
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #mlx-notif-panel .mlx-notif-card small{
+  color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release .mlx-toast-host{z-index:2147482700!important;pointer-events:none!important}
+html body.mlx101-ui.mlx202-release.mlx202-release .mlx-toast-host :is(.mlx-toast,button){pointer-events:auto!important}
+/* No animations in printable receipts/reports and less animation for motion-sensitive users. */
+@media(prefers-reduced-motion:reduce){
+  html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.page,.panel,.card,.stat,button){animation:none!important;transition-duration:.01ms!important}
+}
+
+
+
+/* Final theme regression fixes: observed on actual 10.1.4 DOM. */
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #nav#nav button[data-page].active,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #nav#nav button[data-page][aria-current=page]{
+ background:var(--px-action)!important;background-color:var(--px-action)!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:transparent!important;
+ box-shadow:0 8px 18px rgba(4,71,162,.15)!important;border-radius:14px!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #nav#nav button[data-page].active :is(.adc-nav-icon,.adc-nav-label),
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #nav#nav button[data-page][aria-current=page] :is(.adc-nav-icon,.adc-nav-label){
+ background:transparent!important;color:#fff!important;-webkit-text-fill-color:#fff!important
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #nav#nav .ml-nav-group{
+ color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important;
+ opacity:1!important;text-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #logoutBtn#logoutBtn,
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #logoutBtn#logoutBtn:disabled{
+ color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;
+ background:var(--px-card-2)!important;background-image:none!important;
+ border:1px solid var(--px-stroke)!important;opacity:1!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app .sidebar #logoutBtn#logoutBtn:not(:disabled):hover{
+ background:var(--px-hover)!important;color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.btn-primary,#quickReception,[type=submit]),
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(button.primary,.btn-primary,#quickReception,[type=submit]):hover{
+ background:var(--px-action)!important;border-color:var(--px-action)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx101-ui.mlx202-release.mlx202-release #app :is(.segmented,.seg,.segmented-control,.adc-filter-toggle,.medilab-filter-wrap) :is(button.active,button.is-on,[aria-pressed=true]),
+html body.mlx101-ui.mlx202-release.mlx202-release #app #settings :is(#mlxPrefLight,#mlxPrefDark)[aria-pressed=true]{
+ background:var(--px-action)!important;border-color:var(--px-action)!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* Existing Now Brief intentionally excluded: its original Midnight Prism background,
+   layout, animations, decorative effects, and message rendering remain unmodified. */
+
+}
