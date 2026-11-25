@@ -11573,7 +11573,7 @@ function mount(){
  ['13px','14px','15.5px'].map((x,i)=>'<button type="button" data-mlxr-font="'+x+'">'+['Small','Medium','Large'][i]+'</button>').join('')+
  '</div></div><div class="mlxr-display"><b>Corner roundness</b><input id="mlxrRadius" type="range" min="6" max="26" value="16"></div>'+
  '<div class="mlxr-display"><b>Compact density</b><input id="mlxrCompact" type="checkbox" aria-label="Compact density"></div>';
- const back=view.querySelector('[data-settings-back]');if(back)back.insertAdjacentElement('afterend',box);else view.prepend(box);
+ const title=view.querySelector(':scope > h2');if(title)title.insertAdjacentElement('afterend',box);else view.prepend(box);
  box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  if(b.dataset.mlxrTheme){st.theme=b.dataset.mlxrTheme;const native=Q(b.dataset.mlxrTheme==='dark'?'#mlxPrefDark':'#mlxPrefLight');if(native&&b.dataset.mlxrTheme!=='auto')native.click()}
  else if(b.dataset.mlxrAccent!==undefined)st.accent=+b.dataset.mlxrAccent;
