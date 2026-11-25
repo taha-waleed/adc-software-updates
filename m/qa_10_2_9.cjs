@@ -47,7 +47,7 @@ const check=(name,ok,details={})=>{if(!ok)throw Error('FAIL '+name+' '+JSON.stri
     !!first.list&&!!first.views&&first.list.left>=-10&&first.views.right<=width+16,first);
    if(width===1440){
     await page.screenshot({path:path.join(dir,'settings-overview-light.png')});
-    for(const key of ['centre','appearance','whatsapp','mlxdoctors','printlayout','updates','backup','developer']){
+    for(const key of ['centre','appearance','whatsapp','printlayout','updates','backup','developer']){
      const clicked=await page.evaluate(k=>{
       const b=document.querySelector('#adcSettingsList button[data-open-settings="'+k+'"]');
       if(!b)return false;
@@ -64,6 +64,24 @@ const check=(name,ok,details={})=>{if(!ok)throw Error('FAIL '+name+' '+JSON.stri
      check('Existing Settings '+key+' panel functional',clicked&&result.shown&&result.visible.length===1&&result.visible[0]===key,result);
      check('Active Settings '+key+' has accessible highlight',result.selected==='page',result);
     }
+    // Doctor Directory is deliberately a secure full-screen modal in the original 10.1.4,
+    // not a Settings subview. Verify that original behavior instead of overriding it.
+    const doctorClick=await page.evaluate(()=>{
+     const b=document.querySelector('#adcSettingsList button[data-open-settings="mlxdoctors"]');
+     if(!b)return false;
+     b.click();return true;
+    });
+    await page.waitForTimeout(130);
+    const doctorModal=await page.evaluate(()=>{
+     const modal=document.querySelector('#mlx106-doctor-modal');
+     const directory=document.querySelector('[data-setting-view="mlxdoctors"]');
+     return {open:!!modal&&!modal.hidden,directoryMoved:!!modal?.contains(directory)};
+    });
+    check('Original Doctor Directory modal opens without altering patient data',doctorClick&&doctorModal.open&&doctorModal.directoryMoved,doctorModal);
+    await page.screenshot({path:path.join(dir,'settings-doctors-modal.png')});
+    await page.evaluate(()=>document.querySelector('#mlx106-doctor-close')?.click());
+    await page.waitForTimeout(70);
+    check('Doctor Directory modal closes via original handler',await page.evaluate(()=>document.querySelector('#mlx106-doctor-modal')?.hidden===true));
     await page.screenshot({path:path.join(dir,'settings-controls-light.png')});
     // Restore Overview through original existing back control; check native shortcut delegation.
     await page.evaluate(()=>{
