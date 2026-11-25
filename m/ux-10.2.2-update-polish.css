@@ -1,0 +1,230 @@
+/* MediLab X 10.2.2 — live release/notification polish.
+   Intentionally scoped: does not alter clinical, report or print styles. */
+@media screen {
+  /* ACTION BUTTON REGRESSION: inherited -webkit-text-fill-color was dark on blue. */
+  html body #mlx-notif-panel .mlx-notif-card .mlx-notif-actions button.mlx-notif-open,
+  html body #mlx-notif-panel button.mlx-notif-open,
+  html body #mlx-notif-panel .mlx-notif-open:hover,
+  html body #mlx-notif-panel .mlx-notif-open:focus-visible {
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+    background:#244f86!important;
+    background-image:none!important;
+    border:1px solid #244f86!important;
+    font-weight:750!important;
+    text-shadow:none!important;
+    opacity:1!important;
+    box-shadow:0 2px 5px rgba(15,43,80,.10)!important;
+  }
+  html body #mlx-notif-panel .mlx-notif-card .mlx-notif-actions button.mlx-notif-open:hover {
+    background:#1161b5!important;
+    border-color:#1161b5!important;
+    transform:translateY(-1px);
+  }
+  html body #mlx-notif-panel .mlx-notif-card .mlx-notif-actions button.mlx-notif-mark,
+  html body #mlx-notif-panel #mlx-clear-history,
+  html body #mlx-notif-panel button.mlx-notif-more {
+    color:var(--mlxtext,#233a54)!important;
+    -webkit-text-fill-color:var(--mlxtext,#233a54)!important;
+  }
+
+  /* UPDATE DIALOG: gradient header text MUST stay white, including while installing. */
+  html body #adc85UpdateOverlay .adc85-modal {
+    overflow:hidden!important;
+    border-radius:22px!important;
+    background:#f8fafc!important;
+    color:#1e304d!important;
+    box-shadow:0 28px 90px rgba(4,20,46,.28)!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-head,
+  html body #adc85UpdateOverlay .adc85-modal-head *:not(button) {
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+    text-shadow:none!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-head {
+    background:linear-gradient(105deg,#162c51,#244a83)!important;
+    border-color:rgba(255,255,255,.10)!important;
+    min-height:85px!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-head h2#adc85ModalTitle {
+    font-size:19px!important;
+    letter-spacing:-.025em!important;
+    font-weight:790!important;
+    line-height:1.25!important;
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-head small {
+    color:#d3e2fc!important;
+    -webkit-text-fill-color:#d3e2fc!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-close,
+  html body #adc85UpdateOverlay .adc85-modal-close:hover {
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+    background:rgba(255,255,255,.13)!important;
+  }
+  html body #adc85UpdateOverlay .adc85-modal-content,
+  html body #adc85UpdateOverlay #ml10UpdateProgress {
+    background:#f8fafc!important;
+    color:#1e304d!important;
+  }
+  html body #adc85UpdateOverlay :is(#adc85ModalMessage,#ml10UpdateProgressText,#adc85ModalNotes,.adc-settings-notes) {
+    color:#304761!important;
+    -webkit-text-fill-color:#304761!important;
+  }
+  html body #adc85UpdateOverlay :is(#adc85ModalPrimary,.adc85-modal-actions button.primary) {
+    background:#0866ee!important;
+    border-color:#0866ee!important;
+    color:#fff!important;
+    -webkit-text-fill-color:#fff!important;
+  }
+  html body #adc85UpdateOverlay :is(#adc85ModalLater,.adc85-modal-actions button.secondary) {
+    background:#eaf0f8!important;
+    color:#203b5a!important;
+    -webkit-text-fill-color:#203b5a!important;
+    border-color:#ccd9e9!important;
+  }
+  html body.mlx101-ui[data-mlx101-mode="dark"] #adc85UpdateOverlay .adc85-modal,
+  html body.adc-dark-mode #adc85UpdateOverlay .adc85-modal,
+  html body.mlx101-ui[data-mlx101-mode="dark"] #adc85UpdateOverlay :is(.adc85-modal-content,#ml10UpdateProgress),
+  html body.adc-dark-mode #adc85UpdateOverlay :is(.adc85-modal-content,#ml10UpdateProgress) {
+    background:#17283e!important;
+    color:#ebf3ff!important;
+  }
+  html body.mlx101-ui[data-mlx101-mode="dark"] #adc85UpdateOverlay :is(#adc85ModalMessage,#ml10UpdateProgressText,#adc85ModalNotes,.adc-settings-notes),
+  html body.adc-dark-mode #adc85UpdateOverlay :is(#adc85ModalMessage,#ml10UpdateProgressText,#adc85ModalNotes,.adc-settings-notes) {
+    color:#e1ebfa!important;
+    -webkit-text-fill-color:#e1ebfa!important;
+  }
+
+  /* Neat and compact GitHub releases section. Original controls remain. */
+  html body #settings .adc-setting-view[data-setting-view="updates"] {
+    --mlx-github-card:#f7f9fc;
+    --mlx-github-line:#d7e0ec;
+    --mlx-github-text:#243b5b;
+    --mlx-github-muted:#647991;
+    --mlx-github-soft:#ebf1f8;
+    --mlx-github-active:#0866ee;
+    color:var(--mlx-github-text)!important;
+  }
+  html body.mlx101-ui[data-mlx101-mode="dark"] #settings .adc-setting-view[data-setting-view="updates"],
+  html body.adc-dark-mode #settings .adc-setting-view[data-setting-view="updates"] {
+    --mlx-github-card:#1b2b41;
+    --mlx-github-line:#3c516d;
+    --mlx-github-text:#f0f5ff;
+    --mlx-github-muted:#c0d0e3;
+    --mlx-github-soft:#263950;
+    --mlx-github-active:#367ef7;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] #medilabLocalReleaseNotes,
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre>.adc854-current-notes,
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre>p.muted {
+    display:none!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre,
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update {
+    background:var(--mlx-github-card)!important;
+    background-image:none!important;
+    border:1px solid var(--mlx-github-line)!important;
+    border-radius:18px!important;
+    box-shadow:none!important;
+    color:var(--mlx-github-text)!important;
+    padding:18px!important;
+    margin:14px 0!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] :is(#adc85UpdateCentre,.adc-admin-update) :is(h2,h3,strong,p,label,small) {
+    color:var(--mlx-github-text)!important;
+    -webkit-text-fill-color:var(--mlx-github-text)!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre :is(.adc85-update-status,.adc85-update-actions),
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update .actions {
+    border:0!important;
+    box-shadow:none!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-head {
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    margin:0 0 14px;padding:0 0 12px;
+    border-bottom:1px solid var(--mlx-github-line);
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-identity {
+    display:flex;align-items:center;gap:11px;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-logo {
+    display:grid;place-items:center;width:39px;height:39px;flex:none;
+    border-radius:13px;background:#172d4e;color:#fff;-webkit-text-fill-color:#fff;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-logo svg {
+    width:21px;height:21px;stroke:#fff;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.7;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-title {
+    display:flex;flex-direction:column;gap:3px;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-title strong {
+    font-size:15px!important;font-weight:780!important;line-height:1.2!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-title small {
+    font-size:11.5px;color:var(--mlx-github-muted)!important;
+    -webkit-text-fill-color:var(--mlx-github-muted)!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-check-pill {
+    display:inline-flex;align-items:center;gap:6px;border:1px solid var(--mlx-github-line);
+    background:var(--mlx-github-soft);color:var(--mlx-github-text);
+    -webkit-text-fill-color:var(--mlx-github-text);padding:7px 10px;border-radius:999px;
+    font-size:11px;font-weight:740;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-check-pill::before {
+    content:'';width:6px;height:6px;border-radius:50%;background:#20b7a0;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc85-update-status {
+    background:var(--mlx-github-soft)!important;border-radius:12px!important;
+    padding:12px 13px!important;margin:0 0 13px!important;
+    border:none!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateOffer {
+    border-radius:14px!important;overflow:hidden!important;margin:8px 0!important;
+    border:1px solid var(--mlx-github-line)!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateOffer .adc85-release-top :is(small,h3,h3 *,span) {
+    color:#fff!important;-webkit-text-fill-color:#fff!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc85-update-actions {
+    display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin:11px 0 0!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc85-update-actions button.primary {
+    background:var(--mlx-github-active)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+    border:1px solid transparent!important;border-radius:10px!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc85-update-actions button.secondary {
+    background:var(--mlx-github-soft)!important;color:var(--mlx-github-text)!important;
+    -webkit-text-fill-color:var(--mlx-github-text)!important;
+    border:1px solid var(--mlx-github-line)!important;border-radius:10px!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update .mlx1022-advanced {
+    margin:0!important;padding:0!important;background:transparent!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update .mlx1022-advanced summary {
+    padding:9px 11px!important;border-radius:10px!important;cursor:pointer;
+    color:var(--mlx-github-text)!important;-webkit-text-fill-color:var(--mlx-github-text)!important;
+    background:var(--mlx-github-soft)!important;border:1px solid var(--mlx-github-line)!important;
+    font-weight:720;font-size:12px;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update .mlx1022-advanced[open] summary {margin-bottom:12px}
+  html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update .mlx1022-advanced input {
+    background:var(--mlx-github-soft)!important;color:var(--mlx-github-text)!important;
+    -webkit-text-fill-color:var(--mlx-github-text)!important;
+    border:1px solid var(--mlx-github-line)!important;
+  }
+  html body #settings .adc-setting-view[data-setting-view="updates"] .mlx1022-github-source {
+    margin:0 0 11px!important;font-size:11.5px;line-height:1.5;
+    color:var(--mlx-github-muted)!important;-webkit-text-fill-color:var(--mlx-github-muted)!important;
+  }
+  @media(max-width:720px){
+    html body #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre,
+    html body #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update{padding:13px!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html body #mlx-notif-panel .mlx-notif-open{transition:none!important;transform:none!important}
+  }
+}
