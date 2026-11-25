@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.7",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.7/MediLabX.html",
-  "sha256": "a0f983fecbf1f54bdbda5e6a0e6dbb8f40ef8c53899838e5584afbe2fa5c0712",
+  "version": "10.2.8",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.8/MediLabX.html",
+  "sha256": "6548605a1168a78c282647ccca3c17243196c405217b66556e06a36cda63c8e4",
   "notes": [
-    "Top taskbar and left sidebar now share exactly the same premium dark navy blue gradient #0b1530 to #13204a in Light and Dark modes.",
-    "Privacy Standby redesigned to match supplied full-screen screenshot: large live clock, date, branding, fine dotted backdrop and smooth animated blue glow.",
-    "Six privacy screen visual presets with keyboard keys 1–6; H hides preset ribbon. Click or Escape unlocks using original no-PIN behavior.",
-    "Original five-minute automatic lock and native Windows lock button behavior retained. Added accessible lock action to main top taskbar.",
-    "Settings navigation repaired so original panels reliably open and selected category stays highlighted with correct visible/hidden state.",
-    "All existing clinical records, user roles, Admin forms, receipts, radiology reports, WhatsApp Desktop, updater and backup storage untouched."
+    "Requested rollback: restored the exact original MediLab X 10.1.4 HTML, visually and functionally, without any later 10.2.x UI patches.",
+    "This 10.2.8 update-channel version is a compatibility release label; the installed app HTML is byte-for-byte the archived 10.1.4 build.",
+    "Returns Settings, Admin, Privacy Standby, notification popups, navigation, colors and other screens to their original 10.1.4 implementation.",
+    "The HTML uses the same medilabx10_html_v1 patient database key and identical original loadDB/saveDB implementation as 10.2.7.",
+    "No patient database files or localStorage entries are deleted by the release, but create and verify a data backup before applying a downgrade.",
+    "Any features or bug fixes introduced after 10.1.4 are intentionally absent from this restored legacy build."
   ]
 }
