@@ -533,3 +533,43 @@ html body.mlx1023-reference.mlx1026-polish[data-mlxr-mode="dark"] .adc85-modal-h
 @media print{
  html body.mlx1023-reference.mlx1026-polish #app #settings .mlx26-welcome{display:none!important}
 }
+
+/* Optional dynamically-created Admin tab icons use the same circular tile language. */
+html body.mlx1023-reference.mlx1026-polish #app #admin #ml10AdminNav button .mlx26-admin-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 31px!important;width:31px!important;height:31px!important;
+ padding:0!important;margin:0 9px 0 0!important;
+ border-radius:50%!important;background:color-mix(in srgb,#2563eb 8%,var(--mlx26-surface))!important;
+ border:1px solid var(--mlx26-border)!important;
+ color:#2563eb!important;-webkit-text-fill-color:#2563eb!important;
+ box-shadow:none!important;
+}
+html body.mlx1023-reference.mlx1026-polish #app #admin #ml10AdminNav button .mlx26-admin-icon svg{
+ width:17px!important;height:17px!important;fill:none!important;
+ stroke:currentColor!important;stroke-width:1.9!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+ background:transparent!important;box-shadow:none!important;
+}
+html body.mlx1023-reference.mlx1026-polish #app #admin #ml10AdminNav button.active .mlx26-admin-icon{
+ background:rgba(255,255,255,.19)!important;border-color:rgba(255,255,255,.25)!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* Avoid a cramped multi-field profile editor; only small confirmation dialogs are capped. */
+html body.mlx1023-reference.mlx1026-polish #adcMyProfileDialog .adc-profile-editor,
+html body.mlx1023-reference.mlx1026-polish #adcMyProfileDialog .adc-profile-card{
+ width:min(680px,calc(100vw - 32px))!important;
+ max-width:calc(100vw - 32px)!important;
+}
+/* Dark mode: sanitize text in modal action areas, not the document print preview. */
+html body.mlx1023-reference.mlx1026-polish[data-mlxr-mode="dark"] :is(
+ .adc85-modal,.adc-confirm-card,.adc-safe-dialog
+) :is(button.secondary,button:not(.primary):not(.danger),.adc-settings-notes){
+ background:var(--mlx26-surface2)!important;
+ color:var(--mlx26-text)!important;-webkit-text-fill-color:var(--mlx26-text)!important;
+ border-color:var(--mlx26-border)!important;
+}
+html body.mlx1023-reference.mlx1026-polish[data-mlxr-mode="dark"] :is(
+ .adc85-modal,.adc-confirm-card,.adc-safe-dialog
+) button:is(.primary,.danger){
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
