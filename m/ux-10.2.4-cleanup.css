@@ -1,0 +1,343 @@
+/* MediLab X 10.2.4 — clean Settings, readable date filter and Admin cards.
+   Reference: user's medilab-x-settings(1).html; original clinical and update handlers intact. */
+html body.mlx1023-reference{
+  --mlxr-accent:#2563eb!important;
+  --mlxr-accent-2:#7c3aed!important;
+}
+/* One real update banner, one real action, no duplicated Github/release spotlight. */
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"] #medilabLocalReleaseNotes,
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"] .adc-admin-update,
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"] #adc85UpdateCentre{
+  display:none!important;
+}
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"]{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:2px 0 24px!important;
+}
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"]>h2{
+  margin:0 0 18px!important;
+  color:var(--mlxr-text)!important;
+  -webkit-text-fill-color:var(--mlxr-text)!important;
+  font-size:22px!important;line-height:1.3!important;
+}
+html body.mlx1023-reference #app #settings .adc-setting-view[data-setting-view="updates"] #mlxrUpdateHero{
+  margin:0!important;
+  padding:24px 26px!important;
+  min-height:146px!important;
+  border-radius:20px!important;
+  background:radial-gradient(900px 300px at 100% -20%,rgba(255,255,255,.22),transparent 60%),linear-gradient(135deg,#1e3a8a,#2563eb 48%,#7c3aed)!important;
+  box-shadow:0 14px 38px rgba(37,99,235,.22)!important;
+}
+html body.mlx1023-reference #app #settings #mlxrUpdateHero :is(h3,p,#mlxrHeroTitle,#mlxrHeroSub){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+}
+html body.mlx1023-reference #app #settings #mlxrUpdateHero #mlxrHeroSub{
+  color:#eaf0ff!important;-webkit-text-fill-color:#eaf0ff!important;
+  font-weight:550!important;line-height:1.6!important;
+}
+html body.mlx1023-reference #app #settings #mlxrUpdateHero #mlxrHeroAction{
+  color:#2558dc!important;-webkit-text-fill-color:#2558dc!important;
+  background:#fff!important;border:0!important;min-width:157px!important;
+  min-height:44px!important;box-shadow:0 7px 20px #0a174d24!important;
+}
+html body.mlx1023-reference #app #settings #mlxrUpdateHero #mlxrHeroAction:hover:not(:disabled){
+  transform:translateY(-1px)!important;filter:brightness(1.04)!important;
+}
+html body.mlx1023-reference #app #settings #mlxrUpdateHero #mlxrHeroAction:disabled{
+  cursor:wait!important;opacity:.68!important;
+}
+/* Remove BOTH new theme swatches and the older duplicate accent/theme editor. */
+html body.mlx1023-reference #app #settings #mlxrControls .mlxr-swatches,
+html body.mlx1023-reference #app #settings .mlx1024-legacy-appearance{
+  display:none!important;
+}
+html body.mlx1023-reference #app #settings #mlxrControls .mlxr-themes{
+  gap:14px!important;
+}
+html body.mlx1023-reference #app #settings #mlxrControls .mlxr-card{
+  border-radius:16px!important;min-height:125px!important;
+}
+/* Patients & receipts: date picker was squeezed to icon-width by flex/baseline rules. */
+html body.mlx1023-reference #app #patients .mlxr24-record-filters{
+  display:flex!important;align-items:end!important;justify-content:flex-start!important;
+  gap:12px 14px!important;flex-wrap:wrap!important;
+  width:100%!important;max-width:100%!important;
+  padding:12px 0 14px!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters .mlxr24-date-field{
+  display:flex!important;flex-direction:column!important;gap:7px!important;
+  align-items:stretch!important;
+  flex:0 0 190px!important;width:190px!important;min-width:190px!important;
+  max-width:190px!important;margin:0!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-date-field label{
+  display:block!important;white-space:nowrap!important;word-break:normal!important;
+  font-size:12px!important;line-height:1.3!important;font-weight:750!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+  margin:0!important;
+}
+html body.mlx1023-reference #app #patients #patientFilterDate{
+  display:block!important;box-sizing:border-box!important;
+  width:190px!important;min-width:190px!important;max-width:190px!important;
+  height:44px!important;min-height:44px!important;line-height:22px!important;
+  padding:9px 12px!important;appearance:auto!important;
+  border:1px solid var(--mlxr-line)!important;
+  border-radius:12px!important;background:var(--mlxr-surface)!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+  font:600 13px/22px 'Manrope','Segoe UI',sans-serif!important;
+  text-align:left!important;letter-spacing:0!important;
+  flex:none!important;overflow:visible!important;
+}
+html body.mlx1023-reference #app #patients #patientFilterDate::-webkit-calendar-picker-indicator{
+  display:block!important;width:17px!important;height:17px!important;
+  opacity:.8!important;margin:0!important;cursor:pointer!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters>label.check{
+  display:inline-flex!important;align-items:center!important;gap:8px!important;
+  min-height:44px!important;margin:0!important;
+  flex:0 0 auto!important;white-space:nowrap!important;
+  font-size:13px!important;color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters>label.check input{
+  width:16px!important;height:16px!important;min-width:16px!important;
+  margin:0!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters>.adc-patient-search{
+  display:flex!important;align-items:center!important;
+  flex:1 1 265px!important;min-width:215px!important;max-width:100%!important;
+  height:44px!important;box-sizing:border-box!important;
+  margin:0!important;
+  border-radius:12px!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters #patientSearch{
+  min-width:0!important;width:100%!important;flex:1 1 0!important;
+}
+html body.mlx1023-reference #app #patients .mlxr24-record-filters #exportCsv{
+  flex:0 0 auto!important;min-height:44px!important;
+  margin:0!important;white-space:nowrap!important;
+}
+/* Admin workspace — same reference font, card geometry and orderly hierarchy. */
+html body.mlx1023-reference #app #admin{
+  --mlx24admin-line:var(--mlxr-line);
+  --mlx24admin-surface:var(--mlxr-surface);
+  --mlx24admin-soft:var(--mlxr-surface2);
+  color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #admin .mlx-admin-title{
+  padding:20px 24px!important;margin:0 0 20px!important;
+  border:1px solid var(--mlxr-line)!important;background:var(--mlxr-surface)!important;
+  border-radius:20px!important;box-shadow:var(--mlxr-shadow)!important;
+}
+html body.mlx1023-reference #app #admin .mlx-admin-title h2{
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+  font-size:21px!important;font-weight:800!important;
+}
+html body.mlx1023-reference #app #admin .mlx-admin-title p{
+  color:var(--mlxr-muted)!important;-webkit-text-fill-color:var(--mlxr-muted)!important;
+}
+html body.mlx1023-reference #app #admin .adc-admin-onecol>.panel,
+html body.mlx1023-reference #app #admin>.panel:not(#ml10AdminNav),
+html body.mlx1023-reference #app #admin .mlx-admin-pane{
+  box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+  border:1px solid var(--mlxr-line)!important;
+  border-radius:19px!important;background:var(--mlxr-surface)!important;
+  padding:24px!important;box-shadow:var(--mlxr-shadow)!important;
+  margin-bottom:18px!important;
+}
+html body.mlx1023-reference #app #admin .panel-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  flex-wrap:wrap!important;gap:10px!important;
+  margin-bottom:14px!important;padding-bottom:14px!important;
+  border-bottom:1px solid var(--mlxr-line)!important;
+}
+html body.mlx1023-reference #app #admin .panel-head h2{
+  margin:0!important;color:var(--mlxr-text)!important;
+  -webkit-text-fill-color:var(--mlxr-text)!important;
+  font-size:16px!important;font-weight:800!important;line-height:1.35!important;
+}
+html body.mlx1023-reference #app #admin .panel-head .pill{
+  border-radius:999px!important;padding:6px 11px!important;
+  color:#2563eb!important;background:var(--mlxr-accent-soft)!important;
+  font-size:11px!important;white-space:nowrap!important;
+}
+html body.mlx1023-reference #app #admin :is(.muted,.panel>p){
+  color:var(--mlxr-muted)!important;-webkit-text-fill-color:var(--mlxr-muted)!important;
+  line-height:1.6!important;
+}
+html body.mlx1023-reference #app #admin #userForm{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  align-items:end!important;gap:17px 18px!important;
+}
+html body.mlx1023-reference #app #admin #userForm>.field{
+  min-width:0!important;margin:0!important;
+}
+html body.mlx1023-reference #app #admin #userForm>.row{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-column:1/-1!important;gap:16px!important;
+  margin:0!important;padding:0!important;align-items:end!important;
+}
+html body.mlx1023-reference #app #admin #userForm>.row>.field{
+  min-width:0!important;width:100%!important;max-width:none!important;
+}
+html body.mlx1023-reference #app #admin #userForm>#adcPermissionPicker{
+  grid-column:1/-1!important;
+  min-width:0!important;margin:3px 0 0!important;
+  border:1px solid var(--mlxr-line)!important;border-radius:15px!important;
+  padding:16px!important;background:var(--mlxr-surface2)!important;
+}
+html body.mlx1023-reference #app #admin #userForm>#adcPermissionPicker legend{
+  padding:0 9px!important;font-size:13px!important;line-height:1.4!important;
+  font-weight:800!important;color:var(--mlxr-text)!important;
+  -webkit-text-fill-color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #admin #adcPermissionPicker>.muted{
+  font-size:12px!important;padding:1px 0 8px!important;
+}
+html body.mlx1023-reference #app #admin .adc-permission-list{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:9px!important;width:100%!important;min-width:0!important;
+  margin:12px 0 0!important;align-items:stretch!important;
+}
+html body.mlx1023-reference #app #admin .adc-permission-list>label.check{
+  display:flex!important;flex-direction:row!important;align-items:center!important;
+  gap:9px!important;padding:11px 12px!important;margin:0!important;
+  min-width:0!important;width:auto!important;max-width:100%!important;
+  min-height:43px!important;border-radius:11px!important;
+  border:1px solid var(--mlxr-line)!important;background:var(--mlxr-surface)!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+  font-size:12px!important;font-weight:650!important;
+  line-height:1.45!important;white-space:normal!important;
+  word-break:normal!important;overflow-wrap:break-word!important;cursor:pointer!important;
+}
+html body.mlx1023-reference #app #admin .adc-permission-list>label.check:has(input:checked){
+  border-color:rgba(37,99,235,.4)!important;
+  background:color-mix(in srgb,#2563eb 7%,var(--mlxr-surface))!important;
+}
+html body.mlx1023-reference #app #admin .adc-permission-list>label.check input[type="checkbox"]{
+  flex:0 0 16px!important;margin:0!important;
+  width:16px!important;height:16px!important;min-width:16px!important;
+  accent-color:#2563eb!important;
+}
+html body.mlx1023-reference #app #admin .adc-permission-list>label.check input:disabled{
+  opacity:.72!important;cursor:not-allowed!important;
+}
+html body.mlx1023-reference #app #admin #userForm>button[type="submit"],
+html body.mlx1023-reference #app #admin #userForm>button.primary{
+  justify-self:start!important;grid-column:1/-1!important;
+  min-width:130px!important;min-height:42px!important;
+  margin:0!important;border-radius:12px!important;
+}
+html body.mlx1023-reference #app #admin .field label{
+  display:block!important;margin:0 0 7px!important;line-height:1.45!important;
+  font-size:12px!important;font-weight:750!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #admin :is(input:not([type="checkbox"]),select,textarea){
+  box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+  min-height:44px!important;padding:10px 13px!important;
+  border:1px solid var(--mlxr-line)!important;border-radius:12px!important;
+  background:var(--mlxr-surface2)!important;color:var(--mlxr-text)!important;
+  -webkit-text-fill-color:var(--mlxr-text)!important;
+  font-family:'Manrope','Segoe UI',sans-serif!important;font-size:13px!important;
+}
+html body.mlx1023-reference #app #admin :is(input,select,textarea):focus-visible{
+  outline:2px solid rgba(37,99,235,.58)!important;outline-offset:2px!important;
+}
+html body.mlx1023-reference #app #admin :is(#deletePinForm,#doctorForm)>.row{
+  display:flex!important;align-items:end!important;gap:12px!important;
+  flex-wrap:wrap!important;justify-content:flex-start!important;
+}
+html body.mlx1023-reference #app #admin #deletePinForm>.row>.field:first-child{
+  flex:1 1 270px!important;min-width:210px!important;
+}
+html body.mlx1023-reference #app #admin #deletePinForm>.row>.field:last-child{
+  flex:0 0 auto!important;min-width:0!important;
+}
+html body.mlx1023-reference #app #admin #deletePinForm>.row> .field:last-child button{
+  min-height:44px!important;min-width:155px!important;margin:0!important;
+}
+html body.mlx1023-reference #app #admin #doctorForm .field.wide{
+  flex:1 1 280px!important;min-width:200px!important;
+}
+html body.mlx1023-reference #app #admin .table-wrap{
+  min-width:0!important;max-width:100%!important;overflow-x:auto!important;
+  border:1px solid var(--mlxr-line)!important;border-radius:14px!important;
+  background:var(--mlxr-surface)!important;margin-top:18px!important;
+}
+html body.mlx1023-reference #app #admin table{
+  width:100%!important;border-collapse:separate!important;border-spacing:0!important;
+  margin:0!important;background:transparent!important;
+}
+html body.mlx1023-reference #app #admin thead th{
+  color:var(--mlxr-muted)!important;-webkit-text-fill-color:var(--mlxr-muted)!important;
+  background:var(--mlxr-surface2)!important;
+  text-transform:uppercase!important;letter-spacing:.06em!important;
+  font-size:10px!important;font-weight:850!important;
+  padding:12px 13px!important;border-bottom:1px solid var(--mlxr-line)!important;
+  white-space:nowrap!important;
+}
+html body.mlx1023-reference #app #admin tbody td{
+  border-bottom:1px solid var(--mlxr-line)!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+  font-size:12px!important;line-height:1.5!important;padding:12px 13px!important;
+}
+html body.mlx1023-reference #app #admin tbody tr:last-child td{border-bottom:0!important}
+html body.mlx1023-reference #app #admin #ml10AdminNav{
+  border:1px solid var(--mlxr-line)!important;border-radius:16px!important;
+  padding:9px!important;background:var(--mlxr-surface)!important;
+  box-shadow:var(--mlxr-shadow)!important;
+}
+html body.mlx1023-reference #app #admin #ml10AdminNav button{
+  border-radius:10px!important;font-weight:750!important;
+  color:var(--mlxr-text)!important;-webkit-text-fill-color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #admin #ml10AdminNav button.active{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:linear-gradient(135deg,#2563eb,#7c3aed)!important;
+  border-color:transparent!important;
+}
+html body.mlx1023-reference #app #admin .adc-edit-form{
+  border:1px solid var(--mlxr-line)!important;border-radius:15px!important;
+  background:var(--mlxr-surface2)!important;padding:18px!important;
+}
+html body.mlx1023-reference #app #settings .mlx1024-recovery{
+  border:1px solid var(--mlxr-line)!important;border-radius:15px!important;
+  background:var(--mlxr-surface2)!important;padding:15px 17px!important;margin-top:15px!important;
+  color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #settings .mlx1024-recovery summary{
+  cursor:pointer!important;font-weight:800!important;color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference #app #settings .mlx1024-recovery .mlx1024-recovery-actions{
+  display:flex!important;flex-wrap:wrap!important;gap:9px!important;
+  margin-top:14px!important;
+}
+html body.mlx1023-reference #app #settings .mlx1024-recovery button{
+  border:1px solid var(--mlxr-line)!important;background:var(--mlxr-surface)!important;
+  border-radius:10px!important;padding:9px 14px!important;
+  font-size:12px!important;font-weight:750!important;color:var(--mlxr-text)!important;
+}
+html body.mlx1023-reference[data-mlxr-mode="dark"] #app #patients #patientFilterDate::-webkit-calendar-picker-indicator{filter:invert(1)!important}
+@media(max-width:1250px){
+  html body.mlx1023-reference #app #admin .adc-permission-list{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:940px){
+  html body.mlx1023-reference #app #admin .adc-permission-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  html body.mlx1023-reference #app #admin #userForm{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(max-width:700px){
+  html body.mlx1023-reference #app #admin .adc-permission-list{grid-template-columns:1fr!important}
+  html body.mlx1023-reference #app #admin #userForm>.row{grid-template-columns:1fr!important}
+  html body.mlx1023-reference #app #admin .adc-admin-onecol>.panel,
+  html body.mlx1023-reference #app #admin>.panel:not(#ml10AdminNav){padding:17px!important}
+  html body.mlx1023-reference #app #settings #mlxrUpdateHero .mlxr-hero-row{gap:13px!important}
+  html body.mlx1023-reference #app #settings #mlxrUpdateHero .mlxr-hero-orb{width:50px;height:50px;border-radius:15px}
+  html body.mlx1023-reference #app #settings #mlxrUpdateHero .mlxr-hero-orb svg{width:28px;height:28px}
+}
+@media print{
+  html body.mlx1023-reference #app #admin .adc-permission-list>label.check{background:#fff!important}
+}
