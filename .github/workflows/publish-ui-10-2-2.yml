@@ -1,0 +1,37 @@
+name: Publish MediLab X 10.2.2 - Quick Updates and Contrast Fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-ui-10-2-2.yml
+      - m/publish_ui_10_2_2.py
+      - m/ux-10.2.2-update-polish.css
+      - m/ux-10.2.2-update-polish.js
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilabx-ui-10-2-2
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 10.2.1 and build guarded 10.2.2 hotfix
+        run: python3 m/publish_ui_10_2_2.py
+      - name: Publish checked HTML and matching update manifest
+        run: |
+          git config user.name "medilab-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medilabx-ui-10.2.2/MediLabX.html m/update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "MediLab X 10.2.2 quick background checks and readable updates"
+            git push
+          fi
