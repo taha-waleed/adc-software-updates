@@ -78,7 +78,7 @@ function syncSettings(){
  if(views.hidden)views.hidden=false;
  const empty=views.querySelector('.mlx-pref-empty');
  if(empty){
-  if(empty.hidden===!active){}else empty.hidden=!!active;
+  if(empty.hidden!==!!active)empty.hidden=!!active;
   const wanted=active?'none':'flex';
   if(empty.style.display!==wanted)empty.style.display=wanted;
  }
