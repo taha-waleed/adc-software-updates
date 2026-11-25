@@ -21,7 +21,7 @@ REQUIRED=[
  'id="adc85CheckUpdates"','id="adc85UpdateNow"','id="adc85RestoreUpdate"',
  'id="adc85ManualUpdate"','id="adc85UpdateHeading"','id="adc85UpdateMessage"',
  'id="backupData"','id="restoreData"','id="patientForm"','id="savePatient"',
- 'id="mlxrUpdateHero"','id="mlxrControls"'
+ "hero.id='mlxrUpdateHero'","box.id='mlxrControls'"
 ]
 NOTES=[
  'Software Updates simplified to one top update banner. Removed duplicate GitHub Software Updates header, Release Spotlight and repeated Check for updates buttons.',
