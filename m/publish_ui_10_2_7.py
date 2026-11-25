@@ -40,7 +40,7 @@ def build():
  old=data.decode('utf-8')
  if any(x not in old for x in REQUIRED):
   raise RuntimeError('Critical existing controls missing: '+', '.join(x for x in REQUIRED if x not in old))
- if 'mlx1026-workspace-css' in old or 'mlx1026-workspace-js' in old:
+ if 'mlx1027-navy-privacy-css' in old or 'mlx1027-navy-privacy-js' in old:
   raise RuntimeError('Duplicate 10.2.7 patch in baseline')
  marker=re.search(r'</body>\s*</html>\s*$',old,re.I)
  if not marker:raise RuntimeError('Unexpected closing HTML tags')
@@ -65,11 +65,11 @@ def build():
    if open_at<0 or content_end<0:raise RuntimeError('Could not extract '+label+' JS')
    f=Path(tmp)/(label+'.js');f.write_text(old[content_start:content_end],encoding='utf-8')
    subprocess.run(['node','--check',str(f)],check=True)
- block=('\n<style id="mlx1026-workspace-css">\n'+css.rstrip('\n')+'\n</style>\n'
-        '<script id="mlx1026-workspace-js">\n'+js.rstrip('\n')+'\n</script>\n')
+ block=('\n<style id="mlx1027-navy-privacy-css">\n'+css.rstrip('\n')+'\n</style>\n'
+        '<script id="mlx1027-navy-privacy-js">\n'+js.rstrip('\n')+'\n</script>\n')
  updated=old[:marker.start()]+block+old[marker.start():]
  if not updated.startswith(old[:marker.start()]):raise RuntimeError('Original HTML changed')
- if updated.count('id="mlx1026-workspace-css"')!=1 or updated.count('id="mlx1026-workspace-js"')!=1:
+ if updated.count('id="mlx1027-navy-privacy-css"')!=1 or updated.count('id="mlx1027-navy-privacy-js"')!=1:
   raise RuntimeError('Build markers missing or duplicated')
  return updated.encode('utf-8')
 def main():
