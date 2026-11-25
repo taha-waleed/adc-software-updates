@@ -23,7 +23,7 @@ const check=(name,ok,details={})=>{if(!ok)throw Error('FAIL '+name+' '+JSON.stri
     document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='settings'));
     const settings=document.querySelector('#settings'),list=document.querySelector('#adcSettingsList'),
       views=document.querySelector('#adcSettingsViews'),home=document.querySelector('.mlx29-home');
-    const icon=document.querySelector('#adcSettingsList .adc-setting-symbol');
+    const icon=document.querySelector('#adcSettingsList button[data-open-settings="centre"] .adc-setting-symbol');
     const box=element=>{const r=element?.getBoundingClientRect();return r?{left:r.left,right:r.right,top:r.top,width:r.width,height:r.height}:null};
     return {
      restored:!!document.querySelector('#patientForm')&&!!document.querySelector('#savePatient')&&
@@ -34,6 +34,7 @@ const check=(name,ok,details={})=>{if(!ok)throw Error('FAIL '+name+' '+JSON.stri
      home:!!home,homeCards:home?.querySelectorAll('button[data-mlx29-open]').length,
      list:box(list),views:box(views),settings:box(settings),
      circularIcon:icon?getComputedStyle(icon).borderRadius:null,
+     visibleIcon:icon?{display:getComputedStyle(icon).display,background:getComputedStyle(icon).backgroundColor}:null,
      active:settings?.classList.contains('active'),
      windowWidth:innerWidth
     };
