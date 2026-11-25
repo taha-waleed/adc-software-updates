@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.0",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.0/MediLabX.html",
-  "sha256": "8c2c5b6c3b889da68dbc9d6f6865ded0185fdc1f128a3582af28886d07dfa63d",
+  "version": "10.2.1",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.1/MediLabX.html",
+  "sha256": "3631937378660863ef84b324750b51e192ff19dd3805ae1d368f79a5bf9fbd8e",
   "notes": [
-    "MediLab X 10.2 — Pearl Clinical: original button locations and workflows preserved with reference-style rounded pearl-grey cards, soft shadows, electric-blue actions and professional Inter/Segoe typography.",
-    "One consistent, readable light and dark colour system across Dashboard, Reception, Patients, Radiology, Expenses, Earnings, Admin, Settings, tables, dialogs and notifications.",
-    "Fixed dark-on-dark / light-on-light text conflicts, including selected navigation, theme controls, sign-out and Software Updates card version text.",
-    "Original animated Midnight Prism Now Brief design retained without overrides.",
-    "Smoother hover/popup transitions and reduced-motion support; no preview toolbar in the production build.",
-    "Existing patient data, receipt and report handlers, Rate List, Fish Tank, notification routing, roles and native Electron GitHub update transport unchanged."
+    "MediLab X 10.2.1: high-contrast white sidebar labels, clear brand and group headings in both Light and Dark modes.",
+    "Consistent updated Lucide-style medical/navigation SVG icons and polished Settings sidebar with readable text.",
+    "Professional Manrope geometric font when online, with clear Windows offline fallback; original control locations and event handlers retained.",
+    "Compact frosted-glass Notification Center (334px) and shorter pill popups below the taskbar, preserving click-to-navigate and dated history.",
+    "Original Pearl Clinical palette, smooth animations and the animated Midnight Prism Now Brief remain unchanged.",
+    "Existing clinical records, receipts, reporting, prices, permissions, data handling, Fish Tank and native GitHub Electron updater remain unchanged."
   ]
 }
