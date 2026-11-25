@@ -21,7 +21,7 @@ EXPECTED_CHUNKS={
 }
 REQUIRED=['mlx1013-bottom-rates-js','mlx1012-professional-contrast-css',
           'mlx108-radiology-and-analytics','mlx107-fishtank-css',
-          'id="mlx-notif-panel"','mlx_notification_history_v1','id="settings"','id="nav"']
+          "notifyPanel.id='mlx-notif-panel'",'mlx_notification_history_v1','id="settings"','id="nav"']
 def sha(x):return hashlib.sha256(x).hexdigest()
 def build():
  m=json.loads(MANIFEST.read_text('utf-8'))
