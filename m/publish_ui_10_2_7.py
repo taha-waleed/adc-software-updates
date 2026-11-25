@@ -47,7 +47,7 @@ def build():
  css=CSS.read_text('utf-8')
  js=JS.read_text('utf-8')
  if css.count('{')!=css.count('}'):raise RuntimeError('Unbalanced CSS braces')
- for term in ['#mlx101Standby.mlx1027-privacy','.mlx27-screen','.mlx27-time','.mlx27-presets','#app .top','#app .sidebar','[data-setting-view]']:
+ for term in ['#mlx101Standby.mlx1027-privacy','.mlx27-screen','.mlx27-time','.mlx27-presets','#app .top','#app .sidebar','#adcSettingsViews .adc-setting-view']:
   if term not in css:raise RuntimeError('New UI stylesheet missing target '+term)
  for term in ['function mountPrivacy()','function mountTaskbar()','function mountSettings()','function repairCategory(key)','function applyPreset(id)','function formatClock()']:
   if term not in js:raise RuntimeError('New UI module missing '+term)
