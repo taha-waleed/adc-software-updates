@@ -6897,6 +6897,33 @@ function checkProgress(){const target=$('adc85UpdateCentre');if(!target||$('mlx-
  desktop()?.onAutoUpdate?.(r=>{if(r?.ok&&r.available){const suppress=window.sessionStorage.getItem('mlx-later-'+r.version)==='yes';if(!suppress)addNotice('Software update available','Version '+r.version+' can be installed from Settings → Software Updates.','info',{key:'update-'+r.version,show:true})}});
  $('adc85RemindLater')?.addEventListener('click',()=>{const version=$('adc85NewVersion')?.textContent?.match(/\d+\.\d+(\.\d+)?/)?.[0];if(version){sessionStorage.setItem('mlx-later-'+version,'yes');addNotice('Update postponed','We will remind you when MediLab X restarts.','info',{show:false,key:'later-'+version})}},true);
 }
+
+function updateHero(){
+ const view=Q('#settings [data-setting-view="updates"]'),real=Q('#adc85UpdateCentre');
+ if(!view||!real)return;
+ let hero=Q('#mlxrUpdateHero');
+ if(!hero){
+   hero=document.createElement('div');hero.id='mlxrUpdateHero';
+   hero.innerHTML='<div class="mlxr-hero-row"><div class="mlxr-hero-orb">'+drawIcon('refresh')+
+    '</div><div class="mlxr-hero-copy"><h3 id="mlxrHeroTitle">Software Updates</h3><p id="mlxrHeroSub">Checking update status…</p></div>'+
+    '<button id="mlxrHeroAction" type="button">Check for updates</button></div>';
+   const heading=view.querySelector('h2');if(heading)heading.insertAdjacentElement('afterend',hero);else view.prepend(hero);
+   hero.querySelector('#mlxrHeroAction').addEventListener('click',()=>{
+     const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
+     const realAction=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');
+     if(realAction&&!realAction.disabled)realAction.click();
+   });
+ }
+ const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
+ const heading=Q('#adc85UpdateHeading')?.textContent?.trim()||'Software Updates';
+ const message=Q('#adc85UpdateMessage')?.textContent?.trim()||'Check your trusted update server';
+ const v=Q('#adc85NewVersion')?.textContent?.trim()||'New update available';
+ Q('#mlxrHeroTitle').textContent=offered?v:heading;
+ Q('#mlxrHeroSub').textContent=message;
+ const action=Q('#mlxrHeroAction');action.textContent=offered?'Download & Install':'Check for updates';
+ const native=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');action.disabled=!native||native.disabled;
+}
+
 function boot(){
  setTimeout(()=>{document.documentElement.classList.remove('ml-splashing');const tb=$('adc85Titlebar');if(tb&&document.documentElement.classList.contains('medilab-desktop'))tb.style.setProperty('display','flex','important');desktop()?.windowReadyForLogin?.();},3210);
  normalizeBrand();fixSidebar();remakeAbout();notificationElements();addSettings();preventAboutScrollbar();styleAIBrand();checkProgress();
@@ -11458,6 +11485,22 @@ html body.mlx1023-reference #app #settings :is(.adc85-update-status,.mlx1022-git
  html body.mlx1023-reference{background:#fff!important}
  html body.mlx1023-reference #app .sidebar,html body.mlx1023-reference #app .top,#mlxrControls{display:none!important}
 }
+
+/* The live update bridge drives this source-reference hero — no simulated progress or fake version. */
+#mlxrUpdateHero{position:relative;overflow:hidden;border-radius:22px;padding:28px;color:white;background:radial-gradient(900px 300px at 100% -20%,rgba(255,255,255,.22),transparent 60%),linear-gradient(135deg,#1e3a8a,var(--mlxr-accent) 45%,var(--mlxr-accent-2));box-shadow:0 20px 50px color-mix(in srgb,var(--mlxr-accent) 35%,transparent);margin:0 0 16px}
+#mlxrUpdateHero::before{content:"";position:absolute;right:-60px;bottom:-80px;width:260px;height:260px;border-radius:50%;border:40px solid rgba(255,255,255,.07);pointer-events:none}
+#mlxrUpdateHero .mlxr-hero-row{position:relative;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+#mlxrUpdateHero .mlxr-hero-orb{width:84px;height:84px;border-radius:26px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);display:grid;place-items:center;border:1px solid rgba(255,255,255,.3);flex:none}
+#mlxrUpdateHero .mlxr-hero-orb svg{width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.8}
+#mlxrUpdateHero .mlxr-hero-copy{flex:1;min-width:220px}
+#mlxrUpdateHero #mlxrHeroTitle{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:24px;font-weight:800;letter-spacing:-.4px;margin:0}
+#mlxrUpdateHero #mlxrHeroSub{color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:.85;margin:5px 0 0;font-size:13px}
+html body.mlx1023-reference #mlxrUpdateHero #mlxrHeroAction{margin-left:auto;flex:none;background:#fff!important;color:var(--mlxr-accent)!important;-webkit-text-fill-color:var(--mlxr-accent)!important;border:0!important;border-radius:12px!important;padding:11px 18px!important;font-weight:750;box-shadow:0 8px 20px #0003!important;cursor:pointer}
+html body.mlx1023-reference #mlxrUpdateHero #mlxrHeroAction:focus-visible{outline:3px solid #fff9;outline-offset:3px}
+html body.mlx1023-reference.mlxr-compact #app :is(.panel,.card,.adc-settings-group){padding:16px!important}
+html body.mlx1023-reference.mlxr-compact #app #settings .adc-settings-item{min-height:39px!important}
+@media(max-width:700px){#mlxrUpdateHero{padding:20px}#mlxrUpdateHero .mlxr-hero-row{align-items:flex-start}#mlxrUpdateHero #mlxrHeroAction{margin-left:0}}
+
 </style>
 <script id="mlx1023-reference-js">(()=>{'use strict';
 const ROOT='mlx1023_reference_skin',STORAGE='medilabx1023_reference_settings';
@@ -11516,7 +11559,7 @@ function icons(){
 function preview(side,base,lines){return '<div class="mlxr-preview"><i style="background:'+side+'"></i><u style="background:'+base+'"><s style="background:'+lines+';width:70%"></s><s style="background:'+lines+'"></s></u></div>'}
 function mount(){
  if(!Q('#settings')||!Q('#adcSettingsList'))return;
- if(Q('#mlxrControls')){icons();apply();return}
+ if(Q('#mlxrControls')){icons();apply();updateHero();return}
  const view=Q('#settings [data-setting-view="appearance"]');if(!view)return;
  const box=document.createElement('div');box.id='mlxrControls';
  box.innerHTML='<h3>Theme</h3><p class="mlxr-sub">Light, dark or system automatic.</p><div class="mlxr-themes">'+
@@ -11540,12 +11583,14 @@ function mount(){
  });
  box.querySelector('#mlxrRadius').addEventListener('input',e=>{st.radius=Math.max(6,Math.min(26,+e.target.value||16));save();apply()});
  box.querySelector('#mlxrCompact').addEventListener('change',e=>{st.density=e.target.checked;save();apply()});
- icons();apply();
+ icons();apply();updateHero();
 }
 let queued=false;
 function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;mount()})}
 function boot(){
- apply();schedule();
+ apply();schedule();updateHero();
+ const updateRoot=Q('#adc85UpdateCentre');if(updateRoot)new MutationObserver(updateHero).observe(updateRoot,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});
+ document.addEventListener('click',e=>{const native=e.target.closest('#adcModeSwitch,#mlxPrefLight,#mlxPrefDark');if(!native||!e.isTrusted)return;const old=actualMode();setTimeout(()=>{st.theme=native.id==='mlxPrefDark'?'dark':native.id==='mlxPrefLight'?'light':old==='dark'?'light':'dark';save();apply()},0)},true);
  document.addEventListener('click',e=>{if(e.target.closest('#nav button[data-page],#adcSettingsList button[data-open-settings]'))schedule()},true);
  const list=Q('#adcSettingsList');if(list)new MutationObserver(schedule).observe(list,{childList:true,subtree:false});
  setTimeout(schedule,500);setTimeout(schedule,1600);
