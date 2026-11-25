@@ -44,6 +44,10 @@ function mountPrivacy(){
   '<div class="mlx27-presets" role="group" aria-label="Privacy screen designs">'+presets.map((name,i)=>'<button type="button" data-mlx27-theme="'+(i+1)+'" aria-pressed="'+String(selected===String(i+1))+'"><span>'+(i+1)+'</span>'+name+'</button>').join('')+'</div>'+
   '<div class="mlx27-foot">AL HAMEED DIAGNOSTIC CENTRE · A PROJECT BY TAHA WALEED</div></div>';
  node.append(root);screen=root;
+ // On either manual or five-minute automatic lock, render live time before the first paint.
+ new MutationObserver(()=>{
+  if(!node.hidden&&node.classList.contains('mlx101-show'))formatClock();
+ }).observe(node,{attributes:true,attributeFilter:['class','hidden']});
  const bar=root.querySelector('.mlx27-presets');
  bar.addEventListener('click',ev=>{
   const btn=ev.target.closest('button[data-mlx27-theme]');
