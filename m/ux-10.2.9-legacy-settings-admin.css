@@ -1,0 +1,532 @@
+/* MediLab X 10.2.9 — Settings & Admin redesign ONLY, on exact 10.1.4 legacy source.
+   No changes to main sidebar, taskbar, standby, patient registration, reports or printer UI. */
+html body.mlx29-legacy{
+ --mx29-bg:#f4f7fc;
+ --mx29-card:#ffffff;
+ --mx29-tint:#f6f9fd;
+ --mx29-text:#152740;
+ --mx29-muted:#657790;
+ --mx29-line:#dee7f1;
+ --mx29-accent:#2563eb;
+ --mx29-soft:rgba(37,99,235,.075);
+ --mx29-shadow:0 2px 5px rgba(22,47,81,.025),0 12px 32px rgba(24,52,91,.07);
+}
+html body.mlx29-legacy.adc-dark-mode,
+html body.mlx29-legacy[data-mlx-theme="graphite"]{
+ --mx29-bg:#0a1324;
+ --mx29-card:#15233b;
+ --mx29-tint:#101d32;
+ --mx29-text:#edf3ff;
+ --mx29-muted:#b4c5df;
+ --mx29-line:#2b405c;
+ --mx29-accent:#8eb4ff;
+ --mx29-soft:rgba(109,159,249,.15);
+ --mx29-shadow:0 12px 38px rgba(0,4,14,.29);
+}
+/* Settings title & information hierarchy */
+html body.mlx29-legacy #app #settings{
+ box-sizing:border-box!important;min-width:0!important;
+ color:var(--mx29-text)!important;
+ font-family:'Manrope','Segoe UI',system-ui,sans-serif!important;
+}
+html body.mlx29-legacy #app #settings .adc-settings-shell{
+ width:100%!important;max-width:100%!important;margin:0!important;
+ min-width:0!important;overflow:visible!important;
+}
+html body.mlx29-legacy #app #settings .adc-settings-lead{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:14px!important;flex-wrap:wrap!important;
+ margin:0 0 15px!important;padding:17px 22px!important;
+ background:var(--mx29-card)!important;border:1px solid var(--mx29-line)!important;
+ border-radius:17px!important;box-shadow:var(--mx29-shadow)!important;
+}
+html body.mlx29-legacy #app #settings .adc-settings-lead h2{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:23px!important;font-weight:800!important;letter-spacing:-.6px!important;
+ line-height:1.3!important;margin:0!important;
+}
+html body.mlx29-legacy #app #settings .adc-settings-lead p{
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ font-size:12px!important;margin-top:5px!important;line-height:1.5!important;
+}
+html body.mlx29-legacy #app #settings .adc-settings-version{
+ padding:7px 12px!important;border:1px solid var(--mx29-line)!important;
+ border-radius:999px!important;background:var(--mx29-tint)!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-weight:800!important;
+}
+/* Original Mac Settings DOM stays intact; only styling changes. */
+html body.mlx29-legacy #app #settings .mlx-mac-layout{
+ display:grid!important;grid-template-columns:268px minmax(0,1fr)!important;
+ align-items:stretch!important;gap:15px!important;
+ box-sizing:border-box!important;width:100%!important;height:100%!important;
+ min-width:0!important;min-height:0!important;max-width:100%!important;
+ background:transparent!important;border:0!important;
+ border-radius:0!important;box-shadow:none!important;
+ overflow:visible!important;
+}
+html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsList,
+html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsList[hidden]{
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ flex:0 0 auto!important;box-sizing:border-box!important;
+ min-width:0!important;max-width:100%!important;
+ min-height:0!important;height:100%!important;max-height:100%!important;
+ overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;
+ scrollbar-width:thin!important;scrollbar-color:#a7bbd2 transparent!important;
+ gap:2px!important;margin:0!important;padding:13px!important;
+ background:var(--mx29-card)!important;
+ border:1px solid var(--mx29-line)!important;border-radius:18px!important;
+ box-shadow:var(--mx29-shadow)!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .mlx-settings-heading{
+ display:block!important;flex:0 0 auto!important;
+ border-top:1px solid var(--mx29-line)!important;border-bottom:0!important;
+ margin:14px 5px 5px!important;padding:13px 6px 6px!important;
+ background:transparent!important;
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ font-size:9.5px!important;font-weight:850!important;letter-spacing:.13em!important;
+ text-transform:uppercase!important;line-height:1.45!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .mlx-settings-heading:first-child{
+ border:0!important;margin-top:3px!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item{
+ display:flex!important;align-items:center!important;flex-direction:row!important;
+ gap:10px!important;box-sizing:border-box!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ min-height:47px!important;padding:7px 9px!important;margin:0!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ background:transparent!important;border:1px solid transparent!important;
+ border-radius:11px!important;box-shadow:none!important;
+ transform:none!important;transition:background .2s ease,border-color .2s ease!important;
+ font-family:'Manrope','Segoe UI',system-ui,sans-serif!important;
+ text-align:left!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item:hover{
+ background:var(--mx29-tint)!important;
+ border-color:var(--mx29-line)!important;transform:none!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item.mlx-pref-active,
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item[aria-current="page"]{
+ background:var(--mx29-soft)!important;
+ border-color:color-mix(in srgb,#2563eb 28%,var(--mx29-line))!important;
+ box-shadow:none!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-copy{
+ min-width:0!important;flex:1 1 0!important;display:block!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-copy strong{
+ display:block!important;color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:12px!important;line-height:1.4!important;
+ font-weight:750!important;letter-spacing:0!important;
+ white-space:normal!important;overflow-wrap:break-word!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item.mlx-pref-active .adc-setting-copy strong,
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item[aria-current="page"] .adc-setting-copy strong{
+ color:var(--mx29-accent)!important;-webkit-text-fill-color:var(--mx29-accent)!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-copy small,
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-chevron{
+ display:none!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-symbol{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 33px!important;width:33px!important;min-width:33px!important;
+ height:33px!important;min-height:33px!important;aspect-ratio:1!important;
+ border-radius:50%!important;
+ padding:0!important;margin:0!important;
+ background:var(--mx29-soft)!important;
+ border:1px solid color-mix(in srgb,#2563eb 13%,var(--mx29-line))!important;
+ color:var(--mx29-accent)!important;-webkit-text-fill-color:var(--mx29-accent)!important;
+ font-size:16px!important;overflow:hidden!important;box-shadow:none!important;
+ transform:none!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-symbol :is(svg,path,rect,circle,line,polyline,polygon){
+ background:transparent!important;box-shadow:none!important;border:0!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-setting-symbol svg{
+ display:block!important;width:18px!important;height:18px!important;
+ fill:none!important;stroke:currentColor!important;
+ stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsList .adc-settings-item.mlx-pref-active .adc-setting-symbol{
+ background:linear-gradient(135deg,#2563eb,#164cc5)!important;
+ border-color:transparent!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* Content pane retains actual native forms, field listeners and update bridge. */
+html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsViews,
+html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsViews[hidden]{
+ display:block!important;box-sizing:border-box!important;
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ min-height:0!important;height:100%!important;max-height:100%!important;
+ padding:21px!important;margin:0!important;
+ overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;
+ scrollbar-width:thin!important;scrollbar-color:#a7bbd2 transparent!important;
+ background:var(--mx29-card)!important;
+ border:1px solid var(--mx29-line)!important;border-radius:18px!important;
+ box-shadow:var(--mx29-shadow)!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-setting-view[hidden]{
+ display:none!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-setting-view:not([hidden]){
+ display:block!important;box-sizing:border-box!important;
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ padding:0!important;
+ background:transparent!important;box-shadow:none!important;
+ color:var(--mx29-text)!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-setting-view>h2{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:22px!important;line-height:1.35!important;
+ letter-spacing:-.5px!important;font-weight:850!important;
+ margin:1px 0 17px!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-settings-group,
+html body.mlx29-legacy #app #settings #adcSettingsViews .panel{
+ box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+ padding:18px!important;margin-bottom:15px!important;
+ border-radius:15px!important;border:1px solid var(--mx29-line)!important;
+ background:var(--mx29-tint)!important;
+ box-shadow:none!important;color:var(--mx29-text)!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews :is(h2,h3,h4,strong,label){
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ line-height:1.4!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews :is(.muted,p,small){
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ line-height:1.65!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews :is(input:not([type=checkbox]),select,textarea){
+ box-sizing:border-box!important;max-width:100%!important;min-width:0!important;
+ min-height:43px!important;padding:10px 12px!important;
+ border:1px solid var(--mx29-line)!important;border-radius:11px!important;
+ background:var(--mx29-card)!important;color:var(--mx29-text)!important;
+ -webkit-text-fill-color:var(--mx29-text)!important;
+ font:500 13px 'Manrope','Segoe UI',sans-serif!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews :is(input,select,textarea):focus-visible{
+ outline:2px solid #2563eb!important;outline-offset:2px!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-settings-group :is(button.primary,button.secondary){
+ border-radius:11px!important;min-height:40px!important;
+}
+html body.mlx29-legacy #app #settings #adcSettingsViews .adc-settings-group button.primary:not(:disabled){
+ background:#2563eb!important;border-color:#2563eb!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* No duplicate release spotlight; real update controls and status are untouched. */
+html body.mlx29-legacy #app #settings .mlx-release-intro{
+ display:none!important;
+}
+/* Replace unused blank Mac Preferences landing with useful shortcuts only. */
+html body.mlx29-legacy #app #settings .mlx-pref-empty[hidden]{
+ display:none!important;
+}
+html body.mlx29-legacy #app #settings .mlx-pref-empty.mlx29-home{
+ display:block!important;box-sizing:border-box!important;
+ height:auto!important;min-height:100%!important;
+ padding:6px 2px!important;margin:0!important;
+ text-align:left!important;color:var(--mx29-text)!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-home-overline{
+ display:block!important;font-weight:850!important;
+ letter-spacing:.12em!important;font-size:10px!important;color:var(--mx29-accent)!important;
+ margin:0 0 11px!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-home h3{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:25px!important;line-height:1.28!important;
+ letter-spacing:-.7px!important;font-weight:850!important;
+ margin:0 0 9px!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-home>p{
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ max-width:560px!important;font-size:13px!important;
+ line-height:1.7!important;margin:0!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ width:100%!important;gap:12px!important;margin:23px 0 16px!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ gap:10px!important;text-align:left!important;
+ min-width:0!important;min-height:137px!important;
+ padding:17px!important;margin:0!important;border-radius:14px!important;
+ border:1px solid var(--mx29-line)!important;
+ background:var(--mx29-tint)!important;color:var(--mx29-text)!important;
+ -webkit-text-fill-color:var(--mx29-text)!important;
+ box-shadow:none!important;cursor:pointer!important;
+ transition:transform .17s ease,border-color .17s ease!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick:hover{
+ transform:translateY(-2px)!important;
+ border-color:color-mix(in srgb,#2563eb 38%,var(--mx29-line))!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick-icon{
+ display:grid!important;place-items:center!important;
+ flex:0 0 36px!important;width:36px!important;height:36px!important;
+ border-radius:50%!important;background:var(--mx29-soft)!important;
+ color:var(--mx29-accent)!important;border:1px solid var(--mx29-line)!important;
+ box-shadow:none!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick-icon svg{
+ width:19px!important;height:19px!important;
+ fill:none!important;stroke:currentColor!important;
+ stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick strong{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:13px!important;font-weight:800!important;line-height:1.4!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-quick small{
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ font-size:11px!important;line-height:1.55!important;
+}
+html body.mlx29-legacy #app #settings .mlx29-home-note{
+ padding:13px 15px!important;border-radius:12px!important;
+ background:var(--mx29-soft)!important;border:1px solid var(--mx29-line)!important;
+ color:var(--mx29-muted)!important;font-size:11.5px!important;line-height:1.6!important;
+}
+/* ADMIN — existing user, doctor, deletion PIN and archive controls untouched. */
+html body.mlx29-legacy #app #admin{
+ --mx29-admin-gap:16px;
+ color:var(--mx29-text)!important;
+ font-family:'Manrope','Segoe UI',system-ui,sans-serif!important;
+ min-width:0!important;
+}
+html body.mlx29-legacy #app #admin>.mlx-admin-title{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ flex-wrap:wrap!important;gap:14px!important;
+ box-sizing:border-box!important;padding:19px 22px!important;
+ min-height:75px!important;margin-bottom:15px!important;
+ background:var(--mx29-card)!important;border:1px solid var(--mx29-line)!important;
+ border-radius:17px!important;box-shadow:var(--mx29-shadow)!important;
+}
+html body.mlx29-legacy #app #admin .mlx-admin-title h2{
+ font-size:23px!important;font-weight:850!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ letter-spacing:-.5px!important;margin:0 0 4px!important;
+}
+html body.mlx29-legacy #app #admin .mlx-admin-title p{
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ font-size:12px!important;margin:0!important;
+}
+html body.mlx29-legacy #app #admin .mlx-admin-chip,
+html body.mlx29-legacy #app #admin .panel .pill{
+ display:inline-flex!important;align-items:center!important;
+ border:1px solid var(--mx29-line)!important;border-radius:999px!important;
+ background:var(--mx29-tint)!important;color:var(--mx29-accent)!important;
+ -webkit-text-fill-color:var(--mx29-accent)!important;
+ padding:6px 11px!important;font-size:10.5px!important;
+ font-weight:750!important;white-space:nowrap!important;
+}
+html body.mlx29-legacy #app #admin .adc-admin-onecol>.panel,
+html body.mlx29-legacy #app #admin>.panel{
+ box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+ background:var(--mx29-card)!important;border:1px solid var(--mx29-line)!important;
+ border-radius:17px!important;padding:20px!important;
+ box-shadow:var(--mx29-shadow)!important;color:var(--mx29-text)!important;
+ margin-bottom:16px!important;
+}
+html body.mlx29-legacy #app #admin .panel-head{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:12px!important;flex-wrap:wrap!important;
+ border-bottom:1px solid var(--mx29-line)!important;
+ padding:0 0 12px!important;margin:0 0 15px!important;
+}
+html body.mlx29-legacy #app #admin .panel-head h2{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:16px!important;font-weight:850!important;line-height:1.4!important;
+ margin:0!important;
+}
+html body.mlx29-legacy #app #admin :is(.muted,p,small){
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ line-height:1.6!important;
+}
+html body.mlx29-legacy #app #admin #userForm{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ align-items:end!important;gap:14px!important;
+}
+html body.mlx29-legacy #app #admin #userForm>.field{
+ min-width:0!important;margin:0!important;
+}
+html body.mlx29-legacy #app #admin #userForm>.row{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-column:1/-1!important;gap:14px!important;
+ align-items:end!important;margin:0!important;padding:0!important;
+}
+html body.mlx29-legacy #app #admin #userForm>.row>.field{
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ margin:0!important;
+}
+html body.mlx29-legacy #app #admin #userForm>#adcPermissionPicker{
+ grid-column:1/-1!important;min-width:0!important;
+ margin:0!important;padding:15px!important;
+ background:var(--mx29-tint)!important;
+ border:1px solid var(--mx29-line)!important;border-radius:14px!important;
+}
+html body.mlx29-legacy #app #admin #adcPermissionPicker legend{
+ padding:0 8px!important;font-size:13px!important;font-weight:800!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+}
+html body.mlx29-legacy #app #admin .adc-permission-list{
+ display:grid!important;grid-template-columns:repeat(auto-fit,minmax(155px,1fr))!important;
+ gap:9px!important;margin-top:11px!important;
+ width:100%!important;min-width:0!important;
+}
+html body.mlx29-legacy #app #admin .adc-permission-list>label.check{
+ box-sizing:border-box!important;display:flex!important;align-items:center!important;
+ flex-direction:row!important;gap:9px!important;
+ min-width:0!important;width:auto!important;max-width:100%!important;
+ min-height:44px!important;padding:10px 12px!important;margin:0!important;
+ background:var(--mx29-card)!important;border:1px solid var(--mx29-line)!important;
+ border-radius:11px!important;color:var(--mx29-text)!important;
+ -webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:12px!important;line-height:1.5!important;
+ white-space:normal!important;overflow-wrap:break-word!important;
+}
+html body.mlx29-legacy #app #admin .adc-permission-list>label.check:has(input:checked){
+ background:var(--mx29-soft)!important;border-color:color-mix(in srgb,#2563eb 33%,var(--mx29-line))!important;
+}
+html body.mlx29-legacy #app #admin .adc-permission-list input[type="checkbox"]{
+ flex:0 0 16px!important;width:16px!important;height:16px!important;
+ min-width:16px!important;margin:0!important;accent-color:#2563eb!important;
+}
+html body.mlx29-legacy #app #admin #userForm>button{
+ grid-column:1/-1!important;justify-self:start!important;
+ min-width:135px!important;margin:0!important;
+}
+html body.mlx29-legacy #app #admin .field label{
+ display:block!important;margin:0 0 7px!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:12px!important;font-weight:750!important;line-height:1.5!important;
+}
+html body.mlx29-legacy #app #admin :is(input:not([type="checkbox"]),select,textarea){
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ min-height:42px!important;padding:10px 12px!important;
+ background:var(--mx29-tint)!important;border:1px solid var(--mx29-line)!important;
+ border-radius:11px!important;color:var(--mx29-text)!important;
+ -webkit-text-fill-color:var(--mx29-text)!important;
+ font:500 13px 'Manrope','Segoe UI',sans-serif!important;
+}
+html body.mlx29-legacy #app #admin :is(input,select,textarea):focus-visible{
+ outline:2px solid #2563eb!important;outline-offset:2px!important;
+}
+html body.mlx29-legacy #app #admin .panel button.primary:not(:disabled){
+ border-radius:11px!important;background:#2563eb!important;
+ border-color:#2563eb!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ padding:11px 16px!important;font-weight:750!important;
+}
+html body.mlx29-legacy #app #admin :is(#doctorForm,#deletePinForm)>.row{
+ display:flex!important;flex-direction:row!important;align-items:end!important;
+ flex-wrap:wrap!important;gap:12px!important;
+}
+html body.mlx29-legacy #app #admin :is(#doctorForm,#deletePinForm)>.row>.field:first-child{
+ flex:1 1 260px!important;min-width:200px!important;
+}
+html body.mlx29-legacy #app #admin #deletePinForm .field:last-child{
+ flex:0 0 auto!important;min-width:0!important;
+}
+html body.mlx29-legacy #app #admin .table-wrap{
+ box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+ min-width:0!important;overflow-x:auto!important;
+ border:1px solid var(--mx29-line)!important;border-radius:12px!important;
+ background:var(--mx29-card)!important;
+}
+html body.mlx29-legacy #app #admin table{
+ width:100%!important;border-collapse:collapse!important;
+ background:transparent!important;
+}
+html body.mlx29-legacy #app #admin table thead th{
+ background:var(--mx29-tint)!important;
+ color:var(--mx29-muted)!important;-webkit-text-fill-color:var(--mx29-muted)!important;
+ font-size:10px!important;font-weight:850!important;text-transform:uppercase!important;
+ letter-spacing:.07em!important;padding:12px!important;
+ border-bottom:1px solid var(--mx29-line)!important;
+ white-space:nowrap!important;
+}
+html body.mlx29-legacy #app #admin table tbody td{
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font-size:12px!important;line-height:1.5!important;
+ padding:12px!important;border-bottom:1px solid var(--mx29-line)!important;
+}
+html body.mlx29-legacy #app #admin table tbody tr:last-child td{border-bottom:0!important}
+html body.mlx29-legacy #app #admin .adc-edit-form{
+ border-radius:14px!important;border:1px solid var(--mx29-line)!important;
+ background:var(--mx29-tint)!important;padding:16px!important;
+}
+html body.mlx29-legacy #app #admin #ml10AdminNav{
+ border:1px solid var(--mx29-line)!important;border-radius:16px!important;
+ background:var(--mx29-card)!important;
+ box-shadow:var(--mx29-shadow)!important;
+}
+html body.mlx29-legacy #app #admin #ml10AdminNav button{
+ border-radius:10px!important;min-height:42px!important;
+ color:var(--mx29-text)!important;-webkit-text-fill-color:var(--mx29-text)!important;
+ font:700 12px 'Manrope','Segoe UI',sans-serif!important;
+}
+html body.mlx29-legacy #app #admin #ml10AdminNav button.active{
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ background:#2563eb!important;border-color:transparent!important;
+}
+/* Don't override app's protected admin/role controls or page routing. */
+@media(max-width:1100px){
+ html body.mlx29-legacy #app #settings .mlx-mac-layout{
+  grid-template-columns:235px minmax(0,1fr)!important;gap:12px!important;
+ }
+}
+@media(max-width:800px){
+ html body.mlx29-legacy #app #settings .mlx-mac-layout{
+  grid-template-columns:minmax(0,1fr)!important;gap:12px!important;
+  height:auto!important;min-height:0!important;
+ }
+ html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsList{
+  max-height:205px!important;min-height:0!important;height:auto!important;
+ }
+ html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsViews{
+  height:auto!important;min-height:350px!important;
+  max-height:calc(100dvh - 420px)!important;
+ }
+ html body.mlx29-legacy #app #admin.mlx-admin-selected{
+  padding-left:0!important;
+ }
+ html body.mlx29-legacy #app #admin.mlx-admin-selected>.mlx-admin-title{
+  margin-left:0!important;
+ }
+ html body.mlx29-legacy #app #admin #ml10AdminNav{
+  position:static!important;width:100%!important;height:auto!important;
+  min-height:0!important;display:flex!important;flex-wrap:wrap!important;
+  flex-direction:row!important;margin-bottom:14px!important;
+ }
+ html body.mlx29-legacy #app #admin #ml10AdminNav button{
+  flex:1 1 125px!important;width:auto!important;
+ }
+}
+@media(max-width:610px){
+ html body.mlx29-legacy #app #settings .mlx29-quick-grid{
+  grid-template-columns:minmax(0,1fr)!important;
+ }
+ html body.mlx29-legacy #app #settings .mlx-mac-layout #adcSettingsViews{
+  padding:15px!important;
+ }
+ html body.mlx29-legacy #app #settings .adc-settings-lead{
+  padding:15px!important;
+ }
+ html body.mlx29-legacy #app #admin #userForm,
+ html body.mlx29-legacy #app #admin #userForm>.row{
+  grid-template-columns:minmax(0,1fr)!important;
+ }
+ html body.mlx29-legacy #app #admin :is(.adc-admin-onecol>.panel,>.panel){
+  padding:15px!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html body.mlx29-legacy #app #settings *,
+ html body.mlx29-legacy #app #admin *{
+  transition:none!important;animation:none!important;
+ }
+}
