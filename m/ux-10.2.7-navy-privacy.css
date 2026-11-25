@@ -1,0 +1,299 @@
+/* MediLab X 10.2.7 — one visual system for top taskbar and sidebar; reference privacy screen. */
+html body.mlx1023-reference.mlx1027-ready{
+ --mlx27-navy:#0b1530;
+ --mlx27-navy-end:#13204a;
+ --mlx27-on-navy:#f7faff;
+ --mlx27-navy-muted:#b5c6e8;
+}
+/* Top taskbar: same navy gradient as the left sidebar, across all appearance modes. */
+html body.mlx101-ui.mlx202-release.mlx1023-reference.mlx1027-ready #app .sidebar,
+html body.mlx101-ui.mlx202-release.mlx1023-reference.mlx1027-ready #app .top{
+ background:linear-gradient(165deg,var(--mlx27-navy) 0%,var(--mlx27-navy-end) 100%)!important;
+ background-image:linear-gradient(165deg,var(--mlx27-navy) 0%,var(--mlx27-navy-end) 100%)!important;
+ border-color:rgba(183,203,249,.14)!important;
+ color:var(--mlx27-on-navy)!important;
+ -webkit-text-fill-color:var(--mlx27-on-navy)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1023-reference.mlx1027-ready #app .top{
+ box-shadow:0 12px 34px rgba(5,15,44,.17)!important;
+ border-radius:18px!important;
+ min-width:0!important;max-width:100%!important;
+ gap:14px!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(#pageTitle,h1,h2,#pageSub,.muted){
+ color:var(--mlx27-on-navy)!important;
+ -webkit-text-fill-color:var(--mlx27-on-navy)!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(#pageSub,.muted){
+ color:var(--mlx27-navy-muted)!important;
+ -webkit-text-fill-color:var(--mlx27-navy-muted)!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(.pill,#todayBadge,#adcBriefClock,#mlxClockWidget,#mlxClockDigital){
+ color:var(--mlx27-on-navy)!important;
+ -webkit-text-fill-color:var(--mlx27-on-navy)!important;
+ background:rgba(255,255,255,.065)!important;
+ border-color:rgba(220,230,255,.15)!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(.actions,button,button.secondary,#quickReception,#adcSideTrigger,#mlx27PrivacyLock){
+ color:var(--mlx27-on-navy)!important;
+ -webkit-text-fill-color:var(--mlx27-on-navy)!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(button.secondary,#quickReception,#adcSideTrigger,#mlx27PrivacyLock){
+ background:rgba(255,255,255,.1)!important;
+ border:1px solid rgba(230,239,255,.18)!important;
+ border-radius:12px!important;
+ box-shadow:none!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(button.secondary,#quickReception,#adcSideTrigger,#mlx27PrivacyLock):hover{
+ background:rgba(255,255,255,.18)!important;
+ border-color:rgba(230,239,255,.35)!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top :is(button,#mlx27PrivacyLock):focus-visible{
+ outline:2px solid #bfdbfe!important;outline-offset:2px!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top #mlx27PrivacyLock{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;min-width:38px!important;height:38px!important;
+ padding:8px!important;cursor:pointer!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app .top #mlx27PrivacyLock svg{
+ width:19px!important;height:19px!important;
+ fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+html.medilab-desktop body.mlx1027-ready #adc85Titlebar{
+ background:linear-gradient(165deg,#0b1530,#13204a)!important;
+ border-color:rgba(220,230,255,.12)!important;
+ color:#f7faff!important;
+}
+html.medilab-desktop body.mlx1027-ready #adc85Titlebar :is(button,span){
+ color:#f7faff!important;-webkit-text-fill-color:#f7faff!important;
+}
+/* The native five-minute standby is retained; only its rendered UI changes. */
+#mlx101Standby.mlx1027-privacy[hidden]{display:none!important}
+#mlx101Standby.mlx1027-privacy{
+ position:fixed!important;inset:0!important;top:0!important;
+ z-index:2147482899!important;
+ display:block!important;box-sizing:border-box!important;
+ padding:0!important;overflow:hidden!important;isolation:isolate!important;
+ background:#090d16!important;
+ border:0!important;border-radius:0!important;
+ font-family:'Manrope','Segoe UI',sans-serif!important;
+ text-align:left!important;color:#fff!important;
+ opacity:0;transform:translate3d(105%,0,0);
+ transition:opacity .54s ease,transform .58s cubic-bezier(.22,.86,.23,1)!important;
+}
+#mlx101Standby.mlx1027-privacy.mlx101-show{
+ opacity:1!important;transform:translate3d(0,0,0)!important;
+}
+#mlx101Standby.mlx1027-privacy.mlx101-hide{
+ opacity:0!important;transform:translate3d(-102%,0,0)!important;
+}
+#mlx101Standby.mlx1027-privacy>.mlx101-card,
+#mlx101Standby.mlx1027-privacy>.mlx101-orb{
+ display:none!important;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen{
+ --mlx27-glow-a:rgba(36,79,210,.29);
+ --mlx27-glow-b:rgba(57,93,200,.14);
+ position:absolute;inset:0;overflow:hidden;
+ color:#fff;isolation:isolate;
+ background:
+  radial-gradient(ellipse 58% 43% at 15% 100%,var(--mlx27-glow-a),transparent 83%),
+  radial-gradient(ellipse 42% 40% at 96% 100%,var(--mlx27-glow-b),transparent 88%),
+  linear-gradient(135deg,#080b12 0%,#0b0f1c 60%,#0a0e19 100%);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen:before{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ opacity:.4;background-image:radial-gradient(circle,rgba(147,167,203,.25) .75px,transparent 1px);
+ background-size:24px 24px;z-index:0;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen:after{
+ content:"";position:absolute;left:-28%;bottom:-45%;width:105%;height:92%;
+ pointer-events:none;z-index:0;border-radius:50%;
+ background:radial-gradient(ellipse,rgba(39,85,216,.26),transparent 65%);
+ filter:blur(24px);
+ animation:mlx27Glow 11s ease-in-out infinite alternate;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-aura{
+ position:absolute;inset:auto -18% -45% auto;width:65%;height:88%;
+ border-radius:50%;pointer-events:none;z-index:0;
+ background:radial-gradient(circle,rgba(79,88,213,.25),transparent 67%);
+ filter:blur(28px);animation:mlx27Float 18s ease-in-out infinite alternate-reverse;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="1"]{
+ --mlx27-glow-a:rgba(40,106,205,.34);--mlx27-glow-b:rgba(23,188,216,.15);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="2"]{
+ --mlx27-glow-a:rgba(36,79,210,.29);--mlx27-glow-b:rgba(57,93,200,.14);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="3"]{
+ --mlx27-glow-a:rgba(99,64,245,.38);--mlx27-glow-b:rgba(21,213,251,.22);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="4"]{
+ --mlx27-glow-a:rgba(8,147,182,.29);--mlx27-glow-b:rgba(14,122,117,.19);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="5"]{
+ --mlx27-glow-a:rgba(188,205,248,.25);--mlx27-glow-b:rgba(123,139,222,.11);
+ background:linear-gradient(135deg,#131a2c,#162039 62%,#10162b);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-screen[data-theme="6"]{
+ --mlx27-glow-a:rgba(32,47,94,.21);--mlx27-glow-b:rgba(31,47,87,.14);
+ background:linear-gradient(135deg,#05070c,#0b0d14 62%,#06080e);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-brand{
+ position:absolute;top:40px;left:48px;z-index:2;
+ display:flex;gap:13px;align-items:center;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-brand-icon{
+ width:44px;height:44px;display:grid;place-items:center;border-radius:14px;
+ background:rgba(255,255,255,.065);border:1px solid rgba(218,229,255,.16);
+ box-shadow:0 10px 27px rgba(0,0,0,.2);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-brand-icon svg{
+ width:25px;height:25px;stroke:#53e0f2;stroke-width:1.9;fill:none;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-brand strong{
+ display:block;font-weight:800;font-size:17px;line-height:1.45;letter-spacing:-.35px;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-brand small{
+ display:block;font-size:10.5px;color:#909bad;line-height:1.45;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-session{
+ position:absolute;top:16px;right:18px;z-index:3;text-align:right;
+ display:flex;flex-direction:column;align-items:flex-end;gap:7px;
+ color:#9da9bf;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-shortcuts{
+ font-size:10.5px;padding:9px 12px;
+ border:1px solid rgba(196,210,239,.16);border-radius:11px;
+ background:rgba(9,17,34,.5);color:#c6d1e4;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-session-label{
+ padding-right:20px;letter-spacing:.1em;font-size:11px;font-weight:850;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-time{
+ position:absolute;left:3.2%;bottom:16%;z-index:2;
+ min-width:0;max-width:90%;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-time-line{
+ display:flex;align-items:flex-start;gap:10px;white-space:nowrap;
+ font-family:'Manrope','Segoe UI',sans-serif;font-weight:300;line-height:1;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-clock-digits{
+ font-size:clamp(85px,15.6vw,220px);
+ letter-spacing:-.095em;font-weight:250;line-height:.98;color:#fff;
+ font-variant-numeric:tabular-nums;
+ text-shadow:0 2px 12px rgba(255,255,255,.05);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-clock-ampm{
+ font-size:clamp(29px,3.9vw,54px);font-weight:400;line-height:1;
+ margin-top:9px;letter-spacing:-.055em;color:#b9bfcc;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-date{
+ margin-top:16px;padding-left:3px;font-size:13px;letter-spacing:.27em;
+ text-transform:uppercase;color:#a9b6cf;font-weight:800;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-bottom{
+ position:absolute;inset:auto 0 0;min-height:80px;z-index:3;
+ display:flex;align-items:flex-end;justify-content:space-between;
+ gap:20px;padding:0 3.1% 19px;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-unlock-hint{
+ display:flex;align-items:center;gap:11px;flex:0 0 auto;
+ color:#edf3ff;font-size:13px;font-weight:800;white-space:nowrap;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-unlock-hint span{
+ display:grid;place-items:center;width:37px;height:37px;border-radius:50%;
+ border:1px solid rgba(196,211,247,.21);background:rgba(255,255,255,.045);
+ font-size:18px;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets{
+ display:flex;align-items:center;gap:3px;
+ padding:5px;border:1px solid rgba(198,215,249,.2);
+ border-radius:17px;background:rgba(8,13,29,.72);
+ box-shadow:0 12px 30px rgba(0,0,0,.32);
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets button{
+ display:flex;align-items:center;justify-content:center;gap:6px;
+ background:none!important;border:1px solid transparent!important;
+ color:#a9b6cb!important;-webkit-text-fill-color:#a9b6cb!important;
+ border-radius:10px!important;padding:10px 11px!important;
+ font:750 11px 'Manrope','Segoe UI',sans-serif!important;cursor:pointer;
+ white-space:nowrap;min-height:37px;
+ transition:background-color .2s ease,color .2s ease;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets button span{
+ display:grid;place-items:center;width:18px;height:18px;flex:none;
+ border-radius:6px;background:rgba(255,255,255,.12);
+ color:inherit;-webkit-text-fill-color:inherit;font-weight:800;font-size:10px;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets button[aria-pressed="true"]{
+ background:#f8fbff!important;border-color:rgba(255,255,255,.9)!important;
+ color:#111b33!important;-webkit-text-fill-color:#111b33!important;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets button[aria-pressed="true"] span{
+ background:#111b33;color:#fff;-webkit-text-fill-color:#fff;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-presets button:focus-visible{
+ outline:2px solid #a5c8ff;outline-offset:2px;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-foot{
+ max-width:330px;text-align:right;color:#8390a6;font-size:10px;
+ line-height:1.6;font-weight:850;letter-spacing:.06em;text-transform:uppercase;
+}
+#mlx101Standby.mlx1027-privacy .mlx27-hidden{display:none!important}
+@keyframes mlx27Glow{from{transform:translate3d(-4%,-2%,0) scale(.96);opacity:.6}to{transform:translate3d(17%,5%,0) scale(1.12);opacity:1}}
+@keyframes mlx27Float{from{transform:translate3d(-7%,-5%,0)}to{transform:translate3d(4%,12%,0)}}
+@media(max-width:1180px){
+ #mlx101Standby.mlx1027-privacy .mlx27-bottom{
+  align-items:flex-end;flex-wrap:wrap;justify-content:center;row-gap:14px;
+ }
+ #mlx101Standby.mlx1027-privacy .mlx27-foot{display:none}
+ #mlx101Standby.mlx1027-privacy .mlx27-time{bottom:24%}
+}
+@media(max-width:790px){
+ #mlx101Standby.mlx1027-privacy .mlx27-brand{top:20px;left:20px}
+ #mlx101Standby.mlx1027-privacy .mlx27-session{top:22px;right:16px}
+ #mlx101Standby.mlx1027-privacy .mlx27-shortcuts{font-size:9px;max-width:170px;line-height:1.4}
+ #mlx101Standby.mlx1027-privacy .mlx27-time{left:5%;bottom:33%}
+ #mlx101Standby.mlx1027-privacy .mlx27-clock-digits{font-size:clamp(67px,16vw,132px)}
+ #mlx101Standby.mlx1027-privacy .mlx27-date{letter-spacing:.14em;font-size:10px}
+ #mlx101Standby.mlx1027-privacy .mlx27-bottom{align-items:center}
+ #mlx101Standby.mlx1027-privacy .mlx27-presets{
+  overflow-x:auto;max-width:calc(100vw - 36px);width:100%;
+  justify-content:flex-start;scrollbar-width:thin;
+ }
+ #mlx101Standby.mlx1027-privacy .mlx27-presets button{min-width:max-content}
+ #mlx101Standby.mlx1027-privacy .mlx27-unlock-hint{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+ #mlx101Standby.mlx1027-privacy,
+ #mlx101Standby.mlx1027-privacy .mlx27-screen:after,
+ #mlx101Standby.mlx1027-privacy .mlx27-aura{
+  transition:none!important;animation:none!important;
+ }
+}
+/* Settings functional navigation: do not let hidden panels occupy content space. */
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsViews .adc-setting-view[hidden]{
+ display:none!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsViews .adc-setting-view:not([hidden]){
+ display:block!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsList button[aria-current="page"]{
+ background:color-mix(in srgb,#2563eb 10%,var(--mlxr-surface))!important;
+ border:1px solid color-mix(in srgb,#2563eb 28%,var(--mlxr-line))!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsList button[aria-current="page"] .adc-setting-copy strong{
+ color:#2563eb!important;-webkit-text-fill-color:#2563eb!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsViews .adc-setting-view{
+ scroll-margin-top:18px!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsViews .adc-setting-view .field{
+ min-width:0!important;
+}
+html body.mlx1023-reference.mlx1027-ready #app #settings #adcSettingsViews :is(input,select,textarea){
+ font-family:'Manrope','Segoe UI',sans-serif!important;
+}
