@@ -530,3 +530,23 @@ html body.mlx29-legacy #app #admin #ml10AdminNav button.active{
   transition:none!important;animation:none!important;
  }
 }
+
+
+/* Clear vector icon treatment for existing Admin panel headings. */
+html body.mlx29-legacy #app #admin .panel-head h2{
+ display:flex!important;align-items:center!important;gap:11px!important;
+}
+html body.mlx29-legacy #app #admin .mlx29-admin-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 35px!important;width:35px!important;height:35px!important;min-width:35px!important;
+ border-radius:50%!important;
+ background:var(--mx29-soft)!important;border:1px solid var(--mx29-line)!important;
+ color:var(--mx29-accent)!important;-webkit-text-fill-color:var(--mx29-accent)!important;
+ box-shadow:none!important;overflow:hidden!important;
+}
+html body.mlx29-legacy #app #admin .mlx29-admin-icon svg{
+ display:block!important;width:19px!important;height:19px!important;fill:none!important;
+ stroke:currentColor!important;stroke-width:1.9!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+ border:0!important;background:none!important;box-shadow:none!important;
+}
