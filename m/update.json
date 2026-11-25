@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.8",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.8/MediLabX.html",
-  "sha256": "6548605a1168a78c282647ccca3c17243196c405217b66556e06a36cda63c8e4",
+  "version": "10.2.9",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.9/MediLabX.html",
+  "sha256": "4eba9b8664e982cf0b5f160e09c8f86c1eaf3b50a6d8ed34a8208620f2f8d2db",
   "notes": [
-    "Requested rollback: restored the exact original MediLab X 10.1.4 HTML, visually and functionally, without any later 10.2.x UI patches.",
-    "This 10.2.8 update-channel version is a compatibility release label; the installed app HTML is byte-for-byte the archived 10.1.4 build.",
-    "Returns Settings, Admin, Privacy Standby, notification popups, navigation, colors and other screens to their original 10.1.4 implementation.",
-    "The HTML uses the same medilabx10_html_v1 patient database key and identical original loadDB/saveDB implementation as 10.2.7.",
-    "No patient database files or localStorage entries are deleted by the release, but create and verify a data backup before applying a downgrade.",
-    "Any features or bug fixes introduced after 10.1.4 are intentionally absent from this restored legacy build."
+    "Restored MediLab X 10.1.4 remains the complete application base: Reception, Patients, Radiology, receipts, sidebar, taskbar and Privacy Standby look and behave as before.",
+    "Professionally redesigned ONLY Settings and Admin with organized navigation, readable forms, responsive grids, light/dark contrast and consistent circular vector icon tiles.",
+    "Settings home now has four shortcuts that open the ORIGINAL native Centre, Appearance, Software Updates and Backup controls; original save actions are reused.",
+    "Admin user creation, page permissions, performing doctors, deletion PIN, and deleted-record archive retain their existing actions and field IDs.",
+    "Removes duplicate Release Spotlight decoration from Settings while retaining the real GitHub updater, check, install, rollback and backup controls.",
+    "No storage schema, clinical handler, print/WhatsApp implementation, patient records or user account data are changed. Back up data before updates."
   ]
 }
