@@ -1,15 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.6",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.6/MediLabX.html",
-  "sha256": "cfc6ca8065477876667ee8255836de60a196595229da6a3775d29b6f8e2c939f",
+  "version": "10.2.7",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.7/MediLabX.html",
+  "sha256": "a0f983fecbf1f54bdbda5e6a0e6dbb8f40ef8c53899838e5584afbe2fa5c0712",
   "notes": [
-    "Professional MediLab X Settings workspace: new helpful overview, quick category shortcuts, and spacious navigation/sidebar following the supplied HTML design.",
-    "Admin redesigned with clean cards and adaptive access-permission tiles; original accounts, roles, PIN and deleted-record recovery handlers are unchanged.",
-    "High-quality crisp vector SVG icons added to sidebar and Settings categories with circular backgrounds instead of conflicting square layers.",
-    "Light/Dark themes refined for buttons, headings, fields, update modal, confirmation dialogs, notifications, and toast messages.",
-    "Improved scroll containment, responsive layout, visual hierarchy and reduced-motion support across the new interface.",
-    "Retained single GitHub Software Updates banner from 10.2.5 and original SHA256-verified update bridge.",
-    "Existing patient registration, records, receipts, report templates, radiology printing, WhatsApp, Now Brief, data formats and native Windows bridge unchanged."
+    "Top taskbar and left sidebar now share exactly the same premium dark navy blue gradient #0b1530 to #13204a in Light and Dark modes.",
+    "Privacy Standby redesigned to match supplied full-screen screenshot: large live clock, date, branding, fine dotted backdrop and smooth animated blue glow.",
+    "Six privacy screen visual presets with keyboard keys 1–6; H hides preset ribbon. Click or Escape unlocks using original no-PIN behavior.",
+    "Original five-minute automatic lock and native Windows lock button behavior retained. Added accessible lock action to main top taskbar.",
+    "Settings navigation repaired so original panels reliably open and selected category stays highlighted with correct visible/hidden state.",
+    "All existing clinical records, user roles, Admin forms, receipts, radiology reports, WhatsApp Desktop, updater and backup storage untouched."
   ]
 }
