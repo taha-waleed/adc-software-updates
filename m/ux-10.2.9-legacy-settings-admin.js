@@ -29,6 +29,35 @@ const quick=[
  ['updates','Software Updates','Secure GitHub release checks'],
  ['backup','Backup & Data','Export or restore centre records']
 ];
+
+function roundSettingIcons(){
+ const list=q('#adcSettingsList');if(!list)return;
+ for(const icon of list.querySelectorAll('.adc-setting-symbol')){
+  // Legacy 10.1.4 injects global !important rectangle styles after page load.
+  // In a scoped setting icon only, inline-important values intentionally win.
+  const declarations={
+   'border-radius':'50%',
+   'background':'var(--mx29-soft)',
+   'border':'1px solid var(--mx29-line)',
+   'box-shadow':'none',
+   'padding':'0',
+   'width':'33px',
+   'min-width':'33px',
+   'height':'33px',
+   'min-height':'33px',
+   'display':'inline-flex',
+   'align-items':'center',
+   'justify-content':'center',
+   'overflow':'hidden'
+  };
+  for(const [name,value] of Object.entries(declarations)){
+   if(icon.style.getPropertyValue(name)!==value||icon.style.getPropertyPriority(name)!=='important'){
+    icon.style.setProperty(name,value,'important');
+   }
+  }
+ }
+}
+
 function settingsHome(){
  const empty=q('#settings .mlx-pref-empty'),list=q('#adcSettingsList');
  if(!empty||!list||empty.dataset.mlx29Home)return;
@@ -114,7 +143,7 @@ function mount(){
  if(pending)return;pending=true;
  requestAnimationFrame(()=>{
   pending=false;document.body?.classList.add('mlx29-legacy');
-  settingsHome();settingsListeners();settingsActive();
+  settingsHome();settingsListeners();settingsActive();roundSettingIcons();
   adminHeaders();ariaForms();
  });
 }
