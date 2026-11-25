@@ -1,0 +1,40 @@
+name: MediLab X 10.2.8 - Exact 10.1.4 Rollback QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/publish_ui_10_2_8_restore_10_1_4.py
+      - m/qa_restore_10_1_4.cjs
+      - .github/workflows/qa-ui-10-2-8.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact archived HTML and unchanged clinical data storage
+        run: python3 m/publish_ui_10_2_8_restore_10_1_4.py --qa --qa-output /tmp/MediLabX-10.1.4-restore-QA.html
+      - name: Compare archived 10.1.4 HTML and test HTML byte-for-byte
+        run: |
+          cmp -s medilabx-ui-10.1.4/MediLabX.html /tmp/MediLabX-10.1.4-restore-QA.html
+          sha256sum medilabx-ui-10.1.4/MediLabX.html /tmp/MediLabX-10.1.4-restore-QA.html
+      - name: Install Chromium browser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Validate archived original GUI at desktop and compact widths
+        run: node m/qa_restore_10_1_4.cjs /tmp/MediLabX-10.1.4-restore-QA.html /tmp/restore-10-1-4-screens
+      - name: Store rollback QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medilab-x-10-1-4-rollback-qa
+          path: /tmp/restore-10-1-4-screens/
+          if-no-files-found: ignore
+          retention-days: 14
