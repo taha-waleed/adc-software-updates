@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.2",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.2/MediLabX.html",
-  "sha256": "e20a96a2eea98308de37014dbd8d1c50f17d24e8dee6813dfb1a5ff8b47598c4",
+  "version": "10.2.3",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.3/MediLabX.html",
+  "sha256": "44d30be9fb21abacc525c295dfca4643aafcc3143a07407336c266f15bdbd67a",
   "notes": [
-    "Fixed dark text on blue Open Software Updates notification button, and Updating MediLab X title/progress contrast in Light and Dark modes.",
-    "Automatic GitHub release checks approximately every 20 minutes while signed in, plus catch-up on app focus; existing verified updater reused.",
-    "Update available alert shown once per release version across restarts and even after clearing read notification history.",
-    "Manual Check for updates no longer forces a 4.5-second progress wait; release still installs only after pressing Update Now.",
-    "Settings Software Updates redesigned as compact GitHub Release section; obsolete release-note text and separators hidden; advanced URL editing retained.",
-    "No changes to patient records, printing, reporting, receipts, Now Brief, roles, Fish Tank or native Electron update installer."
+    "Integrated supplied HTML theme into MediLab X: dark gradient sidebar, rounded cards, Manrope typography, line-style SVG icons and smooth animation.",
+    "Matched Settings navigation to the reference design with 280px category rail, scrollable sections, clear headings and matching controls.",
+    "Added Light, Dark and Automatic appearance modes, six accent palettes, text sizes, roundness and density preferences.",
+    "Added reference-style GitHub update banner linked to the existing real Check for updates and Update Now actions; no demo progress or simulated backups.",
+    "Existing patient registration, records, reports, receipts, WhatsApp Desktop, update security, backup, roles, notifications, Now Brief and Fish Tank source handlers preserved.",
+    "Only HTML UI layer changed; native Windows installer and clinical local storage schema not changed."
   ]
 }
