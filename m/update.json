@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.3",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.3/MediLabX.html",
-  "sha256": "44d30be9fb21abacc525c295dfca4643aafcc3143a07407336c266f15bdbd67a",
+  "version": "10.2.4",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.4/MediLabX.html",
+  "sha256": "2f25d9a59b4b404c8f9a4f32134de8c0a546bc97924890b9b8120d259ca9b66a",
   "notes": [
-    "Integrated supplied HTML theme into MediLab X: dark gradient sidebar, rounded cards, Manrope typography, line-style SVG icons and smooth animation.",
-    "Matched Settings navigation to the reference design with 280px category rail, scrollable sections, clear headings and matching controls.",
-    "Added Light, Dark and Automatic appearance modes, six accent palettes, text sizes, roundness and density preferences.",
-    "Added reference-style GitHub update banner linked to the existing real Check for updates and Update Now actions; no demo progress or simulated backups.",
-    "Existing patient registration, records, reports, receipts, WhatsApp Desktop, update security, backup, roles, notifications, Now Brief and Fish Tank source handlers preserved.",
-    "Only HTML UI layer changed; native Windows installer and clinical local storage schema not changed."
+    "Software Updates simplified to one top update banner. Removed duplicate GitHub Software Updates header, Release Spotlight and repeated Check for updates buttons.",
+    "Actual update check, verified Update Now, update status, manual install and rollback handlers are preserved; advanced recovery controls are available inside Backup & Data.",
+    "Removed accent-color swatches and obsolete duplicated appearance editor. Reference Manrope blue/violet theme and Light / Dark / Automatic cards retained.",
+    "Fixed Patients & Receipts record-date input clipping, narrow calendar button and labels at different screen widths.",
+    "Admin workspace redesigned with responsive permission tiles, structured user forms, readable controls, deletion-PIN form and tables in Light and Dark themes.",
+    "Original patient records, receipts, radiology, WhatsApp, reports, Now Brief, notifications, printer logic, security and data-storage format unchanged."
   ]
 }
