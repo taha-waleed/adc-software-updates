@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.4",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.4/MediLabX.html",
-  "sha256": "2f25d9a59b4b404c8f9a4f32134de8c0a546bc97924890b9b8120d259ca9b66a",
+  "version": "10.2.5",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.5/MediLabX.html",
+  "sha256": "38bb02f09af7fb66a217d85015d8d01a18a3097eb580a38c6e579b839611f7b2",
   "notes": [
-    "Software Updates simplified to one top update banner. Removed duplicate GitHub Software Updates header, Release Spotlight and repeated Check for updates buttons.",
-    "Actual update check, verified Update Now, update status, manual install and rollback handlers are preserved; advanced recovery controls are available inside Backup & Data.",
-    "Removed accent-color swatches and obsolete duplicated appearance editor. Reference Manrope blue/violet theme and Light / Dark / Automatic cards retained.",
-    "Fixed Patients & Receipts record-date input clipping, narrow calendar button and labels at different screen widths.",
-    "Admin workspace redesigned with responsive permission tiles, structured user forms, readable controls, deletion-PIN form and tables in Light and Dark themes.",
-    "Original patient records, receipts, radiology, WhatsApp, reports, Now Brief, notifications, printer logic, security and data-storage format unchanged."
+    "Corrected Software Updates to display only one top action banner; redundant GitHub Software Updates and Release Spotlight panels stay hidden even when legacy scripts inject them.",
+    "Removed the old hard-coded Current version: 10.0.3 UI label so it cannot misrepresent the installed HTML or native application.",
+    "When a genuine release is available, the single top button runs the original SHA-256-verifying Update Now handler. Otherwise it runs the original Check for updates handler.",
+    "Preserved real update-installation, rollback and manual-update handlers, with advanced controls accessible in Settings > Backup & Data.",
+    "Retained the 10.2.4 responsive date control and Administration/Permissions redesign, the uploaded reference theme and its blue-violet styling.",
+    "Patient registration, stored patient records, reporting, receipts, WhatsApp Desktop, imaging, Now Brief, printing, roles and local storage remain unchanged."
   ]
 }
