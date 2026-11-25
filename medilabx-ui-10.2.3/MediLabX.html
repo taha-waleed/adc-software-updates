@@ -6897,33 +6897,6 @@ function checkProgress(){const target=$('adc85UpdateCentre');if(!target||$('mlx-
  desktop()?.onAutoUpdate?.(r=>{if(r?.ok&&r.available){const suppress=window.sessionStorage.getItem('mlx-later-'+r.version)==='yes';if(!suppress)addNotice('Software update available','Version '+r.version+' can be installed from Settings → Software Updates.','info',{key:'update-'+r.version,show:true})}});
  $('adc85RemindLater')?.addEventListener('click',()=>{const version=$('adc85NewVersion')?.textContent?.match(/\d+\.\d+(\.\d+)?/)?.[0];if(version){sessionStorage.setItem('mlx-later-'+version,'yes');addNotice('Update postponed','We will remind you when MediLab X restarts.','info',{show:false,key:'later-'+version})}},true);
 }
-
-function updateHero(){
- const view=Q('#settings [data-setting-view="updates"]'),real=Q('#adc85UpdateCentre');
- if(!view||!real)return;
- let hero=Q('#mlxrUpdateHero');
- if(!hero){
-   hero=document.createElement('div');hero.id='mlxrUpdateHero';
-   hero.innerHTML='<div class="mlxr-hero-row"><div class="mlxr-hero-orb">'+drawIcon('refresh')+
-    '</div><div class="mlxr-hero-copy"><h3 id="mlxrHeroTitle">Software Updates</h3><p id="mlxrHeroSub">Checking update status…</p></div>'+
-    '<button id="mlxrHeroAction" type="button">Check for updates</button></div>';
-   const heading=view.querySelector('h2');if(heading)heading.insertAdjacentElement('afterend',hero);else view.prepend(hero);
-   hero.querySelector('#mlxrHeroAction').addEventListener('click',()=>{
-     const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
-     const realAction=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');
-     if(realAction&&!realAction.disabled)realAction.click();
-   });
- }
- const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
- const heading=Q('#adc85UpdateHeading')?.textContent?.trim()||'Software Updates';
- const message=Q('#adc85UpdateMessage')?.textContent?.trim()||'Check your trusted update server';
- const v=Q('#adc85NewVersion')?.textContent?.trim()||'New update available';
- Q('#mlxrHeroTitle').textContent=offered?v:heading;
- Q('#mlxrHeroSub').textContent=message;
- const action=Q('#mlxrHeroAction');action.textContent=offered?'Download & Install':'Check for updates';
- const native=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');action.disabled=!native||native.disabled;
-}
-
 function boot(){
  setTimeout(()=>{document.documentElement.classList.remove('ml-splashing');const tb=$('adc85Titlebar');if(tb&&document.documentElement.classList.contains('medilab-desktop'))tb.style.setProperty('display','flex','important');desktop()?.windowReadyForLogin?.();},3210);
  normalizeBrand();fixSidebar();remakeAbout();notificationElements();addSettings();preventAboutScrollbar();styleAIBrand();checkProgress();
@@ -11587,6 +11560,32 @@ function mount(){
 }
 let queued=false;
 function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;mount()})}
+function updateHero(){
+ const view=Q('#settings [data-setting-view="updates"]'),real=Q('#adc85UpdateCentre');
+ if(!view||!real)return;
+ let hero=Q('#mlxrUpdateHero');
+ if(!hero){
+   hero=document.createElement('div');hero.id='mlxrUpdateHero';
+   hero.innerHTML='<div class="mlxr-hero-row"><div class="mlxr-hero-orb">'+drawIcon('refresh')+
+    '</div><div class="mlxr-hero-copy"><h3 id="mlxrHeroTitle">Software Updates</h3><p id="mlxrHeroSub">Checking update status…</p></div>'+
+    '<button id="mlxrHeroAction" type="button">Check for updates</button></div>';
+   const heading=view.querySelector('h2');if(heading)heading.insertAdjacentElement('afterend',hero);else view.prepend(hero);
+   hero.querySelector('#mlxrHeroAction').addEventListener('click',()=>{
+     const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
+     const realAction=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');
+     if(realAction&&!realAction.disabled)realAction.click();
+   });
+ }
+ const offered=Q('#adc85UpdateOffer')&&!Q('#adc85UpdateOffer').hidden;
+ const heading=Q('#adc85UpdateHeading')?.textContent?.trim()||'Software Updates';
+ const message=Q('#adc85UpdateMessage')?.textContent?.trim()||'Check your trusted update server';
+ const v=Q('#adc85NewVersion')?.textContent?.trim()||'New update available';
+ Q('#mlxrHeroTitle').textContent=offered?v:heading;
+ Q('#mlxrHeroSub').textContent=message;
+ const action=Q('#mlxrHeroAction');action.textContent=offered?'Download & Install':'Check for updates';
+ const native=Q(offered?'#adc85UpdateNow':'#adc85CheckUpdates');action.disabled=!native||native.disabled;
+}
+
 function boot(){
  apply();schedule();updateHero();
  const updateRoot=Q('#adc85UpdateCentre');if(updateRoot)new MutationObserver(updateHero).observe(updateRoot,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});
