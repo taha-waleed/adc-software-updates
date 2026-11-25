@@ -1,0 +1,276 @@
+/* MediLab X 10.2.1 • Clinical readability and UI consistency hotfix.
+   Styles only. Preserves all data, existing controls and workflows. */
+@media screen {
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished {
+  --mlx1021-nav:#182c4b;
+  --mlx1021-nav-dark:#11213b;
+  --mlx1021-nav-text:#eef5ff;
+  --mlx1021-nav-muted:#b9cbe3;
+  --mlx1021-nav-hint:#a4b8d4;
+  --mlx1021-blue:#0866ff;
+  font-family:'Manrope','Trebuchet MS','Aptos','Segoe UI Variable Text','Segoe UI',Arial,sans-serif!important;
+  font-weight:500;
+  font-size:13.5px;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished :is(#app,#app *,#mlx-notif-panel,#mlx-notif-panel *, .mlx-toast-host, .mlx-toast-host *, .ml85-modal,.adc85-modal) {
+  font-family:'Manrope','Trebuchet MS','Aptos','Segoe UI Variable Text','Segoe UI',Arial,sans-serif!important;
+}
+/* The exact regression: old light-mode styles made INNER nav labels dark on a navy rail.
+   Declare text + -webkit-text-fill-color explicitly at the element level. */
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar {
+  background:#182c4b!important;
+  background-image:linear-gradient(155deg,#203758 0%,#142744 100%)!important;
+  border:1px solid #314869!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#eef5ff!important;
+  -webkit-text-fill-color:#eef5ff!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished[data-mlx101-mode="dark"] #app .sidebar {
+  background:#11213b!important;
+  background-image:linear-gradient(155deg,#172942 0%,#101c30 100%)!important;
+  border-color:#2b3f5d!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar :is(.brand,.sidebar-foot,#nav) {
+  background:transparent!important;
+  border-color:rgba(234,243,255,.15)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar .brand :is(strong,strong span,.ml-new-brand-label,.ml-new-brand-label strong,.ml-new-brand-label strong span) {
+  color:#f7faff!important;
+  -webkit-text-fill-color:#f7faff!important;
+  opacity:1!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar .brand :is(small,p,.muted,.brand-subtitle),
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar .sidebar-foot :is(small,p,.muted,span,.app-version) {
+  color:#c7d8ed!important;
+  -webkit-text-fill-color:#c7d8ed!important;
+  opacity:1!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar :is(.ml-nav-group,.nav-section-label) {
+  color:#b9cbe3!important;
+  -webkit-text-fill-color:#b9cbe3!important;
+  opacity:1!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.11em!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar #nav .ml-nav-group,
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar #nav .nav-section-label {
+  color:#b9cbe3!important;-webkit-text-fill-color:#b9cbe3!important;opacity:1!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page]:not(.active):not([aria-current="page"]) {
+  color:#eaf2fd!important;
+  -webkit-text-fill-color:#eaf2fd!important;
+  opacity:1!important;
+  border-color:transparent!important;
+  background:transparent!important;
+  font-size:12.5px!important;
+  font-weight:650!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page]:not(.active):not([aria-current="page"]) :is(.adc-nav-label,.adc-nav-icon,svg) {
+  color:#eaf2fd!important;
+  -webkit-text-fill-color:#eaf2fd!important;
+  opacity:1!important;
+  stroke:currentColor!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page]:not(.active):hover,
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page]:focus-visible {
+  background:rgba(220,234,255,.13)!important;
+  color:#fff!important;
+  border-color:rgba(236,246,255,.15)!important;
+  transform:translateX(2px)!important;
+  box-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page]:hover :is(.adc-nav-label,.adc-nav-icon,svg) {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page].active,
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page][aria-current="page"] {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:#0866ff!important;
+  box-shadow:0 7px 16px rgba(0,40,123,.21)!important;
+  border-color:#0866ff!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page].active :is(.adc-nav-label,.adc-nav-icon,svg),
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button[data-page][aria-current="page"] :is(.adc-nav-label,.adc-nav-icon,svg) {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;stroke:currentColor!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav :is(.adc-nav-icon,.adc-nav-icon svg) {
+  flex-shrink:0!important;width:19px!important;height:19px!important;
+  stroke-width:1.85!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar :is(.sidebar-foot button, #mlx1013-rate-dock) {
+  color:#eef5ff!important;-webkit-text-fill-color:#eef5ff!important;
+  background:rgba(235,245,255,.09)!important;
+  border:1px solid rgba(225,239,255,.23)!important;
+  box-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app .sidebar .sidebar-foot *:not(button) {
+  color:#cbdaed!important;-webkit-text-fill-color:#cbdaed!important;
+}
+/* High-contrast Settings rail and refined clinical preferences. No geometry or data handlers moved. */
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings :is(.adc-settings-shell,.adc-settings-lead,.adc-settings-views,.adc-settings-group,.adc-setting-view,.mlx-pref-empty) {
+  color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings #adcSettingsList {
+  background:var(--px-card-2)!important;
+  color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;
+  border-radius:17px!important;
+  box-shadow:inset -1px 0 0 var(--px-stroke-glow)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings #adcSettingsList :is(.ml-settings-section-label,.mlx105-section-head,.adc-settings-category,.mlx-pref-category-title) {
+  color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important;
+  opacity:1!important;
+  letter-spacing:.09em!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item {
+  background:transparent!important;
+  color:var(--px-text)!important;
+  -webkit-text-fill-color:var(--px-text)!important;
+  font-size:12.7px!important;
+  font-weight:680!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+  min-height:38px!important;
+  transition:background .19s ease,border-color .19s ease,transform .19s ease!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item :is(strong,.adc-setting-copy,.adc-setting-copy strong,.adc-setting-chevron) {
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item :is(small,.adc-setting-copy small) {
+  color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item:hover {
+  background:var(--px-hover)!important;
+  transform:translateX(2px)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item:is(.active,[aria-selected="true"],[aria-current="true"]) {
+  background:var(--px-active)!important;
+  border-color:color-mix(in srgb,var(--px-accent) 28%,var(--px-stroke))!important;
+  transform:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-setting-symbol {
+  display:grid!important;place-items:center!important;
+  min-width:29px!important;width:29px!important;height:29px!important;
+  color:#0866df!important;
+  -webkit-text-fill-color:#0866df!important;
+  background:rgba(8,102,255,.085)!important;
+  border-radius:9px!important;
+  border:1px solid rgba(8,102,255,.1)!important;
+  opacity:1!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished[data-mlx101-mode="dark"] #settings .adc-setting-symbol {
+  color:#a7c7ff!important;-webkit-text-fill-color:#a7c7ff!important;
+  background:rgba(110,158,248,.14)!important;border-color:rgba(110,158,248,.19)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-setting-symbol svg {
+  width:16px!important;height:16px!important;
+  color:inherit!important;stroke:currentColor!important;
+  stroke-width:1.85!important;fill:none!important;
+  stroke-linejoin:round!important;stroke-linecap:round!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings :is(.adc-settings-views,.adc-settings-group,.adc-settings-lead) {
+  border:1px solid var(--px-stroke)!important;
+  background:var(--px-card)!important;
+  border-radius:18px!important;
+  box-shadow:0 3px 10px rgba(25,36,54,.035)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings :is(.adc-setting-view,.adc-settings-group) :is(h2,h3, strong,label) {
+  color:var(--px-text)!important;-webkit-text-fill-color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings :is(.adc-setting-view,.adc-settings-group) :is(p,small,.muted) {
+  color:var(--px-muted)!important;-webkit-text-fill-color:var(--px-muted)!important;
+}
+/* Fix independent theme-toggle styling conflicts without changing theme state code. */
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings :is(#mlxPrefLight,#mlxPrefDark) {
+  color:var(--px-text)!important;
+  -webkit-text-fill-color:var(--px-text)!important;
+  background:var(--px-card-2)!important;
+  border:1px solid var(--px-stroke)!important;
+  opacity:1!important;
+  font-size:12px!important;
+  font-weight:750!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished[data-mlx101-mode="light"] #settings #mlxPrefLight,
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished[data-mlx101-mode="dark"] #settings #mlxPrefDark {
+  background:#0866ff!important;border-color:#0866ff!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+/* Notifications: compact glass drawer and shorter pill toasts, without touching click/navigation handlers. */
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel {
+  width:min(334px,calc(100vw - 24px))!important;
+  max-height:min(520px,calc(100dvh - var(--mlx-notif-top,76px) - 14px))!important;
+  right:14px!important;
+  top:var(--mlx-notif-top,76px)!important;
+  padding:12px!important;
+  border-radius:20px!important;
+  background:color-mix(in srgb,var(--px-elevated) 94%,transparent)!important;
+  color:var(--px-text)!important;
+  border:1px solid var(--px-stroke)!important;
+  box-shadow:0 20px 54px rgba(16,26,48,.18)!important;
+  backdrop-filter:blur(18px) saturate(125%)!important;
+  overflow-y:auto!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel :is(h2,h3,.mlx-panel-head strong) {
+  font-size:15px!important;line-height:1.25!important;
+  color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel :is(.mlx-panel-head,.mlx-notif-tabs) {
+  padding:6px 4px!important;gap:6px!important;
+  border-color:var(--px-stroke)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel .mlx-notif-card {
+  padding:10px!important;margin-top:7px!important;
+  border-radius:13px!important;
+  background:var(--px-card)!important;
+  color:var(--px-text)!important;
+  gap:9px!important;
+  border:1px solid var(--px-stroke)!important;
+  box-shadow:none!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel .mlx-notif-card :is(strong,p,button,small) {
+  font-size:11.5px!important;line-height:1.42!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel .mlx-notif-card strong {
+  font-size:12px!important;color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel .mlx-notif-card p,
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #mlx-notif-panel .mlx-notif-card small {
+  color:var(--px-muted)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished .mlx-toast-host {
+  right:15px!important;
+  top:var(--mlx-notif-top,76px)!important;
+  width:min(328px,calc(100vw - 26px))!important;
+  gap:7px!important;
+  z-index:2147482400!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished .mlx-toast-host .mlx-toast.mlx-pill-toast {
+  padding:10px 13px!important;
+  min-height:45px!important;
+  width:100%!important;
+  font-size:12px!important;
+  border-radius:999px!important;
+  background:var(--px-elevated)!important;
+  border:1px solid var(--px-stroke)!important;
+  color:var(--px-text)!important;
+  box-shadow:0 9px 22px rgba(16,27,50,.18)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished .mlx-toast-host .mlx-toast.mlx-pill-toast :is(strong,span,p) {
+  color:var(--px-text)!important;
+  -webkit-text-fill-color:var(--px-text)!important;
+}
+html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished .mlx-toast-host .mlx-toast.mlx-pill-toast:focus-visible {
+  outline:3px solid #4b99ff!important;outline-offset:2px!important;
+}
+/* Other UI labels already inherit existing Pearl Clinical tokens; leave original animated Now Brief untouched. */
+@media (prefers-reduced-motion: reduce) {
+ html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #app #nav button,
+ html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished #settings .adc-settings-item,
+ html body.mlx101-ui.mlx202-release.mlx1021-polished.mlx1021-polished .mlx-toast-host .mlx-toast {transition:none!important;animation:none!important;transform:none!important}
+}
+}
