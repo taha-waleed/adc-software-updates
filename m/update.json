@@ -1,14 +1,15 @@
 {
   "schema": 1,
-  "version": "10.2.5",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.5/MediLabX.html",
-  "sha256": "38bb02f09af7fb66a217d85015d8d01a18a3097eb580a38c6e579b839611f7b2",
+  "version": "10.2.6",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.6/MediLabX.html",
+  "sha256": "cfc6ca8065477876667ee8255836de60a196595229da6a3775d29b6f8e2c939f",
   "notes": [
-    "Corrected Software Updates to display only one top action banner; redundant GitHub Software Updates and Release Spotlight panels stay hidden even when legacy scripts inject them.",
-    "Removed the old hard-coded Current version: 10.0.3 UI label so it cannot misrepresent the installed HTML or native application.",
-    "When a genuine release is available, the single top button runs the original SHA-256-verifying Update Now handler. Otherwise it runs the original Check for updates handler.",
-    "Preserved real update-installation, rollback and manual-update handlers, with advanced controls accessible in Settings > Backup & Data.",
-    "Retained the 10.2.4 responsive date control and Administration/Permissions redesign, the uploaded reference theme and its blue-violet styling.",
-    "Patient registration, stored patient records, reporting, receipts, WhatsApp Desktop, imaging, Now Brief, printing, roles and local storage remain unchanged."
+    "Professional MediLab X Settings workspace: new helpful overview, quick category shortcuts, and spacious navigation/sidebar following the supplied HTML design.",
+    "Admin redesigned with clean cards and adaptive access-permission tiles; original accounts, roles, PIN and deleted-record recovery handlers are unchanged.",
+    "High-quality crisp vector SVG icons added to sidebar and Settings categories with circular backgrounds instead of conflicting square layers.",
+    "Light/Dark themes refined for buttons, headings, fields, update modal, confirmation dialogs, notifications, and toast messages.",
+    "Improved scroll containment, responsive layout, visual hierarchy and reduced-motion support across the new interface.",
+    "Retained single GitHub Software Updates banner from 10.2.5 and original SHA256-verified update bridge.",
+    "Existing patient registration, records, receipts, report templates, radiology printing, WhatsApp, Now Brief, data formats and native Windows bridge unchanged."
   ]
 }
