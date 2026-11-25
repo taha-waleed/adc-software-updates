@@ -1,0 +1,38 @@
+name: MediLab X 10.2.9 - Original UI Settings and Admin QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/publish_ui_10_2_9.py
+      - m/ux-10.2.9-legacy-settings-admin.css
+      - m/ux-10.2.9-legacy-settings-admin.js
+      - m/qa_10_2_9.cjs
+      - .github/workflows/qa-ui-10-2-9.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact archived MediLab X 10.1.4 and build test-only 10.2.9
+        run: python3 m/publish_ui_10_2_9.py --qa --qa-output /tmp/MediLabX-10.2.9-QA.html
+      - name: Install Chromium browser testing
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test Settings categories, Admin role controls, icons and theme contrast
+        run: node m/qa_10_2_9.cjs /tmp/MediLabX-10.2.9-QA.html /tmp/medilab-x-1029-qa
+      - name: Save testing screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medilab-x-10-2-9-settings-admin-qa
+          path: /tmp/medilab-x-1029-qa/
+          if-no-files-found: ignore
+          retention-days: 14
