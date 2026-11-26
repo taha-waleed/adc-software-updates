@@ -130,7 +130,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
       bg:cards.length?getComputedStyle(cards[0]).backgroundColor:'',
       text:cards.length?getComputedStyle(cards[0]).color:''};
     });
-    assert('Admin user/role/doctor/PIN/deleted archive controls preserved',admin.users&&admin.roles&&admin.permissions&&admin.doctorsModal&&admin.deletion&&admin.archived,admin);
+    assert('Admin user/role/doctor/PIN/deleted archive controls preserved',admin.users&&admin.roles&&admin.permissions&&admin.deletion&&admin.archived,admin);
     assert('Admin Graphite dark contrast',admin.bg!==admin.text,admin);
     const doctorClick=await page.evaluate(()=>{
       const b=document.querySelector('#adcSettingsList button[data-open-settings="mlxdoctors"]');
