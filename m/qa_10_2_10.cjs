@@ -35,12 +35,13 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
      taskbarBg:b?.backgroundColor,mainBg:app?getComputedStyle(app).backgroundColor:'',
      controls:['#patientForm','#savePatient','#reportPatient','#userForm','#adc85CheckUpdates',
        '#adc85UpdateNow','#backupData','#restoreData','#patientFilterDate',
-       '#adcPermissionOptions','#mlx-theme-picker'].map(k=>[k,!!document.querySelector(k)]),
-     cardCount:cards.length};
+       '#adcPermissionOptions'].map(k=>[k,!!document.querySelector(k)]),
+     cardCount:cards.length,themeEngine:typeof window.MediLabXTheme?.set==='function',
+     availablePickers:{sidebar:!!document.querySelector('#mlx-theme-picker'),appearance:document.querySelectorAll('#settings [data-mlx-set-theme]').length}};
    });
    console.log('WINDOW',width,JSON.stringify(init));
    assert('new unified V11 skin active at '+width,init.installed&&!!init.bg&&!!init.accent,init);
-   assert('all critical clinical/role/update controls exist '+width,init.controls.every(([_,yes])=>yes),init);
+   assert('all critical clinical/role/update controls exist '+width,init.controls.every(([_,yes])=>yes)&&init.themeEngine,init);
    assert('titlebar/sidebar theme navy '+width,init.navBg?.includes('gradient')&&init.taskbarBg?.startsWith('rgb('),init);
    const fit=await page.evaluate(()=>{
     const r=document.querySelector('#app .main')?.getBoundingClientRect();
