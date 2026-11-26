@@ -1,15 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.10",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.10/MediLabX.html",
-  "sha256": "0ad4fd8d7f093a9eee111153619b956b1a14f341c8e73b66d6012acdb8dfe960",
+  "version": "10.2.11",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.11/MediLabX.html",
+  "sha256": "6548605a1168a78c282647ccca3c17243196c405217b66556e06a36cda63c8e4",
   "notes": [
-    "Applied supplied MediLab X 11 Unified Design System to current MediLab X 10.2.9: exact design tokens for seven themes, Inter-style typography, rounded surfaces, subtle shadows, modern navigation, cards, tables, forms and Settings/Admin.",
-    "Native seven theme choices Aurora, Ocean, Emerald, Orchid, Sunset, Graphite and Midnight remain functional; new interface follows the existing theme engine instead of adding a fake duplicate.",
-    "Updated navy app titlebar to match theme-specific sidebar; consistent vector navigation and Settings icon designs.",
-    "Privacy Standby now has animated midnight glow, dotted grid, large live local clock, date and full-screen layout based on uploaded preview. Existing no-PIN click or keyboard unlock and five-minute automatic lock remain unchanged.",
-    "Settings navigation, patient/receipt/radiology reports, doctor directory, staff roles, admin PIN, printing controls, WhatsApp and GitHub updater keep existing handlers and storage schema.",
-    "Screen-only CSS; printable clinical reports, letterheads, receipts and original data are not modified.",
-    "Includes original versioned HTML update with SHA-256 integrity guard and automated Chromium regression checks."
+    "Emergency visual rollback requested by clinic: restored original MediLab X 10.1.4 software exactly, removing the problematic V11 unified theme and the Settings at a Glance cards.",
+    "10.2.11 is the update-channel label for this exact archived 10.1.4 HTML (its contents are byte-for-byte identical).",
+    "Returns original Settings, Admin, sidebar, titlebar, old animations, patient records, receipts, Radiology and Privacy Standby presentation.",
+    "Original Windows updater, Restore Previous, manual HTML update bridge, patient database key and native clinical handlers remain unchanged.",
+    "No patient data or settings storage are deleted by this HTML-only rollback. Back up local records before applying.",
+    "The version label 10.2.11 lets users on the broken 10.2.10 release receive a normal update offer without requiring navigation inside its broken Settings."
   ]
 }
