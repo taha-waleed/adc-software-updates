@@ -196,6 +196,18 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
     await page.emulateMedia({media:'print'});
     const print=await page.evaluate(()=>getComputedStyle(document.body).getPropertyValue('--v-bg').trim());
     assert('V11 design CSS isolated from print media',print==='',{vbg:print});
+    // Restart/reload-level theme persistence; the old duo-tone script previously erased non-default palettes.
+    await page.emulateMedia({media:'screen'});
+    await page.evaluate(()=>window.MediLabXTheme.set('ocean'));
+    await sleep(150);
+    await page.reload({waitUntil:'domcontentloaded'});
+    await sleep(1300);
+    const restoredTheme=await page.evaluate(()=>({
+      theme:document.body.dataset.mlxTheme,
+      accent:getComputedStyle(document.body).getPropertyValue('--v-accent').trim()
+    }));
+    assert('Saved Ocean theme survives application reload',restoredTheme.theme==='ocean'&&restoredTheme.accent==='#0e8fb5',restoredTheme);
+
    }
    await page.close();
   }
