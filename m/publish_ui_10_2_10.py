@@ -75,7 +75,7 @@ def build():
  missing=[s for s in NATIVE if s not in baseline]
  if missing:raise RuntimeError('FAIL closed: original patient/update/theme/lock controls missing: '+repr(missing))
  baseline=repair_legacy_duotone(baseline)
- marker=re.search(r'</body>\s*</html>\s*
+ marker=re.search(r'</body>\s*</html>\s*$',baseline,re.I)
  if not marker:raise RuntimeError('FAIL closed: unexpected closing HTML')
  if 'id="mlx11-unified-css"' in baseline or 'id="mlx11-unified-js"' in baseline:
   raise RuntimeError('Unexpected duplicate design integration')
@@ -98,7 +98,7 @@ def build():
   file.write_text(js,encoding='utf-8')
   subprocess.run(['node','--check',str(file)],check=True)
   # Verify updated UI-only seven-theme logic is syntactically safe.
-  duo=re.search(r'<script id="mlx101-duotone-design-js">([\\s\\S]*?)</script>',baseline)
+  duo=re.search(r'<script id="mlx101-duotone-design-js">([\s\S]*?)</script>',baseline)
   if not duo:raise RuntimeError('Duo-Tone script missing after repair')
   file.write_text(duo.group(1),encoding='utf-8')
   subprocess.run(['node','--check',str(file)],check=True)
