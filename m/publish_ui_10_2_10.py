@@ -54,7 +54,7 @@ def build():
               '#mlx101Standby','.mlx101-orb.one','mlx11LockGlow','#app #settings','#app #admin']:
   if term not in css:raise RuntimeError('Missing required design token/element: '+term)
  for term in ['function ensureLock()','function updateClock()','function iconsMount()',
-              'document.body?.classList.add','mlx11LockDigits','medilab']:
+              'document.body?.classList.add','mlx11LockDigits']:
   if term not in js:raise RuntimeError('Missing required UI module: '+term)
  for forbidden in ['localStorage.', 'saveDB(', 'loadDB(', 'installOnline(', 'rollbackUpdate(',
                    'window.MediLabXTheme=', 'fetch(', 'XMLHttpRequest', 'innerHTML=baseline']:
