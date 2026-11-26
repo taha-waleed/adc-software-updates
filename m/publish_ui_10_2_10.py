@@ -138,6 +138,6 @@ def main():
  DEST.parent.mkdir(parents=True,exist_ok=True);DEST.write_bytes(result)
  manifest.update(version='10.2.10',htmlUrl=NEW_URL,sha256=digest,notes=NOTES)
  MANIFEST.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
- print('PASS original 10.2.9 source preserved exactly, theme appended')
+ print('PASS clinical source unchanged; UI-only duo-tone guard repaired; V11 presentation appended')
  print('PASS release 10.2.10 verified sha256',digest,'bytes',len(result))
 if __name__=='__main__':main()
