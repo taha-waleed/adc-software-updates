@@ -1,0 +1,38 @@
+name: MediLab X 10.2.10 — Unified V11 Theme Browser QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/publish_ui_10_2_10.py
+      - m/ux-10.2.10-v11-unified.css
+      - m/ux-10.2.10-v11-unified.js
+      - m/qa_10_2_10.cjs
+      - .github/workflows/qa-ui-10-2-10.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile SHA256-pinned HTML fixture without updating production manifest
+        run: python3 m/publish_ui_10_2_10.py --qa --qa-output /tmp/MediLabX-10.2.10-QA.html
+      - name: Install supported Chromium for browser regression
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test seven themes, Settings/Admin, privacy lock/glow, responsive and print isolation
+        run: node m/qa_10_2_10.cjs /tmp/MediLabX-10.2.10-QA.html /tmp/medilab-x-10-2-10-qa
+      - name: Preserve browser screenshots for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medilab-x-10-2-10-visual-qa
+          path: /tmp/medilab-x-10-2-10-qa/
+          if-no-files-found: ignore
+          retention-days: 14
