@@ -1,0 +1,36 @@
+name: MediLab X 10.2.11 Emergency Old UI Restore QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/publish_ui_10_2_11_emergency_restore.py
+      - m/qa_10_2_11.cjs
+      - .github/workflows/qa-ui-10-2-11.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rollback-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify archived software, all patient handlers and create rollback test fixture
+        run: python3 m/publish_ui_10_2_11_emergency_restore.py --qa --qa-output /tmp/MediLabX-10.2.11-rollback-QA.html
+      - name: Install Chromium for non-destructive GUI regression
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Verify old Settings and Restore Previous UI, page access and screen sizes
+        run: node m/qa_10_2_11.cjs /tmp/MediLabX-10.2.11-rollback-QA.html /tmp/medilabx-10-2-11-recovery-qa
+      - name: Save old interface screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: medilab-x-10-2-11-recovery
+          path: /tmp/medilabx-10-2-11-recovery-qa/
+          if-no-files-found: ignore
+          retention-days: 14
