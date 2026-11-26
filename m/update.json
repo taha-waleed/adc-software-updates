@@ -1,14 +1,15 @@
 {
   "schema": 1,
-  "version": "10.2.9",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.9/MediLabX.html",
-  "sha256": "4eba9b8664e982cf0b5f160e09c8f86c1eaf3b50a6d8ed34a8208620f2f8d2db",
+  "version": "10.2.10",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.10/MediLabX.html",
+  "sha256": "0ad4fd8d7f093a9eee111153619b956b1a14f341c8e73b66d6012acdb8dfe960",
   "notes": [
-    "Restored MediLab X 10.1.4 remains the complete application base: Reception, Patients, Radiology, receipts, sidebar, taskbar and Privacy Standby look and behave as before.",
-    "Professionally redesigned ONLY Settings and Admin with organized navigation, readable forms, responsive grids, light/dark contrast and consistent circular vector icon tiles.",
-    "Settings home now has four shortcuts that open the ORIGINAL native Centre, Appearance, Software Updates and Backup controls; original save actions are reused.",
-    "Admin user creation, page permissions, performing doctors, deletion PIN, and deleted-record archive retain their existing actions and field IDs.",
-    "Removes duplicate Release Spotlight decoration from Settings while retaining the real GitHub updater, check, install, rollback and backup controls.",
-    "No storage schema, clinical handler, print/WhatsApp implementation, patient records or user account data are changed. Back up data before updates."
+    "Applied supplied MediLab X 11 Unified Design System to current MediLab X 10.2.9: exact design tokens for seven themes, Inter-style typography, rounded surfaces, subtle shadows, modern navigation, cards, tables, forms and Settings/Admin.",
+    "Native seven theme choices Aurora, Ocean, Emerald, Orchid, Sunset, Graphite and Midnight remain functional; new interface follows the existing theme engine instead of adding a fake duplicate.",
+    "Updated navy app titlebar to match theme-specific sidebar; consistent vector navigation and Settings icon designs.",
+    "Privacy Standby now has animated midnight glow, dotted grid, large live local clock, date and full-screen layout based on uploaded preview. Existing no-PIN click or keyboard unlock and five-minute automatic lock remain unchanged.",
+    "Settings navigation, patient/receipt/radiology reports, doctor directory, staff roles, admin PIN, printing controls, WhatsApp and GitHub updater keep existing handlers and storage schema.",
+    "Screen-only CSS; printable clinical reports, letterheads, receipts and original data are not modified.",
+    "Includes original versioned HTML update with SHA-256 integrity guard and automated Chromium regression checks."
   ]
 }
