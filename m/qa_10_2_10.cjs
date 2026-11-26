@@ -72,6 +72,9 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
      assert('Original theme picker supplies '+name,item.theme===name,item);
      assert('Exact uploaded V11 palette '+name,item.accent===expected[0]&&item.bg===expected[1]&&item.side===expected[2],item);
      assert('Readable '+name+' card text',item.card!==item.text,item);
+     await sleep(95);
+     const persistence=await page.evaluate(()=>document.body.dataset.mlxTheme);
+     assert('Theme '+name+' persists after legacy UI observers',persistence===name,{expected:name,actual:persistence});
      if(name==='graphite')await page.screenshot({path:path.join(dir,'dashboard-graphite.png')});
     }
     await page.evaluate(()=>{
@@ -86,6 +89,20 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
       icon:document.querySelector('#adcSettingsList button[data-open-settings="centre"] .adc-setting-symbol svg')?.tagName
     }));
     assert('Original Settings with live shortcuts and SVG icons',home.nav&&home.views&&home.cards===4&&home.icon?.toLowerCase()==='svg',home);
+    const appearanceOptions=await page.evaluate(()=>document.querySelectorAll('#settings [data-mlx-set-theme]').length);
+    assert('Seven real Appearance theme cards are accessible',appearanceOptions===7,{appearanceOptions});
+    await page.evaluate(()=>document.querySelector('#adcSettingsList button[data-open-settings="appearance"]').click());
+    await sleep(120);
+    const clicked=await page.evaluate(()=>{
+      const button=document.querySelector('#settings [data-mlx-set-theme="ocean"]');
+      button?.click();
+      return !!button;
+    });
+    await sleep(160);
+    const clickedTheme=await page.evaluate(()=>document.body.dataset.mlxTheme);
+    assert('Appearance theme card really updates persistent UI',clicked&&clickedTheme==='ocean',{clicked,clickedTheme});
+    await page.evaluate(()=>window.MediLabXTheme.set('aurora'));
+    await sleep(110);
     await page.screenshot({path:path.join(dir,'settings-aurora.png')});
     for(const tab of ['centre','appearance','whatsapp','printlayout','updates','backup','developer']){
      await page.evaluate(tab=>document.querySelector('#adcSettingsList button[data-open-settings="'+tab+'"]')?.click(),tab);
@@ -108,13 +125,27 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
      const cards=[...root.querySelectorAll('.panel')];
      return {users:!!root.querySelector('#userForm'),
       roles:!!root.querySelector('#uRole'),permissions:!!root.querySelector('#adcPermissionOptions'),
-      doctors:!!root.querySelector('#doctorForm'),deletion:!!root.querySelector('#deletePinForm'),
+      doctorsModal:!!document.querySelector('#mlx106-doctor-modal'),deletion:!!root.querySelector('#deletePinForm'),
       archived:!!root.querySelector('#deletedPatientRows'),cards:cards.length,
       bg:cards.length?getComputedStyle(cards[0]).backgroundColor:'',
       text:cards.length?getComputedStyle(cards[0]).color:''};
     });
-    assert('Admin user/role/doctor/PIN/deleted archive controls preserved',admin.users&&admin.roles&&admin.permissions&&admin.doctors&&admin.deletion&&admin.archived,admin);
+    assert('Admin user/role/doctor/PIN/deleted archive controls preserved',admin.users&&admin.roles&&admin.permissions&&admin.doctorsModal&&admin.deletion&&admin.archived,admin);
     assert('Admin Graphite dark contrast',admin.bg!==admin.text,admin);
+    const doctorClick=await page.evaluate(()=>{
+      const b=document.querySelector('#adcSettingsList button[data-open-settings="mlxdoctors"]');
+      if(!b)return false;b.click();return true;
+    });
+    await sleep(120);
+    const doctorState=await page.evaluate(()=>{
+      const modal=document.querySelector('#mlx106-doctor-modal');
+      const directory=modal?.querySelector('[data-setting-view="mlxdoctors"]');
+      return {open:!!modal&&!modal.hidden,directory:!!directory};
+    });
+    assert('Original Doctor Directory opens its native modal',doctorClick&&doctorState.open&&doctorState.directory,doctorState);
+    await page.evaluate(()=>document.querySelector('#mlx106-doctor-close')?.click());
+    await sleep(75);
+    assert('Doctor Directory closes via original handler',await page.evaluate(()=>document.querySelector('#mlx106-doctor-modal')?.hidden===true));
     await page.screenshot({path:path.join(dir,'admin-graphite.png')});
     // Only a local, unpersisted role selection; never submit the user form.
     const role=await page.evaluate(()=>{
