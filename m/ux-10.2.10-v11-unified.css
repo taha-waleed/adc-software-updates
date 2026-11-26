@@ -1,0 +1,615 @@
+/* MediLab X 11 visual design adapted from user's MediLab_X_11_Design_Preview.html.
+   Live release uses 10.2.9 application's ORIGINAL functions, records, updater and printer.
+   Screen-only. Not the demo's simulated patient, backup, install or PIN behavior. */
+@layer mlx11-unified {
+@media screen {
+html body.mlx11-ui {
+ --v-font:'MLX Inter','Inter','Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+ --v-font-display:'MLX Inter Display','MLX Inter','Inter','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;
+ --v-r-xs:10px;--v-r-sm:13px;--v-r:16px;--v-r-lg:22px;--v-r-xl:28px;
+ --v-ease:cubic-bezier(.22,.8,.24,1);--v-dur:.26s;
+ --v-bg:#f3f5fb;--v-surface:#fff;--v-surface-2:#f7f9fd;--v-surface-3:#edf1f8;
+ --v-line:#e2e8f3;--v-line-2:#d1dbeb;
+ --v-ink:#0e1a33;--v-ink-2:#2a3957;--v-muted:#63738f;
+ --v-shadow-sm:0 1px 2px rgba(15,27,51,.05),0 2px 8px rgba(15,27,51,.04);
+ --v-shadow:0 1px 2px rgba(15,27,51,.04),0 12px 32px rgba(15,27,51,.07);
+ --v-shadow-lg:0 30px 80px rgba(10,20,45,.24);
+ --v-accent-rgb:79,107,237;--v-accent:#4f6bed;--v-accent-2:#7c5cf0;
+ --v-accent-soft:rgba(var(--v-accent-rgb),.10);--v-accent-line:rgba(var(--v-accent-rgb),.28);
+ --v-side-a:#111a3d;--v-side-b:#1d2b66;
+ --v-good:#12a06b;--v-warn:#e39a1d;--v-bad:#e5484d;
+ --v-good-soft:rgba(18,160,107,.12);--v-warn-soft:rgba(227,154,29,.14);--v-bad-soft:rgba(229,72,77,.11);
+ --v-input:#f7f9fd;--v-overlay:rgba(9,16,36,.55);
+ --bg:var(--v-bg)!important;--panel:var(--v-surface)!important;--ink:var(--v-ink)!important;--muted:var(--v-muted)!important;
+ --line:var(--v-line)!important;--brand:var(--v-accent)!important;--brand2:var(--v-accent-2)!important;
+ --soft:var(--v-accent-soft)!important;--shadow:var(--v-shadow)!important;
+ --px-card:var(--v-surface)!important;--px-card-2:var(--v-surface-2)!important;
+ --px-text:var(--v-ink)!important;--px-muted:var(--v-muted)!important;--px-stroke:var(--v-line)!important;
+ --px-accent:var(--v-accent)!important;--px-active:var(--v-accent-soft)!important;
+ --mx29-card:var(--v-surface)!important;--mx29-tint:var(--v-surface-2)!important;
+ --mx29-text:var(--v-ink)!important;--mx29-muted:var(--v-muted)!important;--mx29-line:var(--v-line)!important;
+ --mx29-accent:var(--v-accent)!important;--mx29-soft:var(--v-accent-soft)!important;--mx29-shadow:var(--v-shadow)!important;
+ background:var(--v-bg)!important;color:var(--v-ink)!important;
+ font-family:var(--v-font)!important;color-scheme:light;
+}
+html body.mlx11-ui[data-mlx-theme="ocean"]{--v-accent-rgb:14,143,181;--v-accent:#0e8fb5;--v-accent-2:#2f6fe0;--v-side-a:#072a40;--v-side-b:#0b4c66;--v-bg:#f1f7fb}
+html body.mlx11-ui[data-mlx-theme="emerald"]{--v-accent-rgb:16,150,112;--v-accent:#109670;--v-accent-2:#0e9ba8;--v-side-a:#0a2f2b;--v-side-b:#12554b;--v-bg:#f1f8f5}
+html body.mlx11-ui[data-mlx-theme="orchid"]{--v-accent-rgb:138,79,224;--v-accent:#8a4fe0;--v-accent-2:#c24fd1;--v-side-a:#25134a;--v-side-b:#45266f;--v-bg:#f7f4fd}
+html body.mlx11-ui[data-mlx-theme="sunset"]{--v-accent-rgb:226,103,79;--v-accent:#e2674f;--v-accent-2:#f0903c;--v-side-a:#301c33;--v-side-b:#64384c;--v-bg:#fdf6f2}
+html body.mlx11-ui:is(.adc-dark-mode,[data-mlx101-mode="dark"],[data-mlx-theme="graphite"],[data-mlx-theme="midnight"]){
+ --v-bg:#0a1120;--v-surface:#121c31;--v-surface-2:#16223a;--v-surface-3:#1c2a47;
+ --v-line:#22304d;--v-line-2:#2e3f62;
+ --v-ink:#e9eefb;--v-ink-2:#c5d1ea;--v-muted:#a6b5d0;
+ --v-shadow-sm:0 1px 2px rgba(0,0,0,.35);--v-shadow:0 1px 2px rgba(0,0,0,.35),0 14px 36px rgba(0,0,0,.35);
+ --v-shadow-lg:0 30px 80px rgba(0,0,0,.6);
+ --v-accent-rgb:127,176,255;--v-accent:#7fb0ff;--v-accent-2:#9b8cff;
+ --v-side-a:#070c17;--v-side-b:#101b30;--v-input:#16223a;--v-overlay:rgba(2,6,16,.7);
+ --v-good-soft:rgba(52,211,153,.14);--v-warn-soft:rgba(251,191,36,.15);--v-bad-soft:rgba(248,113,113,.14);
+ --v-good:#34d399;--v-warn:#fbbf24;--v-bad:#f87171;
+ color-scheme:dark;
+}
+html body.mlx11-ui[data-mlx-theme="midnight"]{
+ --v-bg:#0c0b1f;--v-surface:#16143a;--v-surface-2:#1b1944;--v-surface-3:#231f52;
+ --v-line:#2a2660;--v-line-2:#383380;--v-accent-rgb:165,166,255;--v-accent:#a5a6ff;
+ --v-accent-2:#d58cff;--v-side-a:#08071a;--v-side-b:#1a1540;--v-input:#1b1944;
+}
+html body.mlx11-ui #app{
+ background:var(--v-bg)!important;color:var(--v-ink)!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui #app .main{
+ background:var(--v-bg)!important;color:var(--v-ink)!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui #app .top{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ border-radius:0!important;color:var(--v-ink)!important;
+ padding:12px 3px 20px!important;margin-bottom:4px!important;
+}
+html body.mlx11-ui #app .top :is(h1,#pageTitle){
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+ font-family:var(--v-font-display)!important;font-weight:820!important;
+ font-size:clamp(23px,2.25vw,31px)!important;letter-spacing:-.055em!important;
+}
+html body.mlx11-ui #app .top :is(#pageSub,.muted){
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+}
+html body.mlx11-ui #app .top :is(.pill,#todayBadge,#adcBriefClock,.adc-brief-clock){
+ display:inline-flex!important;align-items:center!important;
+ min-height:38px!important;padding:8px 11px!important;
+ border-radius:12px!important;border:1px solid var(--v-line)!important;
+ box-shadow:var(--v-shadow-sm)!important;
+ background:var(--v-surface)!important;color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+}
+html body.mlx11-ui #adc85Titlebar,
+html body.mlx11-ui #adc85Titlebar .adc85-winbuttons{
+ background:var(--v-side-a)!important;color:#d9e5ff!important;
+ border-color:rgba(255,255,255,.13)!important;
+}
+html body.mlx11-ui #adc85Titlebar :is(span,button){
+ color:#e5edff!important;-webkit-text-fill-color:#e5edff!important;
+}
+html body.mlx11-ui #adc85Titlebar button:hover{background:rgba(255,255,255,.13)!important}
+html body.mlx11-ui #app .sidebar{
+ background:linear-gradient(175deg,var(--v-side-a),var(--v-side-b))!important;
+ color:#d3e0fa!important;border-color:rgba(255,255,255,.12)!important;
+ box-shadow:inset -1px 0 rgba(255,255,255,.08)!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui #app .sidebar .brand{
+ border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+html body.mlx11-ui #app .sidebar .brand :is(strong,b,h2){
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx11-ui #app #nav .ml-nav-group{
+ color:#93a8d4!important;-webkit-text-fill-color:#93a8d4!important;
+ letter-spacing:.16em!important;font-size:9.5px!important;font-weight:850!important;
+}
+html body.mlx11-ui #app #nav button[data-page]{
+ display:flex!important;align-items:center!important;gap:12px!important;
+ background:transparent!important;color:#c2d0ee!important;
+ -webkit-text-fill-color:#c2d0ee!important;
+ box-shadow:none!important;border:1px solid transparent!important;
+ border-radius:11px!important;font-family:var(--v-font)!important;
+ font-size:12px!important;font-weight:680!important;min-height:43px!important;
+ transition:background var(--v-dur) var(--v-ease),color var(--v-dur) var(--v-ease)!important;
+}
+html body.mlx11-ui #app #nav button[data-page]:hover{
+ background:rgba(255,255,255,.07)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx11-ui #app #nav button[data-page].active{
+ background:rgba(255,255,255,.13)!important;border-color:rgba(255,255,255,.13)!important;
+ box-shadow:inset 3px 0 #68c9ff!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx11-ui #app #nav button[data-page] :is(.adc-nav-label,span,strong){
+ color:inherit!important;-webkit-text-fill-color:inherit!important;
+}
+html body.mlx11-ui #app #nav button[data-page] .adc-nav-icon{
+ display:grid!important;place-items:center!important;
+ flex:0 0 30px!important;width:30px!important;height:30px!important;min-width:30px!important;
+ border-radius:50%!important;border:1px solid rgba(255,255,255,.12)!important;
+ background:rgba(255,255,255,.07)!important;box-shadow:none!important;
+ color:#cbdafb!important;-webkit-text-fill-color:#cbdafb!important;
+ padding:0!important;transform:none!important;overflow:hidden!important;
+}
+html body.mlx11-ui #app #nav .adc-nav-icon svg{
+ width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;
+ stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+ background:none!important;box-shadow:none!important;border:0!important;
+}
+html body.mlx11-ui #app #nav button.active .adc-nav-icon{color:#76d7ff!important;-webkit-text-fill-color:#76d7ff!important}
+html body.mlx11-ui #app :is(.panel,.card,.stat,.mlx-kpi-card){
+ background:var(--v-surface)!important;border:1px solid var(--v-line)!important;
+ border-radius:var(--v-r-lg)!important;
+ color:var(--v-ink)!important;box-shadow:var(--v-shadow)!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui #app :is(.panel,.card,.stat,.mlx-kpi-card) :is(h2,h3,h4,strong,.panel-title){
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+}
+html body.mlx11-ui #app :is(.panel,.card,.stat,.mlx-kpi-card) :is(p,small,.muted){
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+}
+html body.mlx11-ui #app :is(.panel,.card,.stat,.mlx-kpi-card) .pill{
+ background:var(--v-accent-soft)!important;color:var(--v-accent)!important;
+ -webkit-text-fill-color:var(--v-accent)!important;border-radius:999px!important;border:0!important;
+}
+html body.mlx11-ui #app :is(.panel,.card) .panel-head{
+ border-bottom:1px solid var(--v-line)!important;
+}
+html body.mlx11-ui #app :is(.panel,.card,.stat) :is(label,.field label){
+ color:var(--v-ink-2)!important;-webkit-text-fill-color:var(--v-ink-2)!important;
+ font-size:11.5px!important;font-weight:750!important;
+}
+html body.mlx11-ui #app :is(input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),select,textarea){
+ background:var(--v-input)!important;color:var(--v-ink)!important;
+ -webkit-text-fill-color:var(--v-ink)!important;border:1px solid var(--v-line-2)!important;
+ border-radius:var(--v-r-xs)!important;
+ min-height:39px!important;max-width:100%!important;box-sizing:border-box!important;
+ font-family:var(--v-font)!important;
+ box-shadow:none!important;
+}
+html body.mlx11-ui #app :is(input,select,textarea):focus-visible{
+ outline:3px solid var(--v-accent-line)!important;outline-offset:2px!important;
+ border-color:var(--v-accent)!important;
+}
+html body.mlx11-ui #app :is(button.primary,.primary,#quickReception):not(:disabled){
+ background:linear-gradient(130deg,var(--v-accent),var(--v-accent-2))!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border:1px solid transparent!important;border-radius:11px!important;
+ box-shadow:0 6px 18px rgba(var(--v-accent-rgb),.20)!important;
+ font-weight:750!important;
+}
+html body.mlx11-ui #app :is(button.secondary,.secondary):not(.danger){
+ background:var(--v-surface)!important;color:var(--v-ink-2)!important;
+ -webkit-text-fill-color:var(--v-ink-2)!important;
+ border:1px solid var(--v-line)!important;border-radius:11px!important;
+ box-shadow:var(--v-shadow-sm)!important;
+}
+html body.mlx11-ui #app :is(button.primary,button.secondary):hover:not(:disabled){
+ transform:translateY(-1px)!important;filter:brightness(1.04)!important;
+}
+html body.mlx11-ui #app :is(button,#nav button):focus-visible{
+ outline:3px solid var(--v-accent-line)!important;outline-offset:2px!important;
+}
+html body.mlx11-ui #app :is(.table-wrap,.tablewrap){
+ background:var(--v-surface)!important;border:1px solid var(--v-line)!important;
+ border-radius:13px!important;max-width:100%!important;
+ overflow-x:auto!important;
+}
+html body.mlx11-ui #app table{
+ border-collapse:collapse!important;background:transparent!important;
+}
+html body.mlx11-ui #app table thead th{
+ background:var(--v-surface-2)!important;color:var(--v-muted)!important;
+ -webkit-text-fill-color:var(--v-muted)!important;
+ border-bottom:1px solid var(--v-line)!important;
+ font-size:10px!important;letter-spacing:.06em!important;font-weight:800!important;
+}
+html body.mlx11-ui #app table tbody td{
+ color:var(--v-ink-2)!important;-webkit-text-fill-color:var(--v-ink-2)!important;
+ border-bottom:1px solid var(--v-line)!important;
+ font-size:12px!important;
+}
+html body.mlx11-ui #app table tbody tr:hover td{background:var(--v-surface-2)!important}
+/* The attached preview's 272px Preferences rail and wide reading pane. */
+html body.mlx11-ui #app #settings .adc-settings-shell{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+}
+html body.mlx11-ui #app #settings .adc-settings-lead{
+ padding:20px 23px!important;margin-bottom:18px!important;
+ border-radius:var(--v-r-lg)!important;
+ border:1px solid var(--v-line)!important;
+ background:var(--v-surface)!important;box-shadow:var(--v-shadow)!important;
+}
+html body.mlx11-ui #app #settings .adc-settings-lead h2{
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+ font-family:var(--v-font-display)!important;font-size:26px!important;
+ letter-spacing:-.045em!important;font-weight:820!important;
+}
+html body.mlx11-ui #app #settings .adc-settings-lead p{
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+ font-size:12px!important;
+}
+html body.mlx11-ui #app #settings .mlx-mac-layout{
+ display:grid!important;grid-template-columns:272px minmax(0,1fr)!important;
+ gap:18px!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:555px!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ overflow:visible!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList{
+ display:flex!important;flex-direction:column!important;
+ align-items:stretch!important;gap:2px!important;
+ position:sticky!important;top:54px!important;align-self:start!important;
+ width:100%!important;max-height:calc(100vh - 112px)!important;
+ min-height:0!important;height:auto!important;
+ padding:14px!important;overflow-y:auto!important;overflow-x:hidden!important;
+ border:1px solid var(--v-line)!important;
+ border-radius:var(--v-r-lg)!important;background:var(--v-surface)!important;
+ box-shadow:var(--v-shadow)!important;scrollbar-width:thin!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .mlx-settings-heading{
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+ background:transparent!important;border:0!important;border-top:1px solid var(--v-line)!important;
+ font-size:9px!important;letter-spacing:.14em!important;font-weight:850!important;
+ margin:17px 8px 8px!important;padding:10px 0 0!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .mlx-settings-heading:first-child{
+ border-top:0!important;margin-top:4px!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-settings-item{
+ display:flex!important;align-items:center!important;gap:12px!important;
+ width:100%!important;min-width:0!important;padding:9px 10px!important;
+ min-height:50px!important;margin:0!important;
+ border-radius:12px!important;border:1px solid transparent!important;
+ color:var(--v-ink-2)!important;-webkit-text-fill-color:var(--v-ink-2)!important;
+ background:transparent!important;box-shadow:none!important;
+ font-size:11.8px!important;font-weight:720!important;
+ transition:background .2s,border-color .2s!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-settings-item:hover{
+ background:var(--v-surface-2)!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-settings-item:is(.mlx-pref-active,[aria-current="page"]){
+ background:var(--v-accent-soft)!important;border-color:var(--v-accent-line)!important;
+ color:var(--v-accent)!important;-webkit-text-fill-color:var(--v-accent)!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-symbol{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 33px!important;width:33px!important;min-width:33px!important;height:33px!important;
+ padding:0!important;border-radius:50%!important;aspect-ratio:1!important;
+ background:var(--v-accent-soft)!important;border:1px solid var(--v-accent-line)!important;
+ box-shadow:none!important;color:var(--v-accent)!important;-webkit-text-fill-color:var(--v-accent)!important;
+ overflow:hidden!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-symbol svg{
+ width:18px!important;height:18px!important;display:block!important;
+ fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-settings-item:is(.mlx-pref-active,[aria-current="page"]) .adc-setting-symbol{
+ background:linear-gradient(135deg,var(--v-accent),var(--v-accent-2))!important;
+ border-color:transparent!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-copy{min-width:0!important;flex:1 1 0!important}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-copy strong{
+ color:inherit!important;-webkit-text-fill-color:inherit!important;
+ font-size:12px!important;font-weight:720!important;line-height:1.45!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-copy small,
+html body.mlx11-ui #app #settings #adcSettingsList .adc-setting-chevron{display:none!important}
+html body.mlx11-ui #app #settings #adcSettingsViews{
+ display:block!important;min-width:0!important;width:100%!important;
+ height:auto!important;min-height:570px!important;max-height:none!important;
+ padding:20px!important;background:var(--v-surface)!important;
+ border:1px solid var(--v-line)!important;border-radius:var(--v-r-lg)!important;
+ box-shadow:var(--v-shadow)!important;overflow:visible!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-setting-view[hidden]{display:none!important}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-setting-view:not([hidden]){
+ display:block!important;color:var(--v-ink)!important;
+ width:100%!important;min-width:0!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-setting-view>h2{
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+ font-size:22px!important;font-weight:820!important;letter-spacing:-.045em!important;
+ margin:0 0 19px!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-settings-group{
+ padding:19px!important;margin:13px 0!important;
+ background:var(--v-surface-2)!important;border:1px solid var(--v-line)!important;
+ border-radius:16px!important;box-shadow:none!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-settings-group :is(h2,h3,strong,label){
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+}
+html body.mlx11-ui #app #settings #adcSettingsViews .adc-settings-group :is(p,small,.muted){
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+}
+html body.mlx11-ui #app #settings .mlx-pref-empty.mlx29-home{
+ background:transparent!important;box-shadow:none!important;border:0!important;
+}
+html body.mlx11-ui #app #settings .mlx29-home-overline{
+ color:var(--v-accent)!important;-webkit-text-fill-color:var(--v-accent)!important;
+}
+html body.mlx11-ui #app #settings .mlx29-home h3{
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+ font-size:24px!important;letter-spacing:-.05em!important;
+}
+html body.mlx11-ui #app #settings .mlx29-home>p{
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+}
+html body.mlx11-ui #app #settings .mlx29-quick{
+ border:1px solid var(--v-line)!important;background:var(--v-surface-2)!important;
+ border-radius:13px!important;min-height:135px!important;padding:18px!important;
+ transition:transform .2s var(--v-ease),border-color .2s!important;
+}
+html body.mlx11-ui #app #settings .mlx29-quick:hover{
+ border-color:var(--v-accent-line)!important;transform:translateY(-2px)!important;
+}
+html body.mlx11-ui #app #settings .mlx29-quick-icon{
+ border-radius:50%!important;background:var(--v-accent-soft)!important;
+ color:var(--v-accent)!important;border-color:var(--v-accent-line)!important;
+}
+html body.mlx11-ui #app #settings .mlx29-quick :is(strong){color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important}
+html body.mlx11-ui #app #settings .mlx29-quick :is(small){color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important}
+html body.mlx11-ui #app #settings .mlx29-home-note{
+ background:var(--v-accent-soft)!important;color:var(--v-muted)!important;
+ border-color:var(--v-accent-line)!important;
+}
+/* Native 7-theme Settings controls: style, not replace, their existing listener. */
+html body.mlx11-ui #app #settings :is(#mlxThemeSettings,.mlx-pref-design,.mlx-appearance-ready){
+ border-color:var(--v-line)!important;background:var(--v-surface-2)!important;color:var(--v-ink)!important;
+}
+html body.mlx11-ui #app #settings :is([data-mlx-set-theme],.mlx-pref-color,.mlx-theme-color){
+ border-radius:13px!important;border:1px solid var(--v-line)!important;
+}
+html body.mlx11-ui #app #settings :is([data-mlx-set-theme][aria-pressed="true"],.mlx-pref-color[aria-pressed="true"]){
+ border:2px solid var(--v-accent)!important;box-shadow:0 0 0 3px var(--v-accent-soft)!important;
+}
+/* Admin from the supplied sample: clear forms, permissions tiles and data grids. */
+html body.mlx11-ui #app #admin .mlx-admin-title{
+ padding:20px 24px!important;border-radius:var(--v-r-lg)!important;
+ background:var(--v-surface)!important;border:1px solid var(--v-line)!important;
+ box-shadow:var(--v-shadow)!important;
+}
+html body.mlx11-ui #app #admin .mlx-admin-title h2{
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+ font-size:24px!important;font-weight:820!important;letter-spacing:-.04em!important;
+}
+html body.mlx11-ui #app #admin .adc-admin-onecol>.panel{
+ padding:22px!important;background:var(--v-surface)!important;
+ border:1px solid var(--v-line)!important;border-radius:var(--v-r-lg)!important;box-shadow:var(--v-shadow)!important;
+}
+html body.mlx11-ui #app #admin .panel-head h2{
+ font-size:15px!important;font-weight:820!important;color:var(--v-ink)!important;
+ -webkit-text-fill-color:var(--v-ink)!important;
+}
+html body.mlx11-ui #app #admin #userForm{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:15px!important;align-items:end!important;
+}
+html body.mlx11-ui #app #admin #userForm>.row{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-column:1/-1!important;gap:14px!important;margin:0!important;
+}
+html body.mlx11-ui #app #admin #userForm>#adcPermissionPicker{
+ grid-column:1/-1!important;border-radius:16px!important;
+ padding:18px!important;background:var(--v-surface-2)!important;border:1px solid var(--v-line)!important;
+}
+html body.mlx11-ui #app #admin .adc-permission-list{
+ display:grid!important;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))!important;
+ gap:9px!important;
+}
+html body.mlx11-ui #app #admin .adc-permission-list>label.check{
+ display:flex!important;flex-direction:row!important;align-items:center!important;
+ gap:10px!important;min-width:0!important;min-height:44px!important;padding:11px 12px!important;
+ border:1px solid var(--v-line)!important;border-radius:10px!important;
+ background:var(--v-surface-2)!important;color:var(--v-ink-2)!important;
+ -webkit-text-fill-color:var(--v-ink-2)!important;
+ font-size:11.5px!important;
+}
+html body.mlx11-ui #app #admin .adc-permission-list>label.check:has(input:checked){
+ background:var(--v-accent-soft)!important;border-color:var(--v-accent-line)!important;
+}
+html body.mlx11-ui #app #admin .adc-permission-list input[type="checkbox"]{
+ accent-color:var(--v-accent)!important;min-width:16px!important;width:16px!important;height:16px!important;
+}
+html body.mlx11-ui #app #admin .mlx29-admin-icon{
+ border-radius:50%!important;color:var(--v-accent)!important;background:var(--v-accent-soft)!important;
+ border-color:var(--v-accent-line)!important;
+}
+html body.mlx11-ui #app #admin .panel-head{
+ border-bottom:1px solid var(--v-line)!important;
+}
+html body.mlx11-ui #app #admin :is(#ml10AdminNav,.adc-edit-form){
+ border:1px solid var(--v-line)!important;background:var(--v-surface)!important;
+ border-radius:16px!important;box-shadow:var(--v-shadow)!important;
+}
+html body.mlx11-ui #app #admin #ml10AdminNav button.active{
+ background:var(--v-accent-soft)!important;color:var(--v-accent)!important;
+ -webkit-text-fill-color:var(--v-accent)!important;border-color:var(--v-accent-line)!important;
+}
+/* Update, confirmation and notifications modal system (not print report preview). */
+html body.mlx11-ui :is(.adc85-modal,.adc-confirm-card,.adc-safe-dialog){
+ width:min(495px,calc(100vw - 34px))!important;
+ max-width:calc(100vw - 34px)!important;max-height:85vh!important;overflow-y:auto!important;
+ background:var(--v-surface)!important;border:1px solid var(--v-line)!important;
+ color:var(--v-ink)!important;border-radius:24px!important;
+ box-shadow:var(--v-shadow-lg)!important;padding:23px!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui :is(.adc85-modal,.adc-confirm-card,.adc-safe-dialog) :is(h1,h2,h3){
+ color:var(--v-ink)!important;-webkit-text-fill-color:var(--v-ink)!important;
+}
+html body.mlx11-ui :is(.adc85-modal,.adc-confirm-card,.adc-safe-dialog) :is(p,small,label){
+ color:var(--v-muted)!important;-webkit-text-fill-color:var(--v-muted)!important;
+}
+html body.mlx11-ui .adc85-modal-overlay{
+ background:var(--v-overlay)!important;backdrop-filter:blur(10px)!important;
+}
+html body.mlx11-ui .adc85-modal-overlay[hidden]{display:none!important}
+html body.mlx11-ui .adc85-modal-head{
+ border-bottom:1px solid var(--v-line)!important;
+}
+html body.mlx11-ui .adc85-modal-orb{
+ border-radius:50%!important;background:var(--v-accent-soft)!important;
+ color:var(--v-accent)!important;box-shadow:none!important;
+}
+html body.mlx11-ui #adc85ModalNotes{
+ background:var(--v-surface-2)!important;border:1px solid var(--v-line)!important;
+ color:var(--v-ink-2)!important;-webkit-text-fill-color:var(--v-ink-2)!important;
+}
+html body.mlx11-ui :is(.adc85-modal,.adc-confirm-card,.adc-safe-dialog) :is(button,input,select){
+ border-radius:11px!important;
+}
+html body.mlx11-ui #app #patients .row:has(#patientFilterDate){
+ display:flex!important;align-items:flex-end!important;gap:11px!important;flex-wrap:wrap!important;
+}
+html body.mlx11-ui #app #patients .row:has(#patientFilterDate) .field:has(#patientFilterDate){
+ flex:0 0 187px!important;min-width:187px!important;max-width:187px!important;
+}
+html body.mlx11-ui #app #patients #patientFilterDate{
+ width:187px!important;min-width:187px!important;max-width:187px!important;
+ height:42px!important;padding:8px 10px!important;
+}
+html body.mlx11-ui #app #patients .row:has(#patientFilterDate) .adc-patient-search{
+ flex:1 1 210px!important;min-width:200px!important;
+}
+html body.mlx11-ui #app #patients .row:has(#patientFilterDate) .check{
+ display:inline-flex!important;align-items:center!important;gap:8px!important;
+ min-height:42px!important;
+}
+/* Animated, full-screen Privacy Standby directly modelled on preview lockpage. */
+html body.mlx11-ui #mlx101Standby[hidden]{display:none!important}
+html body.mlx11-ui #mlx101Standby{
+ background:radial-gradient(1100px 550px at 12% 112%,#192d66 0%,transparent 65%),#080c15!important;
+ color:#fff!important;overflow:hidden!important;border:0!important;border-radius:0!important;
+ padding:0!important;isolation:isolate!important;
+ font-family:var(--v-font)!important;
+}
+html body.mlx11-ui #mlx101Standby:before{
+ content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+ background-image:radial-gradient(rgba(83,114,198,.19) 1px,transparent 1px);
+ background-size:25px 25px;opacity:.8;
+}
+html body.mlx11-ui #mlx101Standby:after{
+ content:"";position:absolute;width:720px;height:720px;border-radius:50%;
+ left:-230px;bottom:-450px;
+ background:rgba(54,93,249,.19);filter:blur(75px);
+ animation:mlx11LockGlow 8s ease-in-out infinite alternate;pointer-events:none;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-orb.one{
+ height:460px!important;width:460px!important;left:auto!important;right:-190px!important;top:-170px!important;
+ background:radial-gradient(circle,rgba(57,109,222,.19),transparent 68%)!important;
+ filter:blur(32px)!important;animation:mlx11LockFloat 17s ease-in-out infinite alternate!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-orb.two{
+ height:700px!important;width:700px!important;left:-320px!important;top:auto!important;bottom:-480px!important;
+ background:radial-gradient(circle,rgba(54,93,249,.25),transparent 70%)!important;
+ filter:blur(40px)!important;animation:mlx11LockFloat 13s ease-in-out infinite alternate-reverse!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-card{
+ position:absolute!important;inset:0!important;display:block!important;
+ width:100%!important;height:100%!important;max-width:none!important;min-width:0!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:0!important;
+ box-shadow:none!important;background:transparent!important;
+ backdrop-filter:none!important;text-align:left!important;transform:none!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-mark{
+ position:absolute!important;top:34px!important;left:43px!important;
+ width:44px!important;height:44px!important;margin:0!important;padding:5px!important;
+ display:grid!important;place-items:center!important;
+ background:rgba(255,255,255,.09)!important;border:1px solid rgba(255,255,255,.16)!important;
+ border-radius:14px!important;box-shadow:0 0 22px rgba(80,130,230,.2)!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-mark :is(img,svg){width:31px!important;height:31px!important;object-fit:contain!important}
+html body.mlx11-ui #mlx101Standby .mlx101-name{
+ position:absolute!important;top:36px!important;left:102px!important;
+ font-size:17px!important;font-weight:790!important;color:#fff!important;
+ letter-spacing:-.025em!important;margin:0!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-caption{
+ position:absolute!important;top:64px!important;left:102px!important;
+ color:#91a2ca!important;font-size:10.5px!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-kicker{
+ position:absolute!important;right:40px!important;top:46px!important;
+ font-size:11px!important;letter-spacing:.13em!important;font-weight:850!important;
+ color:#a7b6d2!important;
+}
+html body.mlx11-ui #mlx101Standby #mlx101Clock{display:none!important}
+html body.mlx11-ui #mlx101Standby #mlx11LockTime{
+ position:absolute!important;left:4%!important;bottom:15.3%!important;
+ display:flex!important;align-items:flex-start!important;gap:12px!important;
+ color:#fff!important;white-space:nowrap!important;
+ line-height:1!important;font-family:var(--v-font-display)!important;
+}
+html body.mlx11-ui #mlx101Standby #mlx11LockDigits{
+ font-size:clamp(82px,15vw,220px)!important;font-weight:260!important;
+ letter-spacing:-.085em!important;text-shadow:0 0 55px rgba(111,145,255,.17)!important;
+ font-variant-numeric:tabular-nums!important;
+}
+html body.mlx11-ui #mlx101Standby #mlx11LockPeriod{
+ font-size:clamp(28px,3.5vw,52px)!important;line-height:1.1!important;
+ color:#a8b0c5!important;letter-spacing:-.04em!important;margin-top:10px!important;
+}
+html body.mlx11-ui #mlx101Standby #mlx101Date{
+ position:absolute!important;left:4.4%!important;bottom:10%!important;
+ font-size:12px!important;font-weight:850!important;color:#aebde3!important;
+ letter-spacing:.21em!important;text-transform:uppercase!important;margin:0!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-tap{
+ position:absolute!important;left:4.4%!important;bottom:5%!important;
+ color:#fff!important;font-size:13px!important;font-weight:760!important;
+ letter-spacing:normal!important;opacity:1!important;
+}
+html body.mlx11-ui #mlx101Standby .mlx101-footer{
+ position:absolute!important;right:3%!important;bottom:5%!important;
+ max-width:45%!important;text-align:right!important;margin:0!important;
+ color:#b6bfd3!important;font-size:10px!important;letter-spacing:.07em!important;
+}
+@keyframes mlx11LockGlow{to{transform:translate(135px,-80px);opacity:.4}}
+@keyframes mlx11LockFloat{from{transform:translate3d(-8%,2%,0) scale(.93)}to{transform:translate3d(10%,-8%,0) scale(1.15)}}
+@media(max-width:1120px){
+ html body.mlx11-ui #app #settings .mlx-mac-layout{grid-template-columns:240px minmax(0,1fr)!important}
+ html body.mlx11-ui #app #settings #adcSettingsList{position:static!important;top:auto!important}
+}
+@media(max-width:830px){
+ html body.mlx11-ui #app #settings .mlx-mac-layout{grid-template-columns:minmax(0,1fr)!important;gap:13px!important}
+ html body.mlx11-ui #app #settings #adcSettingsList{
+  position:static!important;height:auto!important;max-height:240px!important;overflow-y:auto!important;
+ }
+ html body.mlx11-ui #app #settings #adcSettingsViews{
+  min-height:340px!important;height:auto!important;overflow:visible!important;
+ }
+ html body.mlx11-ui #app #admin #userForm,
+ html body.mlx11-ui #app #admin #userForm>.row{grid-template-columns:minmax(0,1fr)!important}
+ html body.mlx11-ui #mlx101Standby .mlx101-footer{display:none!important}
+ html body.mlx11-ui #mlx101Standby #mlx11LockDigits{font-size:clamp(75px,14vw,145px)!important}
+}
+@media(max-width:540px){
+ html body.mlx11-ui #app #settings #adcSettingsViews{padding:15px!important}
+ html body.mlx11-ui #app #settings .mlx29-quick-grid{grid-template-columns:minmax(0,1fr)!important}
+ html body.mlx11-ui #mlx101Standby .mlx101-mark{left:20px!important;top:20px!important}
+ html body.mlx11-ui #mlx101Standby .mlx101-name{left:78px!important;top:22px!important}
+ html body.mlx11-ui #mlx101Standby .mlx101-caption{left:78px!important;top:49px!important}
+ html body.mlx11-ui #mlx101Standby .mlx101-kicker{right:16px!important;top:89px!important;font-size:9px!important}
+ html body.mlx11-ui #mlx101Standby #mlx11LockDigits{font-size:clamp(62px,14vw,100px)!important}
+ html body.mlx11-ui #mlx101Standby #mlx11LockPeriod{font-size:25px!important}
+ html body.mlx11-ui #mlx101Standby #mlx101Date{font-size:10px!important;letter-spacing:.10em!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body.mlx11-ui #mlx101Standby:after,
+ html body.mlx11-ui #mlx101Standby .mlx101-orb{
+ animation:none!important;
+ }
+ html body.mlx11-ui #app *,
+ html body.mlx11-ui #mlx101Standby *{transition:none!important}
+}
+}}
