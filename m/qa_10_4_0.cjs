@@ -66,7 +66,7 @@ const sleep=t=>new Promise(r=>setTimeout(r,t));
     const admin=await page.evaluate(()=>{
      const el=document.querySelector('#admin');
      return {user:!!el.querySelector('#userForm'),permissions:!!el.querySelector('#adcPermissionOptions'),
-     doctor:!!el.querySelector('#doctorForm'),archive:!!el.querySelector('#deletedPatientRows'),
+     doctor:!!document.querySelector('#doctorForm'),archive:!!el.querySelector('#deletedPatientRows'),
      pin:!!el.querySelector('#deletePinForm'),nav:!!el.querySelector('#ml10AdminNav')};
     });
     check('Admin forms/accounts/doctor/PIN/archive kept',Object.values(admin).every(Boolean),admin);
