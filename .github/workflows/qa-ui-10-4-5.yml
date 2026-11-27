@@ -1,0 +1,38 @@
+name: MediLab X 10.4.5 — Production Source UI QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.5-unified.css.z64
+      - m/ux-10.4.5-unified.js.z64
+      - m/build_ui_10_4_5.py
+      - m/qa_10_4_5.cjs
+      - .github/workflows/qa-ui-10-4-5.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify official 10.4.0 base and build 10.4.5 preview
+        run: python3 m/build_ui_10_4_5.py --qa --qa-output /tmp/MediLabX-10.4.5-QA.html
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Run UI tests on actual production-sourced 10.4.5 HTML
+        run: node m/qa_10_4_5.cjs /tmp/MediLabX-10.4.5-QA.html /tmp/medilabx-1045-qa
+      - name: Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLab-X-10.4.5-UI-Regressions
+          path: /tmp/medilabx-1045-qa
+          if-no-files-found: ignore
+          retention-days: 14
