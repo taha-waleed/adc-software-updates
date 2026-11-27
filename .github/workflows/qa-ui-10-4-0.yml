@@ -1,0 +1,38 @@
+name: MediLab X 10.4.0 — Settings and Admin QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.0-settings.css
+      - m/ux-10.4.0-settings.js
+      - m/publish_ui_10_4_0.py
+      - m/qa_10_4_0.cjs
+      - .github/workflows/qa-ui-10-4-0.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build verified 10.4 HTML test fixture (do not publish yet)
+        run: python3 m/publish_ui_10_4_0.py --qa --qa-output /tmp/MediLabX-10.4.0-QA.html
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Verify fixed side tiles, right-panel navigation, online updates, admin roles, dark mode, print isolation
+        run: node m/qa_10_4_0.cjs /tmp/MediLabX-10.4.0-QA.html /tmp/medilabx-104-qa
+      - name: Save screenshots for regression review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLab-X-10.4-Settings-Admin-QA
+          path: /tmp/medilabx-104-qa
+          if-no-files-found: ignore
+          retention-days: 14
