@@ -92,7 +92,7 @@ const sleep=t=>new Promise(r=>setTimeout(r,t));
    }
    await page.close();
   }
-  const ours=runtime.filter(x=>/ml104|mount\\(|chosen\\(|showAdmin\\(|adminSetup\\(/.test(x));
+  const ours=runtime.filter(x=>['ml104','mount(','chosen(','showAdmin(','adminSetup('].some(k=>x.includes(k)));
   check('No new 10.4 script exceptions',ours.length===0,{ours,oldErrors:runtime.slice(0,9)});
   console.log('PASS completed MediLab 10.4 UI regression suite');
  }finally{await browser.close()}
