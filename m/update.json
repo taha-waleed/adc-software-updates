@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "version": "10.2.11",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.2.11/MediLabX.html",
-  "sha256": "6548605a1168a78c282647ccca3c17243196c405217b66556e06a36cda63c8e4",
+  "version": "10.4.0",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.0/MediLabX.html",
+  "sha256": "b1ddc56a8fdf8869d9dc4486f99a2ff6817f03121a935c2a7552528950b28e10",
   "notes": [
-    "Emergency visual rollback requested by clinic: restored original MediLab X 10.1.4 software exactly, removing the problematic V11 unified theme and the Settings at a Glance cards.",
-    "10.2.11 is the update-channel label for this exact archived 10.1.4 HTML (its contents are byte-for-byte identical).",
-    "Returns original Settings, Admin, sidebar, titlebar, old animations, patient records, receipts, Radiology and Privacy Standby presentation.",
-    "Original Windows updater, Restore Previous, manual HTML update bridge, patient database key and native clinical handlers remain unchanged.",
-    "No patient data or settings storage are deleted by this HTML-only rollback. Back up local records before applying.",
-    "The version label 10.2.11 lets users on the broken 10.2.10 release receive a normal update offer without requiring navigation inside its broken Settings."
+    "MediLab X 10.4: Settings no longer uses the unwanted dashboard or vertical main-page scrolling; click a left tile to display the selected original Settings controls on the right.",
+    "Fixed Software Updates navigation and duplicate release-note presentation. Existing native Check for updates, Download/Install, Restore previous and SHA-256 validation functions are unchanged.",
+    "Admin simplified to clear Accounts, Doctors & Referrals, Security & Archives and (where present) Staff & Stock tabs. Existing forms, role permissions and PIN workflows remain connected.",
+    "Light/dark contrast, round icon tiles and smooth selected-panel animations improved without modifying printing, receipt templates or clinical data.",
+    "This online release is based on 10.2.11, to retain its newer features and local-storage schema. The separately provided Windows source ZIP uses the previously supplied 10.0.3 project as its packaging base.",
+    "Back up patient records before installing. The Windows installer is not compiled or physically tested by this GitHub workflow."
   ]
 }
