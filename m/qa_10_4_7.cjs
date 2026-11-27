@@ -64,12 +64,13 @@ async function main(){
      const hr=await page.evaluate(()=>({admin:document.querySelector('#admin').classList.contains('active'),embedded:document.querySelector('#admin').classList.contains('px47-employees-open'),holder:!document.querySelector('#px47-hr-container').hidden,selected:document.querySelector('#px-admin-tabs [data-px-sub="employees"]')?.getAttribute('aria-selected'),forms:!!document.querySelector('#mlx-employee-form'),letters:!!document.querySelector('#mlx-letter-form'),leave:!!document.querySelector('#mlx-leave-form')}));
      check('Employees, certificates, leave and salary embedded under Admin',hr.admin&&hr.embedded&&hr.holder&&hr.selected==='true'&&hr.forms&&hr.letters&&hr.leave,hr);
      await page.screenshot({path:path.join(folder,'employees-under-admin.png')});
+     const baselinePatient=await page.evaluate(()=>localStorage.getItem('medilabx10_html_v1'));
      await page.evaluate(()=>{const f=document.querySelector('#mlx-employee-form');for(const [name,value] of Object.entries({name:'Synthetic New Staff',job:'Technician',department:'Pathology',joined:'2026-11-27',cnic:'1234512345671'})){f.elements[name].value=value;if(name==='cnic')f.elements[name].dispatchEvent(new Event('input',{bubbles:true}))}f.requestSubmit()});
      await page.waitForTimeout(150);
      const data=await page.evaluate(()=>({list:JSON.parse(localStorage.getItem('mlx_operations_v1')).employees,patient:localStorage.getItem('medilabx10_html_v1'),render:document.querySelector('#mlx-employee-rows')?.textContent}));
      check('CNIC formatted and persisted in original local employee storage',data.list.some(x=>x.name==='Synthetic New Staff'&&x.cnic==='12345-1234567-1'),data.list.map(x=>({name:x.name,hasCnic:!!x.cnic})));
      check('CNIC masked in employee list',!data.render.includes('12345-1234567-1')&&data.render.includes('5671'));
-     check('Patient storage unchanged after employee save',data.patient===patient);
+     check('Patient storage unchanged after employee save',data.patient===baselinePatient);
      await page.evaluate(()=>window.confirm=()=>true);
      await page.evaluate(()=>{const e=[...document.querySelectorAll('#mlx-employee-rows tr')].find(x=>x.textContent.includes('Synthetic New Staff'));e?.querySelector('[data-employee-action="remove"]')?.click()});
      await page.waitForTimeout(100);
