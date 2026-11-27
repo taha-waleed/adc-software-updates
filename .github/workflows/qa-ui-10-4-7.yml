@@ -1,0 +1,39 @@
+name: MediLab X 10.4.7 — Embedded Admin and Settings QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/patch_core_10_4_7.py.z64
+      - m/ux-10.4.7.css.z64
+      - m/ux-10.4.7.js.z64
+      - m/build_ui_10_4_7.py
+      - m/qa_10_4_7.cjs
+      - .github/workflows/qa-ui-10-4-7.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify current production source then build 10.4.7 HTML
+        run: python3 m/build_ui_10_4_7.py --qa --qa-output /tmp/MediLabX-10.4.7-QA.html
+      - name: Install Chromium browser tests
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: QA embedded HR, optional CNIC, archive and restore, light/dark Settings
+        run: node m/qa_10_4_7.cjs /tmp/MediLabX-10.4.7-QA.html /tmp/medilabx-1047-qa
+      - name: Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLabX-10.4.7-HR-Settings-QA
+          path: /tmp/medilabx-1047-qa
+          if-no-files-found: ignore
+          retention-days: 14
