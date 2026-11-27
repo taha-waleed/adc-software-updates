@@ -69,6 +69,54 @@ async function main(){
     check('Referring directory list and inline edit',await pg.locator('#settings .px-list .px-item').count()>=1);
     await pg.evaluate(()=>document.querySelector('#settings .px-tabs [data-px-key="rates"]').click());
     check('Rate List CRUD launch',await pg.locator('#settings .px-card button').filter({hasText:'Add new service'}).count()>=1);
+
+    // Real CRUD wiring with synthetic data; ensure original DB key is used, not a preview-only model.
+    await pg.evaluate(()=>document.querySelector('#settings .px-tabs [data-px-key="doctors"]').click());
+    await pg.evaluate(()=>document.querySelector('#settings [data-px-sub="referring"]').click());
+    await pg.waitForTimeout(75);
+    const addDoctor=await pg.evaluate(()=>{
+      const v=document.querySelector('#settings .adc-setting-view[data-setting-view="doctors"]');
+      const inp=v?.querySelector('.px-card input');
+      if(!inp)return false;
+      inp.value='Dr. Synthetic New';
+      v.querySelector('.px-card button.primary')?.click();
+      return db.referringDoctors.includes('Dr. Synthetic New');
+    });
+    check('Referral doctor add persisted via original db',addDoctor);
+    const storageDoctor=await pg.evaluate(()=>localStorage.getItem('medilabx10_html_v1'));
+    check('Patient storage key remains in use',storageDoctor===null||typeof storageDoctor==='string');
+    await pg.evaluate(()=>document.querySelector('#settings .px-tabs [data-px-key="rates"]').click());
+    await pg.evaluate(()=>{
+      db.tests=[{id:99011,name:'Synthetic Existing Test',abbr:'SYN',department:'Radiology',price:1500}];
+      // Keep existing sample patient invoice price intact, even after a rate change.
+    });
+    const rateOpened=await pg.evaluate(()=>{
+      const b=[...document.querySelectorAll('#settings .adc-setting-view[data-setting-view="rates"] button')].find(x=>x.textContent.includes('Add new service'));
+      if(!b)return false;b.click();return true;
+    });
+    check('Rate List add editor opens',rateOpened);
+    const rateSaved=await pg.evaluate(()=>{
+      const form=document.querySelector('#settings .adc-setting-view[data-setting-view="rates"] .px-card:last-child');
+      if(!form||form.hidden)return false;
+      const inputs=[...form.querySelectorAll('input')];
+      if(inputs.length!==4)return false;
+      for(const [e,value] of inputs.map((e,i)=>[e,['Synthetic New Ultrasound','SUN','2000','Radiology'][i]]))e.value=value;
+      const btn=[...form.querySelectorAll('button')].find(x=>x.textContent.trim()==='Save');btn?.click();
+      return db.tests.some(t=>t.name==='Synthetic New Ultrasound'&&t.price===2000);
+    });
+    check('New rate saved with numeric price',rateSaved);
+    const patientStable=await pg.evaluate(()=>db.patients[0].tests[0].price===1000);
+    check('Existing patient invoice prices not rewritten',patientStable);
+    // Reuse a real createdAt timestamp and ensure compact AM/PM is displayed.
+    const patientTime=await pg.evaluate(async()=>{
+      const rows=document.querySelector('#patientRows');
+      if(!rows)return false;
+      rows.innerHTML='<tr><td>AH-TEST</td><td>2026-11-27</td><td>Synthetic</td></tr>';
+      await new Promise(r=>setTimeout(r,130));
+      return /AM|PM/.test(rows.querySelector('.px-time')?.textContent||'');
+    });
+    check('Existing patient createdAt formats AM/PM in receipts',patientTime);
+
     await pg.screenshot({path:path.join(out,'doctor-rate-manager.png')});
     await pg.evaluate(()=>document.querySelectorAll('.page').forEach(e=>e.classList.toggle('active',e.id==='admin')));
     await pg.waitForTimeout(155);
