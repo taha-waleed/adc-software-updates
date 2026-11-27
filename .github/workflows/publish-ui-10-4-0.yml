@@ -1,0 +1,39 @@
+name: Publish MediLab X 10.4.0 — Official Online HTML Update
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-ui-10-4-0.yml
+      - m/ux-10.4.0-settings.css
+      - m/ux-10.4.0-settings.js
+      - m/publish_ui_10_4_0.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilabx-ui-1040
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify old release and build 10.4 HTML + SHA256 manifest
+        run: python3 m/publish_ui_10_4_0.py
+      - name: Commit verified HTML and official update.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "medilab-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medilabx-ui-10.4.0/MediLabX.html m/update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "MediLab X 10.4.0: fix Settings navigation and streamline Admin"
+            git push origin HEAD:main
+          fi
