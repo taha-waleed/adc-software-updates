@@ -1,16 +1,14 @@
 {
   "schema": 1,
-  "version": "10.4.5",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.5/MediLabX.html",
-  "sha256": "b2a06cb1c7350a18a76559638dc3967caccab11fc82463f20cfcaf3a6e9d0d29",
+  "version": "10.4.6",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.6/MediLabX.html",
+  "sha256": "53b9b86461724a0ba6acf69e44ee22dd297734012be0ca47fcec38fb53ce7613",
   "notes": [
-    "Version 10.4.5: unified minimalist light/dark design inspired by clean desktop account-settings tabs; simple text-only navigation and matching buttons, tables and panels.",
-    "Settings and Admin use compact pill tabs without the old Settings dashboard; doctor directory opens in a section instead of a separate popup.",
-    "Performing and referring doctors have searchable short lists, add/rename/remove controls, and a view-all option (Admin). Doctor activity is summarized from existing patient registrations, with date filters.",
-    "Rate List provides a separate simple section for adding, editing, removing and changing service prices. Existing historical patient bills are not rewritten.",
-    "Patient & Receipts shows an AM/PM time when the existing record has a valid createdAt timestamp; original records without a timestamp are unchanged.",
-    "Notification search is removed; an available update can start using the existing native Update Now button. The original authenticated updater, SHA-256 verification and rollback are unchanged.",
-    "Fish-tank decorations hidden; taskbar, icons, popups and privacy lock receive a quieter UI and Aurora-style screen styling where matching native lock elements are present.",
-    "This update is an HTML-only UI/workflow patch over verified 10.4.0. Physical Windows app, printer, historical records, all workflows and privacy-screen compatibility still require user acceptance testing. Back up patient data before installing."
+    "MediLab X 10.4.6: top Windows titlebar and left navigation both use matching dark navy #182C4D.",
+    "Fixed all sidebar navigation and window-control text/icon contrast in Light and Dark modes.",
+    "Professional, consistent primary, secondary, danger and selected-tab buttons; improved hover and keyboard focus states.",
+    "Reduced Settings tab overflow by retaining six common tabs and placing remaining original tabs under More settings; original event handlers are reused.",
+    "Existing patient, receipt, doctor, rate-list, report, printing, permissions, backup and GitHub updater JavaScript is preserved unchanged.",
+    "HTML-only appearance update; native Windows desktop, physical printing and live patient workflows are not fully tested in this GitHub CI."
   ]
 }
