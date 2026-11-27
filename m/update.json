@@ -1,14 +1,16 @@
 {
   "schema": 1,
-  "version": "10.4.6",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.6/MediLabX.html",
-  "sha256": "53b9b86461724a0ba6acf69e44ee22dd297734012be0ca47fcec38fb53ce7613",
+  "version": "10.4.7",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.7/MediLabX.html",
+  "sha256": "e581060ba013b6170af93711926fecda71871d02bfb679ffe55458acd8d389cf",
   "notes": [
-    "MediLab X 10.4.6: top Windows titlebar and left navigation both use matching dark navy #182C4D.",
-    "Fixed all sidebar navigation and window-control text/icon contrast in Light and Dark modes.",
-    "Professional, consistent primary, secondary, danger and selected-tab buttons; improved hover and keyboard focus states.",
-    "Reduced Settings tab overflow by retaining six common tabs and placing remaining original tabs under More settings; original event handlers are reused.",
-    "Existing patient, receipt, doctor, rate-list, report, printing, permissions, backup and GitHub updater JavaScript is preserved unchanged.",
-    "HTML-only appearance update; native Windows desktop, physical printing and live patient workflows are not fully tested in this GitHub CI."
+    "MediLab X 10.4.7: Employee Administration now opens as a tab in Admin & Users, with the existing employee, experience-letter, leave and salary controls preserved inside the main workspace.",
+    "Employee Directory supports optional CNIC (stored in existing employee-only local records, masked in list), search, Remove (soft archive), Show archived and Restore. Historical references are retained.",
+    "Settings now opens to a new MediLab X Settings overview, with short professional descriptions; selecting a Settings tab opens its original functional controls.",
+    "Fish Tank decorative animation script, graphics and settings card removed from this HTML release.",
+    "Formal Segoe UI typography; clearer MediLab branding; consistent Light/Dark surfaces and contrast, including the top workstation header and HR forms.",
+    "Rate List sidebar shortcut opens the dedicated Rate List settings tab instead of leaving an unrelated Settings panel on screen with an incorrect active sidebar shortcut.",
+    "Existing patient/receipt records, report editors, native updater, print templates and clinical business logic are otherwise preserved; CNIC is sensitive and remains locally stored in the employee operations dataset.",
+    "Automated browser QA used synthetic employee records and original update controls. Physical Windows EXE, data confidentiality posture and all printer/device workflows require workstation acceptance testing. Back up data before installing."
   ]
 }
