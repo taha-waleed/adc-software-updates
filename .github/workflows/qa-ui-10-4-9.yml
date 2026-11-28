@@ -1,0 +1,38 @@
+name: MediLab X 10.4.9 — Software Updates QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.9-updates.css.z64
+      - m/ux-10.4.9-updates.js.z64
+      - m/build_ui_10_4_9.py
+      - m/qa_10_4_9.cjs
+      - .github/workflows/qa-ui-10-4-9.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify official 10.4.8 SHA256 and build production-sourced 10.4.9 preview
+        run: python3 m/build_ui_10_4_9.py --qa --qa-output /tmp/MediLabX-10.4.9-QA.html
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test one Whats New, original update actions, and popup contrast
+        run: node m/qa_10_4_9.cjs /tmp/MediLabX-10.4.9-QA.html /tmp/medilabx-1049-qa
+      - name: Upload browser QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLabX-10.4.9-Updates-QA
+          path: /tmp/medilabx-1049-qa
+          if-no-files-found: ignore
+          retention-days: 14
