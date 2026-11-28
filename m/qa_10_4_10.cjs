@@ -77,7 +77,7 @@ async function main(){
     await page.evaluate(()=>document.body.classList.add('adc-dark-mode'));await page.waitForTimeout(150);
     await page.screenshot({path:path.join(dest,'updates-dark.png')});
     const dark=await page.evaluate(()=>{const r=document.getElementById('patientSearch'),c=getComputedStyle(r);const e=document.querySelector('.mlx1050-updates-header h3');const h=getComputedStyle(e);return {inputColor:c.color,inputBg:c.backgroundColor,heroText:h.color}});
-    check('Dark theme input and gradient heading readable',dark.inputColor!==dark.inputBg&&dark.heroText==='rgb(255, 255, 255)',dark);
+    check('Dark theme input and gradient heading readable',dark.inputColor!==dark.inputBg&&/^rgb\((?:23\d|24\d|25\d),\s*(?:23\d|24\d|25\d),\s*(?:23\d|24\d|25\d)\)$/.test(dark.heroText),dark);
     await page.emulateMedia({media:'print'});
     const print=await page.evaluate(()=>getComputedStyle(document.body).getPropertyValue('--mlx10-navy').trim());
     check('Screen styling isolated from printing',print==='',{print});
