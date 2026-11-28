@@ -1,19 +1,16 @@
 {
   "schema": 1,
-  "version": "10.4.10",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.10/MediLabX.html",
-  "sha256": "1c084a4b6e5a9b106282f36a664ab462820c31691f2ab2a5f90bec97056731f5",
+  "version": "10.4.11",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.11/MediLabX.html",
+  "sha256": "b2ca5a298fe3851028917ca608fc56e41d77c7ae2fd5102038eeadc64e61a5e1",
   "notes": [
-    "MediLab X 10.4.10: Soft Capsule sidebar selected-state styling with larger Manrope/Inter-first headings and inputs, generous Workspace/Operations/System spacing and a visible update indicator.",
-    "Patients & Receipts: responsive modality filters, date/search/export controls, clearer Light/Dark contrast and smaller Export Contacts button without toolbar overlap.",
-    "Reception: compact Returning Patient MR/receipt/phone lookup; mobile number presents optional matching patient suggestions, including multiple family members, before any data is filled.",
-    "Selecting Use details copies only chosen demographics; never auto-selects a phone match, replaces existing patient records, or reuses a prior visit's tests, receipt, payment or date.",
-    "Clinical Notes input removed from the registration screen and cleared on new submission; existing historical clinical notes and database structure preserved; tests moved higher.",
-    "About, Settings and Software Updates HTML/UI version labels use 10.4.10 with one stable current-version badge; native Windows shell version is separate.",
-    "Software Updates presentation: compact blue/violet update header with verified native Check, Restore and existing single Whats New toggle; no fabricated auto-download, install-on-exit or version-history controls.",
-    "Hide broken decorative Notification Appearance example card while retaining actual notifications/insights. AI Personalization opens native Gemini API configuration fields rather than a blank pane when native controls are available.",
-    "Light/Dark mode contrast and larger typography extend to starting and login screens; actual external web fonts require connectivity unless already installed locally.",
-    "HTML-only upgrade; original clinical billing, patient reports, rates, printing, encrypted update verification, backup and authorization handlers were not replaced.",
-    "Automated browser tests use isolated synthetic patient data; physical Windows EXE, real patient records, external AI provider/network, and clinical/printing workflows still require acceptance tests. Keep a patient backup."
+    "MediLab X 10.4.11: Update Now now invokes the existing Windows updater once, showing a single native confirmation instead of two simultaneous native/HTML dialogs.",
+    "The old Updating MediLab overlay is suppressed during native confirmation; Cancel restores button state and reports cancellation without changing saved clinical records.",
+    "Update Now, Remind Me Later and Restore previous now share one responsive button row when an update is available.",
+    "The redundant Check for updates action is hidden when a version is already offered; normal Check for updates remains available when up to date.",
+    "Current HTML interface release labels visually show 10.4.11 in Settings, About and Software Updates; Windows shell version is separate.",
+    "Original desktop SHA-256 verification, backup snapshot, download, restart and rollback implementations are not modified.",
+    "QA: production-source Chromium simulation on 1600/1100/990 windows, native bridge mock call-once/cancel, offered/up-to-date action states, responsive buttons and Light/Dark modes.",
+    "Important: browser tests simulate the Electron bridge, not an actual Windows restart or patient database migration. Back up records before installing."
   ]
 }
