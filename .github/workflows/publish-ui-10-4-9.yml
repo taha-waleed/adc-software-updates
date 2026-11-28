@@ -1,0 +1,39 @@
+name: Publish MediLab X 10.4.9 — Software Updates
+on:
+  push:
+    branches: [main]
+    paths:
+      - m/ux-10.4.9-updates.css.z64
+      - m/ux-10.4.9-updates.js.z64
+      - m/build_ui_10_4_9.py
+      - .github/workflows/publish-ui-10-4-9.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: medilabx-html-1049
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 10.4.8 source and update manifest; build 10.4.9
+        run: python3 m/build_ui_10_4_9.py
+      - name: Commit release HTML and SHA256 update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "medilab-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add medilabx-ui-10.4.9/MediLabX.html m/update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "MediLab X 10.4.9: professional Software Updates UI and single What's New"
+            git push origin HEAD:main
+          fi
