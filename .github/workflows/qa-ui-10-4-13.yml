@@ -1,0 +1,30 @@
+name: MediLab X 10.4.13 — Reception Header Filters QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.13.css.z64
+      - m/ux-10.4.13.js.z64
+      - m/build_ui_10_4_13.py
+      - m/qa_10_4_13.cjs
+      - .github/workflows/qa-ui-10-4-13.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  production-browser-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build 10.4.13 QA from SHA256-pinned 10.4.12 official HTML
+        run: python3 m/build_ui_10_4_13.py --qa --qa-output /tmp/MediLabX-10.4.13-QA.html
+      - name: Install Chromium QA dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test exact original filter controls, positioning, dark/light and mobile wrap
+        run: node m/qa_10_4_13.cjs /tmp/MediLabX-10.4.13-QA.html
