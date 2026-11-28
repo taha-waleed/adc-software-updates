@@ -1,0 +1,30 @@
+name: MediLab X 10.4.11 — Single Update Confirmation QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.11.css.z64
+      - m/ux-10.4.11.js.z64
+      - m/build_ui_10_4_11.py
+      - m/qa_10_4_11.cjs
+      - .github/workflows/qa-ui-10-4-11.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build 10.4.11 test HTML from exact official 10.4.10 SHA256
+        run: python3 m/build_ui_10_4_11.py --qa --qa-output /tmp/MediLabX-10.4.11-QA.html
+      - name: Install browser QA dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Verify single Windows confirmation flow, cancel and controls
+        run: node m/qa_10_4_11.cjs /tmp/MediLabX-10.4.11-QA.html
