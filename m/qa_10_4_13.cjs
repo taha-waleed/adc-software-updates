@@ -66,7 +66,8 @@ async function main(){
        const alreadyHasOther=[...bar.querySelectorAll('button')].some(x=>x.textContent.trim()==='Other');
        const other=alreadyHasOther?null:document.createElement('button');
        if(other){other.type='button';other.textContent='Other';other.setAttribute('aria-pressed','false');bar.appendChild(other)}
-       const result={n:bar.querySelectorAll('button').length,buttonHeight:other.getBoundingClientRect().height,overflow:h.scrollWidth>h.clientWidth+4};
+       const fifth=other||[...bar.querySelectorAll('button')].find(x=>x.textContent.trim()==='Other');
+       const result={n:bar.querySelectorAll('button').length,buttonHeight:fifth?.getBoundingClientRect().height||0,overflow:h.scrollWidth>h.clientWidth+4};
        other?.remove();return result;
      });
      check('Five existing/synthetic filters also fit horizontally',five.n===5&&five.buttonHeight<=30&&!five.overflow,five);
