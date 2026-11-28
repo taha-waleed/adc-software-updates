@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "version": "10.4.7",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.7/MediLabX.html",
-  "sha256": "e581060ba013b6170af93711926fecda71871d02bfb679ffe55458acd8d389cf",
+  "version": "10.4.8",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.8/MediLabX.html",
+  "sha256": "413ac670e33365ac85b7319305f663313c64ac3134548968bde4158007107818",
   "notes": [
-    "MediLab X 10.4.7: Employee Administration now opens as a tab in Admin & Users, with the existing employee, experience-letter, leave and salary controls preserved inside the main workspace.",
-    "Employee Directory supports optional CNIC (stored in existing employee-only local records, masked in list), search, Remove (soft archive), Show archived and Restore. Historical references are retained.",
-    "Settings now opens to a new MediLab X Settings overview, with short professional descriptions; selecting a Settings tab opens its original functional controls.",
-    "Fish Tank decorative animation script, graphics and settings card removed from this HTML release.",
-    "Formal Segoe UI typography; clearer MediLab branding; consistent Light/Dark surfaces and contrast, including the top workstation header and HR forms.",
-    "Rate List sidebar shortcut opens the dedicated Rate List settings tab instead of leaving an unrelated Settings panel on screen with an incorrect active sidebar shortcut.",
-    "Existing patient/receipt records, report editors, native updater, print templates and clinical business logic are otherwise preserved; CNIC is sensitive and remains locally stored in the employee operations dataset.",
-    "Automated browser QA used synthetic employee records and original update controls. Physical Windows EXE, data confidentiality posture and all printer/device workflows require workstation acceptance testing. Back up data before installing."
+    "MediLab X 10.4.8: fixed selected Settings text highlighting in the navy sidebar; navigation text now remains opaque white in Light and Dark themes.",
+    "Audited 15 displayed Settings categories. The empty Gemini subscription page and conflicting Interface Layout switch are hidden in Standard; original underlying settings and saved data are preserved for compatibility.",
+    "Verified navigation across the remaining 13 tabs in Light and Dark modes: Centre & Receipts, Appearance, Doctors, Rate List, Notifications, Software Updates, Animations, Now Brief, AI Personalization, WhatsApp, Printing, Developer and Backup.",
+    "Fixed Dark Mode text contrast on New Patient, clock/calendar, notification bell, Check for updates, Restore previous, and Admin/employee text inputs.",
+    "Unified font, panel, forms, tables, action-button and focus contrast between Light/Dark modes without changing receipt, printing or user-record code.",
+    "Sidebar/Rate List active-state consistency improved; Settings HTML version badge corrected to 10.4.8.",
+    "Strictly HTML-only UI patch; existing patient/receipt data, doctor directories, employee records, native GitHub updater, printing and Local Storage schemas unchanged.",
+    "GitHub browser smoke tests use isolated synthetic records and cannot certify the actual installed Windows EXE, physical printing, live backups, server APIs or every privileged Developer action. Keep a backup and test on a workstation."
   ]
 }
