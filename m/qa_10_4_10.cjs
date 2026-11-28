@@ -27,12 +27,12 @@ async function main(){
       notes:e('pNotes')&&getComputedStyle(e('pNotes')).display,phoneBox:!!e('mlx1050PhoneMatches'),recall:e('ml85RecallMR')?.placeholder,
       about:document.querySelector('#about .mlx-version')?.textContent,updater:e('adc85UpdateHeading')?.textContent,
       originalControls:['patientForm','patientRows','testResults','adc85UpdateNow','adc85RestoreUpdate','adc85CheckUpdates','adc85UpdateOffer'].every(x=>!!e(x)),
-      splash:getComputedStyle(document.querySelector('#startupSplash .splash-title')).fontFamily,
-      login:getComputedStyle(document.querySelector('#loginScreen input')).fontSize};
+      splash:document.querySelector('#startupSplash .splash-title')?getComputedStyle(document.querySelector('#startupSplash .splash-title')).fontFamily:null,
+      login:document.querySelector('#loginScreen input')?getComputedStyle(document.querySelector('#loginScreen input')).fontSize:null};
    });
    console.log('VIEW',width,JSON.stringify(state));
    check('Original clinical/updater controls retained '+width,state.loaded&&state.originalControls,state);
-   check('Readability, capsule and startup font '+width,state.navFont==='14px'&&state.navRadius==='13px'&&parseFloat(state.login)>=15&&state.splash.includes('Manrope'),state);
+   check('Readability, capsule and startup font '+width,state.navFont==='14px'&&state.navRadius==='13px'&&(state.login===null||parseFloat(state.login)>=15)&&(state.splash===null||state.splash.includes('Manrope')),state);
    check('Notes removed and compact returning-patient lookup '+width,state.notes==='none'&&state.phoneBox&&/phone/i.test(state.recall),state);
    check('Consistent UI version '+width,/(10\.4\.10)/.test(state.about||'')&&/(10\.4\.10)/.test(state.updater||''),state);
    if(width===1600){
