@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "10.4.12",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.12/MediLabX.html",
-  "sha256": "329aa9d3f3c729bfc3c4a1a8d1a9772fe97b57f300c2cf8dbb96f02d5928803e",
+  "version": "10.4.13",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.13/MediLabX.html",
+  "sha256": "94f314328d2615717ee8043770d65f2c90ae8194bac697342908e76d0cbe81af",
   "notes": [
-    "MediLab X 10.4.12: fixed doubled current-version heading in Software Updates. Native status stays functional; legacy CSS pseudo-version text is suppressed and UI labels synchronize to 10.4.12.",
-    "Improved navy-to-violet update hero: readable high-contrast white headings and descriptions, consistent Inter/Manrope typography in Light and Dark modes.",
-    "Fixed Whats New alignment and duplicate version generated text: one left-aligned accordion; the heading shows the installed UI version, or the offered update version when an update is available.",
-    "Reception tests/services uses a compact list without an inner scrollbar: four rows initially, six search results, and a Show all/Show fewer action for complete access.",
-    "The existing test search, Add buttons, selected services, billing and patient registration handlers are unchanged. All existing tests remain accessible.",
-    "Only screen-specific CSS and scoped UI JavaScript are appended to the verified 10.4.11 HTML. Original patient records, print templates, native update transport, SHA-256 verification and backups are preserved.",
-    "Synthetic Chromium browser regression passed for responsive viewports, update text, expandable test list, and Light/Dark presentation. Actual Windows/printing/clinical workflow requires workstation acceptance testing."
+    "MediLab X 10.4.13: Reception modality filters moved beside Add tests / services heading instead of underneath Selected tests.",
+    "Smaller Soft Capsule All/CT/X-Ray/Ultrasound/Other filters; existing buttons moved, not duplicated, so old selection listeners and active filter remain available.",
+    "Responsive spacing: 28px high filter chips, same-row alignment when room allows; compact wrap on smaller windows.",
+    "Light and Dark mode button contrast and focus states improved; test search, Add, Show all tests, selected services and patient billing logic unchanged.",
+    "Current HTML UI release display updated to 10.4.13 in the existing version-synchronization script; Windows executable version remains separately managed.",
+    "Existing patient and doctor records, test catalogue, original desktop update engine, receipts and print styles preserved.",
+    "Chrome UI tests run against the production-sourced HTML and a synthetic filter fixture. Native Windows/physical printing and clinical end-to-end checks still require workstation testing. Back up data first."
   ]
 }
