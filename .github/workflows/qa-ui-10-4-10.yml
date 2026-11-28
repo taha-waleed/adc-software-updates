@@ -1,0 +1,38 @@
+name: MediLab X 10.4.10 — Pending UX & Returning Patient QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - m/ux-10.4.10.css.z64
+      - m/ux-10.4.10.js.z64
+      - m/build_ui_10_4_10.py
+      - m/qa_10_4_10.cjs
+      - .github/workflows/qa-ui-10-4-10.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact 10.4.9 production SHA and generate 10.4.10 QA HTML
+        run: python3 m/build_ui_10_4_10.py --qa --qa-output /tmp/MediLabX-10.4.10-QA.html
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test compact reception, optional phone autofill, Settings, versions and Light/Dark
+        run: node m/qa_10_4_10.cjs /tmp/MediLabX-10.4.10-QA.html /tmp/medilabx-10410-qa
+      - name: QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MediLabX-10.4.10-UI-Acceptance-QA
+          path: /tmp/medilabx-10410-qa
+          if-no-files-found: ignore
+          retention-days: 14
