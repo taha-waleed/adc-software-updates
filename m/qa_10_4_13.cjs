@@ -63,9 +63,11 @@ async function main(){
      // Ensure responsive layout supports it too; do not ship a duplicate button.
      const five=await p.evaluate(()=>{
        const bar=document.getElementById('mlxScanSelect-reception'),h=bar.parentElement;
-       const other=document.createElement('button');other.type='button';other.textContent='Other';other.setAttribute('aria-pressed','false');bar.appendChild(other);
+       const alreadyHasOther=[...bar.querySelectorAll('button')].some(x=>x.textContent.trim()==='Other');
+       const other=alreadyHasOther?null:document.createElement('button');
+       if(other){other.type='button';other.textContent='Other';other.setAttribute('aria-pressed','false');bar.appendChild(other)}
        const result={n:bar.querySelectorAll('button').length,buttonHeight:other.getBoundingClientRect().height,overflow:h.scrollWidth>h.clientWidth+4};
-       other.remove();return result;
+       other?.remove();return result;
      });
      check('Five existing/synthetic filters also fit horizontally',five.n===5&&five.buttonHeight<=30&&!five.overflow,five);
      await p.evaluate(()=>document.body.classList.add('adc-dark-mode'));
