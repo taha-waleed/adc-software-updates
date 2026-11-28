@@ -28,7 +28,7 @@ async function main(){
     const d=await page.evaluate(()=>{
      const find=s=>document.querySelector(s);const style=s=>{const el=find(s);if(!el)return null;const c=getComputedStyle(el);return {display:c.display,bg:c.backgroundColor,color:c.color,fill:c.webkitTextFillColor,backgroundImage:c.backgroundImage}};
      const summary=find('#mlx1049WhatsNew summary'),root=find('#adc85UpdateCentre');
-     return {version:find('#settings .adc-settings-version')?.textContent.trim(),summary:summary?.textContent,detailsCount:document.querySelectorAll('#mlx1049WhatsNew').length,
+     return {version:getComputedStyle(find('#settings .adc-settings-version'),'::after').content,badgeAccessibility:find('#settings .adc-settings-version')?.getAttribute('aria-label'),summary:summary?.textContent,detailsCount:document.querySelectorAll('#mlx1049WhatsNew').length,
        currentItems:document.querySelectorAll('#mlx1049WhatsNew li').length,
        legacy:style('#adc85UpdateCentre .mlx-release-intro'),legacyNotes:style('#adc85UpdateCentre .adc854-current-notes'),nativeNotes:style('#adc85NotesToggle'),
        headline:style('#adc85UpdateCentre .adc85-update-status strong'),status:style('#adc85UpdateCentre .adc85-update-status'),
@@ -41,7 +41,7 @@ async function main(){
     test('No duplicate Release Spotlight or notes '+width+' '+dark,[d.legacy,d.legacyNotes,d.nativeNotes].every(x=>!x||x.display==='none'),d);
     test('Native updater controls retained '+width+' '+dark,d.controls,d);
     test('Status and footer visible '+width+' '+dark,d.headline?.display!=='none'&&d.status?.display!=='none'&&d.sidebar?.display!=='none',d);
-    test('Correct HTML release badge '+width+' '+dark,d.version==='10.4.9',d);
+    test('Correct visible HTML release badge '+width+' '+dark,d.version.includes('10.4.9')&&d.badgeAccessibility==='MediLab X interface 10.4.9',d);
     const available=await page.evaluate(()=>{
       const box=document.querySelector('#adc85UpdateOffer');box.hidden=false;
       document.querySelector('#adc85NewVersion').textContent='MediLab 10.5.0';
