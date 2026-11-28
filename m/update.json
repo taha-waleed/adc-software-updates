@@ -1,16 +1,19 @@
 {
   "schema": 1,
-  "version": "10.4.9",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.9/MediLabX.html",
-  "sha256": "70d18b416f0af689626daa957371ff6f62c69b8da1ca198316a279f1f8d54338",
+  "version": "10.4.10",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.10/MediLabX.html",
+  "sha256": "1c084a4b6e5a9b106282f36a664ab462820c31691f2ab2a5f90bec97056731f5",
   "notes": [
-    "MediLab X 10.4.9: professional Software Updates section with compact status, consistent actions and simplified visual hierarchy.",
-    "Removed visible GitHub/Release Spotlight promotional copy, legacy duplicated release notes and redundant technical footer text, while retaining underlying native update functionality.",
-    "One collapsible What’s New panel: current workspace features when up to date; automatically switches to What’s New in MediLab X (version) with official manifest notes when an update is available.",
-    "Updating MediLab popup fixed in Light and Dark themes: white text on navy header and high-contrast text/buttons on white or dark slate content surfaces.",
-    "Improved faded account/footer contrast in navy sidebar; corrected Settings HTML version badge to 10.4.9.",
-    "No changes to native Check for updates, Update Now, Restore previous, SHA256 verification, clinical patient records, receipts, doctors, payroll or printers.",
-    "Verified UI-only browser tests with simulated available/up-to-date states, single-toggle behavior, Light/Dark modal readability and 1600/1100/990 viewport sizes.",
-    "Actual Windows EXE updater network/backup/printing and real clinical records were not physically tested. Keep a patient-data backup before updating."
+    "MediLab X 10.4.10: Soft Capsule sidebar selected-state styling with larger Manrope/Inter-first headings and inputs, generous Workspace/Operations/System spacing and a visible update indicator.",
+    "Patients & Receipts: responsive modality filters, date/search/export controls, clearer Light/Dark contrast and smaller Export Contacts button without toolbar overlap.",
+    "Reception: compact Returning Patient MR/receipt/phone lookup; mobile number presents optional matching patient suggestions, including multiple family members, before any data is filled.",
+    "Selecting Use details copies only chosen demographics; never auto-selects a phone match, replaces existing patient records, or reuses a prior visit's tests, receipt, payment or date.",
+    "Clinical Notes input removed from the registration screen and cleared on new submission; existing historical clinical notes and database structure preserved; tests moved higher.",
+    "About, Settings and Software Updates HTML/UI version labels use 10.4.10 with one stable current-version badge; native Windows shell version is separate.",
+    "Software Updates presentation: compact blue/violet update header with verified native Check, Restore and existing single Whats New toggle; no fabricated auto-download, install-on-exit or version-history controls.",
+    "Hide broken decorative Notification Appearance example card while retaining actual notifications/insights. AI Personalization opens native Gemini API configuration fields rather than a blank pane when native controls are available.",
+    "Light/Dark mode contrast and larger typography extend to starting and login screens; actual external web fonts require connectivity unless already installed locally.",
+    "HTML-only upgrade; original clinical billing, patient reports, rates, printing, encrypted update verification, backup and authorization handlers were not replaced.",
+    "Automated browser tests use isolated synthetic patient data; physical Windows EXE, real patient records, external AI provider/network, and clinical/printing workflows still require acceptance tests. Keep a patient backup."
   ]
 }
