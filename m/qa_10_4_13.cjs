@@ -16,6 +16,7 @@ async function main(){
    await p.waitForTimeout(1300);
    await p.evaluate(()=>{
      document.querySelector('#app')?.style.setProperty('display','block','important');
+     for(const selector of ['#adcWelcome','#loginScreen','#startupSplash']) document.querySelector(selector)?.style.setProperty('display','none','important');
      document.querySelectorAll('.page').forEach(e=>e.classList.toggle('active',e.id==='reception'));
    });
    await p.waitForTimeout(160);
