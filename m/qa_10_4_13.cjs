@@ -77,7 +77,7 @@ async function main(){
        const b=document.querySelector('#mlxScanSelect-reception button:not([aria-pressed="true"])'),style=getComputedStyle(b);
        return {background:style.backgroundColor,text:style.color};
      });
-     const rgb=x=>x.match(/\\d+/g).slice(0,3).map(Number);
+     const rgb=x=>x.match(/\d+/g).slice(0,3).map(Number);
      const lum=x=>rgb(x).map(v=>{v/=255;return v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4;}).reduce((a,b,i)=>a+b*[0.2126,0.7152,0.0722][i],0);
      const L=[lum(dark.text),lum(dark.background)].sort((a,b)=>b-a);
      const contrast=(L[0]+0.05)/(L[1]+0.05);
