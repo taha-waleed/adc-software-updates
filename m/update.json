@@ -1,16 +1,15 @@
 {
   "schema": 1,
-  "version": "10.4.11",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.11/MediLabX.html",
-  "sha256": "b2ca5a298fe3851028917ca608fc56e41d77c7ae2fd5102038eeadc64e61a5e1",
+  "version": "10.4.12",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.12/MediLabX.html",
+  "sha256": "329aa9d3f3c729bfc3c4a1a8d1a9772fe97b57f300c2cf8dbb96f02d5928803e",
   "notes": [
-    "MediLab X 10.4.11: Update Now now invokes the existing Windows updater once, showing a single native confirmation instead of two simultaneous native/HTML dialogs.",
-    "The old Updating MediLab overlay is suppressed during native confirmation; Cancel restores button state and reports cancellation without changing saved clinical records.",
-    "Update Now, Remind Me Later and Restore previous now share one responsive button row when an update is available.",
-    "The redundant Check for updates action is hidden when a version is already offered; normal Check for updates remains available when up to date.",
-    "Current HTML interface release labels visually show 10.4.11 in Settings, About and Software Updates; Windows shell version is separate.",
-    "Original desktop SHA-256 verification, backup snapshot, download, restart and rollback implementations are not modified.",
-    "QA: production-source Chromium simulation on 1600/1100/990 windows, native bridge mock call-once/cancel, offered/up-to-date action states, responsive buttons and Light/Dark modes.",
-    "Important: browser tests simulate the Electron bridge, not an actual Windows restart or patient database migration. Back up records before installing."
+    "MediLab X 10.4.12: fixed doubled current-version heading in Software Updates. Native status stays functional; legacy CSS pseudo-version text is suppressed and UI labels synchronize to 10.4.12.",
+    "Improved navy-to-violet update hero: readable high-contrast white headings and descriptions, consistent Inter/Manrope typography in Light and Dark modes.",
+    "Fixed Whats New alignment and duplicate version generated text: one left-aligned accordion; the heading shows the installed UI version, or the offered update version when an update is available.",
+    "Reception tests/services uses a compact list without an inner scrollbar: four rows initially, six search results, and a Show all/Show fewer action for complete access.",
+    "The existing test search, Add buttons, selected services, billing and patient registration handlers are unchanged. All existing tests remain accessible.",
+    "Only screen-specific CSS and scoped UI JavaScript are appended to the verified 10.4.11 HTML. Original patient records, print templates, native update transport, SHA-256 verification and backups are preserved.",
+    "Synthetic Chromium browser regression passed for responsive viewports, update text, expandable test list, and Light/Dark presentation. Actual Windows/printing/clinical workflow requires workstation acceptance testing."
   ]
 }
