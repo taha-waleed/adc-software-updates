@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "version": "10.4.8",
-  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.8/MediLabX.html",
-  "sha256": "413ac670e33365ac85b7319305f663313c64ac3134548968bde4158007107818",
+  "version": "10.4.9",
+  "htmlUrl": "https://raw.githubusercontent.com/taha-waleed/adc-software-updates/main/medilabx-ui-10.4.9/MediLabX.html",
+  "sha256": "70d18b416f0af689626daa957371ff6f62c69b8da1ca198316a279f1f8d54338",
   "notes": [
-    "MediLab X 10.4.8: fixed selected Settings text highlighting in the navy sidebar; navigation text now remains opaque white in Light and Dark themes.",
-    "Audited 15 displayed Settings categories. The empty Gemini subscription page and conflicting Interface Layout switch are hidden in Standard; original underlying settings and saved data are preserved for compatibility.",
-    "Verified navigation across the remaining 13 tabs in Light and Dark modes: Centre & Receipts, Appearance, Doctors, Rate List, Notifications, Software Updates, Animations, Now Brief, AI Personalization, WhatsApp, Printing, Developer and Backup.",
-    "Fixed Dark Mode text contrast on New Patient, clock/calendar, notification bell, Check for updates, Restore previous, and Admin/employee text inputs.",
-    "Unified font, panel, forms, tables, action-button and focus contrast between Light/Dark modes without changing receipt, printing or user-record code.",
-    "Sidebar/Rate List active-state consistency improved; Settings HTML version badge corrected to 10.4.8.",
-    "Strictly HTML-only UI patch; existing patient/receipt data, doctor directories, employee records, native GitHub updater, printing and Local Storage schemas unchanged.",
-    "GitHub browser smoke tests use isolated synthetic records and cannot certify the actual installed Windows EXE, physical printing, live backups, server APIs or every privileged Developer action. Keep a backup and test on a workstation."
+    "MediLab X 10.4.9: professional Software Updates section with compact status, consistent actions and simplified visual hierarchy.",
+    "Removed visible GitHub/Release Spotlight promotional copy, legacy duplicated release notes and redundant technical footer text, while retaining underlying native update functionality.",
+    "One collapsible What’s New panel: current workspace features when up to date; automatically switches to What’s New in MediLab X (version) with official manifest notes when an update is available.",
+    "Updating MediLab popup fixed in Light and Dark themes: white text on navy header and high-contrast text/buttons on white or dark slate content surfaces.",
+    "Improved faded account/footer contrast in navy sidebar; corrected Settings HTML version badge to 10.4.9.",
+    "No changes to native Check for updates, Update Now, Restore previous, SHA256 verification, clinical patient records, receipts, doctors, payroll or printers.",
+    "Verified UI-only browser tests with simulated available/up-to-date states, single-toggle behavior, Light/Dark modal readability and 1600/1100/990 viewport sizes.",
+    "Actual Windows EXE updater network/backup/printing and real clinical records were not physically tested. Keep a patient-data backup before updating."
   ]
 }
