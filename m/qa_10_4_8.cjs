@@ -89,6 +89,21 @@ async function main(){
      assert('Admin and employee settings preserved '+mode,admin.adminTabs>=3&&admin.cnic,admin);
      assert('Admin input light/dark contrast '+mode,admin.input&&contrast(admin.input.fill,admin.input.bg)>=4.5,admin);
      await page.screenshot({path:path.join(dir,'admin-'+mode+'.png')});
+     // Workstation-wide form contrast: dark mode previously rendered white text on
+     // white inputs outside Settings. Test one real field in each clinical area.
+     for(const section of ['reception','patients','reports','daily','expenses']){
+      await page.evaluate(k=>document.querySelectorAll('.page').forEach(e=>e.classList.toggle('active',e.id===k)),section);
+      await page.waitForTimeout(45);
+      const input=await page.evaluate(k=>{
+       const root=document.querySelector('#'+k);
+       const e=[...(root?.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),select,textarea')||[])].find(el=>{
+        const r=el.getBoundingClientRect();return getComputedStyle(el).display!=='none'&&r.width>10&&r.height>10
+       });
+       if(!e)return null;
+       const c=getComputedStyle(e);return {id:e.id,bg:c.backgroundColor,fill:c.webkitTextFillColor};
+      },section);
+      assert('App-wide input contrast '+section+' '+mode,input&&contrast(input.fill,input.bg)>=4.5,input);
+     }
      await page.evaluate(()=>document.querySelectorAll('.page').forEach(e=>e.classList.toggle('active',e.id==='settings')));
      await page.waitForTimeout(150);
      await page.evaluate(()=>document.querySelector('#nav button[data-page="settings"]')?.click());
